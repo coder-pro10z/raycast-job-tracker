@@ -1,0 +1,193 @@
+:root {
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* 8-Point Grid Spacing Tokens */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Border Radius Tokens */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions & Shadows */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
+}
+
+/* Dark Mode Palette (Default Neutral-First Linear Style) */
+.dark, :root {
+  --bg-primary: #09090b; /* zinc-950 */
+  --bg-secondary: #121215; /* subtle darker gray */
+  --bg-tertiary: #18181b; /* zinc-900 */
+  --bg-elevated: #27272a; /* zinc-800 */
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-active: rgba(255, 255, 255, 0.09);
+  --bg-glass: rgba(18, 18, 21, 0.85);
+  --bg-glass-card: rgba(24, 24, 27, 0.65);
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(99, 102, 241, 0.6);
+
+  --text-primary: #f4f4f5; /* zinc-100 */
+  --text-secondary: #a1a1aa; /* zinc-400 */
+  --text-muted: #71717a; /* zinc-500 */
+  --text-accent: #818cf8; /* indigo-400 */
+
+  /* Semantic Color Tokens */
+  --status-ready-bg: rgba(99, 102, 241, 0.15);
+  --status-ready-text: #818cf8;
+  --status-applied-bg: rgba(59, 130, 246, 0.15);
+  --status-applied-text: #60a5fa;
+  --status-interview-bg: rgba(168, 85, 247, 0.15);
+  --status-interview-text: #c084fc;
+  --status-offer-bg: rgba(16, 185, 129, 0.15);
+  --status-offer-text: #34d399;
+  --status-rejected-bg: rgba(239, 68, 68, 0.15);
+  --status-rejected-text: #f87171;
+
+  --priority-high-bg: rgba(249, 115, 22, 0.15);
+  --priority-high-text: #fb923c;
+  --priority-medium-bg: rgba(234, 179, 8, 0.15);
+  --priority-medium-text: #facc15;
+  --priority-low-bg: rgba(107, 114, 128, 0.15);
+  --priority-low-text: #9ca3af;
+}
+
+/* Light Mode Palette Override */
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc; /* slate-50 */
+  --bg-tertiary: #f1f5f9; /* slate-100 */
+  --bg-elevated: #e2e8f0;
+  --bg-hover: rgba(0, 0, 0, 0.04);
+  --bg-active: rgba(0, 0, 0, 0.08);
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-glass-card: rgba(248, 250, 252, 0.75);
+
+  --border-color: #e2e8f0;
+  --border-focus: #6366f1;
+
+  --text-primary: #0f172a; /* slate-900 */
+  --text-secondary: #475569; /* slate-600 */
+  --text-muted: #94a3b8; /* slate-400 */
+  --text-accent: #4f46e5; /* indigo-600 */
+
+  /* Semantic Colors Light */
+  --status-ready-bg: #e0e7ff;
+  --status-ready-text: #4338ca;
+  --status-applied-bg: #dbeafe;
+  --status-applied-text: #1d4ed8;
+  --status-interview-bg: #f3e8ff;
+  --status-interview-text: #7e22ce;
+  --status-offer-bg: #d1fae5;
+  --status-offer-text: #047857;
+  --status-rejected-bg: #fee2e2;
+  --status-rejected-text: #b91c1c;
+
+  --priority-high-bg: #ffedd5;
+  --priority-high-text: #c2410c;
+  --priority-medium-bg: #fef9c3;
+  --priority-medium-text: #a16207;
+  --priority-low-bg: #f3f4f6;
+  --priority-low-text: #4b5563;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Typography Classes */
+.font-sans { font-family: var(--font-sans); }
+.font-serif { font-family: var(--font-serif); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Glassmorphism & Card Utility Classes */
+.glass-panel {
+  background: var(--bg-glass-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.glow-hover {
+  transition: all var(--transition-fast);
+}
+.glow-hover:hover {
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Interactive focus ring */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Table Specific Layouts */
+.table-cell {
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  user-select: none;
+}
