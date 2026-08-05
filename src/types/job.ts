@@ -11,6 +11,8 @@ export type ApplicationStatus =
   | string;
 
 export type ViewMode = 'dashboard' | 'all' | 'ready' | 'applied' | 'interview' | 'offers' | 'rejected' | 'archived';
+export type JobDomain = 'sde' | 'cloud' | 'dual' | 'general';
+export type ActiveDomain = 'all' | 'sde' | 'cloud';
 
 export interface JobItem {
   id: string;
@@ -38,19 +40,22 @@ export interface JobItem {
   priority: Priority;
   nextAction: string;
   notes: string;
+  domain: JobDomain; // Auto-classified from keywords or Excel Track override
 }
 
 export interface FilterState {
   searchQuery: string;
+  activeDomain: ActiveDomain;
   priority: Priority[];
   workMode: WorkMode[];
   status: ApplicationStatus[];
+  techFilters: string[]; // Active tech stack filter tags (e.g., Azure, React, .NET Core)
   viewMode: ViewMode;
   sortBy: keyof JobItem | '';
   sortDirection: 'asc' | 'desc';
 }
 
-export interface DashboardMetrics {
+export interface DomainMetrics {
   totalJobs: number;
   readyToApply: number;
   applied: number;
@@ -58,4 +63,16 @@ export interface DashboardMetrics {
   withReferrals: number;
   interviewing: number;
   offers: number;
+  
+  // Domain-specific counts
+  sdeCount: number;
+  cloudDevOpsCount: number;
+  dualCount: number;
+  
+  // Tech stack counts across active dataset
+  dotnetCount: number;
+  reactAngularCount: number;
+  azureCount: number;
+  dockerK8sCount: number;
+  cicdCount: number;
 }

@@ -3,7 +3,7 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { useJobStore } from '../../state/useJobStore';
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
-import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus } from 'lucide-react';
+import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Code, Cloud, Layers } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
   const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, updateJobJD } = useJobStore();
@@ -13,14 +13,14 @@ export const JobTable: React.FC = () => {
   const rowVirtualizer = useVirtualizer({
     count: filteredJobs.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 50, // slightly larger for richer combined badge display
+    estimateSize: () => 50,
     overscan: 12,
   });
 
   const columns: { key: keyof JobItem | 'actions'; label: string; flex: string; minWidth: string; sortable?: boolean }[] = [
     { key: 'companyName', label: 'Company', flex: '1.3 1 0%', minWidth: '150px', sortable: true },
-    { key: 'targetRole', label: 'Target Role', flex: '1.8 1 0%', minWidth: '210px', sortable: true },
-    { key: 'location', label: 'Location (Mode)', flex: '1.4 1 0%', minWidth: '170px', sortable: true },
+    { key: 'targetRole', label: 'Target Role & Domain', flex: '2 1 0%', minWidth: '240px', sortable: true },
+    { key: 'location', label: 'Location (Mode)', flex: '1.3 1 0%', minWidth: '160px', sortable: true },
     { key: 'jdContent', label: 'JD / Application', flex: '1.5 1 0%', minWidth: '180px', sortable: false },
     { key: 'priority', label: 'Priority', flex: '0.8 1 0%', minWidth: '85px', sortable: true },
     { key: 'applicationStatus', label: 'Status', flex: '1 1 0%', minWidth: '110px', sortable: true },
@@ -37,6 +37,31 @@ export const JobTable: React.FC = () => {
     if (!text) return false;
     const clean = text.toLowerCase();
     return clean.startsWith('http') || clean.includes('.com') || clean.includes('.in') || clean.includes('.io') || clean.includes('.org') || clean.includes('careers');
+  };
+
+  const renderDomainBadge = (job: JobItem) => {
+    if (job.domain === 'dual') {
+      return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
+          <Layers size={10} /> Dual Stack
+        </span>
+      );
+    }
+    if (job.domain === 'cloud') {
+      return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
+          <Cloud size={10} /> DevOps/Cloud
+        </span>
+      );
+    }
+    if (job.domain === 'sde') {
+      return (
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 600, backgroundColor: 'rgba(129, 140, 248, 0.12)', color: '#818cf8', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
+          <Code size={10} /> SDE
+        </span>
+      );
+    }
+    return null;
   };
 
   return (
@@ -57,7 +82,7 @@ export const JobTable: React.FC = () => {
         <div style={{
           display: 'flex',
           width: '100%',
-          minWidth: '1080px',
+          minWidth: '1100px',
           position: 'sticky',
           top: 0,
           zIndex: 10,
@@ -104,7 +129,7 @@ export const JobTable: React.FC = () => {
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,
             width: '100%',
-            minWidth: '1080px',
+            minWidth: '1100px',
             position: 'relative',
           }}
         >
@@ -115,7 +140,7 @@ export const JobTable: React.FC = () => {
               color: 'var(--text-muted)',
               fontSize: '0.9375rem'
             }}>
-              No job applications match your current search and filter criteria.
+              No job applications match your current domain track and filter criteria.
             </div>
           )}
 
@@ -137,7 +162,7 @@ export const JobTable: React.FC = () => {
                   top: 0,
                   left: 0,
                   width: '100%',
-                  minWidth: '1080px',
+                  minWidth: '1100px',
                   height: `${virtualRow.size}px`,
                   transform: `translateY(${virtualRow.start}px)`,
                   display: 'flex',
@@ -174,9 +199,12 @@ export const JobTable: React.FC = () => {
                   )}
                 </div>
 
-                {/* Target Role */}
-                <div style={{ flex: columns[1].flex, minWidth: columns[1].minWidth, paddingRight: '12px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>
-                  {job.targetRole}
+                {/* Target Role & Domain Badge */}
+                <div style={{ flex: columns[1].flex, minWidth: columns[1].minWidth, paddingRight: '12px', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+                  <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>
+                    {job.targetRole}
+                  </span>
+                  {renderDomainBadge(job)}
                 </div>
 
                 {/* Combined Location (Work Mode) */}

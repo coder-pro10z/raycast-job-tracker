@@ -16,7 +16,10 @@ import {
   Copy,
   Check,
   Link as LinkIcon,
-  Save
+  Save,
+  Code,
+  Cloud,
+  Layers
 } from 'lucide-react';
 
 export const JobDetailDrawer: React.FC = () => {
@@ -73,6 +76,10 @@ export const JobDetailDrawer: React.FC = () => {
 
   const currentJdIsLink = isUrl(selectedJob.jdContent);
 
+  // Compute Domain Track tag strictly from domain attribute
+  const isCloud = selectedJob.domain === 'cloud';
+  const isDual = selectedJob.domain === 'dual';
+
   return (
     <>
       {/* Backdrop overlay for focus */}
@@ -124,6 +131,19 @@ export const JobDetailDrawer: React.FC = () => {
               <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                 {selectedJob.companyName}
               </span>
+              {isDual ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
+                  <Layers size={11} /> Dual Domain (SDE + Cloud)
+                </span>
+              ) : isCloud ? (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
+                  <Cloud size={11} /> Cloud / DevOps Track
+                </span>
+              ) : (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(129, 140, 248, 0.15)', color: '#818cf8', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
+                  <Code size={11} /> SDE / FullStack Track
+                </span>
+              )}
             </div>
             <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.3 }}>
               {selectedJob.targetRole}
@@ -253,16 +273,33 @@ export const JobDetailDrawer: React.FC = () => {
           </div>
 
           {/* Section 2: Overview & Tech Stack */}
-          {renderSectionHeader('Overview & Tech Stack', <CheckCircle size={15} />)}
+          {renderSectionHeader(isCloud ? 'Cloud Infrastructure & DevOps Stack' : 'Software Engineering Tech Stack', <CheckCircle size={15} />)}
           <div>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'block', marginBottom: '8px' }}>
-              Extracted Keywords & Skills:
+              Extracted Technical Competencies:
             </span>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
               {selectedJob.techStack.length > 0 ? (
-                selectedJob.techStack.map((skill, idx) => (
-                  <Badge key={idx} type="tech" value={skill} />
-                ))
+                selectedJob.techStack.map((skill, idx) => {
+                  const isCloudSkill = skill.toLowerCase().includes('azure') || skill.toLowerCase().includes('docker') || skill.toLowerCase().includes('k8s') || skill.toLowerCase().includes('cloud') || skill.toLowerCase().includes('devops');
+                  return (
+                    <span 
+                      key={idx} 
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: 'var(--radius-sm)',
+                        fontSize: '0.75rem',
+                        fontFamily: 'var(--font-mono)',
+                        fontWeight: 600,
+                        backgroundColor: isCloudSkill ? 'rgba(56, 189, 248, 0.15)' : 'var(--bg-elevated)',
+                        color: isCloudSkill ? '#38bdf8' : 'var(--text-primary)',
+                        border: isCloudSkill ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid transparent'
+                      }}
+                    >
+                      {isCloudSkill && '☁️ '}{skill}
+                    </span>
+                  );
+                })
               ) : (
                 <span style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', fontStyle: 'italic' }}>No technical stack keywords recorded in sheet.</span>
               )}

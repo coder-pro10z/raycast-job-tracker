@@ -1,39 +1,42 @@
 import React from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import type { Priority, WorkMode } from '../../types/job';
-import { Search, X, Filter, RotateCcw } from 'lucide-react';
+import { Search, X, Filter, RotateCcw, Code, Cloud } from 'lucide-react';
 
 export const FilterBar: React.FC = () => {
-  const { 
-    filterState, 
-    setSearchQuery, 
-    togglePriorityFilter, 
-    toggleWorkModeFilter, 
-    resetFilters,
-    filteredJobs,
-    jobs
-  } = useJobStore();
+  const { filterState, setSearchQuery, togglePriorityFilter, toggleWorkModeFilter, toggleTechFilter, resetFilters } = useJobStore();
 
   const priorities: Priority[] = ['High', 'Medium', 'Low'];
   const workModes: WorkMode[] = ['Hybrid', 'Remote', 'Onsite'];
 
+  // Domain-specific Tech stack filter pills
+  const techPills = filterState.activeDomain === 'cloud' 
+    ? ['Azure', 'Docker', 'Kubernetes', 'CI/CD', 'Terraform', '.NET', 'SQL']
+    : ['.NET Core', 'C#', 'React', 'Angular', 'SQL', 'Azure', 'Docker'];
+
   const hasActiveFilters = 
     filterState.priority.length > 0 || 
     filterState.workMode.length > 0 || 
-    filterState.searchQuery !== '';
+    filterState.status.length > 0 ||
+    filterState.techFilters.length > 0 ||
+    filterState.searchQuery.trim() !== '';
 
   return (
     <div style={{
+      padding: '0 var(--space-6) var(--space-4)',
       display: 'flex',
-      flexWrap: 'wrap',
       alignItems: 'center',
       justifyContent: 'space-between',
       gap: 'var(--space-4)',
-      padding: '0 var(--space-6)',
-      marginBottom: 'var(--space-4)'
+      flexWrap: 'wrap'
     }}>
-      {/* Search Bar */}
-      <div style={{ position: 'relative', flex: '1', minWidth: '260px', maxWidth: '400px' }}>
+      {/* Left Search Input Box */}
+      <div style={{
+        position: 'relative',
+        flex: '1',
+        minWidth: '240px',
+        maxWidth: '380px'
+      }}>
         <Search 
           size={16} 
           style={{ 
@@ -46,36 +49,39 @@ export const FilterBar: React.FC = () => {
         />
         <input
           type="text"
-          placeholder="Filter table by company, skill, location..."
+          placeholder={filterState.activeDomain === 'cloud' ? "Search Azure, K8s, Docker, DevOps roles..." : "Search C#, .NET, React roles, companies..."}
           value={filterState.searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{
             width: '100%',
             height: '36px',
-            paddingLeft: '36px',
-            paddingRight: filterState.searchQuery ? '32px' : '12px',
-            borderRadius: 'var(--radius-sm)',
+            backgroundColor: 'var(--bg-secondary)',
             border: '1px solid var(--border-color)',
-            backgroundColor: 'var(--bg-tertiary)',
+            borderRadius: 'var(--radius-full)',
+            padding: '0 36px',
+            fontSize: '0.8125rem',
             color: 'var(--text-primary)',
-            fontSize: '0.875rem',
             outline: 'none',
-            transition: 'border 150ms ease'
+            transition: 'border-color 150ms ease'
           }}
-          className="focus-ring"
+          onFocus={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
+          onBlur={(e) => e.currentTarget.style.borderColor = 'var(--border-color)'}
         />
         {filterState.searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
             style={{
               position: 'absolute',
-              right: '8px',
+              right: '10px',
               top: '50%',
               transform: 'translateY(-50%)',
               background: 'none',
               border: 'none',
               color: 'var(--text-muted)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
             <X size={14} />
@@ -83,94 +89,123 @@ export const FilterBar: React.FC = () => {
         )}
       </div>
 
-      {/* Filter Pills */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 'var(--space-2)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginRight: '4px', color: 'var(--text-muted)' }}>
-          <Filter size={14} />
-          <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase' }}>Filter:</span>
+      {/* Right Filter Pills Section */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+        
+        {/* Tech Stack Filter Pills (New Domain-Driven Feature) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-secondary)', padding: '3px 6px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '6px', paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
+            {filterState.activeDomain === 'cloud' ? <Cloud size={12} style={{ color: '#38bdf8' }} /> : <Code size={12} style={{ color: '#818cf8' }} />}
+            <span>Stack:</span>
+          </span>
+          {techPills.map((tech) => {
+            const isActive = filterState.techFilters.includes(tech);
+            return (
+              <button
+                key={tech}
+                onClick={() => toggleTechFilter(tech)}
+                style={{
+                  padding: '3px 9px',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.75rem',
+                  fontWeight: isActive ? 700 : 500,
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 150ms ease',
+                  backgroundColor: isActive ? (filterState.activeDomain === 'cloud' ? '#0089d6' : 'var(--border-focus)') : 'transparent',
+                  color: isActive ? '#ffffff' : 'var(--text-secondary)'
+                }}
+              >
+                {tech}
+              </button>
+            );
+          })}
         </div>
 
         {/* Priority Pills */}
-        {priorities.map((p) => {
-          const active = filterState.priority.includes(p);
-          return (
-            <button
-              key={p}
-              onClick={() => togglePriorityFilter(p)}
-              style={{
-                height: '30px',
-                padding: '0 var(--space-3)',
-                borderRadius: 'var(--radius-full)',
-                border: '1px solid',
-                borderColor: active ? 'var(--border-focus)' : 'var(--border-color)',
-                backgroundColor: active ? 'var(--status-ready-bg)' : 'var(--bg-tertiary)',
-                color: active ? 'var(--text-accent)' : 'var(--text-secondary)',
-                fontSize: '0.75rem',
-                fontWeight: active ? 600 : 500,
-                cursor: 'pointer',
-                transition: 'all 150ms ease'
-              }}
-            >
-              Priority: {p}
-            </button>
-          );
-        })}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-secondary)', padding: '3px 6px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '6px', paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
+            <Filter size={10} />
+            <span>Priority:</span>
+          </span>
+          {priorities.map((prio) => {
+            const isActive = filterState.priority.includes(prio);
+            return (
+              <button
+                key={prio}
+                onClick={() => togglePriorityFilter(prio)}
+                style={{
+                  padding: '3px 9px',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.75rem',
+                  fontWeight: isActive ? 700 : 500,
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 150ms ease',
+                  backgroundColor: isActive ? 'rgba(249, 115, 22, 0.2)' : 'transparent',
+                  color: isActive ? '#fb923c' : 'var(--text-secondary)'
+                }}
+              >
+                {prio}
+              </button>
+            );
+          })}
+        </div>
 
         {/* Work Mode Pills */}
-        {workModes.map((mode) => {
-          const active = filterState.workMode.includes(mode);
-          return (
-            <button
-              key={mode}
-              onClick={() => toggleWorkModeFilter(mode)}
-              style={{
-                height: '30px',
-                padding: '0 var(--space-3)',
-                borderRadius: 'var(--radius-full)',
-                border: '1px solid',
-                borderColor: active ? 'var(--border-focus)' : 'var(--border-color)',
-                backgroundColor: active ? 'var(--status-ready-bg)' : 'var(--bg-tertiary)',
-                color: active ? 'var(--text-accent)' : 'var(--text-secondary)',
-                fontSize: '0.75rem',
-                fontWeight: active ? 600 : 500,
-                cursor: 'pointer',
-                transition: 'all 150ms ease'
-              }}
-            >
-              {mode}
-            </button>
-          );
-        })}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-secondary)', padding: '3px 6px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '6px', paddingRight: '4px' }}>
+            Mode:
+          </span>
+          {workModes.map((mode) => {
+            const isActive = filterState.workMode.includes(mode);
+            return (
+              <button
+                key={mode}
+                onClick={() => toggleWorkModeFilter(mode)}
+                style={{
+                  padding: '3px 9px',
+                  borderRadius: 'var(--radius-full)',
+                  fontSize: '0.75rem',
+                  fontWeight: isActive ? 700 : 500,
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 150ms ease',
+                  backgroundColor: isActive ? 'var(--status-ready-bg)' : 'transparent',
+                  color: isActive ? 'var(--status-ready-text)' : 'var(--text-secondary)'
+                }}
+              >
+                {mode}
+              </button>
+            );
+          })}
+        </div>
 
-        {/* Reset Action */}
+        {/* Reset All Filters Button */}
         {hasActiveFilters && (
           <button
             onClick={resetFilters}
+            title="Reset all active filters and search"
             style={{
-              display: 'flex',
+              display: 'inline-flex',
               alignItems: 'center',
               gap: '4px',
-              height: '30px',
-              padding: '0 var(--space-3)',
+              padding: '6px 12px',
               borderRadius: 'var(--radius-full)',
-              border: '1px dashed var(--status-rejected-text)',
-              backgroundColor: 'transparent',
-              color: 'var(--status-rejected-text)',
+              backgroundColor: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-color)',
+              color: 'var(--text-muted)',
               fontSize: '0.75rem',
               fontWeight: 600,
               cursor: 'pointer',
-              marginLeft: '4px'
+              transition: 'all 150ms ease'
             }}
+            className="glow-hover"
           >
             <RotateCcw size={12} />
-            <span>Clear Filters</span>
+            <span>Reset</span>
           </button>
         )}
-
-        {/* Match counter */}
-        <div style={{ marginLeft: 'auto', fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
-          Showing <strong style={{ color: 'var(--text-primary)' }}>{filteredJobs.length}</strong> of {jobs.length} items
-        </div>
       </div>
     </div>
   );

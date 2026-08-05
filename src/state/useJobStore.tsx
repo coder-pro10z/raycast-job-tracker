@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
-import type { JobItem, FilterState, ViewMode, Priority, WorkMode, ApplicationStatus, DashboardMetrics } from '../types/job';
+import type { JobItem, FilterState, ViewMode, Priority, WorkMode, ApplicationStatus, DomainMetrics, ActiveDomain } from '../types/job';
 import { excelAdapter } from '../services/excelAdapter';
 
 interface JobStoreContextType {
@@ -11,17 +11,19 @@ interface JobStoreContextType {
   selectedJob: JobItem | null;
   selectedJobId: string | null;
   filterState: FilterState;
-  metrics: DashboardMetrics;
+  metrics: DomainMetrics;
   theme: 'dark' | 'light';
   isCommandPaletteOpen: boolean;
   
   // Actions
   setSelectedJobId: (id: string | null) => void;
   setSearchQuery: (query: string) => void;
+  setActiveDomain: (domain: ActiveDomain) => void;
   setViewMode: (view: ViewMode) => void;
   togglePriorityFilter: (prio: Priority) => void;
   toggleWorkModeFilter: (mode: WorkMode) => void;
   toggleStatusFilter: (status: ApplicationStatus) => void;
+  toggleTechFilter: (tech: string) => void;
   setSort: (column: keyof JobItem) => void;
   resetFilters: () => void;
   reloadJobs: () => Promise<void>;
@@ -33,9 +35,11 @@ interface JobStoreContextType {
 
 const defaultFilterState: FilterState = {
   searchQuery: '',
+  activeDomain: 'all',
   priority: [],
   workMode: [],
   status: [],
+  techFilters: [],
   viewMode: 'all',
   sortBy: '',
   sortDirection: 'asc'
@@ -52,12 +56,10 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [isCommandPaletteOpen, setCommandPaletteOpen] = useState<boolean>(false);
 
-  // Initial load
   useEffect(() => {
     loadData();
   }, []);
 
-  // Update theme classes on root body
   useEffect(() => {
     const html = document.documentElement;
     if (theme === 'dark') {
@@ -126,6 +128,11 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     setFilterState((prev) => ({ ...prev, searchQuery: query }));
   };
 
+  const setActiveDomain = (domain: ActiveDomain) => {
+    setFilterState((prev) => ({ ...prev, activeDomain: domain, techFilters: [] }));
+    setSelectedJobId(null);
+  };
+
   const setViewMode = (view: ViewMode) => {
     setFilterState((prev) => ({ ...prev, viewMode: view, status: [] }));
     setSelectedJobId(null);
@@ -161,6 +168,16 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     });
   };
 
+  const toggleTechFilter = (tech: string) => {
+    setFilterState((prev) => {
+      const exists = prev.techFilters.includes(tech);
+      return {
+        ...prev,
+        techFilters: exists ? prev.techFilters.filter((t) => t !== tech) : [...prev.techFilters, tech]
+      };
+    });
+  };
+
   const setSort = (column: keyof JobItem) => {
     setFilterState((prev) => {
       const isAsc = prev.sortBy === column && prev.sortDirection === 'asc';
@@ -175,26 +192,52 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const resetFilters = () => {
     setFilterState((prev) => ({
       ...defaultFilterState,
+      activeDomain: prev.activeDomain,
       viewMode: prev.viewMode
     }));
   };
 
-  // Compute Dashboard Metrics
-  const metrics = useMemo<DashboardMetrics>(() => {
-    return {
-      totalJobs: jobs.length,
-      readyToApply: jobs.filter((j) => j.applicationStatus === 'Not Started').length,
-      applied: jobs.filter((j) => j.applicationStatus === 'Applied').length,
-      highPriority: jobs.filter((j) => j.priority === 'High').length,
-      withReferrals: jobs.filter((j) => j.referralNeeded || j.referralContactName).length,
-      interviewing: jobs.filter((j) => j.applicationStatus === 'Interviewing' || j.interviewStage !== 'Not Started').length,
-      offers: jobs.filter((j) => j.applicationStatus === 'Offered').length
-    };
-  }, [jobs]);
+  // Compute Domain & General Metrics
+  const metrics = useMemo<DomainMetrics>(() => {
+    const activeDomainJobs = jobs.filter((j) => {
+      if (filterState.activeDomain === 'sde') return j.domain === 'sde' || j.domain === 'dual';
+      if (filterState.activeDomain === 'cloud') return j.domain === 'cloud' || j.domain === 'dual';
+      return true;
+    });
 
-  // Compute Filtered Jobs
+    return {
+      totalJobs: activeDomainJobs.length,
+      readyToApply: activeDomainJobs.filter((j) => j.applicationStatus === 'Not Started').length,
+      applied: activeDomainJobs.filter((j) => j.applicationStatus === 'Applied').length,
+      highPriority: activeDomainJobs.filter((j) => j.priority === 'High').length,
+      withReferrals: activeDomainJobs.filter((j) => j.referralNeeded || j.referralContactName).length,
+      interviewing: activeDomainJobs.filter((j) => j.applicationStatus === 'Interviewing' || j.interviewStage !== 'Not Started').length,
+      offers: activeDomainJobs.filter((j) => j.applicationStatus === 'Offered').length,
+      
+      // Overall counts by strict domain
+      sdeCount: jobs.filter((j) => j.domain === 'sde' || j.domain === 'dual').length,
+      cloudDevOpsCount: jobs.filter((j) => j.domain === 'cloud' || j.domain === 'dual').length,
+      dualCount: jobs.filter((j) => j.domain === 'dual').length,
+      
+      // Specific tech breakdown inside active dataset
+      dotnetCount: activeDomainJobs.filter((j) => j.techStack.some(t => t.toLowerCase().includes('.net') || t.toLowerCase().includes('c#')) || j.targetRole.toLowerCase().includes('.net')).length,
+      reactAngularCount: activeDomainJobs.filter((j) => j.techStack.some(t => t.toLowerCase().includes('react') || t.toLowerCase().includes('angular') || t.toLowerCase().includes('js'))).length,
+      azureCount: activeDomainJobs.filter((j) => j.techStack.some(t => t.toLowerCase().includes('azure') || t.toLowerCase().includes('cloud'))).length,
+      dockerK8sCount: activeDomainJobs.filter((j) => j.techStack.some(t => t.toLowerCase().includes('docker') || t.toLowerCase().includes('k8s') || t.toLowerCase().includes('kubernetes'))).length,
+      cicdCount: activeDomainJobs.filter((j) => j.techStack.some(t => t.toLowerCase().includes('ci/cd') || t.toLowerCase().includes('pipeline') || t.toLowerCase().includes('devops'))).length,
+    };
+  }, [jobs, filterState.activeDomain]);
+
+  // Compute Filtered Jobs with strict domain separation
   const filteredJobs = useMemo(() => {
     let result = [...jobs];
+
+    // Apply Active Domain filtration strictly by domain attribute
+    if (filterState.activeDomain === 'sde') {
+      result = result.filter((j) => j.domain === 'sde' || j.domain === 'dual');
+    } else if (filterState.activeDomain === 'cloud') {
+      result = result.filter((j) => j.domain === 'cloud' || j.domain === 'dual');
+    }
 
     // Apply View Mode filtration
     if (filterState.viewMode === 'ready') {
@@ -224,6 +267,17 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     // Apply Status filter pills
     if (filterState.status.length > 0) {
       result = result.filter((j) => filterState.status.includes(j.applicationStatus));
+    }
+
+    // Apply Tech filter pills
+    if (filterState.techFilters.length > 0) {
+      result = result.filter((j) => {
+        const fullTechString = `${j.targetRole} ${j.techStack.join(' ')} ${j.notes}`.toLowerCase();
+        return filterState.techFilters.some((filterTag) => {
+          const kw = filterTag.toLowerCase();
+          return fullTechString.includes(kw);
+        });
+      });
     }
 
     // Apply Search Query across relevant fields
@@ -289,10 +343,12 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         isCommandPaletteOpen,
         setSelectedJobId,
         setSearchQuery,
+        setActiveDomain,
         setViewMode,
         togglePriorityFilter,
         toggleWorkModeFilter,
         toggleStatusFilter,
+        toggleTechFilter,
         setSort,
         resetFilters,
         reloadJobs,
