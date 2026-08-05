@@ -12,7 +12,8 @@ import {
   Code,
   Cloud,
   Layers,
-  Globe
+  Globe,
+  X
 } from 'lucide-react';
 
 interface NavItem {
@@ -23,7 +24,7 @@ interface NavItem {
 }
 
 export const Sidebar: React.FC = () => {
-  const { filterState, setViewMode, setActiveDomain, metrics, jobs } = useJobStore();
+  const { filterState, setViewMode, setActiveDomain, metrics, jobs, isSidebarOpen, setSidebarOpen } = useJobStore();
 
   const navItems: NavItem[] = [
     { id: 'all', label: 'All Opportunities', icon: Briefcase, countKey: 'totalJobs' },
@@ -41,150 +42,201 @@ export const Sidebar: React.FC = () => {
     { id: 'cloud', label: 'Cloud & DevOps', icon: Cloud, count: metrics.cloudDevOpsCount, badgeColor: '#38bdf8' },
   ];
 
+  const handleDomainSelect = (id: ActiveDomain) => {
+    setActiveDomain(id);
+    setSidebarOpen(false);
+  };
+
+  const handleNavSelect = (id: ViewMode) => {
+    setViewMode(id);
+    setSidebarOpen(false);
+  };
+
   return (
-    <aside style={{
-      width: '260px',
-      backgroundColor: 'var(--bg-secondary)',
-      borderRight: '1px solid var(--border-color)',
-      display: 'flex',
-      flexDirection: 'column',
-      padding: 'var(--space-4) 0',
-      userSelect: 'none',
-      flexShrink: 0
-    }}>
-      {/* Domain Track Switcher Section */}
-      <div style={{ padding: '0 var(--space-4) var(--space-4)', borderBottom: '1px solid var(--border-color)', marginBottom: 'var(--space-3)' }}>
-        <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <Layers size={13} style={{ color: 'var(--text-accent)' }} />
-          <span>Domain Workspace</span>
+    <>
+      {/* Mobile Dark Backdrop */}
+      {isSidebarOpen && (
+        <div 
+          className="mobile-sidebar-backdrop mobile-only" 
+          onClick={() => setSidebarOpen(false)} 
+        />
+      )}
+
+      <aside
+        className={`sidebar-container ${isSidebarOpen ? 'sidebar-open' : ''}`}
+        style={{
+          width: '260px',
+          backgroundColor: 'var(--bg-secondary)',
+          borderRight: '1px solid var(--border-color)',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 'var(--space-4) 0',
+          userSelect: 'none',
+          flexShrink: 0
+        }}
+      >
+        {/* Mobile Header with Close Button */}
+        <div className="mobile-only" style={{
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 16px 12px',
+          marginBottom: '8px',
+          borderBottom: '1px solid var(--border-color)',
+          color: 'var(--text-primary)',
+          fontWeight: 700,
+          fontSize: '0.9375rem'
+        }}>
+          <span>🧭 Navigation Workspace</span>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'flex'
+            }}
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-          {domains.map((domain) => {
-            const isActive = filterState.activeDomain === domain.id;
-            const Icon = domain.icon;
+        {/* Domain Track Switcher Section */}
+        <div style={{ padding: '0 var(--space-4) var(--space-4)', borderBottom: '1px solid var(--border-color)', marginBottom: 'var(--space-3)' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <Layers size={13} style={{ color: 'var(--text-accent)' }} />
+            <span>Domain Workspace</span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            {domains.map((domain) => {
+              const isActive = filterState.activeDomain === domain.id;
+              const Icon = domain.icon;
+              return (
+                <button
+                  key={domain.id}
+                  onClick={() => handleDomainSelect(domain.id)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    width: '100%',
+                    padding: '8px 10px',
+                    borderRadius: 'var(--radius-sm)',
+                    backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
+                    border: isActive ? '1px solid var(--border-focus)' : '1px solid transparent',
+                    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    transition: 'all 150ms ease',
+                    boxShadow: isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+                  }}
+                  className="glow-hover"
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
+                    <Icon size={16} style={{ color: isActive ? domain.badgeColor : 'var(--text-muted)', flexShrink: 0 }} />
+                    <span style={{ fontSize: '0.8125rem', fontWeight: isActive ? 700 : 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {domain.label}
+                    </span>
+                  </div>
+                  <span style={{
+                    fontSize: '0.6875rem',
+                    fontWeight: 700,
+                    padding: '1px 6px',
+                    borderRadius: 'var(--radius-full)',
+                    backgroundColor: isActive ? 'rgba(255, 255, 255, 0.1)' : 'var(--bg-tertiary)',
+                    color: isActive ? domain.badgeColor : 'var(--text-muted)',
+                    flexShrink: 0
+                  }}>
+                    {domain.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Pipeline View Status Navigation */}
+        <div style={{ padding: '0 var(--space-4) var(--space-2)' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '4px' }}>
+            Pipeline Status
+          </div>
+        </div>
+
+        <nav style={{ flex: '1', padding: '0 var(--space-3)', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {navItems.map((item) => {
+            const isActive = filterState.viewMode === item.id;
+            const Icon = item.icon;
+            const count = item.countKey ? metrics[item.countKey] : undefined;
+
             return (
-              <button
-                key={domain.id}
-                onClick={() => setActiveDomain(domain.id)}
+              <div
+                key={item.id}
+                onClick={() => handleNavSelect(item.id)}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  width: '100%',
-                  padding: '8px 10px',
+                  padding: 'var(--space-2) var(--space-3)',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
-                  border: isActive ? '1px solid var(--border-focus)' : '1px solid transparent',
                   color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
                   cursor: 'pointer',
-                  textAlign: 'left',
                   transition: 'all 150ms ease',
-                  boxShadow: isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+                  fontWeight: isActive ? 600 : 500,
                 }}
-                className="glow-hover"
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
-                  <Icon size={16} style={{ color: isActive ? domain.badgeColor : 'var(--text-muted)', flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.8125rem', fontWeight: isActive ? 700 : 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {domain.label}
-                  </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <Icon size={17} style={{ color: isActive ? 'var(--text-accent)' : 'var(--text-muted)' }} />
+                  <span style={{ fontSize: '0.875rem' }}>{item.label}</span>
                 </div>
-                <span style={{
-                  fontSize: '0.6875rem',
-                  fontWeight: 700,
-                  padding: '1px 6px',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: isActive ? 'rgba(255, 255, 255, 0.1)' : 'var(--bg-tertiary)',
-                  color: isActive ? domain.badgeColor : 'var(--text-muted)',
-                  flexShrink: 0
-                }}>
-                  {domain.count}
-                </span>
-              </button>
+
+                {count !== undefined && (
+                  <span style={{
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    padding: '2px 8px',
+                    borderRadius: 'var(--radius-full)',
+                    backgroundColor: isActive ? 'var(--status-ready-bg)' : 'var(--bg-tertiary)',
+                    color: isActive ? 'var(--status-ready-text)' : 'var(--text-muted)',
+                  }}>
+                    {count}
+                  </span>
+                )}
+              </div>
             );
           })}
+        </nav>
+
+        {/* Sidebar Footer Info */}
+        <div style={{
+          padding: 'var(--space-3) var(--space-4)',
+          borderTop: '1px solid var(--border-color)',
+          fontSize: '0.75rem',
+          color: 'var(--text-muted)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4px',
+          marginTop: 'auto'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span>Active Track:</span>
+            <span style={{ fontWeight: 700, color: 'var(--text-accent)' }}>
+              {filterState.activeDomain === 'sde' ? '💻 SDE Track' : filterState.activeDomain === 'cloud' ? '☁️ Cloud & DevOps' : '🌐 All Tracks'}
+            </span>
+          </div>
+          <div style={{ color: '#34d399', fontSize: '0.6875rem', fontWeight: 600 }}>
+            ⚡ SheetJS Data Synchronized
+          </div>
         </div>
-      </div>
-
-      {/* Pipeline View Status Navigation */}
-      <div style={{ padding: '0 var(--space-4) var(--space-2)' }}>
-        <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '4px' }}>
-          Pipeline Status
-        </div>
-      </div>
-
-      <nav style={{ flex: '1', padding: '0 var(--space-3)', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-        {navItems.map((item) => {
-          const isActive = filterState.viewMode === item.id;
-          const Icon = item.icon;
-          const count = item.countKey ? metrics[item.countKey] : undefined;
-
-          return (
-            <div
-              key={item.id}
-              onClick={() => setViewMode(item.id)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: 'var(--space-2) var(--space-3)',
-                borderRadius: 'var(--radius-sm)',
-                backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
-                color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                cursor: 'pointer',
-                transition: 'all 150ms ease',
-                fontWeight: isActive ? 600 : 500,
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Icon size={17} style={{ color: isActive ? 'var(--text-accent)' : 'var(--text-muted)' }} />
-                <span style={{ fontSize: '0.875rem' }}>{item.label}</span>
-              </div>
-
-              {count !== undefined && (
-                <span style={{
-                  fontSize: '0.75rem',
-                  fontWeight: 600,
-                  padding: '2px 8px',
-                  borderRadius: 'var(--radius-full)',
-                  backgroundColor: isActive ? 'var(--status-ready-bg)' : 'var(--bg-tertiary)',
-                  color: isActive ? 'var(--status-ready-text)' : 'var(--text-muted)',
-                }}>
-                  {count}
-                </span>
-              )}
-            </div>
-          );
-        })}
-      </nav>
-
-      {/* Sidebar Footer Info */}
-      <div style={{
-        padding: 'var(--space-3) var(--space-4)',
-        borderTop: '1px solid var(--border-color)',
-        fontSize: '0.75rem',
-        color: 'var(--text-muted)',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '4px'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span>Active Track:</span>
-          <span style={{ fontWeight: 700, color: 'var(--text-accent)' }}>
-            {filterState.activeDomain === 'sde' ? '💻 SDE Track' : filterState.activeDomain === 'cloud' ? '☁️ Cloud & DevOps' : '🌐 All Tracks'}
-          </span>
-        </div>
-        <div style={{ color: '#34d399', fontSize: '0.6875rem', fontWeight: 600 }}>
-          ⚡ SheetJS Data Synchronized
-        </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 };

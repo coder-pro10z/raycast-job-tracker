@@ -5,7 +5,7 @@ import type { IDataProvider } from './dataProvider';
 export class ExcelAdapter implements IDataProvider {
   private filePaths: string[];
 
-  constructor(filePaths: string[] = ['/Jobs-sheet.xlsx', '/Cloud_DevOps_Jobs_Tracker.xlsx']) {
+  constructor(filePaths: string[] = ['/Master_Job_Tracker_Verified.xlsx', '/Master_Job_Tracker.xlsx']) {
     this.filePaths = filePaths;
   }
 

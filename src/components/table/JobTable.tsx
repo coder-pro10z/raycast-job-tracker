@@ -3,7 +3,7 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { useJobStore } from '../../state/useJobStore';
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
-import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Code, Cloud, Layers } from 'lucide-react';
+import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Cloud } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
   const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, updateJobJD } = useJobStore();
@@ -42,22 +42,22 @@ export const JobTable: React.FC = () => {
   const renderDomainBadge = (job: JobItem) => {
     if (job.domain === 'dual') {
       return (
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
-          <Layers size={10} /> Dual Stack
+        <span title="Dual Domain Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '4px', padding: '1px 6px', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 800, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
+          &lt;/&gt; <Cloud size={12} />
         </span>
       );
     }
     if (job.domain === 'cloud') {
       return (
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
-          <Cloud size={10} /> DevOps/Cloud
+        <span title="Cloud / DevOps Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '20px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
+          <Cloud size={13} />
         </span>
       );
     }
     if (job.domain === 'sde') {
       return (
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 600, backgroundColor: 'rgba(129, 140, 248, 0.12)', color: '#818cf8', padding: '1px 6px', borderRadius: '4px', marginLeft: '6px', flexShrink: 0 }}>
-          <Code size={10} /> SDE
+        <span title="SDE / FullStack Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '1px 6px', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 800, backgroundColor: 'rgba(129, 140, 248, 0.15)', color: '#818cf8', borderRadius: '4px', marginLeft: '6px', flexShrink: 0, letterSpacing: '-0.05em' }}>
+          &lt;/&gt;
         </span>
       );
     }
@@ -65,15 +65,19 @@ export const JobTable: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '0 var(--space-6)', position: 'relative', width: '100%' }}>
+    <div style={{ padding: '0 0 var(--space-4) 0', position: 'relative', width: '100%' }}>
       <div 
         ref={parentRef} 
+        className="table-scroll-box"
         style={{ 
-          height: 'calc(100vh - 295px)', 
           width: '100%',
           overflow: 'auto', 
-          border: '1px solid var(--border-color)', 
-          borderRadius: 'var(--radius-md)',
+          WebkitOverflowScrolling: 'touch',
+          borderTop: '1px solid var(--border-color)',
+          borderBottom: '1px solid var(--border-color)', 
+          borderLeft: 'none',
+          borderRight: 'none',
+          borderRadius: '0',
           backgroundColor: 'var(--bg-primary)',
           boxShadow: 'var(--shadow-sm)'
         }}

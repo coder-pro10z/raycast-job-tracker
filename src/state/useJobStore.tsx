@@ -14,6 +14,7 @@ interface JobStoreContextType {
   metrics: DomainMetrics;
   theme: 'dark' | 'light';
   isCommandPaletteOpen: boolean;
+  isSidebarOpen: boolean;
   
   // Actions
   setSelectedJobId: (id: string | null) => void;
@@ -27,22 +28,43 @@ interface JobStoreContextType {
   setSort: (column: keyof JobItem) => void;
   resetFilters: () => void;
   reloadJobs: () => Promise<void>;
-  uploadExcelFile: (file: File) => Promise<void>;
+  uploadExcelFile: (file: File) => Promise<{ added: number; duplicates: number }>;
   toggleTheme: () => void;
   setCommandPaletteOpen: (open: boolean) => void;
+  setSidebarOpen: (open: boolean) => void;
   updateJobJD: (id: string, content: string) => void;
 }
 
+const getSavedDomain = (): ActiveDomain => {
+  const saved = localStorage.getItem('job_tracker_active_domain');
+  return (saved === 'sde' || saved === 'cloud' || saved === 'all') ? saved : 'all';
+};
+
+const getSavedViewMode = (): ViewMode => {
+  const saved = localStorage.getItem('job_tracker_view_mode') as ViewMode;
+  const valid: ViewMode[] = ['dashboard', 'all', 'ready', 'applied', 'interview', 'offers', 'rejected', 'archived'];
+  return (saved && valid.includes(saved)) ? saved : 'all';
+};
+
+const getSavedSortBy = (): keyof JobItem | '' => {
+  return (localStorage.getItem('job_tracker_sort_by') as keyof JobItem) || 'priority';
+};
+
+const getSavedSortDir = (): 'asc' | 'desc' => {
+  const dir = localStorage.getItem('job_tracker_sort_dir');
+  return dir === 'asc' ? 'asc' : 'desc';
+};
+
 const defaultFilterState: FilterState = {
   searchQuery: '',
-  activeDomain: 'all',
+  activeDomain: getSavedDomain(),
   priority: [],
   workMode: [],
   status: [],
   techFilters: [],
-  viewMode: 'all',
-  sortBy: '',
-  sortDirection: 'asc'
+  viewMode: getSavedViewMode(),
+  sortBy: getSavedSortBy(),
+  sortDirection: getSavedSortDir()
 };
 
 const JobStoreContext = createContext<JobStoreContextType | undefined>(undefined);
@@ -55,6 +77,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [filterState, setFilterState] = useState<FilterState>(defaultFilterState);
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [isCommandPaletteOpen, setCommandPaletteOpen] = useState<boolean>(false);
+  const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
 
   useEffect(() => {
     loadData();
@@ -88,15 +111,37 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     await loadData();
   };
 
-  const uploadExcelFile = async (file: File) => {
+  const uploadExcelFile = async (file: File): Promise<{ added: number; duplicates: number }> => {
     setLoading(true);
     setError(null);
     try {
       const parsedJobs = await excelAdapter.parseFile(file);
-      setJobs(parsedJobs);
+      let added = 0;
+      let duplicates = 0;
+
+      setJobs((prevJobs) => {
+        const existingKeys = new Set(prevJobs.map(j => `${j.companyName.toLowerCase().trim()}|${j.targetRole.toLowerCase().trim()}`));
+        const newUniqueJobs: JobItem[] = [];
+
+        for (const job of parsedJobs) {
+          const key = `${job.companyName.toLowerCase().trim()}|${job.targetRole.toLowerCase().trim()}`;
+          if (!existingKeys.has(key)) {
+            existingKeys.add(key);
+            newUniqueJobs.push(job);
+            added++;
+          } else {
+            duplicates++;
+          }
+        }
+        return [...prevJobs, ...newUniqueJobs];
+      });
+
       setSelectedJobId(null);
+      return { added, duplicates };
     } catch (err: any) {
-      setError(err.message || 'Invalid excel workbook file');
+      const msg = err.message || 'Invalid excel workbook file';
+      setError(msg);
+      throw new Error(msg);
     } finally {
       setLoading(false);
     }
@@ -129,11 +174,13 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   const setActiveDomain = (domain: ActiveDomain) => {
+    localStorage.setItem('job_tracker_active_domain', domain);
     setFilterState((prev) => ({ ...prev, activeDomain: domain, techFilters: [] }));
     setSelectedJobId(null);
   };
 
   const setViewMode = (view: ViewMode) => {
+    localStorage.setItem('job_tracker_view_mode', view);
     setFilterState((prev) => ({ ...prev, viewMode: view, status: [] }));
     setSelectedJobId(null);
   };
@@ -181,19 +228,26 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const setSort = (column: keyof JobItem) => {
     setFilterState((prev) => {
       const isAsc = prev.sortBy === column && prev.sortDirection === 'asc';
+      const nextDir = isAsc ? 'desc' : 'asc';
+      localStorage.setItem('job_tracker_sort_by', column);
+      localStorage.setItem('job_tracker_sort_dir', nextDir);
       return {
         ...prev,
         sortBy: column,
-        sortDirection: isAsc ? 'desc' : 'asc'
+        sortDirection: nextDir
       };
     });
   };
 
   const resetFilters = () => {
+    localStorage.setItem('job_tracker_sort_by', 'priority');
+    localStorage.setItem('job_tracker_sort_dir', 'desc');
     setFilterState((prev) => ({
       ...defaultFilterState,
       activeDomain: prev.activeDomain,
-      viewMode: prev.viewMode
+      viewMode: prev.viewMode,
+      sortBy: 'priority',
+      sortDirection: 'desc'
     }));
   };
 
@@ -256,17 +310,17 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
     // Apply Priority filter pills
     if (filterState.priority.length > 0) {
-      result = result.filter((j) => filterState.priority.includes(j.priority));
+      result = result.filter((j) => filterState.priority.includes(j.priority as Priority));
     }
 
     // Apply Work Mode filter pills
     if (filterState.workMode.length > 0) {
-      result = result.filter((j) => filterState.workMode.includes(j.workMode));
+      result = result.filter((j) => filterState.workMode.includes(j.workMode as WorkMode));
     }
 
     // Apply Status filter pills
     if (filterState.status.length > 0) {
-      result = result.filter((j) => filterState.status.includes(j.applicationStatus));
+      result = result.filter((j) => filterState.status.includes(j.applicationStatus as ApplicationStatus));
     }
 
     // Apply Tech filter pills
@@ -306,6 +360,11 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         const valA = a[col];
         const valB = b[col];
 
+        if (col === 'priority') {
+          const rank = (p: string) => (p === 'High' ? 3 : p === 'Medium' ? 2 : p === 'Low' ? 1 : 0);
+          return (rank(valA as string) - rank(valB as string)) * dir;
+        }
+
         if (Array.isArray(valA)) {
           return (valA.length - (valB as unknown as any[]).length) * dir;
         }
@@ -341,6 +400,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         metrics,
         theme,
         isCommandPaletteOpen,
+        isSidebarOpen,
         setSelectedJobId,
         setSearchQuery,
         setActiveDomain,
@@ -355,6 +415,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         uploadExcelFile,
         toggleTheme,
         setCommandPaletteOpen,
+        setSidebarOpen,
         updateJobJD
       }}
     >

@@ -71,7 +71,7 @@ export const DashboardMetrics: React.FC = () => {
 
   if (filterState.activeDomain === 'sde') {
     return (
-      <div style={{ 
+      <div className="mobile-px" style={{ 
         display: 'flex', 
         flexWrap: 'wrap', 
         gap: '12px', 
@@ -128,7 +128,7 @@ export const DashboardMetrics: React.FC = () => {
 
   if (filterState.activeDomain === 'cloud') {
     return (
-      <div style={{ 
+      <div className="mobile-px" style={{ 
         display: 'flex', 
         flexWrap: 'wrap', 
         gap: '12px', 
@@ -183,7 +183,7 @@ export const DashboardMetrics: React.FC = () => {
   }
 
   return (
-    <div style={{ 
+    <div className="mobile-px" style={{ 
       display: 'flex', 
       flexWrap: 'wrap', 
       gap: '12px', 

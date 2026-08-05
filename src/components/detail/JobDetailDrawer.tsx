@@ -17,9 +17,7 @@ import {
   Check,
   Link as LinkIcon,
   Save,
-  Code,
-  Cloud,
-  Layers
+  Cloud
 } from 'lucide-react';
 
 export const JobDetailDrawer: React.FC = () => {
@@ -99,22 +97,25 @@ export const JobDetailDrawer: React.FC = () => {
       />
 
       {/* Drawer Container */}
-      <aside style={{
-        position: 'fixed',
-        top: '64px',
-        right: 0,
-        bottom: 0,
-        width: '100%',
-        maxWidth: '540px',
-        backgroundColor: 'var(--bg-secondary)',
-        borderLeft: '1px solid var(--border-color)',
-        boxShadow: 'var(--shadow-xl)',
-        zIndex: 50,
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        animation: 'slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1)'
-      }}>
+      <aside 
+        className="mobile-full-drawer"
+        style={{
+          position: 'fixed',
+          top: '64px',
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          maxWidth: '540px',
+          backgroundColor: 'var(--bg-secondary)',
+          borderLeft: '1px solid var(--border-color)',
+          boxShadow: 'var(--shadow-xl)',
+          zIndex: 50,
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          animation: 'slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+      >
         {/* Drawer Top Bar */}
         <div style={{
           padding: 'var(--space-4) var(--space-6)',
@@ -132,16 +133,16 @@ export const JobDetailDrawer: React.FC = () => {
                 {selectedJob.companyName}
               </span>
               {isDual ? (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
-                  <Layers size={11} /> Dual Domain (SDE + Cloud)
+                <span title="Dual Domain (SDE + Cloud)" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 800, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', padding: '2px 8px', borderRadius: '4px' }}>
+                  &lt;/&gt; <Cloud size={12} />
                 </span>
               ) : isCloud ? (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
-                  <Cloud size={11} /> Cloud / DevOps Track
+                <span title="Cloud / DevOps Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '22px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', borderRadius: '4px' }}>
+                  <Cloud size={14} />
                 </span>
               ) : (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '3px', fontSize: '0.6875rem', fontWeight: 700, backgroundColor: 'rgba(129, 140, 248, 0.15)', color: '#818cf8', padding: '2px 8px', borderRadius: 'var(--radius-full)' }}>
-                  <Code size={11} /> SDE / FullStack Track
+                <span title="SDE / FullStack Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 800, backgroundColor: 'rgba(129, 140, 248, 0.15)', color: '#818cf8', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.05em' }}>
+                  &lt;/&gt;
                 </span>
               )}
             </div>

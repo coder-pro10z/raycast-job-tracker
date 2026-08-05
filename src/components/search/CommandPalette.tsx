@@ -132,7 +132,7 @@ export const CommandPalette: React.FC = () => {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Type a command or search companies..."
+            placeholder="Search Companies..."
             value={query}
             onChange={(e) => { setQuery(e.target.value); setSelectedIndex(0); }}
             style={{

@@ -22,13 +22,15 @@ export const FilterBar: React.FC = () => {
     filterState.searchQuery.trim() !== '';
 
   return (
-    <div style={{
+    <div className="mobile-px" style={{
       padding: '0 var(--space-6) var(--space-4)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
       gap: 'var(--space-4)',
-      flexWrap: 'wrap'
+      flexWrap: 'wrap',
+      maxWidth: '100%',
+      boxSizing: 'border-box'
     }}>
       {/* Left Search Input Box */}
       <div style={{
@@ -90,11 +92,11 @@ export const FilterBar: React.FC = () => {
       </div>
 
       {/* Right Filter Pills Section */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', maxWidth: '100%' }}>
         
         {/* Tech Stack Filter Pills (New Domain-Driven Feature) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-secondary)', padding: '3px 6px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
-          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '6px', paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px', background: 'var(--bg-secondary)', padding: '4px 8px', borderRadius: '14px', border: '1px solid var(--border-color)', maxWidth: '100%', boxSizing: 'border-box' }}>
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '4px', paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
             {filterState.activeDomain === 'cloud' ? <Cloud size={12} style={{ color: '#38bdf8' }} /> : <Code size={12} style={{ color: '#818cf8' }} />}
             <span>Stack:</span>
           </span>
@@ -123,8 +125,8 @@ export const FilterBar: React.FC = () => {
         </div>
 
         {/* Priority Pills */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-secondary)', padding: '3px 6px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
-          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '6px', paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px', background: 'var(--bg-secondary)', padding: '4px 8px', borderRadius: '14px', border: '1px solid var(--border-color)', maxWidth: '100%', boxSizing: 'border-box' }}>
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '4px', paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '3px' }}>
             <Filter size={10} />
             <span>Priority:</span>
           </span>
@@ -153,8 +155,8 @@ export const FilterBar: React.FC = () => {
         </div>
 
         {/* Work Mode Pills */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'var(--bg-secondary)', padding: '3px 6px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }}>
-          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '6px', paddingRight: '4px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px', background: 'var(--bg-secondary)', padding: '4px 8px', borderRadius: '14px', border: '1px solid var(--border-color)', maxWidth: '100%', boxSizing: 'border-box' }}>
+          <span style={{ fontSize: '0.6875rem', fontWeight: 700, color: 'var(--text-muted)', paddingLeft: '4px', paddingRight: '4px' }}>
             Mode:
           </span>
           {workModes.map((mode) => {
