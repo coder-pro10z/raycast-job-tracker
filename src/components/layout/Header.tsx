@@ -13,6 +13,7 @@ export const Header: React.FC = () => {
     isSidebarOpen,
     setSidebarOpen,
     setSettingsModalOpen,
+    exportJobsToExcel,
     loading,
     jobs 
   } = useJobStore();
