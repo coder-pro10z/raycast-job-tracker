@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import { Badge } from '../common/Badge';
+import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { 
   X, 
   ExternalLink, 
@@ -17,14 +18,24 @@ import {
   Check,
   Link as LinkIcon,
   Save,
-  Cloud
+  Cloud,
+  Edit3,
+  Phone
 } from 'lucide-react';
+import { OutreachStudio } from './OutreachStudio';
 
 export const JobDetailDrawer: React.FC = () => {
-  const { selectedJob, setSelectedJobId, updateJobJD } = useJobStore();
+    const { selectedJob, setSelectedJobId, updateJobJD, updateJobFields } = useJobStore();
+  const [isEditingHR, setIsEditingHR] = useState(false);
+  const [hrForm, setHrForm] = useState({ name: '', email: '', linkedin: '', phone: '' });
+
+  const [isEditingReferral, setIsEditingReferral] = useState(false);
+  const [referralForm, setReferralForm] = useState({ name: '', role: '', email: '', linkedin: '' });
+
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [jdInput, setJdInput] = useState<string>('');
   const [jdEdited, setJdEdited] = useState<boolean>(false);
+  const [activeTab, setActiveTab] = useState<'details' | 'outreach'>('details');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -40,6 +51,22 @@ export const JobDetailDrawer: React.FC = () => {
     if (selectedJob) {
       setJdInput(selectedJob.jdContent || selectedJob.jobApplicationLink || '');
       setJdEdited(false);
+      setActiveTab('details');
+      setIsEditingHR(false);
+      setHrForm({
+        name: selectedJob.hrRecruiterName || '',
+        email: selectedJob.hrRecruiterEmail || '',
+        linkedin: selectedJob.hrRecruiterLinkedIn || '',
+        phone: selectedJob.hrRecruiterPhone || ''
+      });
+      setIsEditingReferral(false);
+      setReferralForm({
+        name: selectedJob.referralContactName || '',
+        role: selectedJob.referralContactRole || '',
+        email: selectedJob.referralContactEmail || '',
+        linkedin: selectedJob.referralContactLinkedIn || ''
+      });
+
     }
   }, [selectedJob]);
 
@@ -149,8 +176,8 @@ export const JobDetailDrawer: React.FC = () => {
             <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.3 }}>
               {selectedJob.targetRole}
             </h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
-              <Badge type="status" value={selectedJob.applicationStatus} size="md" />
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px', alignItems: 'center' }}>
+              <StatusBadgeDropdown jobId={selectedJob.id} currentStatus={selectedJob.applicationStatus} size="md" />
               <Badge type="priority" value={`Priority: ${selectedJob.priority}`} size="md" />
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: 'var(--text-secondary)', backgroundColor: 'var(--bg-tertiary)', padding: '2px 10px', borderRadius: 'var(--radius-full)' }}>
                 <MapPin size={12} />
@@ -180,10 +207,68 @@ export const JobDetailDrawer: React.FC = () => {
           </button>
         </div>
 
-        {/* Scrollable Body Content */}
-        <div style={{ flex: '1', overflowY: 'auto', padding: '0 var(--space-6) var(--space-8)' }}>
-          
-          {/* Section 1: JD & Application URL Editor */}
+        {/* Tab Navigation Switcher */}
+        <div style={{
+          display: 'flex',
+          borderBottom: '1px solid var(--border-color)',
+          backgroundColor: 'var(--bg-secondary)',
+          padding: '0 var(--space-6)'
+        }}>
+          <button
+            onClick={() => setActiveTab('details')}
+            style={{
+              flex: '1',
+              padding: '12px 0',
+              border: 'none',
+              borderBottom: activeTab === 'details' ? '2px solid var(--text-accent)' : '2px solid transparent',
+              background: 'transparent',
+              color: activeTab === 'details' ? 'var(--text-primary)' : 'var(--text-muted)',
+              fontSize: '0.8125rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              transition: 'all 150ms ease'
+            }}
+          >
+            <FileText size={15} />
+            <span>Job & Application Info</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('outreach')}
+            style={{
+              flex: '1',
+              padding: '12px 0',
+              border: 'none',
+              borderBottom: activeTab === 'outreach' ? '2px solid #10b981' : '2px solid transparent',
+              background: 'transparent',
+              color: activeTab === 'outreach' ? '#10b981' : 'var(--text-muted)',
+              fontSize: '0.8125rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              transition: 'all 150ms ease'
+            }}
+          >
+            <Mail size={15} />
+            <span>Outreach Pitch Studio</span>
+            <span style={{ fontSize: '0.625rem', padding: '1px 6px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#10b981', borderRadius: '10px' }}>NEW</span>
+          </button>
+        </div>
+
+        {activeTab === 'outreach' ? (
+          <OutreachStudio job={selectedJob} />
+        ) : (
+          /* Scrollable Body Content */
+          <div style={{ flex: '1', overflowY: 'auto', padding: '0 var(--space-6) var(--space-8)' }}>
+            
+            {/* Section 1: JD & Application URL Editor */}
           {renderSectionHeader('Job Description & Application Link', <FileText size={15} />)}
           <div style={{ backgroundColor: 'var(--bg-primary)', padding: 'var(--space-4)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -337,9 +422,42 @@ export const JobDetailDrawer: React.FC = () => {
           </div>
 
           {/* Section 4: Recruiter Contacts */}
-          {renderSectionHeader('Recruiter / HR Contacts', <User size={15} />)}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', marginTop: '24px', borderBottom: '1px solid var(--border-color)', paddingBottom: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: 'var(--text-accent)' }}><User size={15} /></span>
+              <h3 style={{ fontSize: '0.875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)' }}>Recruiter / HR Contacts</h3>
+            </div>
+            {!isEditingHR && (
+              <button onClick={() => setIsEditingHR(true)} style={{ background: 'none', border: 'none', color: 'var(--text-accent)', fontSize: '0.75rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
+                <Edit3 size={12} /> Edit
+              </button>
+            )}
+          </div>
           <div style={{ backgroundColor: 'var(--bg-primary)', padding: 'var(--space-4)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            {selectedJob.hrRecruiterName || selectedJob.hrRecruiterEmail || selectedJob.hrRecruiterLinkedIn ? (
+            {isEditingHR ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Name</label>
+                  <input type="text" value={hrForm.name} onChange={e => setHrForm({...hrForm, name: e.target.value})} placeholder="E.g. Sarah Smith" style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Email</label>
+                  <input type="email" value={hrForm.email} onChange={e => setHrForm({...hrForm, email: e.target.value})} placeholder="sarah@company.com" style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>LinkedIn</label>
+                  <input type="url" value={hrForm.linkedin} onChange={e => setHrForm({...hrForm, linkedin: e.target.value})} placeholder="https://linkedin.com/in/..." style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Phone</label>
+                  <input type="tel" value={hrForm.phone} onChange={e => setHrForm({...hrForm, phone: e.target.value})} placeholder="+1 (555) 000-0000" style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '4px' }}>
+                  <button onClick={() => setIsEditingHR(false)} style={{ padding: '6px 12px', fontSize: '0.75rem', background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Cancel</button>
+                  <button onClick={() => { updateJobFields(selectedJob.id, { hrRecruiterName: hrForm.name, hrRecruiterEmail: hrForm.email, hrRecruiterLinkedIn: hrForm.linkedin, hrRecruiterPhone: hrForm.phone }); setIsEditingHR(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', fontSize: '0.75rem', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', cursor: 'pointer', fontWeight: 600 }}><Save size={13} /> Save</button>
+                </div>
+              </div>
+            ) : selectedJob.hrRecruiterName || selectedJob.hrRecruiterEmail || selectedJob.hrRecruiterLinkedIn || selectedJob.hrRecruiterPhone ? (
               <div style={{ display: 'grid', gap: '10px' }}>
                 {selectedJob.hrRecruiterName && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -358,42 +476,104 @@ export const JobDetailDrawer: React.FC = () => {
                 {selectedJob.hrRecruiterLinkedIn && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>LinkedIn Profile</span>
-                    <a href={selectedJob.hrRecruiterLinkedIn} target="_blank" rel="noreferrer" style={{ color: '#60a5fa', fontSize: '0.8125rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <a href={selectedJob.hrRecruiterLinkedIn.startsWith('http') ? selectedJob.hrRecruiterLinkedIn : `https://${selectedJob.hrRecruiterLinkedIn}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa', fontSize: '0.8125rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Globe size={13} /> View Profile
+                    </a>
+                  </div>
+                )}
+                {selectedJob.hrRecruiterPhone && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Phone Number</span>
+                    <a href={`tel:${selectedJob.hrRecruiterPhone}`} style={{ color: '#34d399', fontSize: '0.8125rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <Phone size={13} /> {selectedJob.hrRecruiterPhone}
                     </a>
                   </div>
                 )}
               </div>
             ) : (
-              <div style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', fontStyle: 'italic' }}>
-                No direct recruiter or HR contact recorded for this role yet.
+              <div style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', fontStyle: 'italic', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                No direct recruiter or HR contact recorded for this role.
+                <button onClick={() => setIsEditingHR(true)} style={{ background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)', padding: '4px 10px', borderRadius: 'var(--radius-sm)', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}><Edit3 size={12} /> Add Contact Details</button>
               </div>
             )}
           </div>
 
           {/* Section 5: Referral Information */}
-          {renderSectionHeader('Referral Pipeline', <Users size={15} />)}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', marginTop: '24px', borderBottom: '1px solid var(--border-color)', paddingBottom: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: 'var(--text-accent)' }}><Users size={15} /></span>
+              <h3 style={{ fontSize: '0.875rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-secondary)' }}>Referral Pipeline</h3>
+            </div>
+            {!isEditingReferral && (
+              <button onClick={() => setIsEditingReferral(true)} style={{ background: 'none', border: 'none', color: 'var(--text-accent)', fontSize: '0.75rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}>
+                <Edit3 size={12} /> Edit
+              </button>
+            )}
+          </div>
           <div style={{ backgroundColor: 'var(--bg-primary)', padding: 'var(--space-4)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: selectedJob.referralContactName ? '10px' : '0' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
               <span style={{ fontSize: '0.8125rem', fontWeight: 500 }}>Referral Needed?</span>
               <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: selectedJob.referralNeeded ? '#fb923c' : 'var(--text-muted)' }}>
                 {selectedJob.referralNeeded ? '⚡ Yes (Required/Preferred)' : 'No / Self Apply'}
               </span>
             </div>
-            {selectedJob.referralContactName && (
-              <div style={{ display: 'grid', gap: '8px', borderTop: '1px dashed var(--border-color)', paddingTop: '10px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Referral Contact</span>
-                  <span style={{ fontSize: '0.8125rem', fontWeight: 600 }}>{selectedJob.referralContactName} ({selectedJob.referralContactRole || 'Connection'})</span>
-                </div>
-                {selectedJob.referralContactEmail && (
-                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Email</span>
-                    <span style={{ fontSize: '0.8125rem', color: 'var(--text-accent)' }}>{selectedJob.referralContactEmail}</span>
+            
+            <div style={{ borderTop: '1px dashed var(--border-color)', paddingTop: '12px' }}>
+              {isEditingReferral ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Contact Name</label>
+                    <input type="text" value={referralForm.name} onChange={e => setReferralForm({...referralForm, name: e.target.value})} placeholder="E.g. John Doe" style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
                   </div>
-                )}
-              </div>
-            )}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Role / Relationship</label>
+                    <input type="text" value={referralForm.role} onChange={e => setReferralForm({...referralForm, role: e.target.value})} placeholder="E.g. Senior SWE" style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Email Address</label>
+                    <input type="email" value={referralForm.email} onChange={e => setReferralForm({...referralForm, email: e.target.value})} placeholder="john@company.com" style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>LinkedIn Profile</label>
+                    <input type="url" value={referralForm.linkedin} onChange={e => setReferralForm({...referralForm, linkedin: e.target.value})} placeholder="https://linkedin.com/in/..." style={{ padding: '8px 10px', fontSize: '0.8125rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-tertiary)', color: 'var(--text-primary)', outline: 'none' }} onFocus={e => e.target.style.borderColor = 'var(--border-focus)'} onBlur={e => e.target.style.borderColor = 'var(--border-color)'} />
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '4px' }}>
+                    <button onClick={() => setIsEditingReferral(false)} style={{ padding: '6px 12px', fontSize: '0.75rem', background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Cancel</button>
+                    <button onClick={() => { updateJobFields(selectedJob.id, { referralContactName: referralForm.name, referralContactRole: referralForm.role, referralContactEmail: referralForm.email, referralContactLinkedIn: referralForm.linkedin }); setIsEditingReferral(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', fontSize: '0.75rem', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', cursor: 'pointer', fontWeight: 600 }}><Save size={13} /> Save</button>
+                  </div>
+                </div>
+              ) : selectedJob.referralContactName || selectedJob.referralContactEmail || selectedJob.referralContactLinkedIn ? (
+                <div style={{ display: 'grid', gap: '10px' }}>
+                  {selectedJob.referralContactName && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Contact Name</span>
+                      <span style={{ fontSize: '0.8125rem', fontWeight: 600 }}>{selectedJob.referralContactName} <span style={{ color: 'var(--text-muted)', fontWeight: 400 }}>({selectedJob.referralContactRole || 'Connection'})</span></span>
+                    </div>
+                  )}
+                  {selectedJob.referralContactEmail && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Email Address</span>
+                      <a href={`mailto:${selectedJob.referralContactEmail}`} style={{ color: 'var(--text-accent)', fontSize: '0.8125rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Mail size={13} /> {selectedJob.referralContactEmail}
+                      </a>
+                    </div>
+                  )}
+                  {selectedJob.referralContactLinkedIn && (
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>LinkedIn Profile</span>
+                      <a href={selectedJob.referralContactLinkedIn.startsWith('http') ? selectedJob.referralContactLinkedIn : `https://${selectedJob.referralContactLinkedIn}`} target="_blank" rel="noreferrer" style={{ color: '#60a5fa', fontSize: '0.8125rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Globe size={13} /> View Profile
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.8125rem', fontStyle: 'italic', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                  No referral pipeline established.
+                  <button onClick={() => setIsEditingReferral(true)} style={{ background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)', padding: '4px 10px', borderRadius: 'var(--radius-sm)', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}><Edit3 size={12} /> Add Referral Details</button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Section 6: Timeline & Follow-up */}
@@ -427,6 +607,7 @@ export const JobDetailDrawer: React.FC = () => {
           </div>
 
         </div>
+        )}
       </aside>
     </>
   );

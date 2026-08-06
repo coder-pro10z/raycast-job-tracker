@@ -3,12 +3,14 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { useJobStore } from '../../state/useJobStore';
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
+import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Cloud } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
   const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, updateJobJD } = useJobStore();
   const parentRef = useRef<HTMLDivElement>(null);
   const [editingJdId, setEditingJdId] = useState<string | null>(null);
+  const [dropdownOpenRowId, setDropdownOpenRowId] = useState<string | null>(null);
 
   const rowVirtualizer = useVirtualizer({
     count: filteredJobs.length,
@@ -176,6 +178,7 @@ export const JobTable: React.FC = () => {
                   backgroundColor: isSelected ? 'var(--bg-active)' : 'transparent',
                   cursor: isEditingThisJd ? 'default' : 'pointer',
                   transition: 'background-color 150ms ease',
+                  zIndex: dropdownOpenRowId === job.id ? 50 : 1,
                 }}
                 onMouseEnter={(e) => {
                   if (!isSelected) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
@@ -362,7 +365,12 @@ export const JobTable: React.FC = () => {
 
                 {/* Application Status */}
                 <div style={{ flex: columns[5].flex, minWidth: columns[5].minWidth, paddingRight: '12px' }}>
-                  <Badge type="status" value={job.applicationStatus} />
+                  <StatusBadgeDropdown 
+                    jobId={job.id} 
+                    currentStatus={job.applicationStatus} 
+                    size="sm" 
+                    onToggle={(isOpen) => setDropdownOpenRowId(isOpen ? job.id : null)}
+                  />
                 </div>
 
                 {/* Next Action */}

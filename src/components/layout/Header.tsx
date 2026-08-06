@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
-import { Search, RefreshCw, Sun, Moon, Upload, FileSpreadsheet, Menu } from 'lucide-react';
+import { Search, RefreshCw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings } from 'lucide-react';
 import { UploadModal } from '../upload/UploadModal';
+import { SettingsModal } from '../settings/SettingsModal';
 
 export const Header: React.FC = () => {
   const { 
@@ -11,6 +12,7 @@ export const Header: React.FC = () => {
     setCommandPaletteOpen, 
     isSidebarOpen,
     setSidebarOpen,
+    setSettingsModalOpen,
     loading,
     jobs 
   } = useJobStore();
@@ -168,6 +170,27 @@ export const Header: React.FC = () => {
           </button>
 
           <button
+            onClick={() => setSettingsModalOpen(true)}
+            title="Application Settings & Profile"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '36px',
+              height: '36px',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--border-color)',
+              backgroundColor: 'var(--bg-tertiary)',
+              color: 'var(--text-primary)',
+              cursor: 'pointer',
+              flexShrink: 0
+            }}
+            className="mobile-icon-btn glow-hover focus-ring"
+          >
+            <Settings size={17} />
+          </button>
+
+          <button
             onClick={handleReload}
             disabled={loading || reloading}
             title="Reload Master_Job_Tracker_Verified.xlsx data"
@@ -223,6 +246,7 @@ export const Header: React.FC = () => {
       </header>
 
       <UploadModal isOpen={isUploadModalOpen} onClose={() => setUploadModalOpen(false)} />
+      <SettingsModal />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
-import type { JobItem, FilterState, ViewMode, Priority, WorkMode, ApplicationStatus, DomainMetrics, ActiveDomain } from '../types/job';
+import type { JobItem, FilterState, ViewMode, Priority, WorkMode, ApplicationStatus, DomainMetrics, ActiveDomain, UserProfile } from '../types/job';
 import { excelAdapter } from '../services/excelAdapter';
 
 interface JobStoreContextType {
@@ -15,6 +15,9 @@ interface JobStoreContextType {
   theme: 'dark' | 'light';
   isCommandPaletteOpen: boolean;
   isSidebarOpen: boolean;
+  
+  userProfile: UserProfile;
+  isSettingsModalOpen: boolean;
   
   // Actions
   setSelectedJobId: (id: string | null) => void;
@@ -33,6 +36,9 @@ interface JobStoreContextType {
   setCommandPaletteOpen: (open: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
   updateJobJD: (id: string, content: string) => void;
+  updateJobFields: (id: string, updates: Partial<JobItem>) => void;
+  updateUserProfile: (profile: Partial<UserProfile>) => void;
+  setSettingsModalOpen: (open: boolean) => void;
 }
 
 const getSavedDomain = (): ActiveDomain => {
@@ -53,6 +59,25 @@ const getSavedSortBy = (): keyof JobItem | '' => {
 const getSavedSortDir = (): 'asc' | 'desc' => {
   const dir = localStorage.getItem('job_tracker_sort_dir');
   return dir === 'asc' ? 'asc' : 'desc';
+};
+
+const getSavedUserProfile = (): UserProfile => {
+  try {
+    const saved = localStorage.getItem('job_tracker_user_profile');
+    if (saved) return JSON.parse(saved);
+  } catch (e) {
+    console.error('Failed to parse user profile', e);
+  }
+  return {
+    fullName: '',
+    currentRole: '',
+    yoe: '3+ years',
+    keyStrengths: 'building scalable microservices and resilient cloud architectures',
+    email: '',
+    phone: '',
+    linkedinUrl: '',
+    githubUrl: 'https://github.com/praveen'
+  };
 };
 
 const defaultFilterState: FilterState = {
@@ -78,6 +103,8 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [isCommandPaletteOpen, setCommandPaletteOpen] = useState<boolean>(false);
   const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [userProfile, setUserProfile] = useState<UserProfile>(getSavedUserProfile());
+  const [isSettingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     loadData();
@@ -162,6 +189,22 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         return job;
       })
     );
+  };
+
+  const updateJobFields = (id: string, updates: Partial<JobItem>) => {
+    setJobs((prev) => 
+      prev.map((job) => 
+        job.id === id ? { ...job, ...updates } : job
+      )
+    );
+  };
+
+  const updateUserProfile = (updates: Partial<UserProfile>) => {
+    setUserProfile((prev: UserProfile) => {
+      const next = { ...prev, ...updates };
+      localStorage.setItem('job_tracker_user_profile', JSON.stringify(next));
+      return next;
+    });
   };
 
   const toggleTheme = () => {
@@ -357,16 +400,16 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       const dir = filterState.sortDirection === 'asc' ? 1 : -1;
 
       result.sort((a, b) => {
-        const valA = a[col];
-        const valB = b[col];
+        const valA = a[col] ?? '';
+        const valB = b[col] ?? '';
 
         if (col === 'priority') {
           const rank = (p: string) => (p === 'High' ? 3 : p === 'Medium' ? 2 : p === 'Low' ? 1 : 0);
           return (rank(valA as string) - rank(valB as string)) * dir;
         }
 
-        if (Array.isArray(valA)) {
-          return (valA.length - (valB as unknown as any[]).length) * dir;
+        if (Array.isArray(valA) && Array.isArray(valB)) {
+          return (valA.length - valB.length) * dir;
         }
 
         if (typeof valA === 'string' && typeof valB === 'string') {
@@ -416,7 +459,12 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         toggleTheme,
         setCommandPaletteOpen,
         setSidebarOpen,
-        updateJobJD
+        updateJobJD,
+        updateJobFields,
+        userProfile,
+        isSettingsModalOpen,
+        updateUserProfile,
+        setSettingsModalOpen
       }}
     >
       {children}

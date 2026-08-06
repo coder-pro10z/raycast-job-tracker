@@ -34,6 +34,7 @@ export interface JobItem {
   hrRecruiterName: string;
   hrRecruiterEmail: string;
   hrRecruiterLinkedIn: string;
+  hrRecruiterPhone?: string;
   followUpDate: string;
   responseStatus: string;
   interviewStage: string;
@@ -75,4 +76,15 @@ export interface DomainMetrics {
   azureCount: number;
   dockerK8sCount: number;
   cicdCount: number;
+}
+
+export interface UserProfile {
+  fullName: string;
+  currentRole: string;
+  yoe: string;
+  keyStrengths: string;
+  email: string;
+  phone: string;
+  linkedinUrl: string;
+  githubUrl: string;
 }
