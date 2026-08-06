@@ -273,30 +273,7 @@ export const Sidebar: React.FC = () => {
           </div>
         </div>
 
-        {/* Sidebar Footer Info */}
-        {!isSidebarCollapsed && (
-          <div style={{
-            padding: 'var(--space-3) var(--space-4)',
-            borderTop: '1px solid var(--border-color)',
-            fontSize: '0.75rem',
-            color: 'var(--text-muted)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '4px',
-            marginTop: 'auto',
-            whiteSpace: 'nowrap'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>Active Track:</span>
-              <span style={{ fontWeight: 700, color: 'var(--text-accent)' }}>
-                {filterState.activeDomain === 'sde' ? '💻 SDE Track' : filterState.activeDomain === 'cloud' ? '☁️ Cloud & DevOps' : '🌐 All Tracks'}
-              </span>
-            </div>
-            <div style={{ color: '#34d399', fontSize: '0.6875rem', fontWeight: 600 }}>
-              ⚡ SheetJS Data Synchronized
-            </div>
-          </div>
-        )}
+
       </aside>
     </>
   );

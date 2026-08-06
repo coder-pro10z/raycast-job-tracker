@@ -7,6 +7,7 @@ import { FilterBar } from './components/search/FilterBar';
 import { JobTable } from './components/table/JobTable';
 import { JobDetailDrawer } from './components/detail/JobDetailDrawer';
 import { CommandPalette } from './components/search/CommandPalette';
+import { Toast } from './components/ui/Toast';
 import { ColdOutreachWorkspace } from './components/outreach/ColdOutreachWorkspace';
 
 const MainWorkspace: React.FC = () => {
@@ -73,6 +74,7 @@ const MainWorkspace: React.FC = () => {
       {/* Overlays & Drawers */}
       <JobDetailDrawer />
       <CommandPalette />
+      <Toast />
     </div>
   );
 };

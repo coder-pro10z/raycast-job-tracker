@@ -18,6 +18,8 @@ interface JobStoreContextType {
   
   userProfile: UserProfile;
   isSettingsModalOpen: boolean;
+  toastMessage: string | null;
+  showToast: (msg: string) => void;
   
   // Actions
   setSelectedJobId: (id: string | null) => void;
@@ -117,6 +119,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isCommandPaletteOpen, setCommandPaletteOpen] = useState<boolean>(false);
   const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(getSavedSidebarCollapsed());
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile>(getSavedUserProfile());
   const [isSettingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
 
@@ -231,6 +234,14 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   // Actions for filtering & sorting
   const setSearchQuery = (query: string) => {
     setFilterState((prev) => ({ ...prev, searchQuery: query }));
+  };
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    // Auto clear after 3 seconds
+    setTimeout(() => {
+      setToastMessage((current) => current === msg ? null : current);
+    }, 3000);
   };
 
   const setActiveDomain = (domain: ActiveDomain) => {
@@ -498,7 +509,9 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         userProfile,
         isSettingsModalOpen,
         updateUserProfile,
-        setSettingsModalOpen
+        setSettingsModalOpen,
+        toastMessage,
+        showToast
       }}
     >
       {children}
