@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
-import { Search, RefreshCw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings } from 'lucide-react';
+import { Search, RefreshCw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings, Download } from 'lucide-react';
 import { UploadModal } from '../upload/UploadModal';
 import { SettingsModal } from '../settings/SettingsModal';
 
