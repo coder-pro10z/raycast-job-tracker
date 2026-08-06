@@ -32,9 +32,12 @@ interface JobStoreContextType {
   resetFilters: () => void;
   reloadJobs: () => Promise<void>;
   uploadExcelFile: (file: File) => Promise<{ added: number; duplicates: number }>;
+  exportJobsToExcel: () => void;
   toggleTheme: () => void;
   setCommandPaletteOpen: (open: boolean) => void;
   setSidebarOpen: (open: boolean) => void;
+  isSidebarCollapsed: boolean;
+  setSidebarCollapsed: (collapsed: boolean) => void;
   updateJobJD: (id: string, content: string) => void;
   updateJobFields: (id: string, updates: Partial<JobItem>) => void;
   updateUserProfile: (profile: Partial<UserProfile>) => void;
@@ -48,7 +51,7 @@ const getSavedDomain = (): ActiveDomain => {
 
 const getSavedViewMode = (): ViewMode => {
   const saved = localStorage.getItem('job_tracker_view_mode') as ViewMode;
-  const valid: ViewMode[] = ['dashboard', 'all', 'ready', 'applied', 'interview', 'offers', 'rejected', 'archived'];
+  const valid: ViewMode[] = ['dashboard', 'all', 'ready', 'applied', 'interview', 'offers', 'rejected', 'archived', 'outreach-templates'];
   return (saved && valid.includes(saved)) ? saved : 'all';
 };
 
@@ -80,6 +83,16 @@ const getSavedUserProfile = (): UserProfile => {
   };
 };
 
+const getSavedTheme = (): 'dark' | 'light' => {
+  const saved = localStorage.getItem('job_tracker_theme');
+  return saved === 'light' ? 'light' : 'dark';
+};
+
+const getSavedSidebarCollapsed = (): boolean => {
+  const saved = localStorage.getItem('job_tracker_sidebar_collapsed');
+  return saved === 'true';
+};
+
 const defaultFilterState: FilterState = {
   searchQuery: '',
   activeDomain: getSavedDomain(),
@@ -100,9 +113,10 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [error, setError] = useState<string | null>(null);
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
   const [filterState, setFilterState] = useState<FilterState>(defaultFilterState);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>(getSavedTheme());
   const [isCommandPaletteOpen, setCommandPaletteOpen] = useState<boolean>(false);
   const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+  const [isSidebarCollapsed, setSidebarCollapsed] = useState<boolean>(getSavedSidebarCollapsed());
   const [userProfile, setUserProfile] = useState<UserProfile>(getSavedUserProfile());
   const [isSettingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
 
@@ -136,6 +150,13 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   const reloadJobs = async () => {
     await loadData();
+  };
+
+  const exportJobsToExcel = () => {
+    // Export the currently filtered jobs (or all jobs)
+    // Actually, exporting all jobs is usually preferred for a backup, but let's export all jobs.
+    // If user wants filtered, we could pass filteredJobs. Let's do all jobs.
+    excelAdapter.exportJobs(jobs, 'Master_Job_Tracker_Export.xlsx');
   };
 
   const uploadExcelFile = async (file: File): Promise<{ added: number; duplicates: number }> => {
@@ -200,11 +221,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   };
 
   const updateUserProfile = (updates: Partial<UserProfile>) => {
-    setUserProfile((prev: UserProfile) => {
-      const next = { ...prev, ...updates };
-      localStorage.setItem('job_tracker_user_profile', JSON.stringify(next));
-      return next;
-    });
+    setUserProfile((prev: UserProfile) => ({ ...prev, ...updates }));
   };
 
   const toggleTheme = () => {
@@ -430,6 +447,20 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return jobs.find((j) => j.id === selectedJobId) || null;
   }, [jobs, selectedJobId]);
 
+
+  // Sync to Local Storage
+  useEffect(() => {
+    localStorage.setItem('job_tracker_user_profile', JSON.stringify(userProfile));
+  }, [userProfile]);
+
+  useEffect(() => {
+    localStorage.setItem('job_tracker_theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('job_tracker_sidebar_collapsed', isSidebarCollapsed.toString());
+  }, [isSidebarCollapsed]);
+
   return (
     <JobStoreContext.Provider
       value={{
@@ -456,9 +487,12 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         resetFilters,
         reloadJobs,
         uploadExcelFile,
+        exportJobsToExcel,
+        setSidebarOpen,
+        isSidebarCollapsed,
+        setSidebarCollapsed,
         toggleTheme,
         setCommandPaletteOpen,
-        setSidebarOpen,
         updateJobJD,
         updateJobFields,
         userProfile,

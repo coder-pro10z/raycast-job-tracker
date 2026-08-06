@@ -146,6 +146,29 @@ export const Header: React.FC = () => {
         {/* Action Toolbar */}
         <div className="mobile-actions" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
           <button
+            onClick={() => exportJobsToExcel()}
+            title="Export Jobs to Excel"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--space-2)',
+              height: '36px',
+              padding: '0 var(--space-3)',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--border-color)',
+              backgroundColor: 'var(--bg-tertiary)',
+              color: 'var(--text-primary)',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              cursor: 'pointer'
+            }}
+            className="glow-hover"
+          >
+            <Download size={15} />
+            <span className="desktop-only">Export</span>
+          </button>
+          
+          <button
             onClick={() => setUploadModalOpen(true)}
             title="Import & Append Custom Excel Sheet"
             style={{

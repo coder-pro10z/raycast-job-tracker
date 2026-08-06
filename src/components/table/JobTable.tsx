@@ -7,7 +7,7 @@ import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Cloud } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
-  const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, updateJobJD } = useJobStore();
+  const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, updateJobJD, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
   const parentRef = useRef<HTMLDivElement>(null);
   const [editingJdId, setEditingJdId] = useState<string | null>(null);
   const [dropdownOpenRowId, setDropdownOpenRowId] = useState<string | null>(null);
@@ -71,6 +71,11 @@ export const JobTable: React.FC = () => {
       <div 
         ref={parentRef} 
         className="table-scroll-box"
+        onScroll={(e) => {
+          if (e.currentTarget.scrollTop > 30 && !isSidebarCollapsed) {
+            setSidebarCollapsed(true);
+          }
+        }}
         style={{ 
           width: '100%',
           overflow: 'auto', 

@@ -10,7 +10,7 @@ export type ApplicationStatus =
   | 'Archived'
   | string;
 
-export type ViewMode = 'dashboard' | 'all' | 'ready' | 'applied' | 'interview' | 'offers' | 'rejected' | 'archived';
+export type ViewMode = 'dashboard' | 'all' | 'ready' | 'applied' | 'interview' | 'offers' | 'rejected' | 'archived' | 'outreach-templates';
 export type JobDomain = 'sde' | 'cloud' | 'dual' | 'general';
 export type ActiveDomain = 'all' | 'sde' | 'cloud';
 

@@ -7,9 +7,10 @@ import { FilterBar } from './components/search/FilterBar';
 import { JobTable } from './components/table/JobTable';
 import { JobDetailDrawer } from './components/detail/JobDetailDrawer';
 import { CommandPalette } from './components/search/CommandPalette';
+import { ColdOutreachWorkspace } from './components/outreach/ColdOutreachWorkspace';
 
 const MainWorkspace: React.FC = () => {
-  const { filteredJobs, selectedJobId, setSelectedJobId, setCommandPaletteOpen } = useJobStore();
+  const { filteredJobs, selectedJobId, setSelectedJobId, setCommandPaletteOpen, filterState } = useJobStore();
 
   // Global j/k keyboard shortcut for rapid job row navigation without clicking
   useEffect(() => {
@@ -57,10 +58,16 @@ const MainWorkspace: React.FC = () => {
       <Sidebar />
 
       {/* Main Content Workspace Area */}
-      <main style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto', paddingTop: 'var(--space-6)' }}>
-        <DashboardMetrics />
-        <FilterBar />
-        <JobTable />
+      <main style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto', paddingTop: filterState.viewMode === 'outreach-templates' ? '0' : 'var(--space-6)' }}>
+        {filterState.viewMode === 'outreach-templates' ? (
+          <ColdOutreachWorkspace />
+        ) : (
+          <>
+            <DashboardMetrics />
+            <FilterBar />
+            <JobTable />
+          </>
+        )}
       </main>
 
       {/* Overlays & Drawers */}

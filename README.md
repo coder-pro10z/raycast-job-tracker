@@ -17,37 +17,28 @@ Engineered with a visual hierarchy inspired by **Linear**, **Notion**, and **Ray
 ### 📊 1. Zero Backend & Excel Single Source of Truth
 * **Direct Spreadsheet Parsing**: Leverages an abstract architecture powered by SheetJS (`xlsx`) to instantly stream all attribute columns from your local spreadsheet.
 * **Live Workbook Synchronization**: Hit **Reload** to reflect changes made directly to your Excel spreadsheet on disk, or click **Upload Excel** to switch between custom multi-column workbooks without rebooting the app.
-* **Smart Import & Auto-Deduplication**: Download a clean **Sample Template Workbook** directly from the UI. When uploading new spreadsheets, an intelligent deduplication engine evaluates `CompanyName|TargetRole` signatures to merge new opportunities cleanly without duplicating existing entries.
+* **Export Backups**: Click the **Export** button in the header to instantly back up your live workspace state back into a properly formatted `.xlsx` workbook.
+* **Smart Import & Auto-Deduplication**: Download a clean **Sample Template Workbook** directly from the UI. When uploading new spreadsheets, an intelligent deduplication engine evaluates `CompanyName|TargetRole` signatures to merge new opportunities cleanly.
 
-### ✉️ 2. Cold Outreach & Pitch Studio
-* **Domain-Aware Message Generator**: Switch to the **Outreach Pitch Studio** tab inside any job details drawer to dynamically synthesize highly personalized recruiter pitches in real time!
-* **Persistent Candidate Profile**: Configure your professional profile once (Years of Experience, Key Technical Strengths, Portfolio URL); settings automatically save to browser `localStorage` and adapt across every job listing.
-* **Four Multi-Channel Templates**:
-  1. **LinkedIn Connection Note (&lt;300 chars)**: Ultra-concise introduction featuring a real-time character limit safeguard that turns red if edits exceed LinkedIn's invitation cap.
-  2. **LinkedIn InMail / Direct Message**: Engaging paragraph emphasizing practical problem-solving alignment and immediate application readiness.
-  3. **Cold Email to Hiring Manager**: Complete package featuring an auto-generated Subject Line (`Application & Intro: [Role] ([YoE] in [Tech Stack]) — [Name]`) and structured competency bullet points.
-  4. **Peer Referral Request**: Respectful note directed to fellow software or DevOps engineers inquiring about internal team culture and an employee referral link.
-* **One-Click Execution**: Instantly copy generated pitches to clipboard with visual confirmation or click **Launch Email App** (`mailto:` support) to open Gmail or Outlook with pre-filled subjects and body payloads.
+### ✉️ 2. The Cold Outreach Workspace & Pitch Studio
+* **100+ Auto-Generated Templates**: Navigate to the **Cold Templates** tab in the sidebar to access a massive library of 5 Cold Email and 5 LinkedIn Connection templates for 10 distinct software engineering profiles (SDE, DevOps, Full Stack .NET, Cloud Engineer, etc.).
+* **Global Professional Settings Modal**: Configure your identity once (Full Name, Experience, Key Strengths, Contact Links) via the top-right Settings gear. These details automatically save to your browser's local storage and dynamically inject into every template!
+* **Domain-Aware Message Generator**: Switch to the **Outreach Pitch Studio** tab inside any individual job details drawer to dynamically synthesize highly personalized recruiter pitches based on that specific role.
+* **Dynamic Signatures**: All templates now automatically generate and append a clean, context-aware email signature built from your Application Settings.
 
 ### 🌐 3. Multi-Domain Intelligence & Strict Track Segregation
 * **Domain Badge Identifiers**: Easily differentiate roles at a glance with minimalist icon tags: **`</>`** for Software Engineering (SDE) roles and the **`Cloud`** icon for DevOps/Infrastructure tracks.
 * **Track Filters**: Toggle between **SDE Track**, **Cloud/DevOps Track**, and **Dual Domain** opportunities to maintain hyper-focused application sessions.
 
-### ⚡ 4. Raycast-Style Command Palette (`Ctrl + K`)
-* Never reach for your mouse. Press `Ctrl + K` (or `Cmd + K`) anywhere in the application to summon an instant quick-action dialog.
-* Execute system commands (*"Switch to Ready to Apply"*, *"Reload Excel Data"*, *"Toggle Theme"*) or type any company name to jump straight into its details drawer.
+### 🎨 4. Premium Workspace UI (Linear-Inspired)
+* **Auto-Collapsing Sidebar**: Maximize your screen real estate! When you scroll down your Job Table, the sidebar intelligently senses the movement and auto-collapses into a sleek, icon-only rail.
+* **Glassmorphism Status Menus**: The interactive status dropdown badge utilizes a beautiful frosted glass backdrop filter (`backdrop-filter: blur`) to dynamically diffuse the table rows beneath it, preventing any text overlap or bleeding.
+* **Flawless State Persistence**: Your Active Track, View Mode, Theme (Dark/Light), Sidebar Width, and Profile settings are synchronized flawlessly to `localStorage` via native React `useEffect` hooks, guaranteeing they persist securely across every tab reload.
 
-### 🚀 5. Locked 60 FPS Virtualized Grid & Edge-to-Edge Design
-* **High-Performance Architecture**: Powered by `@tanstack/react-virtual`, the workspace renders only visible viewport rows, effortlessly handling 5,000+ job leads at a consistent 60 FPS.
-* **Edge-to-Edge Horizontal Table**: Removes side padding restrictions to utilize 100% of available monitor horizontal real estate.
-* **Default Priority Sorting & Session Memory**: Automatically opens sorted by **Priority Descending** (`High > Medium > Low`). Your active domain track, view mode section, and custom sort choices automatically synchronize to browser `localStorage` across reloads.
-* **Full Phone Responsiveness**: Features mobile hamburger navigation with an off-canvas slide-out menu and adaptive flex-wrapping for filter pills on smaller screens.
-
-### 📝 6. Smart JD & Application Link Pasting
-* **Inline Table Editor**: Click `+ Add JD / Link` directly within any row to paste a URL or full requirements text and press **Enter**.
-* **Smart Content Detection**: 
-  * Pasted web URLs automatically render as blue **🔗 Apply Link** badges that open the application portal in a new tab.
-  * Pasted requirements or paragraph text render as **📄 JD Saved** tags that open the full document inside the side drawer.
+### ⚡ 5. High-Performance Virtualized Grid & Keyboard Commands
+* **Locked 60 FPS**: Powered by `@tanstack/react-virtual`, the workspace renders only visible viewport rows, effortlessly handling 5,000+ job leads smoothly.
+* **Raycast-Style Command Palette (`Ctrl + K`)**: Press `Ctrl + K` (or `Cmd + K`) anywhere to summon an instant quick-action dialog to execute system commands or jump straight to a company.
+* **Smart JD Pasting**: Click `+ Add JD / Link` directly within any row to paste a URL or full requirements text. Web URLs instantly render as blue **🔗 Apply Link** badges, while raw text renders as **📄 JD Saved** tags.
 
 ---
 
@@ -67,7 +58,7 @@ Engineered with a visual hierarchy inspired by **Linear**, **Notion**, and **Ray
 
 * **Core UI**: [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) (Strict `verbatimModuleSyntax`)
 * **Build Engine**: [Vite 8](https://vitejs.dev/)
-* **Data Layer**: [SheetJS (xlsx)](https://docs.sheetjs.com/) for buffer-level spreadsheet normalization & deduplication
+* **Data Layer**: [SheetJS (xlsx)](https://docs.sheetjs.com/) for buffer-level spreadsheet normalization & exporting
 * **Virtualization**: [@tanstack/react-virtual](https://tanstack.com/virtual/latest)
 * **Icons**: [Lucide React](https://lucide.dev/)
 * **Styling**: Pure Vanilla CSS Custom Properties & Token Design System (Dark Zinc `#09090b` / Light Slate)

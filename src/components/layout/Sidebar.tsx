@@ -10,10 +10,13 @@ import {
   XCircle, 
   Archive,
   Code,
+  MessageSquare,
   Cloud,
   Layers,
   Globe,
-  X
+  X,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface NavItem {
@@ -24,7 +27,7 @@ interface NavItem {
 }
 
 export const Sidebar: React.FC = () => {
-  const { filterState, setViewMode, setActiveDomain, metrics, jobs, isSidebarOpen, setSidebarOpen } = useJobStore();
+  const { filterState, setViewMode, setActiveDomain, metrics, jobs, isSidebarOpen, setSidebarOpen, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
 
   const navItems: NavItem[] = [
     { id: 'all', label: 'All Opportunities', icon: Briefcase, countKey: 'totalJobs' },
@@ -65,14 +68,16 @@ export const Sidebar: React.FC = () => {
       <aside
         className={`sidebar-container ${isSidebarOpen ? 'sidebar-open' : ''}`}
         style={{
-          width: '260px',
+          width: isSidebarCollapsed ? '72px' : '260px',
           backgroundColor: 'var(--bg-secondary)',
           borderRight: '1px solid var(--border-color)',
           display: 'flex',
           flexDirection: 'column',
           padding: 'var(--space-4) 0',
           userSelect: 'none',
-          flexShrink: 0
+          flexShrink: 0,
+          transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
+          overflow: 'hidden'
         }}
       >
         {/* Mobile Header with Close Button */}
@@ -102,11 +107,25 @@ export const Sidebar: React.FC = () => {
           </button>
         </div>
 
+
+
         {/* Domain Track Switcher Section */}
         <div style={{ padding: '0 var(--space-4) var(--space-4)', borderBottom: '1px solid var(--border-color)', marginBottom: 'var(--space-3)' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '4px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Layers size={13} style={{ color: 'var(--text-accent)' }} />
-            <span>Domain Workspace</span>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '12px', paddingLeft: isSidebarCollapsed ? '0' : '4px', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'space-between' }} title="Domain Workspace">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
+              <Layers size={15} style={{ color: 'var(--text-accent)' }} />
+              {!isSidebarCollapsed && <span>Domain Workspace</span>}
+            </div>
+            
+            {/* Compact Collapse Toggle */}
+            <button 
+              onClick={() => setSidebarCollapsed(!isSidebarCollapsed)}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: 'var(--radius-sm)', border: 'none', background: 'var(--bg-tertiary)', color: 'var(--text-secondary)', cursor: 'pointer', transition: 'all 150ms ease', opacity: isSidebarCollapsed ? 0.7 : 1 }}
+              title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+              className="glow-hover desktop-only"
+            >
+              {isSidebarCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
+            </button>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -122,7 +141,7 @@ export const Sidebar: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     width: '100%',
-                    padding: '8px 10px',
+                    padding: isSidebarCollapsed ? '10px 0' : '8px 10px',
                     borderRadius: 'var(--radius-sm)',
                     backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
                     border: isActive ? '1px solid var(--border-focus)' : '1px solid transparent',
@@ -134,23 +153,27 @@ export const Sidebar: React.FC = () => {
                   }}
                   className="glow-hover"
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
-                    <Icon size={16} style={{ color: isActive ? domain.badgeColor : 'var(--text-muted)', flexShrink: 0 }} />
-                    <span style={{ fontSize: '0.8125rem', fontWeight: isActive ? 700 : 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {domain.label}
-                    </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start', width: isSidebarCollapsed ? '100%' : 'auto' }} title={isSidebarCollapsed ? domain.label : undefined}>
+                    <Icon size={18} style={{ color: isActive ? domain.badgeColor : 'var(--text-muted)', flexShrink: 0 }} />
+                    {!isSidebarCollapsed && (
+                      <span style={{ fontSize: '0.8125rem', fontWeight: isActive ? 700 : 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {domain.label}
+                      </span>
+                    )}
                   </div>
-                  <span style={{
-                    fontSize: '0.6875rem',
-                    fontWeight: 700,
-                    padding: '1px 6px',
-                    borderRadius: 'var(--radius-full)',
-                    backgroundColor: isActive ? 'rgba(255, 255, 255, 0.1)' : 'var(--bg-tertiary)',
-                    color: isActive ? domain.badgeColor : 'var(--text-muted)',
-                    flexShrink: 0
-                  }}>
-                    {domain.count}
-                  </span>
+                  {!isSidebarCollapsed && (
+                    <span style={{
+                      fontSize: '0.6875rem',
+                      fontWeight: 700,
+                      padding: '1px 6px',
+                      borderRadius: 'var(--radius-full)',
+                      backgroundColor: isActive ? 'rgba(255, 255, 255, 0.1)' : 'var(--bg-tertiary)',
+                      color: isActive ? domain.badgeColor : 'var(--text-muted)',
+                      flexShrink: 0
+                    }}>
+                      {domain.count}
+                    </span>
+                  )}
                 </button>
               );
             })}
@@ -158,9 +181,9 @@ export const Sidebar: React.FC = () => {
         </div>
 
         {/* Pipeline View Status Navigation */}
-        <div style={{ padding: '0 var(--space-4) var(--space-2)' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: '4px' }}>
-            Pipeline Status
+        <div style={{ padding: '0 var(--space-4) var(--space-2)', marginTop: '8px' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
+            {isSidebarCollapsed ? '...' : 'Pipeline Status'}
           </div>
         </div>
 
@@ -178,7 +201,7 @@ export const Sidebar: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: 'var(--space-2) var(--space-3)',
+                  padding: isSidebarCollapsed ? '10px' : 'var(--space-2) var(--space-3)',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
                   color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
@@ -193,12 +216,12 @@ export const Sidebar: React.FC = () => {
                   if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <Icon size={17} style={{ color: isActive ? 'var(--text-accent)' : 'var(--text-muted)' }} />
-                  <span style={{ fontSize: '0.875rem' }}>{item.label}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start', width: isSidebarCollapsed ? '100%' : 'auto' }} title={isSidebarCollapsed ? item.label : undefined}>
+                  <Icon size={18} style={{ color: isActive ? 'var(--text-accent)' : 'var(--text-muted)' }} />
+                  {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>{item.label}</span>}
                 </div>
 
-                {count !== undefined && (
+                {!isSidebarCollapsed && count !== undefined && (
                   <span style={{
                     fontSize: '0.75rem',
                     fontWeight: 600,
@@ -215,27 +238,65 @@ export const Sidebar: React.FC = () => {
           })}
         </nav>
 
-        {/* Sidebar Footer Info */}
-        <div style={{
-          padding: 'var(--space-3) var(--space-4)',
-          borderTop: '1px solid var(--border-color)',
-          fontSize: '0.75rem',
-          color: 'var(--text-muted)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '4px',
-          marginTop: 'auto'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span>Active Track:</span>
-            <span style={{ fontWeight: 700, color: 'var(--text-accent)' }}>
-              {filterState.activeDomain === 'sde' ? '💻 SDE Track' : filterState.activeDomain === 'cloud' ? '☁️ Cloud & DevOps' : '🌐 All Tracks'}
-            </span>
+        
+        {/* Outreach Hub Section */}
+        <div style={{ padding: 'var(--space-2) var(--space-4)' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
+            {isSidebarCollapsed ? '...' : 'Outreach Hub'}
           </div>
-          <div style={{ color: '#34d399', fontSize: '0.6875rem', fontWeight: 600 }}>
-            ⚡ SheetJS Data Synchronized
+          <div 
+            onClick={() => handleNavSelect('outreach-templates')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
+              padding: isSidebarCollapsed ? '10px' : 'var(--space-2) var(--space-3)',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: filterState.viewMode === 'outreach-templates' ? 'var(--bg-active)' : 'transparent',
+              color: filterState.viewMode === 'outreach-templates' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              cursor: 'pointer',
+              transition: 'all 150ms ease',
+              fontWeight: filterState.viewMode === 'outreach-templates' ? 600 : 500,
+            }}
+            onMouseEnter={(e) => {
+              if (filterState.viewMode !== 'outreach-templates') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+            }}
+            onMouseLeave={(e) => {
+              if (filterState.viewMode !== 'outreach-templates') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
+            title={isSidebarCollapsed ? "Cold Templates" : undefined}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
+              <MessageSquare size={18} style={{ color: filterState.viewMode === 'outreach-templates' ? '#38bdf8' : 'var(--text-muted)' }} />
+              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Cold Templates</span>}
+            </div>
           </div>
         </div>
+
+        {/* Sidebar Footer Info */}
+        {!isSidebarCollapsed && (
+          <div style={{
+            padding: 'var(--space-3) var(--space-4)',
+            borderTop: '1px solid var(--border-color)',
+            fontSize: '0.75rem',
+            color: 'var(--text-muted)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '4px',
+            marginTop: 'auto',
+            whiteSpace: 'nowrap'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span>Active Track:</span>
+              <span style={{ fontWeight: 700, color: 'var(--text-accent)' }}>
+                {filterState.activeDomain === 'sde' ? '💻 SDE Track' : filterState.activeDomain === 'cloud' ? '☁️ Cloud & DevOps' : '🌐 All Tracks'}
+              </span>
+            </div>
+            <div style={{ color: '#34d399', fontSize: '0.6875rem', fontWeight: 600 }}>
+              ⚡ SheetJS Data Synchronized
+            </div>
+          </div>
+        )}
       </aside>
     </>
   );

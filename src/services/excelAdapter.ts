@@ -64,6 +64,56 @@ export class ExcelAdapter implements IDataProvider {
     });
   }
 
+  public exportJobs(jobs: JobItem[], filename: string = 'Job_Tracker_Export.xlsx'): void {
+    const rows = jobs.map(job => ({
+      'Company Name': job.companyName,
+      'Target Role': job.targetRole,
+      'Location': job.location,
+      'Work Mode': job.workMode,
+      'Tech Stack': job.techStack.join(', '),
+      'Career Page Link': job.careerPageLink,
+      'Application Link': job.jobApplicationLink,
+      'JD': job.jdContent,
+      'Status': job.applicationStatus,
+      'Applied Date': job.appliedDate,
+      'Referral Needed': job.referralNeeded ? 'Yes' : 'No',
+      'Referral Contact Name': job.referralContactName || '',
+      'Referral Contact Role': job.referralContactRole || '',
+      'Referral Contact Email': job.referralContactEmail || '',
+      'Referral Contact LinkedIn': job.referralContactLinkedIn || '',
+      'HR/Recruiter Name': job.hrRecruiterName || '',
+      'HR/Recruiter Email': job.hrRecruiterEmail || '',
+      'HR/Recruiter LinkedIn': job.hrRecruiterLinkedIn || '',
+      'Follow-up Date': job.followUpDate || '',
+      'Response Status': job.responseStatus || '',
+      'Interview Stage': job.interviewStage || '',
+      'Priority': job.priority,
+      'Next Action': job.nextAction || '',
+      'Notes': job.notes,
+      'Track': job.domain
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Jobs');
+    
+    // Auto-size columns slightly
+    const colWidths = [
+      { wch: 25 }, // Company
+      { wch: 30 }, // Role
+      { wch: 15 }, // Location
+      { wch: 12 }, // Work Mode
+      { wch: 40 }, // Tech Stack
+      { wch: 40 }, // Career Link
+      { wch: 40 }, // App Link
+      { wch: 30 }, // JD
+      { wch: 15 }, // Status
+    ];
+    worksheet['!cols'] = colWidths;
+
+    XLSX.writeFile(workbook, filename);
+  }
+
   private deduplicateJobs(jobs: JobItem[]): JobItem[] {
     const jobGroups = new Map<string, JobItem[]>();
 
