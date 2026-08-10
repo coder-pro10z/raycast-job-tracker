@@ -47,36 +47,84 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
   };
 
   return (
-    <div className={`relative ${className}`} ref={menuRef}>
+    <div style={{ position: 'relative' }} className={className} ref={menuRef}>
       <button
         onClick={(e) => {
           e.stopPropagation();
           handleToggle(!isOpen);
         }}
-        className={`flex items-center gap-2 transition-all duration-300 group ${
-          compact 
-            ? 'p-1.5 hover:bg-indigo-500/10 rounded-md text-slate-400 hover:text-indigo-400 ring-1 ring-transparent hover:ring-indigo-500/30' 
-            : 'px-4 py-2 bg-slate-800/80 hover:bg-slate-700/90 border border-slate-700/50 hover:border-indigo-500/40 rounded-xl text-sm font-medium shadow-lg hover:shadow-indigo-500/10 backdrop-blur-sm text-slate-200 hover:text-white'
-        } ${buttonClassName} ${isOpen && !compact ? 'border-indigo-500/50 bg-slate-700/90 shadow-indigo-500/10' : ''}`}
+        className={`leads-menu-btn ${isOpen && !compact ? 'active' : ''} ${buttonClassName}`}
+        style={compact ? {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'var(--space-2)',
+          padding: '4px 6px',
+          borderRadius: 'var(--radius-sm)',
+        } : {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 'var(--space-2)',
+          padding: 'var(--space-2) var(--space-4)',
+          borderRadius: 'var(--radius-md)',
+          backgroundColor: isOpen ? 'var(--bg-active)' : 'var(--bg-elevated)',
+          border: `1px solid ${isOpen ? 'var(--border-focus)' : 'var(--border-color)'}`,
+          fontWeight: 500,
+          boxShadow: 'var(--shadow-sm)',
+        }}
         title="Find Leads on LinkedIn"
       >
-        <Search className={`w-4 h-4 ${compact ? 'text-current group-hover:text-indigo-400' : 'text-indigo-400 group-hover:text-indigo-300 transition-colors'}`} />
+        <Search size={compact ? 14 : 16} style={{ color: isOpen && !compact ? 'var(--text-accent)' : 'inherit', flexShrink: 0 }} />
         {!compact && (
-          <>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
             <span>Find Leads</span>
-            <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-300 ${isOpen ? 'rotate-180 text-indigo-400' : 'group-hover:text-slate-300'}`} />
-          </>
+            <ChevronDown 
+              size={14} 
+              style={{ 
+                transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform var(--transition-normal)'
+              }} 
+            />
+          </div>
         )}
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-slate-900/95 backdrop-blur-xl border border-indigo-500/20 rounded-2xl shadow-2xl shadow-indigo-500/10 overflow-hidden z-50 animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-200 ring-1 ring-white/5">
-          <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 p-3.5 border-b border-indigo-500/10 flex items-center gap-2 relative overflow-hidden">
-             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
-             <Users className="w-4 h-4 text-indigo-400 relative z-10" />
-             <p className="text-xs font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 uppercase tracking-widest relative z-10">Target Personas</p>
+        <div 
+          className="glass-panel leads-menu-dropdown"
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 'calc(100% + var(--space-2))',
+            width: '260px',
+            borderRadius: 'var(--radius-lg)',
+            boxShadow: 'var(--shadow-xl)',
+            overflow: 'hidden',
+            zIndex: 100,
+            border: '1px solid var(--border-focus)',
+          }}
+        >
+          <div style={{
+            padding: 'var(--space-3)',
+            borderBottom: '1px solid var(--border-color)',
+            background: 'linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.05))',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'var(--space-2)',
+          }}>
+             <Users size={14} style={{ color: 'var(--text-accent)' }} />
+             <p style={{
+               fontSize: '0.75rem',
+               fontWeight: 700,
+               textTransform: 'uppercase',
+               letterSpacing: '0.1em',
+               background: 'linear-gradient(to right, #818cf8, #c084fc)',
+               WebkitBackgroundClip: 'text',
+               WebkitTextFillColor: 'transparent',
+               margin: 0
+             }}>Target Personas</p>
           </div>
-          <div className="p-1.5 flex flex-col gap-0.5">
+          
+          <div style={{ padding: 'var(--space-1)' }}>
             {personas.map((persona) => (
               <button
                 key={persona}
@@ -84,11 +132,10 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
                   e.stopPropagation();
                   handleSelect(persona);
                 }}
-                className="w-full text-left px-3 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-indigo-500/10 rounded-xl transition-all duration-200 flex items-center justify-between group relative overflow-hidden"
+                className="leads-menu-item"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 via-indigo-500/0 to-indigo-500/0 group-hover:via-indigo-500/5 transition-all duration-500" />
-                <span className="relative z-10 font-medium">{persona}</span>
-                <ExternalLink className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-indigo-400 relative z-10" />
+                <span style={{ position: 'relative', zIndex: 2, fontWeight: 500 }}>{persona}</span>
+                <ExternalLink size={14} className="icon-link" style={{ position: 'relative', zIndex: 2 }} />
               </button>
             ))}
           </div>
