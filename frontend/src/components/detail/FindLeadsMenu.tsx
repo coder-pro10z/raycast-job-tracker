@@ -77,7 +77,7 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
              <p className="text-xs font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 uppercase tracking-widest relative z-10">Target Personas</p>
           </div>
           <div className="p-1.5 flex flex-col gap-0.5">
-            {personas.map((persona, idx) => (
+            {personas.map((persona) => (
               <button
                 key={persona}
                 onClick={(e) => {
