@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: nextapply-api
+    env: docker
+    dockerContext: backend/NextApply.Api
+    dockerfilePath: backend/NextApply.Api/Dockerfile
+    plan: free
+    region: ohio # closest US region or change as needed
+    envVars:
+      - key: ASPNETCORE_URLS
+        value: "http://+:8080"
+      - key: ConnectionStrings__DefaultConnection
+        sync: false # You will enter this in the Render Dashboard
+      - key: ApiKey
+        sync: false # You will enter this in the Render Dashboard
