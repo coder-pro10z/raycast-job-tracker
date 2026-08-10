@@ -3234,11 +3234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
+      "projectUniqueName": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
       "projectName": "NextApply.Api",
-      "projectPath": "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
+      "projectPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
       "packagesPath": "C:\\Users\\Praveen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\obj\\",
+      "outputPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3258,6 +3258,7 @@
       },
       "frameworks": {
         "net9.0": {
+          "framework": "net9.0",
           "targetAlias": "net9.0",
           "projectReferences": {}
         }
@@ -3276,6 +3277,7 @@
     },
     "frameworks": {
       "net9.0": {
+        "framework": "net9.0",
         "targetAlias": "net9.0",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": {
