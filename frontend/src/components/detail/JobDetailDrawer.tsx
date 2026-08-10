@@ -24,6 +24,7 @@ import {
   Phone
 } from 'lucide-react';
 import { OutreachStudio } from './OutreachStudio';
+import { FindLeadsMenu } from './FindLeadsMenu';
 
 export const JobDetailDrawer: React.FC = () => {
   const { selectedJob, setSelectedJobId } = useJobStore();
@@ -271,6 +272,10 @@ export const JobDetailDrawer: React.FC = () => {
             <span>Outreach Pitch Studio</span>
             <span style={{ fontSize: '0.625rem', padding: '1px 6px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#10b981', borderRadius: '10px' }}>NEW</span>
           </button>
+
+          <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', padding: '8px 0' }}>
+            <FindLeadsMenu job={selectedJob} />
+          </div>
         </div>
 
         {activeTab === 'outreach' ? (

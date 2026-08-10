@@ -3234,11 +3234,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
+      "projectUniqueName": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\NextApply.Api.csproj",
       "projectName": "NextApply.Api",
-      "projectPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
+      "projectPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\NextApply.Api.csproj",
       "packagesPath": "C:\\Users\\Praveen\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\obj\\",
+      "outputPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

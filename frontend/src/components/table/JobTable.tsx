@@ -5,6 +5,7 @@ import { useUpdateJob, useAddNote } from '../../hooks/useJobs';
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
+import { FindLeadsMenu } from '../detail/FindLeadsMenu';
 import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Cloud } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
@@ -14,6 +15,23 @@ export const JobTable: React.FC = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [editingJdId, setEditingJdId] = useState<string | null>(null);
   const [dropdownOpenRowId, setDropdownOpenRowId] = useState<string | null>(null);
+  const [activeLeadsRowId, setActiveLeadsRowId] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      if (e.key === 'l' || e.key === 'L') {
+        if (selectedJobId) {
+          e.preventDefault();
+          setActiveLeadsRowId(selectedJobId);
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedJobId]);
 
   const rowVirtualizer = useVirtualizer({
     count: filteredJobs.length,
@@ -186,7 +204,7 @@ export const JobTable: React.FC = () => {
                   backgroundColor: isSelected ? 'var(--bg-active)' : 'transparent',
                   cursor: isEditingThisJd ? 'default' : 'pointer',
                   transition: 'background-color 150ms ease',
-                  zIndex: dropdownOpenRowId === job.id ? 50 : 1,
+                  zIndex: (dropdownOpenRowId === job.id || activeLeadsRowId === job.id) ? 50 : 1,
                 }}
                 onMouseEnter={(e) => {
                   if (!isSelected) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
@@ -369,6 +387,16 @@ export const JobTable: React.FC = () => {
                       </button>
                     </div>
                   )}
+                  
+                  {/* Find Leads Quick Action */}
+                  <div className="ml-2 flex-shrink-0">
+                    <FindLeadsMenu 
+                      job={job} 
+                      compact={true} 
+                      isOpen={activeLeadsRowId === job.id}
+                      onToggle={(isOpen) => setActiveLeadsRowId(isOpen ? job.id : null)}
+                    />
+                  </div>
                 </div>
 
                 {/* Priority */}

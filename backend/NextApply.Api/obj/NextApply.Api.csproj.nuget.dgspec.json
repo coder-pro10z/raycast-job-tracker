@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj": {}
+    "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\NextApply.Api.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj": {
+    "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\NextApply.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\NextApply.Api.csproj",
         "projectName": "NextApply.Api",
-        "projectPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\NextApply.Api.csproj",
+        "projectPath": "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\NextApply.Api.csproj",
         "packagesPath": "C:\\Users\\Praveen\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Praveen\\Desktop\\Job-Tracker\\NextApply.Api\\obj\\",
+        "outputPath": "C:\\Users\\Praveen\\Desktop\\Job-Tracker\\backend\\NextApply.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -31,7 +31,6 @@
         },
         "frameworks": {
           "net9.0": {
-            "framework": "net9.0",
             "targetAlias": "net9.0",
             "projectReferences": {}
           }
@@ -50,7 +49,6 @@
       },
       "frameworks": {
         "net9.0": {
-          "framework": "net9.0",
           "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
