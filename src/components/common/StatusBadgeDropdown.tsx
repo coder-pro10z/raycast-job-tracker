@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Badge } from './Badge';
 import { ChevronDown, Check } from 'lucide-react';
-import { useJobStore } from '../../state/useJobStore';
+import { useUpdateJob } from '../../hooks/useJobs';
 
 interface StatusBadgeDropdownProps {
   jobId: string;
@@ -25,7 +25,7 @@ const DEFAULT_STATUSES = [
 ];
 
 export const StatusBadgeDropdown: React.FC<StatusBadgeDropdownProps> = ({ jobId, currentStatus, size = 'sm', onToggle }) => {
-  const { updateJobFields } = useJobStore();
+  const { mutate: updateJob } = useUpdateJob();
   const [isOpen, setIsOpen] = useState(false);
   const [isCustom, setIsCustom] = useState(false);
   const [customInput, setCustomInput] = useState('');
@@ -49,7 +49,7 @@ export const StatusBadgeDropdown: React.FC<StatusBadgeDropdownProps> = ({ jobId,
   }, [isOpen, onToggle]);
 
   const handleSelect = (status: string) => {
-    updateJobFields(jobId, { applicationStatus: status });
+    updateJob({ id: jobId, patch: { applicationStatus: status } });
     setIsOpen(false);
     setIsCustom(false);
     if (onToggle) onToggle(false);

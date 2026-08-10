@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
-import { Search, RefreshCw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings, Download } from 'lucide-react';
+import { useJobs } from '../../hooks/useJobs';
+import { Search, RefreshCcw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings, Download } from 'lucide-react';
 import { UploadModal } from '../upload/UploadModal';
 import { SettingsModal } from '../settings/SettingsModal';
 
 export const Header: React.FC = () => {
   const { 
-    reloadJobs, 
     theme, 
     toggleTheme, 
     setCommandPaletteOpen, 
@@ -14,16 +14,16 @@ export const Header: React.FC = () => {
     setSidebarOpen,
     setSettingsModalOpen,
     exportJobsToExcel,
-    loading,
     jobs 
   } = useJobStore();
   
+  const { refetch, isFetching } = useJobs();
   const [reloading, setReloading] = useState<boolean>(false);
   const [isUploadModalOpen, setUploadModalOpen] = useState<boolean>(false);
 
   const handleReload = async () => {
     setReloading(true);
-    await reloadJobs();
+    await refetch();
     setTimeout(() => setReloading(false), 500);
   };
 
@@ -216,7 +216,7 @@ export const Header: React.FC = () => {
 
           <button
             onClick={handleReload}
-            disabled={loading || reloading}
+            disabled={isFetching || reloading}
             title="Reload Master_Job_Tracker_Verified.xlsx data"
             style={{
               display: 'flex',
@@ -230,12 +230,12 @@ export const Header: React.FC = () => {
               color: 'var(--text-primary)',
               fontSize: '0.8125rem',
               fontWeight: 500,
-              cursor: loading ? 'wait' : 'pointer',
+              cursor: isFetching ? 'wait' : 'pointer',
               flexShrink: 0
             }}
             className="mobile-header-btn glow-hover focus-ring"
           >
-            <RefreshCw size={15} style={{ animation: (loading || reloading) ? 'spin 1s linear infinite' : 'none' }} />
+            <RefreshCcw size={14} style={{ animation: (isFetching || reloading) ? 'spin 1s linear infinite' : 'none' }} />
             <span>Reload</span>
           </button>
 

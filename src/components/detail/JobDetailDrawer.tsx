@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
+import { useUpdateJob, useAddNote } from '../../hooks/useJobs';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { 
@@ -25,7 +26,9 @@ import {
 import { OutreachStudio } from './OutreachStudio';
 
 export const JobDetailDrawer: React.FC = () => {
-    const { selectedJob, setSelectedJobId, updateJobJD, updateJobFields } = useJobStore();
+  const { selectedJob, setSelectedJobId } = useJobStore();
+  const { mutate: updateJob } = useUpdateJob();
+  const { mutate: addNote } = useAddNote();
   const [isEditingHR, setIsEditingHR] = useState(false);
   const [hrForm, setHrForm] = useState({ name: '', email: '', linkedin: '', phone: '' });
 
@@ -73,7 +76,15 @@ export const JobDetailDrawer: React.FC = () => {
   if (!selectedJob) return null;
 
   const handleSaveJd = () => {
-    updateJobJD(selectedJob.id, jdInput);
+    const isLink = isUrl(jdInput);
+    addNote({ jobId: selectedJob.id, content: jdInput, type: 'JD' });
+    updateJob({ 
+      id: selectedJob.id, 
+      patch: { 
+        jdContent: jdInput, 
+        jobApplicationLink: isLink ? jdInput : selectedJob.jobApplicationLink 
+      } 
+    });
     setJdEdited(false);
   };
 
@@ -454,7 +465,7 @@ export const JobDetailDrawer: React.FC = () => {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '4px' }}>
                   <button onClick={() => setIsEditingHR(false)} style={{ padding: '6px 12px', fontSize: '0.75rem', background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Cancel</button>
-                  <button onClick={() => { updateJobFields(selectedJob.id, { hrRecruiterName: hrForm.name, hrRecruiterEmail: hrForm.email, hrRecruiterLinkedIn: hrForm.linkedin, hrRecruiterPhone: hrForm.phone }); setIsEditingHR(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', fontSize: '0.75rem', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', cursor: 'pointer', fontWeight: 600 }}><Save size={13} /> Save</button>
+                  <button onClick={() => { updateJob({ id: selectedJob.id, patch: { hrRecruiterName: hrForm.name, hrRecruiterEmail: hrForm.email, hrRecruiterLinkedIn: hrForm.linkedin, hrRecruiterPhone: hrForm.phone }}); setIsEditingHR(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', fontSize: '0.75rem', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', cursor: 'pointer', fontWeight: 600 }}><Save size={13} /> Save</button>
                 </div>
               </div>
             ) : selectedJob.hrRecruiterName || selectedJob.hrRecruiterEmail || selectedJob.hrRecruiterLinkedIn || selectedJob.hrRecruiterPhone ? (
@@ -539,7 +550,7 @@ export const JobDetailDrawer: React.FC = () => {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: '4px' }}>
                     <button onClick={() => setIsEditingReferral(false)} style={{ padding: '6px 12px', fontSize: '0.75rem', background: 'transparent', color: 'var(--text-muted)', border: 'none', cursor: 'pointer', fontWeight: 600 }}>Cancel</button>
-                    <button onClick={() => { updateJobFields(selectedJob.id, { referralContactName: referralForm.name, referralContactRole: referralForm.role, referralContactEmail: referralForm.email, referralContactLinkedIn: referralForm.linkedin }); setIsEditingReferral(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', fontSize: '0.75rem', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', cursor: 'pointer', fontWeight: 600 }}><Save size={13} /> Save</button>
+                    <button onClick={() => { updateJob({ id: selectedJob.id, patch: { referralContactName: referralForm.name, referralContactRole: referralForm.role, referralContactEmail: referralForm.email, referralContactLinkedIn: referralForm.linkedin }}); setIsEditingReferral(false); }} style={{ display: 'flex', alignItems: 'center', gap: '4px', padding: '6px 12px', fontSize: '0.75rem', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: 'var(--radius-sm)', cursor: 'pointer', fontWeight: 600 }}><Save size={13} /> Save</button>
                   </div>
                 </div>
               ) : selectedJob.referralContactName || selectedJob.referralContactEmail || selectedJob.referralContactLinkedIn ? (

@@ -32,7 +32,6 @@ interface JobStoreContextType {
   toggleTechFilter: (tech: string) => void;
   setSort: (column: keyof JobItem) => void;
   resetFilters: () => void;
-  reloadJobs: () => Promise<void>;
   uploadExcelFile: (file: File) => Promise<{ added: number; duplicates: number }>;
   exportJobsToExcel: () => void;
   toggleTheme: () => void;
@@ -40,10 +39,9 @@ interface JobStoreContextType {
   setSidebarOpen: (open: boolean) => void;
   isSidebarCollapsed: boolean;
   setSidebarCollapsed: (collapsed: boolean) => void;
-  updateJobJD: (id: string, content: string) => void;
-  updateJobFields: (id: string, updates: Partial<JobItem>) => void;
   updateUserProfile: (profile: Partial<UserProfile>) => void;
   setSettingsModalOpen: (open: boolean) => void;
+  setJobs: (jobs: JobItem[]) => void;
 }
 
 const getSavedDomain = (): ActiveDomain => {
@@ -124,10 +122,6 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [isSettingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    loadData();
-  }, []);
-
-  useEffect(() => {
     const html = document.documentElement;
     if (theme === 'dark') {
       html.classList.add('dark');
@@ -138,28 +132,11 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
   }, [theme]);
 
-  const loadData = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const loadedJobs = await excelAdapter.loadJobs();
-      setJobs(loadedJobs);
-    } catch (err: any) {
-      setError(err.message || 'Failed to load excel dataset');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const reloadJobs = async () => {
-    await loadData();
-  };
-
   const exportJobsToExcel = () => {
     // Export the currently filtered jobs (or all jobs)
     // Actually, exporting all jobs is usually preferred for a backup, but let's export all jobs.
     // If user wants filtered, we could pass filteredJobs. Let's do all jobs.
-    excelAdapter.exportJobs(jobs, 'Master_Job_Tracker_Export.xlsx');
+    excelAdapter.exportJobs(jobs, `Job_Tracker_Backup_${new Date().toISOString().slice(0,10)}.xlsx`);
   };
 
   const uploadExcelFile = async (file: File): Promise<{ added: number; duplicates: number }> => {
@@ -196,31 +173,6 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     } finally {
       setLoading(false);
     }
-  };
-
-  const updateJobJD = (id: string, content: string) => {
-    setJobs((prev) =>
-      prev.map((job) => {
-        if (job.id === id) {
-          const cleanContent = content.trim();
-          const isLink = cleanContent.startsWith('http') || cleanContent.includes('.com') || cleanContent.includes('.io');
-          return {
-            ...job,
-            jdContent: cleanContent,
-            jobApplicationLink: isLink ? cleanContent : job.jobApplicationLink
-          };
-        }
-        return job;
-      })
-    );
-  };
-
-  const updateJobFields = (id: string, updates: Partial<JobItem>) => {
-    setJobs((prev) => 
-      prev.map((job) => 
-        job.id === id ? { ...job, ...updates } : job
-      )
-    );
   };
 
   const updateUserProfile = (updates: Partial<UserProfile>) => {
@@ -496,7 +448,6 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         toggleTechFilter,
         setSort,
         resetFilters,
-        reloadJobs,
         uploadExcelFile,
         exportJobsToExcel,
         setSidebarOpen,
@@ -504,8 +455,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setSidebarCollapsed,
         toggleTheme,
         setCommandPaletteOpen,
-        updateJobJD,
-        updateJobFields,
+        setJobs,
         userProfile,
         isSettingsModalOpen,
         updateUserProfile,

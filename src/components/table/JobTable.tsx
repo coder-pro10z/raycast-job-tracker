@@ -1,13 +1,16 @@
 import React, { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useJobStore } from '../../state/useJobStore';
+import { useUpdateJob, useAddNote } from '../../hooks/useJobs';
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Cloud } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
-  const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, updateJobJD, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
+  const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
+  const { mutate: updateJob } = useUpdateJob();
+  const { mutate: addNote } = useAddNote();
   const parentRef = useRef<HTMLDivElement>(null);
   const [editingJdId, setEditingJdId] = useState<string | null>(null);
   const [dropdownOpenRowId, setDropdownOpenRowId] = useState<string | null>(null);
@@ -234,16 +237,21 @@ export const JobTable: React.FC = () => {
                       defaultValue={job.jdContent}
                       placeholder="Paste URL or JD text..."
                       onClick={(e) => e.stopPropagation()}
+                      onChange={(e) => {
+                        const val = e.currentTarget.value;
+                        const isLink = val.startsWith('http') || val.includes('.com') || val.includes('.io');
+                        updateJob({ id: job.id, patch: { jdContent: val, jobApplicationLink: isLink ? val : job.jobApplicationLink } });
+                      }}
                       onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          updateJobJD(job.id, e.currentTarget.value);
-                          setEditingJdId(null);
-                        } else if (e.key === 'Escape') {
+                        if (e.key === 'Enter' || e.key === 'Escape') {
                           setEditingJdId(null);
                         }
                       }}
                       onBlur={(e) => {
-                        updateJobJD(job.id, e.target.value);
+                        const val = e.target.value.trim();
+                        if (val && val !== job.jdContent) {
+                          addNote({ jobId: job.id, content: val, type: 'JD' });
+                        }
                         setEditingJdId(null);
                       }}
                       style={{

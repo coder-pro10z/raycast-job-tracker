@@ -1,0 +1,6 @@
+@NextApply.Api_HostAddress = http://localhost:5089
+
+GET {{NextApply.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

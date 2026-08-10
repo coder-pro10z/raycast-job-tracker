@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useJobStore } from '../../state/useJobStore';
+import { useJobs } from '../../hooks/useJobs';
 import { Search, Briefcase, Zap, Send, Award, Moon, RefreshCw, X, ChevronRight } from 'lucide-react';
 
 export const CommandPalette: React.FC = () => {
@@ -10,9 +11,9 @@ export const CommandPalette: React.FC = () => {
     setSelectedJobId, 
     setViewMode, 
     toggleTheme, 
-    reloadJobs,
     resetFilters 
   } = useJobStore();
+  const { refetch: reloadJobs } = useJobs();
   
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
