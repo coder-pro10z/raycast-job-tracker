@@ -5,7 +5,7 @@ import type { IDataProvider } from './dataProvider';
 export class ExcelAdapter implements IDataProvider {
   private filePaths: string[];
 
-  constructor(filePaths: string[] = ['/Master_Job_Tracker_Verified.xlsx', '/Master_Job_Tracker.xlsx']) {
+  constructor(filePaths: string[] = ['/Master_Job_Tracker.xlsx']) {
     this.filePaths = filePaths;
   }
 
@@ -32,7 +32,7 @@ export class ExcelAdapter implements IDataProvider {
         throw new Error('Failed to load any job opportunities from Excel workbooks.');
       }
 
-      return this.deduplicateJobs(allJobs);
+      return allJobs;
     } catch (error) {
       console.error('Error loading jobs from Excel workbooks:', error);
       throw error;
@@ -51,7 +51,7 @@ export class ExcelAdapter implements IDataProvider {
           const data = e.target?.result;
           if (data instanceof ArrayBuffer) {
             const jobs = this.parseArrayBuffer(data, file.name);
-            resolve(this.deduplicateJobs(jobs));
+            resolve(jobs);
           } else {
             reject(new Error('Invalid file format loaded'));
           }
@@ -112,50 +112,6 @@ export class ExcelAdapter implements IDataProvider {
     worksheet['!cols'] = colWidths;
 
     XLSX.writeFile(workbook, filename);
-  }
-
-  private deduplicateJobs(jobs: JobItem[]): JobItem[] {
-    const jobGroups = new Map<string, JobItem[]>();
-
-    for (const job of jobs) {
-      // Group by domain and normalized company name to prevent recurring company entries
-      const key = `${job.domain}|${job.companyName.toLowerCase().trim()}`;
-      if (!jobGroups.has(key)) {
-        jobGroups.set(key, []);
-      }
-      jobGroups.get(key)!.push(job);
-    }
-
-    const deduplicated: JobItem[] = [];
-
-    for (const group of jobGroups.values()) {
-      if (group.length === 1) {
-        // Exclude rows that are completely blank/garbage with no valid role or company
-        const item = group[0];
-        if (item.companyName !== 'Unnamed Company' || item.targetRole !== 'Open Position') {
-          deduplicated.push(item);
-        }
-        continue;
-      }
-
-      // If multiple recurring rows exist for the same company in the same domain, keep the most complete opening
-      const scored = group.map((job) => {
-        let score = 0;
-        if (job.targetRole !== 'Open Position' && job.targetRole !== '') score += 50;
-        if (job.location !== 'Unspecified' && job.location !== '') score += 25;
-        if (job.priority !== 'Normal' && job.priority !== 'Unknown') score += 20;
-        if (job.jdContent && job.jdContent.trim() !== '') score += 30;
-        if (job.techStack.length > 0) score += job.techStack.length * 5;
-        if (job.notes && job.notes.trim() !== '') score += 15;
-        if (job.careerPageLink || job.jobApplicationLink) score += 20;
-        return { job, score };
-      });
-
-      scored.sort((a, b) => b.score - a.score);
-      deduplicated.push(scored[0].job);
-    }
-
-    return deduplicated;
   }
 
   private parseArrayBuffer(buffer: ArrayBuffer, sourceHint: string = ''): JobItem[] {
