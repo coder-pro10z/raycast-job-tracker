@@ -3,38 +3,24 @@ import type { JobItem, WorkMode, Priority, ApplicationStatus, JobDomain } from '
 import type { IDataProvider } from './dataProvider';
 
 export class ExcelAdapter implements IDataProvider {
-  private filePaths: string[];
+  private filePath: string;
 
-  constructor(filePaths: string[] = ['/Master_Job_Tracker.xlsx']) {
-    this.filePaths = filePaths;
+  constructor(filePath: string = '/Master_Job_Tracker.xlsx') {
+    this.filePath = filePath;
   }
 
   public async loadJobs(): Promise<JobItem[]> {
     try {
-      const allJobs: JobItem[] = [];
-
-      for (const filePath of this.filePaths) {
-        try {
-          const response = await fetch(filePath, { cache: 'no-cache' });
-          if (response.ok) {
-            const arrayBuffer = await response.arrayBuffer();
-            const jobs = this.parseArrayBuffer(arrayBuffer, filePath);
-            allJobs.push(...jobs);
-          } else {
-            console.warn(`Could not load workbook at ${filePath}: ${response.statusText}`);
-          }
-        } catch (fileError) {
-          console.warn(`Error loading workbook at ${filePath}:`, fileError);
-        }
+      const response = await fetch(this.filePath, { cache: 'no-cache' });
+      if (response.ok) {
+        const arrayBuffer = await response.arrayBuffer();
+        const jobs = this.parseArrayBuffer(arrayBuffer, this.filePath);
+        return jobs;
+      } else {
+        console.warn(`Could not load workbook at ${this.filePath}: ${response.statusText}`);
+        return [];
       }
-
-      if (allJobs.length === 0) {
-        throw new Error('Failed to load any job opportunities from Excel workbooks.');
-      }
-
-      return allJobs;
     } catch (error) {
-      console.error('Error loading jobs from Excel workbooks:', error);
       throw error;
     }
   }
