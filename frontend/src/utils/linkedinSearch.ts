@@ -1,68 +1,63 @@
 export interface LeadSearchConfig {
   personas: Record<string, string[]>;
-  roleKeywords: string[];
-  defaultCities: string[];
+  cityGeoUrns: Record<string, string>;
+  hiringJobTitleIds: Record<string, string>;
 }
 
 export const DEFAULT_LEAD_SEARCH_CONFIG: LeadSearchConfig = {
   personas: {
     'Technical Recruiter': ['Technical Recruiter', 'IT Recruiter', 'Talent Acquisition', 'Talent Acquisition Specialist'],
-    'Hiring Manager': ['Hiring Manager', 'Engineering Manager', 'Team Lead', 'Delivery Manager'],
+    'Hiring Manager': ['Hiring Manager', 'Engineering Manager', 'Team Lead'],
     'People/Colleague': ['.NET Developer', 'Full Stack Engineer', 'Software Engineer']
   },
-  roleKeywords: ['.NET', 'Full Stack', 'ASP.NET Core', 'C#'],
-  defaultCities: ['Noida', 'Delhi', 'Gurgaon', 'Bangalore', 'Hyderabad', 'Pune']
+  cityGeoUrns: {
+    'Noida': '106442238',
+    'Hyderabad': '104869687',
+    'Bengaluru': '106187582',
+    'Delhi': '105556991',
+    'Gurugram': '115918471'
+  },
+  hiringJobTitleIds: {
+    '.NET Developer': '4384',
+    'Full Stack Developer': '25201',
+    'Senior Software Engineer': '39'
+  }
 };
 
-const METRO_CLUSTERS: Record<string, string[]> = {
-  Noida: ['Noida', 'Delhi', 'Gurgaon'],
-  Delhi: ['Delhi', 'Noida', 'Gurgaon'],
-  Gurgaon: ['Gurgaon', 'Delhi', 'Noida'],
-  Bangalore: ['Bangalore', 'Bengaluru'],
-  Hyderabad: ['Hyderabad'],
-  Pune: ['Pune'],
-};
-
-export function buildLinkedInSearchUrl(
-  companyName: string,
-  persona: string,
-  jobLocation: string | null | undefined,
-  config: LeadSearchConfig = DEFAULT_LEAD_SEARCH_CONFIG
-): string {
-  const personaTerms = config.personas[persona] || [persona];
-  const cities = getCitiesForLocation(jobLocation, config.defaultCities);
-
-  const parts = [
-    `"${companyName}"`,
-    `(${personaTerms.map(t => `"${t}"`).join(' OR ')})`,
-  ];
-
-  // For recruiter/hiring-manager personas, also require role relevance.
-  // For People/Colleague, personaTerms ARE the role keywords already.
-  if (persona !== 'People/Colleague') {
-    parts.push(`(${config.roleKeywords.map(k => `"${k}"`).join(' OR ')})`);
-  }
-
-  parts.push(`(${cities.map(c => `"${c}"`).join(' OR ')})`);
-
-  const query = parts.join(' AND ');
-  return `https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(query)}`;
+export interface BuildLinkedInSearchParams {
+  personaTitles: string[];
+  companyName: string;
+  companyUrn?: string;
+  cityGeoUrns: string[];
+  hiringJobTitleIds?: string[];
 }
 
-function getCitiesForLocation(location: string | null | undefined, defaultCities: string[]): string[] {
-  if (!location) return defaultCities;
+export function buildLinkedInSearchUrl(params: BuildLinkedInSearchParams): string {
+  const { personaTitles, companyName, companyUrn, cityGeoUrns, hiringJobTitleIds } = params;
+
+  // The keywords query includes the company name (if we don't have its URN to facet by)
+  // plus the persona titles joined by the OR operator (' | ')
+  const keywords = companyUrn
+    ? personaTitles.join(' | ')
+    : `${companyName} ${personaTitles.join(' | ')}`;
+
+  const search = new URLSearchParams();
+  search.set('keywords', keywords);
+  search.set('origin', 'FACETED_SEARCH');
   
-  // Try to match the location to a known cluster
-  for (const [key, cluster] of Object.entries(METRO_CLUSTERS)) {
-    if (location.toLowerCase().includes(key.toLowerCase())) {
-      return cluster;
-    }
+  if (companyUrn) {
+    search.set('currentCompany', JSON.stringify([companyUrn]));
   }
   
-  // If it's a specific location not in our clusters, use it as the only city
-  if (location !== 'Remote' && location !== 'Unknown') {
-    return [location];
+  if (cityGeoUrns.length) {
+    search.set('geoUrn', JSON.stringify(cityGeoUrns));
   }
   
-  return defaultCities;
+  if (hiringJobTitleIds && hiringJobTitleIds.length) {
+    // '-100' is LinkedIn's placeholder for "Other" unclassified buckets, which is auto-appended
+    search.set('activelyHiringForJobTitles', JSON.stringify([...hiringJobTitleIds, '-100']));
+  }
+
+  return `https://www.linkedin.com/search/results/people/?${search.toString()}`;
 }
+

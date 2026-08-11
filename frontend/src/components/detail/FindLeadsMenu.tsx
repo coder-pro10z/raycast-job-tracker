@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Search, ExternalLink, Users, ChevronDown } from 'lucide-react';
+import { createPortal } from 'react-dom';
+import { Search, ExternalLink, Users, ChevronDown, Check } from 'lucide-react';
 import type { JobItem } from '../../types/job';
 import { buildLinkedInSearchUrl, DEFAULT_LEAD_SEARCH_CONFIG } from '../../utils/linkedinSearch';
 
@@ -14,11 +15,23 @@ interface FindLeadsMenuProps {
 
 export function FindLeadsMenu({ job, className = '', buttonClassName = '', compact = false, isOpen: externalIsOpen, onToggle }: FindLeadsMenuProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+  const [activelyHiringNet, setActivelyHiringNet] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
+  const btnRef = useRef<HTMLButtonElement>(null);
   
   const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
   
   const handleToggle = (open: boolean) => {
+    if (open && btnRef.current) {
+      const rect = btnRef.current.getBoundingClientRect();
+      // Position the dropdown below the button, aligning its right edge with the button's right edge
+      setCoords({ 
+        top: rect.bottom + 8, 
+        left: rect.right,
+        width: 260
+      });
+    }
+    
     if (onToggle) onToggle(open);
     else setInternalIsOpen(open);
   };
@@ -27,28 +40,47 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      // We don't check btnRef here because the portal is rendered outside
+      // Instead, we check if the click target is inside the dropdown or the button
+      const target = event.target as Element;
+      if (
+        !target.closest('.leads-menu-dropdown') && 
+        !target.closest('.leads-menu-btn') &&
+        !(btnRef.current && btnRef.current.contains(target))
+      ) {
         handleToggle(false);
       }
     }
     
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      // Optional: close on scroll to avoid detached dropdowns
+      const handleScroll = () => handleToggle(false);
+      window.addEventListener('scroll', handleScroll, { capture: true, passive: true });
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+        window.removeEventListener('scroll', handleScroll, { capture: true });
+      };
     }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, [isOpen, onToggle]);
 
   const handleSelect = (persona: string) => {
-    const url = buildLinkedInSearchUrl(job.companyName, persona, job.location);
+    const url = buildLinkedInSearchUrl({
+      personaTitles: DEFAULT_LEAD_SEARCH_CONFIG.personas[persona],
+      companyName: job.companyName,
+      // Defaulting to the 5 canonical cities to maximize reach as discussed
+      cityGeoUrns: Object.values(DEFAULT_LEAD_SEARCH_CONFIG.cityGeoUrns),
+      hiringJobTitleIds: activelyHiringNet ? [DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['.NET Developer']] : []
+    });
+    
     window.open(url, '_blank', 'noopener,noreferrer');
     handleToggle(false);
   };
 
   return (
-    <div style={{ position: 'relative' }} className={className} ref={menuRef}>
+    <div style={{ position: 'relative' }} className={className}>
       <button
+        ref={btnRef}
         onClick={(e) => {
           e.stopPropagation();
           handleToggle(!isOpen);
@@ -88,20 +120,21 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
         )}
       </button>
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div 
           className="glass-panel leads-menu-dropdown"
           style={{
-            position: 'absolute',
-            right: 0,
-            top: 'calc(100% + var(--space-2))',
-            width: '260px',
+            position: 'fixed',
+            top: coords.top,
+            left: coords.left - coords.width, // Align right edge
+            width: `${coords.width}px`,
             borderRadius: 'var(--radius-lg)',
             boxShadow: 'var(--shadow-xl)',
             overflow: 'hidden',
-            zIndex: 100,
+            zIndex: 9999,
             border: '1px solid var(--border-focus)',
           }}
+          onClick={(e) => e.stopPropagation()} // Prevent bubbling up to the row if the portal somehow isn't isolated enough
         >
           <div style={{
             padding: 'var(--space-3)',
@@ -139,7 +172,45 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
               </button>
             ))}
           </div>
-        </div>
+
+          <div style={{
+            padding: 'var(--space-2) var(--space-3)',
+            borderTop: '1px solid var(--border-color)',
+            background: 'var(--bg-tertiary)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              <div 
+                style={{ 
+                  width: '16px', 
+                  height: '16px', 
+                  borderRadius: '4px', 
+                  border: `1px solid ${activelyHiringNet ? 'var(--border-focus)' : 'var(--text-muted)'}`,
+                  background: activelyHiringNet ? 'var(--border-focus)' : 'transparent',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  transition: 'all var(--transition-fast)'
+                }}
+              >
+                {activelyHiringNet && <Check size={12} color="white" />}
+              </div>
+              <input 
+                type="checkbox" 
+                checked={activelyHiringNet}
+                onChange={(e) => {
+                  e.stopPropagation();
+                  setActivelyHiringNet(e.target.checked);
+                }}
+                style={{ display: 'none' }}
+              />
+              Actively hiring .NET (Tighter filter)
+            </label>
+          </div>
+        </div>,
+        document.body
       )}
     </div>
   );
