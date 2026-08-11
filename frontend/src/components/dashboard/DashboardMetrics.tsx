@@ -73,8 +73,8 @@ export const DashboardMetrics: React.FC = () => {
       <div className="mobile-px" style={{ 
         display: 'flex', 
         flexWrap: 'wrap', 
-        gap: '12px', 
-        padding: 'var(--space-6) var(--space-6) var(--space-4)', 
+        gap: 'var(--space-3)', 
+        padding: 'var(--space-4) var(--space-6) var(--space-4)', 
         width: '100%' 
       }}>
         <MetricCard 
@@ -121,7 +121,7 @@ export const DashboardMetrics: React.FC = () => {
         display: 'flex', 
         flexWrap: 'wrap', 
         gap: 'var(--space-3)', 
-        padding: 'var(--space-6) var(--space-6) var(--space-4)', 
+        padding: 'var(--space-4) var(--space-6) var(--space-4)', 
         width: '100%' 
       }}>
         <MetricCard 
@@ -166,7 +166,7 @@ export const DashboardMetrics: React.FC = () => {
       display: 'flex', 
       flexWrap: 'wrap', 
       gap: 'var(--space-3)', 
-      padding: '0 var(--space-6) var(--space-4)', 
+      padding: 'var(--space-4) var(--space-6) var(--space-4)', 
       width: '100%' 
     }}>
       <MetricCard 
