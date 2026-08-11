@@ -87,24 +87,7 @@ export const Header: React.FC = () => {
               <h1 className="font-sans mobile-brand-text" style={{ fontSize: '1.125rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', whiteSpace: 'nowrap' }}>
                 Job Tracker
               </h1>
-              <span 
-                className="hide-on-mobile"
-                style={{
-                  fontSize: '0.6875rem',
-                  fontWeight: 600,
-                  padding: '2px 6px',
-                  borderRadius: '4px',
-                  backgroundColor: 'rgba(99, 102, 241, 0.15)',
-                  color: 'var(--text-accent)',
-                  textTransform: 'uppercase'
-                }}
-              >
-                Prototype
-              </span>
             </div>
-            <p className="hide-on-mobile" style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Excel-Powered Workspace ({jobs.length} loaded)
-            </p>
           </div>
         </div>
 
