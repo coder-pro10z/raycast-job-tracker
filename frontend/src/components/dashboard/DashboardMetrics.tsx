@@ -44,7 +44,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color
       cursor: 'pointer',
       transition: 'all 200ms ease'
     }}
-    className="glow-hover"
+    className="glow-hover metric-card-hover"
   >
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
       <span style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-muted)' }}>
