@@ -396,8 +396,9 @@ export const JobDetailDrawer: React.FC = () => {
                       justifyContent: 'center',
                       width: '36px',
                       height: '36px',
-                      backgroundColor: 'rgba(96, 165, 250, 0.1)',
-                      color: '#60a5fa',
+                      backgroundColor: 'var(--bg-tertiary)',
+                      border: '1px solid var(--border-color)',
+                      color: 'var(--text-accent)',
                       borderRadius: 'var(--radius-sm)',
                       textDecoration: 'none',
                       flexShrink: 0
