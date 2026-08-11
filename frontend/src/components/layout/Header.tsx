@@ -15,8 +15,7 @@ export const Header: React.FC = () => {
     isSidebarOpen,
     setSidebarOpen,
     setSettingsModalOpen,
-    exportJobsToExcel,
-    jobs 
+    exportJobsToExcel
   } = useJobStore();
   
   const { refetch, isFetching } = useJobs();
