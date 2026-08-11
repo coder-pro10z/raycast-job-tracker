@@ -139,7 +139,7 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
 
       {isOpen && createPortal(
         <div 
-          className="glass-panel leads-menu-dropdown"
+          className="leads-menu-dropdown"
           style={{
             position: 'fixed',
             top: coords.top,
@@ -149,14 +149,17 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
             boxShadow: 'var(--shadow-xl)',
             overflow: 'hidden',
             zIndex: 9999,
-            border: '1px solid var(--border-focus)',
+            border: '1px solid rgba(99, 102, 241, 0.3)',
+            backgroundColor: 'rgba(15, 23, 42, 0.85)',
+            backdropFilter: 'blur(24px)',
+            WebkitBackdropFilter: 'blur(24px)',
           }}
           onClick={(e) => e.stopPropagation()} // Prevent bubbling up to the row if the portal somehow isn't isolated enough
         >
           <div style={{
             padding: 'var(--space-3)',
-            borderBottom: '1px solid var(--border-color)',
-            background: 'linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.05))',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'linear-gradient(to right, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.08))',
             display: 'flex',
             alignItems: 'center',
             gap: 'var(--space-2)',
@@ -192,8 +195,8 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
 
           <div style={{
             padding: 'var(--space-2) var(--space-3)',
-            borderTop: '1px solid var(--border-color)',
-            background: 'var(--bg-tertiary)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            background: 'rgba(0, 0, 0, 0.2)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -209,7 +212,8 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  transition: 'all var(--transition-fast)'
+                  transition: 'all var(--transition-fast)',
+                  flexShrink: 0
                 }}
               >
                 {activelyHiringNet && <Check size={12} color="white" />}
@@ -223,9 +227,9 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
                 }}
                 style={{ display: 'none' }}
               />
-              <span style={{ display: 'flex', flexDirection: 'column' }}>
-                <span>{getHiringToggleLabel()}</span>
-                <span style={{ fontSize: '0.65rem', opacity: 0.7 }}>(Tighter filter)</span>
+              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <span style={{ color: activelyHiringNet ? 'var(--text-primary)' : 'inherit', transition: 'color var(--transition-fast)' }}>{getHiringToggleLabel()}</span>
+                <span style={{ fontSize: '0.7rem', opacity: 0.6 }}>(Tighter filter)</span>
               </span>
             </label>
           </div>
