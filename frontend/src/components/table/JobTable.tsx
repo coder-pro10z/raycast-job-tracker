@@ -86,7 +86,7 @@ export const JobTable: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '0 0 var(--space-4) 0', position: 'relative', width: '100%' }}>
+    <div id="main-job-table" style={{ padding: '0 0 var(--space-4) 0', position: 'relative', width: '100%' }}>
       <div 
         ref={parentRef} 
         className="table-scroll-box"

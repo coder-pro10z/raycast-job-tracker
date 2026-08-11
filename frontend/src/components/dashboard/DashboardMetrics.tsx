@@ -26,7 +26,10 @@ interface MetricCardProps {
 
 const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color, bgColor, subText, onClick, active }) => (
   <div 
-    onClick={onClick}
+    onClick={() => {
+      if (onClick) onClick();
+      document.getElementById('main-job-table')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }}
     style={{
       flex: '1',
       minWidth: '170px',
@@ -38,7 +41,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      cursor: onClick ? 'pointer' : 'default',
+      cursor: 'pointer',
       transition: 'all 200ms ease'
     }}
     className="glow-hover"
