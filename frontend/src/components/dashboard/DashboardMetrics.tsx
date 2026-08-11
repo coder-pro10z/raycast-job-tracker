@@ -17,12 +17,14 @@ interface MetricCardProps {
   label: string;
   value: number | string;
   icon: React.ElementType;
+  color?: string;
+  bgColor?: string;
   subText?: string;
   onClick?: () => void;
   active?: boolean;
 }
 
-const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, subText, onClick, active }) => (
+const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color, bgColor, subText, onClick, active }) => (
   <div 
     onClick={() => {
       if (onClick) onClick();
@@ -46,8 +48,8 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, subTe
       <span style={{ fontSize: 'var(--text-xs)', fontWeight: 'var(--weight-medium)', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-secondary)', opacity: 0.65 }}>
         {label}
       </span>
-      <div style={{ width: '28px', height: '28px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-secondary)', border: '1px solid var(--border-color)' }}>
-        <Icon size={14} strokeWidth={1.5} />
+      <div style={{ width: '28px', height: '28px', borderRadius: 'var(--radius-sm)', backgroundColor: bgColor || 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: color || 'var(--text-secondary)', border: '1px solid var(--border-color)' }}>
+        <Icon size={14} strokeWidth={1.5} fill="currentColor" />
       </div>
     </div>
     <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
@@ -81,6 +83,8 @@ export const DashboardMetrics: React.FC = () => {
           label="SDE & FullStack Roles" 
           value={metrics.totalJobs} 
           icon={Code} 
+          color="#818cf8" 
+          bgColor="rgba(129, 140, 248, 0.15)"
           subText="Active Track"
           onClick={() => setViewMode('all')}
         />
@@ -88,18 +92,24 @@ export const DashboardMetrics: React.FC = () => {
           label=".NET & C# Stack" 
           value={metrics.dotnetCount} 
           icon={Terminal} 
+          color="#a855f7" 
+          bgColor="rgba(168, 85, 247, 0.15)"
           subText="Core Backend"
         />
         <MetricCard 
           label="React / Angular Web" 
           value={metrics.reactAngularCount} 
           icon={Cpu} 
+          color="#38bdf8" 
+          bgColor="rgba(56, 189, 248, 0.15)"
           subText="Modern Frontend"
         />
         <MetricCard 
           label="Ready to Apply" 
           value={metrics.readyToApply} 
           icon={Zap} 
+          color="#facc15" 
+          bgColor="rgba(250, 204, 21, 0.15)"
           subText="Action Required"
           onClick={() => setViewMode('ready')}
         />
@@ -107,6 +117,8 @@ export const DashboardMetrics: React.FC = () => {
           label="High Priority Leads" 
           value={metrics.highPriority} 
           icon={Star} 
+          color="#fb923c" 
+          bgColor="rgba(251, 146, 60, 0.15)"
           subText="Click to Filter"
           onClick={() => togglePriorityFilter('High')}
           active={isHighPriorityFilterActive}
@@ -128,6 +140,8 @@ export const DashboardMetrics: React.FC = () => {
           label="Cloud & DevOps Roles" 
           value={metrics.totalJobs} 
           icon={Cloud} 
+          color="#38bdf8" 
+          bgColor="rgba(56, 189, 248, 0.15)"
           subText="Infrastructure"
           onClick={() => setViewMode('all')}
         />
@@ -135,24 +149,32 @@ export const DashboardMetrics: React.FC = () => {
           label="Microsoft Azure / AWS" 
           value={metrics.azureCount} 
           icon={Cloud} 
+          color="#0089d6" 
+          bgColor="rgba(0, 137, 214, 0.15)"
           subText="Cloud Ecosystem"
         />
         <MetricCard 
           label="Docker / Kubernetes" 
           value={metrics.dockerK8sCount} 
           icon={Layers} 
+          color="#2496ed" 
+          bgColor="rgba(36, 150, 237, 0.15)"
           subText="Container Orchestration"
         />
         <MetricCard 
           label="CI/CD & Pipelines" 
           value={metrics.cicdCount} 
           icon={GitBranch} 
+          color="#34d399" 
+          bgColor="rgba(52, 211, 153, 0.15)"
           subText="Automation"
         />
         <MetricCard 
           label="High Priority Leads" 
           value={metrics.highPriority} 
           icon={Star} 
+          color="#fb923c" 
+          bgColor="rgba(251, 146, 60, 0.15)"
           subText="Click to Filter"
           onClick={() => togglePriorityFilter('High')}
           active={isHighPriorityFilterActive}
@@ -173,6 +195,8 @@ export const DashboardMetrics: React.FC = () => {
         label="Total Opportunities" 
         value={metrics.totalJobs} 
         icon={Briefcase} 
+        color="var(--primary-500)" 
+        bgColor="var(--primary-bg)"
         subText="All Tracks"
         onClick={() => setViewMode('all')}
       />
@@ -180,6 +204,8 @@ export const DashboardMetrics: React.FC = () => {
         label="Ready to Apply" 
         value={metrics.readyToApply} 
         icon={Zap} 
+        color="#facc15" 
+        bgColor="rgba(250, 204, 21, 0.15)"
         subText="In Queue"
         onClick={() => setViewMode('ready')}
       />
@@ -187,6 +213,8 @@ export const DashboardMetrics: React.FC = () => {
         label="Active Applied" 
         value={metrics.applied} 
         icon={Send} 
+        color="#60a5fa" 
+        bgColor="rgba(59, 130, 246, 0.15)"
         subText="In Flight"
         onClick={() => setViewMode('applied')}
       />
@@ -194,12 +222,16 @@ export const DashboardMetrics: React.FC = () => {
         label="Dual Domain Leads" 
         value={metrics.dualCount} 
         icon={Layers} 
+        color="#fb923c" 
+        bgColor="rgba(251, 146, 60, 0.15)"
         subText="SDE + Azure/Docker"
       />
       <MetricCard 
         label="High Priority" 
         value={metrics.highPriority} 
         icon={Star} 
+        color="#fb923c" 
+        bgColor="rgba(251, 146, 60, 0.15)"
         subText="Click to Filter"
         onClick={() => togglePriorityFilter('High')}
         active={isHighPriorityFilterActive}
