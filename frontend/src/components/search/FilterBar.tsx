@@ -22,7 +22,7 @@ export const FilterBar: React.FC = () => {
     filterState.searchQuery.trim() !== '';
 
   return (
-    <div className="mobile-px" style={{
+    <div id="filter-bar-container" className="mobile-px" style={{
       padding: '0 var(--space-6) var(--space-4)',
       display: 'flex',
       alignItems: 'center',

@@ -28,7 +28,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color
   <div 
     onClick={() => {
       if (onClick) onClick();
-      document.getElementById('main-job-table')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('filter-bar-container')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }}
     style={{
       flex: '1',
