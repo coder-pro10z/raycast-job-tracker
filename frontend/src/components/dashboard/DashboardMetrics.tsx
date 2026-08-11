@@ -78,7 +78,7 @@ export const DashboardMetrics: React.FC = () => {
         display: 'flex', 
         flexWrap: 'wrap', 
         gap: '12px', 
-        padding: '0 var(--space-6) var(--space-4)', 
+        padding: 'var(--space-6) var(--space-6) var(--space-4)', 
         width: '100%' 
       }}>
         <MetricCard 
@@ -135,7 +135,7 @@ export const DashboardMetrics: React.FC = () => {
         display: 'flex', 
         flexWrap: 'wrap', 
         gap: '12px', 
-        padding: '0 var(--space-6) var(--space-4)', 
+        padding: 'var(--space-6) var(--space-6) var(--space-4)', 
         width: '100%' 
       }}>
         <MetricCard 

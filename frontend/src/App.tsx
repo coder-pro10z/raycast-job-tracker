@@ -80,7 +80,7 @@ const MainWorkspace: React.FC = () => {
       <Sidebar />
 
       {/* Main Content Workspace Area */}
-      <main style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto', paddingTop: filterState.viewMode === 'outreach-templates' ? '0' : 'var(--space-6)' }}>
+      <main style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
         {filterState.viewMode === 'outreach-templates' ? (
           <ColdOutreachWorkspace />
         ) : (
