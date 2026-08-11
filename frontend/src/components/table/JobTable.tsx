@@ -55,11 +55,7 @@ export const JobTable: React.FC = () => {
     }
   };
 
-  const isUrl = (text: string) => {
-    if (!text) return false;
-    const clean = text.toLowerCase();
-    return clean.startsWith('http') || clean.includes('.com') || clean.includes('.in') || clean.includes('.io') || clean.includes('.org') || clean.includes('careers');
-  };
+
 
   const renderDomainBadge = (job: JobItem) => {
     if (job.domain === 'dual') {
