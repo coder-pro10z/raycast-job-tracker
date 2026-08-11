@@ -220,16 +220,29 @@ export const JobTable: React.FC = () => {
                   </span>
                   {job.careerPageLink && (
                     <a 
-                  </div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      href={job.careerPageLink.startsWith('http') ? job.careerPageLink : `https://${job.careerPageLink}`}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()} 
+                      title="Open career portal"
+                      style={{ color: 'var(--text-muted)', display: 'inline-flex', flexShrink: 0 }}
+                    >
+                      <ExternalLink size={13} />
+                    </a>
+                  )}
+                </div>
+
+                {/* Target Role & Domain Badge */}
+                <div style={{ flex: columns[1].flex, minWidth: columns[1].minWidth, paddingRight: '12px', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+                  <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: 'var(--text-secondary)', fontSize: '0.875rem', fontWeight: 500 }}>
                     {job.targetRole}
-                  </div>
+                  </span>
+                  {renderDomainBadge(job)}
                 </div>
 
                 {/* Status & Priority */}
-                <div style={{ flex: columns[1].flex, minWidth: columns[1].minWidth, paddingRight: '12px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
+                <div style={{ flex: columns[2].flex, minWidth: columns[2].minWidth, paddingRight: '12px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
                   <StatusBadgeDropdown jobId={job.id} currentStatus={job.applicationStatus} />
-                  {renderDomainBadge(job)}
                 </div>
 
                 {/* Combined Location (Work Mode) */}
