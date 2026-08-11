@@ -51,7 +51,7 @@ export const JobDetailDrawer: React.FC = () => {
     return () => clearTimeout(handler);
   }, [roleInput]);
 
-  const duplicateCheck = useCheckDuplicateJob(selectedJob?.companyName || '', debouncedRole);
+  const duplicateCheck = useCheckDuplicateJob(selectedJob?.companyName || '', debouncedRole, selectedJob?.id);
 
   const handleSaveRole = () => {
     if (selectedJob && roleInput !== selectedJob.targetRole) {
@@ -237,10 +237,9 @@ export const JobDetailDrawer: React.FC = () => {
               />
               {duplicateCheck.data?.isDuplicate && (
                 <div style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: '0',
-                  marginTop: '4px',
+                  position: 'relative',
+                  marginTop: '8px',
+                  marginBottom: '4px',
                   backgroundColor: 'rgba(251, 146, 60, 0.1)',
                   border: '1px solid rgba(251, 146, 60, 0.3)',
                   color: '#ea580c',
@@ -342,7 +341,6 @@ export const JobDetailDrawer: React.FC = () => {
           >
             <Mail size={15} />
             <span>Outreach Pitch Studio</span>
-            <span style={{ fontSize: '0.625rem', padding: '1px 6px', backgroundColor: 'rgba(16, 185, 129, 0.15)', color: '#10b981', borderRadius: '10px' }}>NEW</span>
           </button>
 
           <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', padding: '8px 0' }}>

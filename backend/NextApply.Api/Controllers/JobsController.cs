@@ -136,11 +136,12 @@ namespace NextApply.Api.Controllers
         }
 
         [HttpGet("check-duplicate")]
-        public async Task<IActionResult> CheckDuplicate([FromQuery] string companyName, [FromQuery] string targetRole)
+        public async Task<IActionResult> CheckDuplicate([FromQuery] string companyName, [FromQuery] string targetRole, [FromQuery] int? excludeJobId = null)
         {
             var exists = await _db.Jobs.AnyAsync(j =>
                 j.CompanyName == companyName &&
                 j.TargetRole == targetRole &&
+                (!excludeJobId.HasValue || j.Id != excludeJobId.Value) &&
                 j.ApplicationStatus != "Rejected" &&
                 j.ApplicationStatus != "Archived");
                 

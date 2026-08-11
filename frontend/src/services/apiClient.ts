@@ -70,9 +70,14 @@ export const apiClient = {
     return mapJobToFrontend(data);
   },
 
-  async checkDuplicateJob(companyName: string, targetRole: string): Promise<{ isDuplicate: boolean }> {
-    const params = new URLSearchParams({ companyName, targetRole });
-    const res = await fetch(`${API_BASE}/api/jobs/check-duplicate?${params}`, {
+  async checkDuplicateJob(companyName: string, targetRole: string, excludeJobId?: string): Promise<{ isDuplicate: boolean }> {
+    const url = new URL(`${API_BASE}/api/jobs/check-duplicate`);
+    url.searchParams.append('companyName', companyName);
+    url.searchParams.append('targetRole', targetRole);
+    if (excludeJobId) {
+      url.searchParams.append('excludeJobId', excludeJobId);
+    }
+    const res = await fetch(url.toString(), {
       headers: {
         'X-Api-Key': localStorage.getItem('apiKey') ?? ''
       }

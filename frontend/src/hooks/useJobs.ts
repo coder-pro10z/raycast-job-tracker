@@ -69,10 +69,10 @@ export function useCloneJob() {
   });
 }
 
-export function useCheckDuplicateJob(companyName: string, targetRole: string) {
+export function useCheckDuplicateJob(companyName: string, targetRole: string, excludeJobId?: string) {
   return useQuery({
-    queryKey: ['check-duplicate', companyName, targetRole],
-    queryFn: () => apiClient.checkDuplicateJob(companyName, targetRole),
+    queryKey: ['check-duplicate', companyName, targetRole, excludeJobId],
+    queryFn: () => apiClient.checkDuplicateJob(companyName, targetRole, excludeJobId),
     enabled: Boolean(companyName && targetRole && companyName.trim() !== '' && targetRole.trim() !== ''),
     staleTime: 60 * 1000,
   });
