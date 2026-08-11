@@ -12,29 +12,37 @@ interface EditLinkPopoverProps {
 export const EditLinkPopover: React.FC<EditLinkPopoverProps> = ({ job, coords, onClose }) => {
   const { mutate: updateJob } = useUpdateJob();
 
+  const onCloseRef = React.useRef(onClose);
   useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    const mountTime = Date.now();
+    
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Element;
-      if (!target.closest('.edit-link-popover')) {
-        onClose();
-      }
+      if (target?.closest?.('.edit-link-popover')) return;
+      if (target?.closest?.('.icon-btn') || target?.closest?.('button[title="Add Application URL or JD text"]')) return;
+      onCloseRef.current();
     };
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' || e.key === 'Enter') {
-        onClose();
-      }
-    // Slight delay to prevent immediate close on the click that opened it
-    setTimeout(() => document.addEventListener('mousedown', handleClickOutside), 0);
-    document.addEventListener('keydown', handleKeyDown);
 
-    const handleScroll = (e: Event) => {
-      // Don't close if the scroll is happening INSIDE the popover (e.g. scrolling the textarea)
-      const target = e.target as Element;
-      if (target && target.closest && target.closest('.edit-link-popover')) {
-        return;
-      }
-      onClose();
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onCloseRef.current();
     };
+    
+    const handleScroll = (e: Event) => {
+      // Ignore involuntary scrolls caused by browser/react layout shifts right after opening
+      if (Date.now() - mountTime < 150) return;
+      
+      const target = e.target as Element;
+      if (target?.closest?.('.edit-link-popover')) return;
+      
+      onCloseRef.current();
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
     window.addEventListener('scroll', handleScroll, { capture: true, passive: true });
     
     return () => {
@@ -42,7 +50,7 @@ export const EditLinkPopover: React.FC<EditLinkPopoverProps> = ({ job, coords, o
       document.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', handleScroll, { capture: true });
     };
-  }, [onClose]);
+  }, []);
 
   return createPortal(
     <div 
