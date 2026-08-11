@@ -11,18 +11,20 @@ Theme switching is accomplished by toggling these classes on the `document.docum
 
 | Dark Mode | Light Mode | Token | Purpose |
 |-----------|------------|-------|---------|
-| `#09090b` | `#ffffff` | `--bg-primary` | Page background |
-| `#121215` | `#f8fafc` | `--bg-secondary` | Header, drawer, cards |
-| `#18181b` | `#f1f5f9` | `--bg-tertiary` | Inputs, table rows |
-| `#27272a` | `#e2e8f0` | `--bg-elevated` | Popovers, dropdowns |
+| `#0a0a0c` | `#f8fafc` | `--bg-primary` | Page background |
+| `#121214` | `#ffffff` | `--bg-secondary` | Header, drawer, cards |
+| `#151518` | `#f1f5f9` | `--bg-tertiary` | Inputs, table rows |
+| `#1e1e22` | `#e2e8f0` | `--bg-elevated` | Popovers, dropdowns |
 | `rgba(18,18,21,0.85)` | `rgba(255,255,255,0.85)` | `--bg-glass` | Glassmorphic overlays |
-| `rgba(24,24,27,0.65)` | `rgba(248,250,252,0.75)` | `--bg-glass-card` | Frosted glass cards |
-| `rgba(255,255,255,0.08)` | `rgba(0,0,0,0.08)` | `--border-color` | General borders |
-| `rgba(99,102,241,0.6)` | `rgba(99,102,241,0.6)` | `--border-focus` | Focus rings, active states |
+| `rgba(21,21,24,0.65)` | `rgba(248,250,252,0.75)` | `--bg-glass-card` | Frosted glass cards |
+| `rgba(255,255,255,0.05)` | `rgba(0,0,0,0.06)` | `--border-color` | General borders |
+| `rgba(59,130,246,0.6)` | `#3b82f6` | `--border-focus` | Focus rings, active states |
 | `#f4f4f5` | `#0f172a` | `--text-primary` | Body text |
 | `#a1a1aa` | `#475569` | `--text-secondary` | Subtitles, labels |
 | `#71717a` | `#94a3b8` | `--text-muted` | Placeholders, captions |
-| `#818cf8` | `#6366f1` | `--text-accent` | Links, highlights, icons |
+| `var(--primary-500)` | `var(--primary-500)` | `--text-accent` | Links, highlights, primary icons |
+| `#3b82f6` | `#2563eb` | `--primary-500` | Primary actions and buttons |
+| `rgba(59,130,246,0.15)` | `rgba(59,130,246,0.15)` | `--primary-bg` | Primary light backgrounds |
 
 ## Status Color Tokens
 
@@ -75,10 +77,26 @@ Elevations and depth are represented by the following shadows:
 
 ## Typography
 
-Typography is clean, modern, and purposeful, loaded via Google Fonts:
+Typography is clean, modern, and purposeful, utilizing Google Fonts and a strict numeric scale:
+
+**Font Families:**
 - **Sans-serif (Primary)**: `Inter` — Used for body, headers, and UI elements.
 - **Monospace (Code)**: `JetBrains Mono` — Used for code snippets, IDs, and tabular data.
 - **Serif (Display)**: `Source Serif 4` — Used for specific display headings or editorial content.
+
+**Size Tokens:**
+- `--text-xs`: 12px
+- `--text-sm`: 14px
+- `--text-base`: 16px
+- `--text-lg`: 20px
+- `--text-xl`: 28px
+- `--text-2xl`: 36px
+
+**Weight Tokens:**
+- `--weight-regular`: 400
+- `--weight-medium`: 500
+- `--weight-semibold`: 600
+- `--weight-bold`: 700
 
 ## Glassmorphism Pattern
 

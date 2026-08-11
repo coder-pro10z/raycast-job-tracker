@@ -123,6 +123,8 @@ The portals are appended to `document.body` and position themselves relative to 
 
 To handle hundreds or thousands of job entries without performance degradation, the `JobTable` uses `@tanstack/react-virtual`. It only renders the rows that are currently visible within the viewport scroll area, reusing DOM nodes as the user scrolls.
 
+**Design Constraint**: The virtual row height is set to `64px` (previously 50px) to ensure proper "breathability" and alignment with the premium design system's spacing grid, preventing the UI from feeling like a dense spreadsheet.
+
 ## LinkedIn Search
 
 The `linkedinSearch.ts` utility provides two main functions for constructing LinkedIn search URLs:
