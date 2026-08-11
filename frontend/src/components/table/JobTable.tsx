@@ -236,10 +236,6 @@ export const JobTable: React.FC = () => {
                   {renderDomainBadge(job)}
                 </div>
 
-                {/* Status & Priority */}
-                <div style={{ flex: columns[2].flex, minWidth: columns[2].minWidth, paddingRight: '12px', display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
-                  <StatusBadgeDropdown jobId={job.id} currentStatus={job.applicationStatus} />
-                </div>
 
                 {/* Combined Location (Work Mode) */}
                 <div style={{ flex: columns[2].flex, minWidth: columns[2].minWidth, paddingRight: '12px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: '0.8125rem' }}>
