@@ -247,6 +247,7 @@ export const JobTable: React.FC = () => {
                 <div style={{ flex: columns[3].flex, minWidth: columns[3].minWidth, paddingRight: '12px', display: 'flex', alignItems: 'center', gap: '8px', overflow: 'visible', height: '100%' }}>
                   {(!hasJd && !hasLink) ? (
                     <button
+                      onMouseDown={(e) => e.stopPropagation()}
                       onClick={(e) => {
                         e.stopPropagation();
                         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
@@ -324,6 +325,7 @@ export const JobTable: React.FC = () => {
                         </span>
                       )}
                       <button
+                        onMouseDown={(e) => e.stopPropagation()}
                         onClick={(e) => {
                           e.stopPropagation();
                           const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();

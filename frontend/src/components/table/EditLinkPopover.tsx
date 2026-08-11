@@ -23,13 +23,18 @@ export const EditLinkPopover: React.FC<EditLinkPopoverProps> = ({ job, coords, o
       if (e.key === 'Escape' || e.key === 'Enter') {
         onClose();
       }
-    };
-    
     // Slight delay to prevent immediate close on the click that opened it
     setTimeout(() => document.addEventListener('mousedown', handleClickOutside), 0);
     document.addEventListener('keydown', handleKeyDown);
-    
-    const handleScroll = () => onClose();
+
+    const handleScroll = (e: Event) => {
+      // Don't close if the scroll is happening INSIDE the popover (e.g. scrolling the textarea)
+      const target = e.target as Element;
+      if (target && target.closest && target.closest('.edit-link-popover')) {
+        return;
+      }
+      onClose();
+    };
     window.addEventListener('scroll', handleScroll, { capture: true, passive: true });
     
     return () => {
@@ -67,7 +72,6 @@ export const EditLinkPopover: React.FC<EditLinkPopoverProps> = ({ job, coords, o
         </label>
         <input
           type="url"
-          autoFocus
           defaultValue={job.jobApplicationLink}
           placeholder="https://..."
           onChange={(e) => updateJob({ id: job.id, patch: { jobApplicationLink: e.currentTarget.value } })}
