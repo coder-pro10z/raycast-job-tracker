@@ -86,7 +86,7 @@ export const JobTable: React.FC = () => {
   };
 
   return (
-    <div id="main-job-table" style={{ padding: '0 0 var(--space-4) 0', position: 'relative', width: '100%' }}>
+    <div id="main-job-table" style={{ padding: '0 0 var(--space-4) 0', position: 'relative', width: '100%', display: 'flex', flexDirection: 'column', flex: 1 }}>
       <div 
         ref={parentRef} 
         className="table-scroll-box"
@@ -97,6 +97,7 @@ export const JobTable: React.FC = () => {
         }}
         style={{ 
           width: '100%',
+          height: 'calc(100vh - 140px)',
           overflow: 'auto', 
           WebkitOverflowScrolling: 'touch',
           borderTop: '1px solid var(--border-color)',
