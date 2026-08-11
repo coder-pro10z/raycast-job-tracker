@@ -38,6 +38,7 @@ export const JobDetailDrawer: React.FC = () => {
 
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [jdInput, setJdInput] = useState<string>('');
+  const [linkInput, setLinkInput] = useState<string>('');
   const [jdEdited, setJdEdited] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'details' | 'outreach'>('details');
 
@@ -53,7 +54,8 @@ export const JobDetailDrawer: React.FC = () => {
 
   useEffect(() => {
     if (selectedJob) {
-      setJdInput(selectedJob.jdContent || selectedJob.jobApplicationLink || '');
+      setJdInput(selectedJob.jdContent || '');
+      setLinkInput(selectedJob.jobApplicationLink || '');
       setJdEdited(false);
       setActiveTab('details');
       setIsEditingHR(false);
@@ -77,13 +79,14 @@ export const JobDetailDrawer: React.FC = () => {
   if (!selectedJob) return null;
 
   const handleSaveJd = () => {
-    const isLink = isUrl(jdInput);
-    addNote({ jobId: selectedJob.id, content: jdInput, type: 'JD' });
+    if (jdInput !== selectedJob.jdContent) {
+      addNote({ jobId: selectedJob.id, content: jdInput, type: 'JD' });
+    }
     updateJob({ 
       id: selectedJob.id, 
       patch: { 
         jdContent: jdInput, 
-        jobApplicationLink: isLink ? jdInput : selectedJob.jobApplicationLink 
+        jobApplicationLink: linkInput 
       } 
     });
     setJdEdited(false);
@@ -96,12 +99,6 @@ export const JobDetailDrawer: React.FC = () => {
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  const isUrl = (text: string) => {
-    if (!text) return false;
-    const clean = text.trim().toLowerCase();
-    return clean.startsWith('http') || clean.includes('.com') || clean.includes('.in') || clean.includes('.io') || clean.includes('careers');
-  };
-
   const renderSectionHeader = (title: string, icon: React.ReactNode) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px', marginTop: '24px', borderBottom: '1px solid var(--border-color)', paddingBottom: '6px' }}>
       <span style={{ color: 'var(--text-accent)' }}>{icon}</span>
@@ -110,8 +107,6 @@ export const JobDetailDrawer: React.FC = () => {
       </h3>
     </div>
   );
-
-  const currentJdIsLink = isUrl(selectedJob.jdContent);
 
   // Compute Domain Track tag strictly from domain attribute
   const isCloud = selectedJob.domain === 'cloud';
@@ -284,56 +279,98 @@ export const JobDetailDrawer: React.FC = () => {
           /* Scrollable Body Content */
           <div style={{ flex: '1', overflowY: 'auto', padding: '0 var(--space-6) var(--space-8)' }}>
             
-            {/* Section 1: JD & Application URL Editor */}
-          {renderSectionHeader('Job Description & Application Link', <FileText size={15} />)}
-          <div style={{ backgroundColor: 'var(--bg-primary)', padding: 'var(--space-4)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                Paste direct Application URL or full JD text below:
-              </span>
-              {currentJdIsLink && selectedJob.jdContent && (
-                <a 
-                  href={selectedJob.jdContent.startsWith('http') ? selectedJob.jdContent : `https://${selectedJob.jdContent}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontSize: '0.75rem', fontWeight: 600, color: '#60a5fa', display: 'inline-flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}
-                >
-                  <LinkIcon size={12} /> Open URL in Tab
-                </a>
-              )}
+            {/* Section 1: Application Link & Job Description Editor */}
+          {renderSectionHeader('Application Link & Job Description', <FileText size={15} />)}
+          <div style={{ backgroundColor: 'var(--bg-primary)', padding: 'var(--space-4)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            
+            {/* Application URL Field */}
+            <div>
+              <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                Application URL:
+              </label>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input
+                  type="url"
+                  value={linkInput}
+                  onChange={(e) => {
+                    setLinkInput(e.target.value);
+                    setJdEdited(true);
+                  }}
+                  placeholder="https://company.com/careers/..."
+                  style={{
+                    flex: 1,
+                    backgroundColor: 'var(--bg-tertiary)',
+                    border: '1px solid',
+                    borderColor: jdEdited && linkInput !== (selectedJob.jobApplicationLink || '') ? 'var(--border-focus)' : 'var(--border-color)',
+                    borderRadius: 'var(--radius-sm)',
+                    padding: '8px 12px',
+                    color: 'var(--text-primary)',
+                    fontSize: '0.8125rem',
+                    outline: 'none',
+                  }}
+                />
+                {selectedJob.jobApplicationLink && (
+                  <a 
+                    href={selectedJob.jobApplicationLink.startsWith('http') ? selectedJob.jobApplicationLink : `https://${selectedJob.jobApplicationLink}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Open application link"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '36px',
+                      height: '36px',
+                      backgroundColor: 'rgba(96, 165, 250, 0.1)',
+                      color: '#60a5fa',
+                      borderRadius: 'var(--radius-sm)',
+                      textDecoration: 'none',
+                      flexShrink: 0
+                    }}
+                  >
+                    <ExternalLink size={16} />
+                  </a>
+                )}
+              </div>
             </div>
 
-            <textarea
-              value={jdInput}
-              onChange={(e) => {
-                setJdInput(e.target.value);
-                setJdEdited(e.target.value !== (selectedJob.jdContent || ''));
-              }}
-              placeholder="Paste job posting URL (https://...) or copy-paste full requirements & job description text here..."
-              rows={4}
-              style={{
-                width: '100%',
-                backgroundColor: 'var(--bg-tertiary)',
-                border: '1px solid',
-                borderColor: jdEdited ? 'var(--border-focus)' : 'var(--border-color)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '10px 12px',
-                color: 'var(--text-primary)',
-                fontSize: '0.8125rem',
-                fontFamily: 'var(--font-sans)',
-                lineHeight: 1.5,
-                resize: 'vertical',
-                outline: 'none',
-                marginBottom: '10px',
-                minHeight: '80px'
-              }}
-            />
+            {/* Job Description Field */}
+            <div>
+              <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                Job Description Details:
+              </label>
+              <textarea
+                value={jdInput}
+                onChange={(e) => {
+                  setJdInput(e.target.value);
+                  setJdEdited(true);
+                }}
+                placeholder="Paste full requirements & job description text here..."
+                rows={4}
+                style={{
+                  width: '100%',
+                  backgroundColor: 'var(--bg-tertiary)',
+                  border: '1px solid',
+                  borderColor: jdEdited && jdInput !== (selectedJob.jdContent || '') ? 'var(--border-focus)' : 'var(--border-color)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '10px 12px',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.8125rem',
+                  fontFamily: 'var(--font-sans)',
+                  lineHeight: 1.5,
+                  resize: 'vertical',
+                  outline: 'none',
+                  minHeight: '80px'
+                }}
+              />
+            </div>
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
               {jdEdited && (
                 <button
                   onClick={() => {
                     setJdInput(selectedJob.jdContent || '');
+                    setLinkInput(selectedJob.jobApplicationLink || '');
                     setJdEdited(false);
                   }}
                   style={{
