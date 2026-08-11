@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import { useJobs } from '../../hooks/useJobs';
-import { Search, RefreshCcw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings, Download } from 'lucide-react';
+import { Search, RefreshCcw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings, Download, Plus } from 'lucide-react';
 import { UploadModal } from '../upload/UploadModal';
 import { SettingsModal } from '../settings/SettingsModal';
+import { NewJobModal } from '../NewJobModal';
 
 export const Header: React.FC = () => {
   const { 
@@ -20,6 +21,7 @@ export const Header: React.FC = () => {
   const { refetch, isFetching } = useJobs();
   const [reloading, setReloading] = useState<boolean>(false);
   const [isUploadModalOpen, setUploadModalOpen] = useState<boolean>(false);
+  const [isNewJobModalOpen, setIsNewJobModalOpen] = useState<boolean>(false);
 
   const handleReload = async () => {
     setReloading(true);
@@ -147,6 +149,29 @@ export const Header: React.FC = () => {
         {/* Action Toolbar */}
         <div className="mobile-actions" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
           <button
+            onClick={() => setIsNewJobModalOpen(true)}
+            title="Add New Job"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--space-2)',
+              height: '36px',
+              padding: '0 var(--space-3)',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--text-accent)',
+              backgroundColor: 'var(--text-accent)',
+              color: '#fff',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              cursor: 'pointer'
+            }}
+            className="glow-hover"
+          >
+            <Plus size={15} />
+            <span className="desktop-only">New Job</span>
+          </button>
+
+          <button
             onClick={() => exportJobsToExcel()}
             title="Export Jobs to Excel"
             style={{
@@ -271,6 +296,7 @@ export const Header: React.FC = () => {
 
       <UploadModal isOpen={isUploadModalOpen} onClose={() => setUploadModalOpen(false)} />
       <SettingsModal />
+      <NewJobModal isOpen={isNewJobModalOpen} onClose={() => setIsNewJobModalOpen(false)} />
     </>
   );
 };

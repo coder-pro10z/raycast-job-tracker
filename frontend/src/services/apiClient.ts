@@ -56,6 +56,29 @@ export const apiClient = {
     });
     if (!res.ok) throw new Error('Failed to add note');
     return res.json();
+  },
+
+  async cloneJob(id: string): Promise<JobItem> {
+    const res = await fetch(`${API_BASE}/api/jobs/${id}/clone`, {
+      method: 'POST',
+      headers: {
+        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
+      }
+    });
+    if (!res.ok) throw new Error('Failed to clone job');
+    const data = await res.json();
+    return mapJobToFrontend(data);
+  },
+
+  async checkDuplicateJob(companyName: string, targetRole: string): Promise<{ isDuplicate: boolean }> {
+    const params = new URLSearchParams({ companyName, targetRole });
+    const res = await fetch(`${API_BASE}/api/jobs/check-duplicate?${params}`, {
+      headers: {
+        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
+      }
+    });
+    if (!res.ok) throw new Error('Failed to check duplicate job');
+    return res.json();
   }
 };
 

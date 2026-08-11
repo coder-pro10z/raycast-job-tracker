@@ -103,5 +103,48 @@ namespace NextApply.Api.Controllers
             await _db.SaveChangesAsync();
             return NoContent();
         }
+        [HttpPost("{id}/clone")]
+        public async Task<IActionResult> CloneJob(int id)
+        {
+            var source = await _db.Jobs.FindAsync(id);
+            if (source is null) return NotFound();
+
+            var clone = new Job
+            {
+                CompanyName = source.CompanyName,
+                Location = source.Location,
+                WorkMode = source.WorkMode,
+                Domain = source.Domain,
+                CareerPageLink = source.CareerPageLink,
+                HrRecruiterName = source.HrRecruiterName,
+
+                // Explicitly reset — not just "left blank by omission"
+                TargetRole = "",
+                ApplicationLink = null,
+                ApplicationStatus = "Not Started",
+                AppliedDate = null,
+                Priority = "Medium",
+                NextAction = "Apply and send outreach",
+                ClonedFromJobId = source.Id,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            _db.Jobs.Add(clone);
+            await _db.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetJob), new { id = clone.Id }, clone);
+        }
+
+        [HttpGet("check-duplicate")]
+        public async Task<IActionResult> CheckDuplicate([FromQuery] string companyName, [FromQuery] string targetRole)
+        {
+            var exists = await _db.Jobs.AnyAsync(j =>
+                j.CompanyName == companyName &&
+                j.TargetRole == targetRole &&
+                j.ApplicationStatus != "Rejected" &&
+                j.ApplicationStatus != "Archived");
+                
+            return Ok(new { isDuplicate = exists });
+        }
     }
 }

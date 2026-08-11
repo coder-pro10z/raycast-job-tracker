@@ -58,3 +58,22 @@ export function useAddNote() {
     }
   });
 }
+
+export function useCloneJob() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => apiClient.cloneJob(id),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['jobs'] });
+    }
+  });
+}
+
+export function useCheckDuplicateJob(companyName: string, targetRole: string) {
+  return useQuery({
+    queryKey: ['check-duplicate', companyName, targetRole],
+    queryFn: () => apiClient.checkDuplicateJob(companyName, targetRole),
+    enabled: Boolean(companyName && targetRole && companyName.trim() !== '' && targetRole.trim() !== ''),
+    staleTime: 60 * 1000,
+  });
+}

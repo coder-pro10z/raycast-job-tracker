@@ -143,8 +143,8 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
             boxShadow: 'var(--shadow-xl)',
             overflow: 'hidden',
             zIndex: 9999,
-            border: '1px solid rgba(99, 102, 241, 0.3)',
-            backgroundColor: 'rgba(15, 23, 42, 0.85)',
+            border: '1px solid var(--border-color)',
+            backgroundColor: 'var(--bg-elevated)',
             backdropFilter: 'blur(24px)',
             WebkitBackdropFilter: 'blur(24px)',
           }}
@@ -152,7 +152,7 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
         >
           <div style={{
             padding: 'var(--space-3)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+            borderBottom: '1px solid var(--border-color)',
             background: 'linear-gradient(to right, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.08))',
             display: 'flex',
             alignItems: 'center',
@@ -189,8 +189,8 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
 
           <div style={{
             padding: 'var(--space-2) var(--space-3)',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-            background: 'rgba(0, 0, 0, 0.2)',
+            borderTop: '1px solid var(--border-color)',
+            background: 'var(--bg-tertiary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',

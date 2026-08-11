@@ -2,15 +2,17 @@ import React, { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useJobStore } from '../../state/useJobStore';
 
+import { useCloneJob } from '../../hooks/useJobs';
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { FindLeadsMenu } from '../detail/FindLeadsMenu';
 import { EditLinkPopover } from './EditLinkPopover';
-import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, FileText, Link as LinkIcon, Plus, Cloud, Pencil } from 'lucide-react';
+import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, FileText, Link as LinkIcon, Plus, Cloud, Pencil, Copy } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
   const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
+  const { mutate: cloneJob } = useCloneJob();
   const parentRef = useRef<HTMLDivElement>(null);
   const [editingJdId, setEditingJdId] = useState<string | null>(null);
   const [editCoords, setEditCoords] = useState({ top: 0, left: 0 });
@@ -178,6 +180,9 @@ export const JobTable: React.FC = () => {
             const isEditingThisJd = editingJdId === job.id;
             const hasJd = Boolean(job.jdContent && job.jdContent.trim());
             const hasLink = Boolean(job.jobApplicationLink && job.jobApplicationLink.trim());
+            const isSameCompanyAsPrevRow = filterState.sortBy === 'companyName' && 
+                                           virtualRow.index > 0 && 
+                                           filteredJobs[virtualRow.index - 1].companyName === job.companyName;
 
             return (
               <div
@@ -211,9 +216,16 @@ export const JobTable: React.FC = () => {
               >
                 {/* Company Name & Link shortcut */}
                 <div style={{ flex: columns[0].flex, minWidth: columns[0].minWidth, display: 'flex', alignItems: 'center', gap: '8px', paddingRight: '12px', overflow: 'hidden' }}>
-                  <span style={{ fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: '0.875rem' }}>
-                    {job.companyName}
-                  </span>
+                  {isSameCompanyAsPrevRow ? (
+                    <div style={{ fontWeight: 500, color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '6px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: '0.875rem' }}>
+                      <span style={{ fontSize: '1.1rem', paddingLeft: '4px' }}>↳</span>
+                      <span style={{ opacity: 0.7 }}>{job.companyName}</span>
+                    </div>
+                  ) : (
+                    <span style={{ fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', fontSize: '0.875rem' }}>
+                      {job.companyName}
+                    </span>
+                  )}
                   {job.careerPageLink && (
                     <a 
                       href={job.careerPageLink.startsWith('http') ? job.careerPageLink : `https://${job.careerPageLink}`}
@@ -325,6 +337,7 @@ export const JobTable: React.FC = () => {
                         </span>
                       )}
                       <button
+                        className="icon-btn"
                         onMouseDown={(e) => e.stopPropagation()}
                         onClick={(e) => {
                           e.stopPropagation();
@@ -332,9 +345,6 @@ export const JobTable: React.FC = () => {
                           setEditCoords({ top: rect.bottom + 4, left: rect.left });
                           setEditingJdId(job.id);
                         }}
-                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '4px', background: 'transparent', border: '1px solid transparent', color: 'var(--text-muted)', cursor: 'pointer' }}
-                        onMouseOver={e => { e.currentTarget.style.backgroundColor = 'var(--bg-elevated)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
-                        onMouseOut={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.borderColor = 'transparent'; }}
                         title="Edit Details"
                       >
                         <Pencil size={11} />
@@ -342,14 +352,27 @@ export const JobTable: React.FC = () => {
                     </div>
                   )}
                   
-                  {/* Find Leads Quick Action */}
-                  <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
+                  {/* Quick Actions (Find Leads + Clone) */}
+                  <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <FindLeadsMenu 
                       job={job} 
                       compact={true} 
                       isOpen={activeLeadsRowId === job.id}
                       onToggle={(isOpen) => setActiveLeadsRowId(isOpen ? job.id : null)}
                     />
+                    <button
+                      className="icon-btn"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        cloneJob(job.id, {
+                          onSuccess: (newJob) => setSelectedJobId(newJob.id)
+                        });
+                      }}
+                      title="Clone job for a different role"
+                    >
+                      <Copy size={11} />
+                    </button>
                   </div>
 
                   {isEditingThisJd && (

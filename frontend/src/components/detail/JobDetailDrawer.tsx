@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useJobStore } from '../../state/useJobStore';
-import { useUpdateJob, useAddNote } from '../../hooks/useJobs';
+import { useUpdateJob, useAddNote, useCheckDuplicateJob } from '../../hooks/useJobs';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { 
@@ -41,6 +41,24 @@ export const JobDetailDrawer: React.FC = () => {
   const [jdEdited, setJdEdited] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<'details' | 'outreach'>('details');
 
+  const roleInputRef = useRef<HTMLInputElement>(null);
+  const [roleInput, setRoleInput] = useState<string>('');
+  
+  // Custom simple debounce for duplicate check
+  const [debouncedRole, setDebouncedRole] = useState('');
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedRole(roleInput), 400);
+    return () => clearTimeout(handler);
+  }, [roleInput]);
+
+  const duplicateCheck = useCheckDuplicateJob(selectedJob?.companyName || '', debouncedRole);
+
+  const handleSaveRole = () => {
+    if (selectedJob && roleInput !== selectedJob.targetRole) {
+      updateJob({ id: selectedJob.id, patch: { targetRole: roleInput } });
+    }
+  };
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && selectedJob && document.activeElement?.tagName !== 'TEXTAREA') {
@@ -55,6 +73,7 @@ export const JobDetailDrawer: React.FC = () => {
     if (selectedJob) {
       setJdInput(selectedJob.jdContent || '');
       setLinkInput(selectedJob.jobApplicationLink || '');
+      setRoleInput(selectedJob.targetRole || '');
       setJdEdited(false);
       setActiveTab('details');
       setIsEditingHR(false);
@@ -71,7 +90,13 @@ export const JobDetailDrawer: React.FC = () => {
         email: selectedJob.referralContactEmail || '',
         linkedin: selectedJob.referralContactLinkedIn || ''
       });
-
+      
+      // Auto-focus targetRole if empty (e.g. newly cloned)
+      if (!selectedJob.targetRole) {
+        setTimeout(() => {
+          roleInputRef.current?.focus();
+        }, 50);
+      }
     }
   }, [selectedJob]);
 
@@ -179,9 +204,62 @@ export const JobDetailDrawer: React.FC = () => {
                 </span>
               )}
             </div>
-            <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.3 }}>
-              {selectedJob.targetRole}
-            </h2>
+            {/* Editable Target Role */}
+            <div style={{ position: 'relative', marginTop: '4px' }}>
+              <input
+                ref={roleInputRef}
+                type="text"
+                value={roleInput}
+                onChange={(e) => setRoleInput(e.target.value)}
+                onBlur={handleSaveRole}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.currentTarget.blur();
+                  }
+                }}
+                placeholder="Enter Target Role..."
+                style={{ 
+                  fontSize: '1.25rem', 
+                  fontWeight: 800, 
+                  color: 'var(--text-primary)', 
+                  lineHeight: 1.3,
+                  background: 'transparent',
+                  border: '1px solid transparent',
+                  borderBottom: roleInput !== selectedJob.targetRole ? '1px dashed var(--text-accent)' : '1px solid transparent',
+                  padding: '2px 4px',
+                  marginLeft: '-4px',
+                  width: '100%',
+                  outline: 'none',
+                  transition: 'border-color 0.2s ease',
+                  fontFamily: 'inherit'
+                }}
+                onFocus={(e) => e.target.style.border = '1px solid var(--border-color)'}
+              />
+              {duplicateCheck.data?.isDuplicate && (
+                <div style={{
+                  position: 'absolute',
+                  top: '100%',
+                  left: '0',
+                  marginTop: '4px',
+                  backgroundColor: 'rgba(251, 146, 60, 0.1)',
+                  border: '1px solid rgba(251, 146, 60, 0.3)',
+                  color: '#ea580c',
+                  padding: '6px 10px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  zIndex: 10,
+                  whiteSpace: 'nowrap',
+                  boxShadow: 'var(--shadow-sm)',
+                  animation: 'fadeIn 0.2s ease'
+                }}>
+                  ⚠️ You already have "{roleInput}" at {selectedJob.companyName}.
+                </div>
+              )}
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px', alignItems: 'center' }}>
               <StatusBadgeDropdown jobId={selectedJob.id} currentStatus={selectedJob.applicationStatus} size="md" />
               <Badge type="priority" value={`Priority: ${selectedJob.priority}`} size="md" />
