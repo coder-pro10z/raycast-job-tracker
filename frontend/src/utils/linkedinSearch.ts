@@ -2,6 +2,8 @@ export interface LeadSearchConfig {
   personas: Record<string, string[]>;
   cityGeoUrns: Record<string, string>;
   hiringJobTitleIds: Record<string, string>;
+  jobSearchKeywords: string[];
+  jobRecencyOptions: Record<string, string>;
 }
 
 export const DEFAULT_LEAD_SEARCH_CONFIG: LeadSearchConfig = {
@@ -23,6 +25,13 @@ export const DEFAULT_LEAD_SEARCH_CONFIG: LeadSearchConfig = {
     'Senior Software Engineer': '39',
     'Cloud Engineer': '30006',
     'DevOps Engineer': '25764'
+  },
+  jobSearchKeywords: ['.NET Developer', 'Dotnet Engineer', 'Fullstack .Net Developer'],
+  jobRecencyOptions: {
+    'Just posted (30 min)': 'r1800',
+    'Past 24 hours': 'r86400',
+    'Past week': 'r604800',
+    'Anytime': ''
   }
 };
 
@@ -61,5 +70,31 @@ export function buildLinkedInSearchUrl(params: BuildLinkedInSearchParams): strin
   }
 
   return `https://www.linkedin.com/search/results/people/?${search.toString()}`;
+}
+
+export function buildLinkedInJobSearchUrl(params: {
+  jobKeywords: string[];
+  companyName?: string;
+  companyUrn?: string;
+  recency?: string;
+  recencyMap: Record<string, string>;
+}): string {
+  const { jobKeywords, companyName, companyUrn, recency = 'Past 24 hours', recencyMap } = params;
+
+  const keywords = companyUrn
+    ? jobKeywords.join(' | ')
+    : companyName
+      ? `${jobKeywords.join(' | ')} | ${companyName}`
+      : jobKeywords.join(' | ');
+
+  const search = new URLSearchParams();
+  search.set('keywords', keywords);
+  search.set('origin', 'JOB_SEARCH_PAGE_JOB_FILTER');
+  if (companyUrn) search.set('f_C', companyUrn);
+
+  const tpr = recencyMap[recency];
+  if (tpr) search.set('f_TPR', tpr);
+
+  return `https://www.linkedin.com/jobs/search-results/?${search.toString()}`;
 }
 

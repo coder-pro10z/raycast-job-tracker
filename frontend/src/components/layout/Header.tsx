@@ -5,6 +5,7 @@ import { Search, RefreshCcw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings,
 import { UploadModal } from '../upload/UploadModal';
 import { SettingsModal } from '../settings/SettingsModal';
 import { NewJobModal } from '../NewJobModal';
+import { buildLinkedInJobSearchUrl, DEFAULT_LEAD_SEARCH_CONFIG } from '../../utils/linkedinSearch';
 
 export const Header: React.FC = () => {
   const { 
@@ -169,6 +170,36 @@ export const Header: React.FC = () => {
           >
             <Plus size={15} />
             <span className="desktop-only">New Job</span>
+          </button>
+
+          <button
+            onClick={() => {
+              const url = buildLinkedInJobSearchUrl({
+                jobKeywords: DEFAULT_LEAD_SEARCH_CONFIG.jobSearchKeywords,
+                recency: 'Just posted (30 min)',
+                recencyMap: DEFAULT_LEAD_SEARCH_CONFIG.jobRecencyOptions,
+              });
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }}
+            title="Search latest job postings on LinkedIn"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 'var(--space-2)',
+              height: '36px',
+              padding: '0 var(--space-3)',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--border-color)',
+              backgroundColor: 'var(--bg-tertiary)',
+              color: 'var(--text-primary)',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              cursor: 'pointer'
+            }}
+            className="glow-hover"
+          >
+            <Search size={15} />
+            <span className="desktop-only">Find Postings</span>
           </button>
 
           <button

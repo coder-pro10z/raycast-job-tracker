@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Search, ExternalLink, Users, ChevronDown, Check } from 'lucide-react';
 import type { JobItem } from '../../types/job';
-import { buildLinkedInSearchUrl, DEFAULT_LEAD_SEARCH_CONFIG } from '../../utils/linkedinSearch';
+import { buildLinkedInSearchUrl, buildLinkedInJobSearchUrl, DEFAULT_LEAD_SEARCH_CONFIG } from '../../utils/linkedinSearch';
 
 interface FindLeadsMenuProps {
   job: JobItem;
@@ -16,6 +16,7 @@ interface FindLeadsMenuProps {
 export function FindLeadsMenu({ job, className = '', buttonClassName = '', compact = false, isOpen: externalIsOpen, onToggle }: FindLeadsMenuProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [activelyHiringNet, setActivelyHiringNet] = useState(false);
+  const [recency, setRecency] = useState('Past 24 hours');
   const [coords, setCoords] = useState({ top: 0, left: 0, width: 0 });
   const btnRef = useRef<HTMLButtonElement>(null);
   
@@ -185,6 +186,74 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
                 <ExternalLink size={14} className="icon-link" style={{ position: 'relative', zIndex: 2 }} />
               </button>
             ))}
+          </div>
+
+        <div style={{
+            padding: 'var(--space-2) var(--space-3)',
+            borderTop: '1px solid var(--border-color)',
+            background: 'var(--bg-tertiary)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--space-2)'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>💼 Find Job Postings</span>
+              <select 
+                value={recency} 
+                onChange={e => {
+                  e.stopPropagation();
+                  setRecency(e.target.value);
+                }} 
+                onClick={e => e.stopPropagation()}
+                style={{
+                  fontSize: '0.7rem',
+                  padding: '2px 4px',
+                  borderRadius: '4px',
+                  border: '1px solid var(--border-color)',
+                  background: 'var(--bg-secondary)',
+                  color: 'var(--text-primary)',
+                  cursor: 'pointer',
+                  outline: 'none'
+                }}
+              >
+                {Object.keys(DEFAULT_LEAD_SEARCH_CONFIG.jobRecencyOptions).map(opt => (
+                  <option key={opt} value={opt}>{opt}</option>
+                ))}
+              </select>
+            </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const url = buildLinkedInJobSearchUrl({
+                  jobKeywords: DEFAULT_LEAD_SEARCH_CONFIG.jobSearchKeywords,
+                  companyName: job.companyName,
+                  recency,
+                  recencyMap: DEFAULT_LEAD_SEARCH_CONFIG.jobRecencyOptions,
+                });
+                window.open(url, '_blank', 'noopener,noreferrer');
+                handleToggle(false);
+              }}
+              style={{
+                width: '100%',
+                padding: '6px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-color)',
+                background: 'var(--bg-secondary)',
+                color: 'var(--text-primary)',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '4px',
+                transition: 'background 150ms ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--bg-secondary)'}
+            >
+              Search Jobs at {job.companyName}
+            </button>
           </div>
 
           <div style={{
