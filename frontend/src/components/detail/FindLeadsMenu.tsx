@@ -188,39 +188,60 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
             ))}
           </div>
 
-        <div style={{
-            padding: 'var(--space-2) var(--space-3)',
+          <div style={{
+            padding: 'var(--space-3)',
             borderTop: '1px solid var(--border-color)',
-            background: 'var(--bg-tertiary)',
+            background: 'linear-gradient(to right, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.08))',
             display: 'flex',
-            flexDirection: 'column',
-            gap: 'var(--space-2)'
+            alignItems: 'center',
+            gap: 'var(--space-2)',
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-muted)' }}>💼 Find Job Postings</span>
-              <select 
-                value={recency} 
-                onChange={e => {
-                  e.stopPropagation();
-                  setRecency(e.target.value);
-                }} 
-                onClick={e => e.stopPropagation()}
-                style={{
-                  fontSize: '0.7rem',
-                  padding: '2px 4px',
-                  borderRadius: '4px',
-                  border: '1px solid var(--border-color)',
-                  background: 'var(--bg-secondary)',
-                  color: 'var(--text-primary)',
-                  cursor: 'pointer',
-                  outline: 'none'
-                }}
-              >
-                {Object.keys(DEFAULT_LEAD_SEARCH_CONFIG.jobRecencyOptions).map(opt => (
-                  <option key={opt} value={opt}>{opt}</option>
-                ))}
-              </select>
+             <Search size={14} style={{ color: '#38bdf8' }} />
+             <p style={{
+               fontSize: '0.75rem',
+               fontWeight: 700,
+               textTransform: 'uppercase',
+               letterSpacing: '0.1em',
+               background: 'linear-gradient(to right, #38bdf8, #818cf8)',
+               WebkitBackgroundClip: 'text',
+               WebkitTextFillColor: 'transparent',
+               margin: 0
+             }}>Find Job Postings</p>
+          </div>
+
+          <div style={{ padding: 'var(--space-2) var(--space-1)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px var(--space-2) 8px', marginBottom: '4px' }}>
+              <span style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-muted)' }}>Recency Filter</span>
+              <div style={{ position: 'relative' }}>
+                <select 
+                  value={recency} 
+                  onChange={e => {
+                    e.stopPropagation();
+                    setRecency(e.target.value);
+                  }} 
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    padding: '4px 20px 4px 8px',
+                    borderRadius: 'var(--radius-sm)',
+                    border: '1px solid var(--border-color)',
+                    background: 'var(--bg-primary)',
+                    color: 'var(--text-primary)',
+                    cursor: 'pointer',
+                    outline: 'none',
+                    appearance: 'none',
+                    boxShadow: 'var(--shadow-sm)'
+                  }}
+                >
+                  {Object.keys(DEFAULT_LEAD_SEARCH_CONFIG.jobRecencyOptions).map(opt => (
+                    <option key={opt} value={opt}>{opt}</option>
+                  ))}
+                </select>
+                <ChevronDown size={12} style={{ position: 'absolute', right: '6px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-muted)' }} />
+              </div>
             </div>
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -233,26 +254,11 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
                 window.open(url, '_blank', 'noopener,noreferrer');
                 handleToggle(false);
               }}
-              style={{
-                width: '100%',
-                padding: '6px',
-                borderRadius: '4px',
-                border: '1px solid var(--border-color)',
-                background: 'var(--bg-secondary)',
-                color: 'var(--text-primary)',
-                fontSize: '0.75rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '4px',
-                transition: 'background 150ms ease'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-primary)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'var(--bg-secondary)'}
+              className="leads-menu-item"
+              style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
             >
-              Search Jobs at {job.companyName}
+              <span style={{ position: 'relative', zIndex: 2, fontWeight: 500 }}>Search {job.companyName} Jobs</span>
+              <ExternalLink size={14} className="icon-link" style={{ position: 'relative', zIndex: 2 }} />
             </button>
           </div>
 
