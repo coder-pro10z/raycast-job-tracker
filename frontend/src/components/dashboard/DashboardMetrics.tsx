@@ -22,9 +22,10 @@ interface MetricCardProps {
   subText?: string;
   onClick?: () => void;
   active?: boolean;
+  solidIcon?: boolean;
 }
 
-const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color, bgColor, subText, onClick, active }) => (
+const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color, bgColor, subText, onClick, active, solidIcon = true }) => (
   <div 
     onClick={() => {
       if (onClick) onClick();
@@ -49,7 +50,7 @@ const MetricCard: React.FC<MetricCardProps> = ({ label, value, icon: Icon, color
         {label}
       </span>
       <div style={{ width: '28px', height: '28px', borderRadius: 'var(--radius-sm)', backgroundColor: bgColor || 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: color || 'var(--text-secondary)', border: '1px solid var(--border-color)' }}>
-        <Icon size={14} strokeWidth={1.5} fill="currentColor" />
+        <Icon size={14} strokeWidth={1.5} fill={solidIcon ? "currentColor" : "none"} />
       </div>
     </div>
     <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
@@ -160,6 +161,7 @@ export const DashboardMetrics: React.FC = () => {
           color="#2496ed" 
           bgColor="rgba(36, 150, 237, 0.15)"
           subText="Container Orchestration"
+          solidIcon={false}
         />
         <MetricCard 
           label="CI/CD & Pipelines" 
@@ -168,6 +170,7 @@ export const DashboardMetrics: React.FC = () => {
           color="#34d399" 
           bgColor="rgba(52, 211, 153, 0.15)"
           subText="Automation"
+          solidIcon={false}
         />
         <MetricCard 
           label="High Priority Leads" 
@@ -225,6 +228,7 @@ export const DashboardMetrics: React.FC = () => {
         color="#fb923c" 
         bgColor="rgba(251, 146, 60, 0.15)"
         subText="SDE + Azure/Docker"
+        solidIcon={false}
       />
       <MetricCard 
         label="High Priority" 
