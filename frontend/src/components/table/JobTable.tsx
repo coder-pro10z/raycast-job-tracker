@@ -1,18 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useJobStore } from '../../state/useJobStore';
-import { useUpdateJob } from '../../hooks/useJobs';
+
 import type { JobItem } from '../../types/job';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { FindLeadsMenu } from '../detail/FindLeadsMenu';
-import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, Edit2, FileText, Link as LinkIcon, Plus, Cloud } from 'lucide-react';
+import { EditLinkPopover } from './EditLinkPopover';
+import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, FileText, Link as LinkIcon, Plus, Cloud, Pencil } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
   const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
-  const { mutate: updateJob } = useUpdateJob();
   const parentRef = useRef<HTMLDivElement>(null);
   const [editingJdId, setEditingJdId] = useState<string | null>(null);
+  const [editCoords, setEditCoords] = useState({ top: 0, left: 0 });
   const [dropdownOpenRowId, setDropdownOpenRowId] = useState<string | null>(null);
   const [activeLeadsRowId, setActiveLeadsRowId] = useState<string | null>(null);
 
@@ -246,43 +247,14 @@ export const JobTable: React.FC = () => {
                   <span style={{ color: 'var(--text-muted)', marginLeft: '6px', fontSize: '0.75rem' }}>({job.workMode})</span>
                 </div>
 
-                {/* JD / Application Link Column */}
-                <div style={{ flex: columns[3].flex, minWidth: columns[3].minWidth, paddingRight: '12px', display: 'flex', flexDirection: 'column', gap: '4px', overflow: 'hidden' }}>
-                  {isEditingThisJd ? (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', width: '100%' }} onClick={e => e.stopPropagation()}>
-                      <input
-                        type="url"
-                        autoFocus
-                        defaultValue={job.jobApplicationLink}
-                        placeholder="Application URL..."
-                        onChange={(e) => updateJob({ id: job.id, patch: { jobApplicationLink: e.currentTarget.value } })}
-                        style={{
-                          width: '100%', height: '24px', padding: '0 8px', borderRadius: '4px', border: '1px solid var(--border-focus)', backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', fontSize: '0.75rem', outline: 'none'
-                        }}
-                      />
-                      <input
-                        type="text"
-                        defaultValue={job.jdContent}
-                        placeholder="JD text snippet..."
-                        onChange={(e) => updateJob({ id: job.id, patch: { jdContent: e.currentTarget.value } })}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter' || e.key === 'Escape') setEditingJdId(null);
-                        }}
-                        style={{
-                          width: '100%', height: '24px', padding: '0 8px', borderRadius: '4px', border: '1px solid var(--border-focus)', backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-primary)', fontSize: '0.75rem', outline: 'none'
-                        }}
-                      />
-                      <button 
-                        onClick={() => setEditingJdId(null)}
-                        style={{ alignSelf: 'flex-end', fontSize: '0.65rem', padding: '2px 8px', background: 'var(--border-focus)', color: 'white', border: 'none', borderRadius: '3px', cursor: 'pointer', marginTop: '2px' }}
-                      >
-                        Done
-                      </button>
-                    </div>
-                  ) : (!hasJd && !hasLink) ? (
+                {/* Unified Action Row: JD / Application Link / Find Leads */}
+                <div style={{ flex: columns[3].flex, minWidth: columns[3].minWidth, paddingRight: '12px', display: 'flex', alignItems: 'center', gap: '8px', overflow: 'visible', height: '100%' }}>
+                  {(!hasJd && !hasLink) ? (
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
+                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                        setEditCoords({ top: rect.bottom + 4, left: rect.left });
                         setEditingJdId(job.id);
                       }}
                       style={{
@@ -297,82 +269,83 @@ export const JobTable: React.FC = () => {
                         fontSize: '0.75rem',
                         fontWeight: 500,
                         cursor: 'pointer',
-                        transition: 'all 150ms ease',
-                        alignSelf: 'flex-start'
+                        transition: 'all 150ms ease'
                       }}
                       className="glow-hover"
-                      title="Click to paste Job Application URL or JD text"
+                      title="Add Application URL or JD text"
                     >
                       <Plus size={12} style={{ color: 'var(--text-accent)' }} />
                       <span>Add Details</span>
                     </button>
                   ) : (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'flex-start' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        {hasLink && (
-                          <a
-                            href={job.jobApplicationLink.startsWith('http') ? job.jobApplicationLink : `https://${job.jobApplicationLink}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => e.stopPropagation()}
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '4px',
-                              padding: '2px 8px',
-                              borderRadius: 'var(--radius-full)',
-                              backgroundColor: 'rgba(59, 130, 246, 0.15)',
-                              color: '#60a5fa',
-                              fontSize: '0.7rem',
-                              fontWeight: 600,
-                              textDecoration: 'none',
-                            }}
-                            title={`Apply: ${job.jobApplicationLink}`}
-                          >
-                            <LinkIcon size={10} />
-                            <span>Apply</span>
-                          </a>
-                        )}
-                        {hasJd && (
-                          <span
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedJobId(job.id);
-                            }}
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '4px',
-                              padding: '2px 8px',
-                              borderRadius: 'var(--radius-full)',
-                              backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                              color: '#34d399',
-                              fontSize: '0.7rem',
-                              fontWeight: 600,
-                              cursor: 'pointer',
-                            }}
-                            title="JD Saved (click row to read full text in details drawer)"
-                          >
-                            <FileText size={10} />
-                            <span>JD</span>
-                          </span>
-                        )}
-                        <button
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      {hasLink && (
+                        <a
+                          href={job.jobApplicationLink.startsWith('http') ? job.jobApplicationLink : `https://${job.jobApplicationLink}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            padding: '2px 8px',
+                            borderRadius: 'var(--radius-full)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.15)',
+                            color: '#60a5fa',
+                            fontSize: '0.7rem',
+                            fontWeight: 600,
+                            textDecoration: 'none',
+                          }}
+                          title={`Apply: ${job.jobApplicationLink}`}
+                        >
+                          <LinkIcon size={10} />
+                          <span>Apply</span>
+                        </a>
+                      )}
+                      {hasJd && (
+                        <span
                           onClick={(e) => {
                             e.stopPropagation();
-                            setEditingJdId(job.id);
+                            setSelectedJobId(job.id);
                           }}
-                          style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '2px' }}
-                          title="Edit Application Link or JD"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px',
+                            padding: '2px 8px',
+                            borderRadius: 'var(--radius-full)',
+                            backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                            color: '#34d399',
+                            fontSize: '0.7rem',
+                            fontWeight: 600,
+                            cursor: 'pointer',
+                          }}
+                          title="JD Saved (click row to read full text in details drawer)"
                         >
-                          <Edit2 size={12} />
-                        </button>
-                      </div>
+                          <FileText size={10} />
+                          <span>JD</span>
+                        </span>
+                      )}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                          setEditCoords({ top: rect.bottom + 4, left: rect.left });
+                          setEditingJdId(job.id);
+                        }}
+                        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '4px', background: 'transparent', border: '1px solid transparent', color: 'var(--text-muted)', cursor: 'pointer' }}
+                        onMouseOver={e => { e.currentTarget.style.backgroundColor = 'var(--bg-elevated)'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
+                        onMouseOut={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.borderColor = 'transparent'; }}
+                        title="Edit Details"
+                      >
+                        <Pencil size={11} />
+                      </button>
                     </div>
                   )}
                   
                   {/* Find Leads Quick Action */}
-                  <div className="ml-2 flex-shrink-0">
+                  <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center' }}>
                     <FindLeadsMenu 
                       job={job} 
                       compact={true} 
@@ -380,6 +353,14 @@ export const JobTable: React.FC = () => {
                       onToggle={(isOpen) => setActiveLeadsRowId(isOpen ? job.id : null)}
                     />
                   </div>
+
+                  {isEditingThisJd && (
+                    <EditLinkPopover 
+                      job={job} 
+                      coords={editCoords} 
+                      onClose={() => setEditingJdId(null)} 
+                    />
+                  )}
                 </div>
 
                 {/* Priority */}

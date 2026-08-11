@@ -102,14 +102,8 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
           e.stopPropagation();
           handleToggle(!isOpen);
         }}
-        className={`leads-menu-btn ${isOpen && !compact ? 'active' : ''} ${buttonClassName}`}
-        style={compact ? {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--space-2)',
-          padding: '4px 6px',
-          borderRadius: 'var(--radius-sm)',
-        } : {
+        className={compact ? `icon-btn ${isOpen ? 'active' : ''} ${buttonClassName}` : `leads-menu-btn ${isOpen ? 'active' : ''} ${buttonClassName}`}
+        style={compact ? {} : {
           display: 'flex',
           alignItems: 'center',
           gap: 'var(--space-2)',
