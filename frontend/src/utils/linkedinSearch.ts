@@ -8,19 +8,21 @@ export const DEFAULT_LEAD_SEARCH_CONFIG: LeadSearchConfig = {
   personas: {
     'Technical Recruiter': ['Technical Recruiter', 'IT Recruiter', 'Talent Acquisition', 'Talent Acquisition Specialist'],
     'Hiring Manager': ['Hiring Manager', 'Engineering Manager', 'Team Lead'],
-    'People/Colleague': ['.NET Developer', 'Full Stack Engineer', 'Software Engineer']
+    'People/Colleague': ['.NET Developer', 'Full Stack Engineer', 'Software Engineer', 'Cloud Engineer', 'DevOps Engineer']
   },
   cityGeoUrns: {
-    'Noida': '106442238',
     'Hyderabad': '104869687',
-    'Bengaluru': '106187582',
-    'Delhi': '105556991',
-    'Gurugram': '115918471'
+    'Bengaluru': '105214831',
+    'Gurugram': '115918471',
+    'Noida': '106442238',
+    'Delhi': '105556991'
   },
   hiringJobTitleIds: {
     '.NET Developer': '4384',
     'Full Stack Developer': '25201',
-    'Senior Software Engineer': '39'
+    'Senior Software Engineer': '39',
+    'Cloud Engineer': '30006',
+    'DevOps Engineer': '25764'
   }
 };
 

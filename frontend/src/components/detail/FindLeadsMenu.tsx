@@ -65,16 +65,33 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
   }, [isOpen, onToggle]);
 
   const handleSelect = (persona: string) => {
+    let hiringIds: string[] = [];
+    if (activelyHiringNet) {
+      if (job.domain === 'cloud') {
+        hiringIds = [DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['Cloud Engineer'], DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['DevOps Engineer']];
+      } else if (job.domain === 'dual') {
+        hiringIds = [DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['.NET Developer'], DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['Cloud Engineer'], DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['DevOps Engineer']];
+      } else {
+        hiringIds = [DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['.NET Developer']];
+      }
+    }
+
     const url = buildLinkedInSearchUrl({
       personaTitles: DEFAULT_LEAD_SEARCH_CONFIG.personas[persona],
       companyName: job.companyName,
-      // Defaulting to the 5 canonical cities to maximize reach as discussed
+      // Defaulting to the canonical cities to maximize reach
       cityGeoUrns: Object.values(DEFAULT_LEAD_SEARCH_CONFIG.cityGeoUrns),
-      hiringJobTitleIds: activelyHiringNet ? [DEFAULT_LEAD_SEARCH_CONFIG.hiringJobTitleIds['.NET Developer']] : []
+      hiringJobTitleIds: hiringIds
     });
     
     window.open(url, '_blank', 'noopener,noreferrer');
     handleToggle(false);
+  };
+
+  const getHiringToggleLabel = () => {
+    if (job.domain === 'cloud') return 'Actively hiring Cloud/DevOps';
+    if (job.domain === 'dual') return 'Actively hiring .NET/Cloud';
+    return 'Actively hiring .NET';
   };
 
   return (
@@ -206,7 +223,10 @@ export function FindLeadsMenu({ job, className = '', buttonClassName = '', compa
                 }}
                 style={{ display: 'none' }}
               />
-              Actively hiring .NET (Tighter filter)
+              <span style={{ display: 'flex', flexDirection: 'column' }}>
+                <span>{getHiringToggleLabel()}</span>
+                <span style={{ fontSize: '0.65rem', opacity: 0.7 }}>(Tighter filter)</span>
+              </span>
             </label>
           </div>
         </div>,
