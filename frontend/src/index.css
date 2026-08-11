@@ -1,8 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
+  
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 36px;
+  
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
 
   /* 8-Point Grid Spacing Tokens */
   --space-1: 4px;
@@ -17,21 +31,18 @@
   --space-16: 64px;
 
   /* Border Radius Tokens */
-  --radius-xs: 6px;
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
   --radius-full: 9999px;
 
   /* Transitions & Shadows */
   --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.2);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
-  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
 }
 
 .icon-btn {
@@ -48,33 +59,35 @@
   transition: all 150ms ease;
 }
 .icon-btn:hover {
-  background: var(--bg-elevated);
+  background: var(--bg-hover);
   border-color: var(--border-color);
   color: var(--text-primary);
 }
 
-/* Dark Mode Palette (Default Neutral-First Linear Style) */
+/* Dark Mode Palette (Premium Google/Apple Style) */
 .dark, :root {
-  --bg-primary: #09090b; /* zinc-950 */
-  --bg-secondary: #121215; /* subtle darker gray */
-  --bg-tertiary: #18181b; /* zinc-900 */
-  --bg-elevated: #27272a; /* zinc-800 */
-  --bg-hover: rgba(255, 255, 255, 0.05);
-  --bg-active: rgba(255, 255, 255, 0.09);
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #121214; 
+  --bg-tertiary: #151518;
+  --bg-elevated: #1e1e22;
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-active: rgba(255, 255, 255, 0.1);
   --bg-glass: rgba(18, 18, 21, 0.85);
-  --bg-glass-card: rgba(24, 24, 27, 0.65);
+  --bg-glass-card: rgba(21, 21, 24, 0.65);
 
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(99, 102, 241, 0.6);
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-focus: rgba(59, 130, 246, 0.6);
 
-  --text-primary: #f4f4f5; /* zinc-100 */
-  --text-secondary: #a1a1aa; /* zinc-400 */
-  --text-muted: #71717a; /* zinc-500 */
-  --text-accent: #818cf8; /* indigo-400 */
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  
+  --primary-500: #3b82f6;
+  --primary-bg: rgba(59, 130, 246, 0.15);
 
-  /* Semantic Color Tokens */
-  --status-ready-bg: rgba(99, 102, 241, 0.15);
-  --status-ready-text: #818cf8;
+  /* Semantic Accent Tokens (ONLY for priority/status) */
+  --status-ready-bg: rgba(255, 255, 255, 0.08);
+  --status-ready-text: #e4e4e7;
   --status-applied-bg: rgba(59, 130, 246, 0.15);
   --status-applied-text: #60a5fa;
   --status-interview-bg: rgba(168, 85, 247, 0.15);
@@ -94,26 +107,28 @@
 
 /* Light Mode Palette Override */
 .light {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc; /* slate-50 */
-  --bg-tertiary: #f1f5f9; /* slate-100 */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
   --bg-elevated: #e2e8f0;
   --bg-hover: rgba(0, 0, 0, 0.04);
   --bg-active: rgba(0, 0, 0, 0.08);
   --bg-glass: rgba(255, 255, 255, 0.85);
   --bg-glass-card: rgba(248, 250, 252, 0.75);
 
-  --border-color: #e2e8f0;
-  --border-focus: #6366f1;
+  --border-color: rgba(0, 0, 0, 0.06);
+  --border-focus: #3b82f6;
 
-  --text-primary: #0f172a; /* slate-900 */
-  --text-secondary: #475569; /* slate-600 */
-  --text-muted: #94a3b8; /* slate-400 */
-  --text-accent: #4f46e5; /* indigo-600 */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --primary-500: #2563eb;
+  --primary-bg: rgba(59, 130, 246, 0.15);
 
   /* Semantic Colors Light */
-  --status-ready-bg: #e0e7ff;
-  --status-ready-text: #4338ca;
+  --status-ready-bg: rgba(0, 0, 0, 0.05);
+  --status-ready-text: #475569;
   --status-applied-bg: #dbeafe;
   --status-applied-text: #1d4ed8;
   --status-interview-bg: #f3e8ff;

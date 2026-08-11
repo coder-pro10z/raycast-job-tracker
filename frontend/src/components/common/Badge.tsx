@@ -52,8 +52,8 @@ export const Badge: React.FC<BadgeProps> = ({ type, value, size = 'sm' }) => {
   };
 
   const style = getStyle();
-  const padding = size === 'sm' ? '2px 8px' : '4px 12px';
-  const fontSize = size === 'sm' ? '0.75rem' : '0.8125rem';
+  const padding = size === 'sm' ? 'var(--space-1) var(--space-2)' : 'var(--space-1) var(--space-3)';
+  const fontSize = size === 'sm' ? 'var(--text-xs)' : 'var(--text-sm)';
 
   return (
     <span
@@ -63,7 +63,7 @@ export const Badge: React.FC<BadgeProps> = ({ type, value, size = 'sm' }) => {
         alignItems: 'center',
         padding,
         fontSize,
-        fontWeight: 600,
+        fontWeight: 'var(--weight-semibold)',
         lineHeight: '1.25',
         borderRadius: 'var(--radius-full)',
         backgroundColor: style.bg,
