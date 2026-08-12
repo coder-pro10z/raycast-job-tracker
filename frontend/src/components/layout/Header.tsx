@@ -208,10 +208,10 @@ export const Header: React.FC = () => {
               fontSize: '0.8125rem',
               cursor: 'pointer'
             }}
-            className="glow-hover"
+            className="glow-hover desktop-only"
           >
             <Download size={15} />
-            <span className="desktop-only">Export</span>
+            <span>Export</span>
           </button>
           
           <button
@@ -232,7 +232,7 @@ export const Header: React.FC = () => {
               cursor: 'pointer',
               flexShrink: 0
             }}
-            className="mobile-header-btn glow-hover focus-ring"
+            className="glow-hover focus-ring desktop-only"
           >
             <Upload size={16} />
             <span>Upload Excel</span>
