@@ -88,7 +88,8 @@ export const Sidebar: React.FC = () => {
           userSelect: 'none',
           flexShrink: 0,
           transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-          overflow: 'hidden'
+          overflowY: 'auto',
+          overflowX: 'hidden'
         }}
       >
         {/* Mobile Header with Close Button */}

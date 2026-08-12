@@ -14,6 +14,7 @@ export const Header: React.FC = () => {
     setCommandPaletteOpen, 
     isSidebarOpen,
     setSidebarOpen,
+    setSidebarCollapsed,
     setSettingsModalOpen,
     exportJobsToExcel
   } = useJobStore();
@@ -52,8 +53,6 @@ export const Header: React.FC = () => {
               const nextOpen = !isSidebarOpen;
               setSidebarOpen(nextOpen);
               if (nextOpen) {
-                // Force sidebar to show text (expanded) on mobile
-                const { setSidebarCollapsed } = useJobStore.getState();
                 setSidebarCollapsed(false);
               }
             }}
