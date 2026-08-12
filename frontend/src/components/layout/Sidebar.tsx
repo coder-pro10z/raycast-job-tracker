@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import type { ViewMode, ActiveDomain } from '../../types/job';
 import { 
@@ -55,6 +55,17 @@ export const Sidebar: React.FC = () => {
     setSidebarOpen(false);
   };
 
+  // Auto-hide sidebar in mobile view after 5 seconds of inactivity
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isSidebarOpen && window.innerWidth <= 768) {
+      timeout = setTimeout(() => {
+        setSidebarOpen(false);
+      }, 5000); // 5 seconds
+    }
+    return () => clearTimeout(timeout);
+  }, [isSidebarOpen, setSidebarOpen]);
+
   return (
     <>
       {/* Mobile Dark Backdrop */}
@@ -91,7 +102,7 @@ export const Sidebar: React.FC = () => {
           fontWeight: 700,
           fontSize: '0.9375rem'
         }}>
-          <span>🧭 Navigation Workspace</span>
+          <span>🧭 Job Tracker</span>
           <button
             onClick={() => setSidebarOpen(false)}
             style={{

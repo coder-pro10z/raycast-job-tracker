@@ -48,7 +48,15 @@ export const Header: React.FC = () => {
         {/* Brand Logo & Name with Mobile Toggle */}
         <div className="mobile-brand-group" style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)' }}>
           <button
-            onClick={() => setSidebarOpen(!isSidebarOpen)}
+            onClick={() => {
+              const nextOpen = !isSidebarOpen;
+              setSidebarOpen(nextOpen);
+              if (nextOpen) {
+                // Force sidebar to show text (expanded) on mobile
+                const { setSidebarCollapsed } = useJobStore.getState();
+                setSidebarCollapsed(false);
+              }
+            }}
             className="mobile-only mobile-icon-btn glow-hover focus-ring"
             title="Toggle Navigation Sidebar"
             style={{
