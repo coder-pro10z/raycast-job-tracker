@@ -57,7 +57,7 @@ export const Sidebar: React.FC = () => {
 
   // Auto-hide sidebar in mobile view after 5 seconds of inactivity
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout>;
     if (isSidebarOpen && window.innerWidth <= 768) {
       timeout = setTimeout(() => {
         setSidebarOpen(false);
