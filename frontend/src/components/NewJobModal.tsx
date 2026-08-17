@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Building2, MapPin, Briefcase } from 'lucide-react';
+import { X, Building2, MapPin, Briefcase, Tag, Target } from 'lucide-react';
 import { useCreateJob } from '../hooks/useJobs';
 import { useJobStore } from '../state/useJobStore';
-import type { WorkMode } from '../types/job';
+import type { WorkMode, Priority, JobDomain } from '../types/job';
 
 interface NewJobModalProps {
   isOpen: boolean;
@@ -10,12 +10,17 @@ interface NewJobModalProps {
 }
 
 export const NewJobModal: React.FC<NewJobModalProps> = ({ isOpen, onClose }) => {
-  const { setSelectedJobId } = useJobStore();
+  const { setSelectedJobId, filterState } = useJobStore();
   const { mutateAsync: createJob, isPending } = useCreateJob();
   
   const [companyName, setCompanyName] = useState('');
   const [targetRole, setTargetRole] = useState('');
   const [location, setLocation] = useState('');
+  
+  // Set default domain to match the current active track (unless 'all')
+  const defaultDomain = filterState.activeDomain === 'all' ? 'sde' : filterState.activeDomain;
+  const [priority, setPriority] = useState<Priority>('High');
+  const [domain, setDomain] = useState<JobDomain>(defaultDomain as JobDomain);
   
   const companyInputRef = useRef<HTMLInputElement>(null);
 
@@ -24,9 +29,11 @@ export const NewJobModal: React.FC<NewJobModalProps> = ({ isOpen, onClose }) => 
       setCompanyName('');
       setTargetRole('');
       setLocation('');
+      setPriority('High');
+      setDomain(filterState.activeDomain === 'all' ? 'sde' : (filterState.activeDomain as JobDomain));
       setTimeout(() => companyInputRef.current?.focus(), 50);
     }
-  }, [isOpen]);
+  }, [isOpen, filterState.activeDomain]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -48,7 +55,8 @@ export const NewJobModal: React.FC<NewJobModalProps> = ({ isOpen, onClose }) => 
         targetRole,
         location,
         applicationStatus: 'Not Started',
-        priority: 'Medium',
+        priority,
+        domain,
         nextAction: 'Apply and send outreach',
         workMode: 'Unknown' as WorkMode,
       });
@@ -154,6 +162,61 @@ export const NewJobModal: React.FC<NewJobModalProps> = ({ isOpen, onClose }) => 
                   }}
                   placeholder="e.g. Senior Software Engineer"
                 />
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
+              <div style={{ flex: 1 }}>
+                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
+                  Domain Track
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Target size={14} style={{ position: 'absolute', left: '10px', top: '10px', color: 'var(--text-muted)' }} />
+                  <select
+                    value={domain}
+                    onChange={e => setDomain(e.target.value as JobDomain)}
+                    style={{
+                      width: '100%', padding: '8px 10px 8px 30px',
+                      backgroundColor: 'var(--bg-secondary)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: 'var(--text-primary)',
+                      fontSize: '0.875rem',
+                      appearance: 'none'
+                    }}
+                  >
+                    <option value="sde">SDE & FullStack</option>
+                    <option value="cloud">Cloud & DevOps</option>
+                    <option value="dual">Dual Domain</option>
+                    <option value="general">General</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style={{ flex: 1 }}>
+                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
+                  Priority
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <Tag size={14} style={{ position: 'absolute', left: '10px', top: '10px', color: 'var(--text-muted)' }} />
+                  <select
+                    value={priority}
+                    onChange={e => setPriority(e.target.value as Priority)}
+                    style={{
+                      width: '100%', padding: '8px 10px 8px 30px',
+                      backgroundColor: 'var(--bg-secondary)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: 'var(--text-primary)',
+                      fontSize: '0.875rem',
+                      appearance: 'none'
+                    }}
+                  >
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                  </select>
+                </div>
               </div>
             </div>
 
