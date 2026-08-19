@@ -67,7 +67,7 @@ namespace NextApply.Api.Controllers
         [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateJob(int id, [FromBody] JobUpdateDto dto)
         {
-            var job = await _db.Jobs.FindAsync(id);
+            var job = await _db.Jobs.Include(j => j.Notes).FirstOrDefaultAsync(j => j.Id == id);
             if (job is null) return NotFound();
 
             if (dto.ApplicationStatus is not null)
@@ -88,6 +88,14 @@ namespace NextApply.Api.Controllers
             if (dto.ReferralNeeded.HasValue) job.ReferralNeeded = dto.ReferralNeeded.Value;
             if (dto.ReferralContactName is not null) job.ReferralContactName = dto.ReferralContactName;
             if (dto.HrRecruiterName is not null) job.HrRecruiterName = dto.HrRecruiterName;
+            if (dto.HrRecruiterEmail is not null) job.HrRecruiterEmail = dto.HrRecruiterEmail;
+            if (dto.HrRecruiterLinkedIn is not null) job.HrRecruiterLinkedIn = dto.HrRecruiterLinkedIn;
+            if (dto.HrRecruiterPhone is not null) job.HrRecruiterPhone = dto.HrRecruiterPhone;
+            if (dto.ReferralContactRole is not null) job.ReferralContactRole = dto.ReferralContactRole;
+            if (dto.ReferralContactEmail is not null) job.ReferralContactEmail = dto.ReferralContactEmail;
+            if (dto.ReferralContactLinkedIn is not null) job.ReferralContactLinkedIn = dto.ReferralContactLinkedIn;
+            if (dto.FollowUpDate.HasValue) job.FollowUpDate = dto.FollowUpDate;
+            if (dto.AppliedDate.HasValue) job.AppliedDate = dto.AppliedDate;
 
             job.UpdatedAt = DateTime.UtcNow;
             await _db.SaveChangesAsync();

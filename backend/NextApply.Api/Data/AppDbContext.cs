@@ -44,6 +44,16 @@ namespace NextApply.Api.Data
                 entity.Property(e => e.ReferralNeeded).HasColumnName("referral_needed").HasDefaultValue(false);
                 entity.Property(e => e.ReferralContactName).HasColumnName("referral_contact_name");
                 entity.Property(e => e.HrRecruiterName).HasColumnName("hr_recruiter_name");
+                entity.Property(e => e.HrRecruiterEmail).HasColumnName("hr_recruiter_email");
+                entity.Property(e => e.HrRecruiterLinkedIn).HasColumnName("hr_recruiter_linkedin");
+                entity.Property(e => e.HrRecruiterPhone).HasColumnName("hr_recruiter_phone");
+                
+                entity.Property(e => e.ReferralContactRole).HasColumnName("referral_contact_role");
+                entity.Property(e => e.ReferralContactEmail).HasColumnName("referral_contact_email");
+                entity.Property(e => e.ReferralContactLinkedIn).HasColumnName("referral_contact_linkedin");
+                
+                entity.Property(e => e.FollowUpDate).HasColumnName("follow_up_date");
+                
                 entity.Property(e => e.CreatedAt).HasColumnName("created_at").HasDefaultValueSql("now()");
                 entity.Property(e => e.UpdatedAt).HasColumnName("updated_at").HasDefaultValueSql("now()");
 

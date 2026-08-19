@@ -19,5 +19,13 @@ namespace NextApply.Api.DTOs
         public bool? ReferralNeeded { get; set; }
         public string? ReferralContactName { get; set; }
         public string? HrRecruiterName { get; set; }
+        public string? HrRecruiterEmail { get; set; }
+        public string? HrRecruiterLinkedIn { get; set; }
+        public string? HrRecruiterPhone { get; set; }
+        public string? ReferralContactRole { get; set; }
+        public string? ReferralContactEmail { get; set; }
+        public string? ReferralContactLinkedIn { get; set; }
+        public DateOnly? FollowUpDate { get; set; }
+        public DateOnly? AppliedDate { get; set; }
     }
 }

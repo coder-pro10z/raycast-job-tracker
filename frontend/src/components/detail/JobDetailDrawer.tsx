@@ -41,6 +41,12 @@ export const JobDetailDrawer: React.FC = () => {
   const [jdInput, setJdInput] = useState<string>('');
   const [linkInput, setLinkInput] = useState<string>('');
   const [jdEdited, setJdEdited] = useState<boolean>(false);
+  const [notesInput, setNotesInput] = useState<string>('');
+  const [notesEdited, setNotesEdited] = useState<boolean>(false);
+  
+  const [appliedDate, setAppliedDate] = useState<string>('');
+  const [followUpDate, setFollowUpDate] = useState<string>('');
+
   const [activeTab, setActiveTab] = useState<'details' | 'outreach'>('details');
 
   const roleInputRef = useRef<HTMLInputElement>(null);
@@ -76,7 +82,11 @@ export const JobDetailDrawer: React.FC = () => {
       setJdInput(selectedJob.jdContent || '');
       setLinkInput(selectedJob.jobApplicationLink || '');
       setRoleInput(selectedJob.targetRole || '');
+      setNotesInput(selectedJob.notes || '');
+      setAppliedDate(selectedJob.appliedDate || '');
+      setFollowUpDate(selectedJob.followUpDate || '');
       setJdEdited(false);
+      setNotesEdited(false);
       setActiveTab('details');
       setIsEditingHR(false);
       setHrForm({
@@ -116,6 +126,13 @@ export const JobDetailDrawer: React.FC = () => {
       } 
     });
     setJdEdited(false);
+  };
+
+  const handleSaveNotes = () => {
+    if (notesInput !== selectedJob.notes) {
+      addNote({ jobId: selectedJob.id, content: notesInput, type: 'General' });
+    }
+    setNotesEdited(false);
   };
 
   const copyToClipboard = (text: string, field: string) => {
@@ -700,13 +717,53 @@ export const JobDetailDrawer: React.FC = () => {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             <div style={{ padding: '10px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Date Applied</div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 600 }}>{selectedJob.appliedDate || 'Not Yet Applied'}</div>
+              <input 
+                type="date"
+                value={appliedDate}
+                onChange={(e) => {
+                  setAppliedDate(e.target.value);
+                  updateJob({ id: selectedJob.id, patch: { appliedDate: e.target.value } });
+                }}
+                style={{
+                  background: 'transparent',
+                  border: '1px solid transparent',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  outline: 'none',
+                  padding: '2px 4px',
+                  marginLeft: '-4px',
+                  width: '100%',
+                  cursor: 'pointer'
+                }}
+                onFocus={(e) => e.target.style.border = '1px solid var(--border-color)'}
+                onBlur={(e) => e.target.style.border = '1px solid transparent'}
+              />
             </div>
             <div style={{ padding: '10px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Follow-Up Date</div>
-              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: selectedJob.followUpDate ? '#fb923c' : 'inherit' }}>
-                {selectedJob.followUpDate || 'No Follow-up Set'}
-              </div>
+              <input 
+                type="date"
+                value={followUpDate}
+                onChange={(e) => {
+                  setFollowUpDate(e.target.value);
+                  updateJob({ id: selectedJob.id, patch: { followUpDate: e.target.value } });
+                }}
+                style={{
+                  background: 'transparent',
+                  border: '1px solid transparent',
+                  color: followUpDate ? '#fb923c' : 'var(--text-primary)',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  outline: 'none',
+                  padding: '2px 4px',
+                  marginLeft: '-4px',
+                  width: '100%',
+                  cursor: 'pointer'
+                }}
+                onFocus={(e) => e.target.style.border = '1px solid var(--border-color)'}
+                onBlur={(e) => e.target.style.border = '1px solid transparent'}
+              />
             </div>
           </div>
 
@@ -717,12 +774,77 @@ export const JobDetailDrawer: React.FC = () => {
             padding: 'var(--space-4)', 
             borderRadius: 'var(--radius-md)', 
             border: '1px solid var(--border-color)',
-            fontSize: '0.8125rem',
-            lineHeight: 1.6,
-            color: 'var(--text-secondary)',
-            whiteSpace: 'pre-wrap'
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '12px'
           }}>
-            {selectedJob.notes || 'No notes available for this position.'}
+            <textarea
+              value={notesInput}
+              onChange={(e) => {
+                setNotesInput(e.target.value);
+                setNotesEdited(true);
+              }}
+              placeholder="Add personal notes, interview questions, or market intelligence here..."
+              rows={4}
+              style={{
+                width: '100%',
+                backgroundColor: 'var(--bg-tertiary)',
+                border: '1px solid',
+                borderColor: notesEdited && notesInput !== (selectedJob.notes || '') ? 'var(--border-focus)' : 'var(--border-color)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '10px 12px',
+                color: 'var(--text-primary)',
+                fontSize: '0.8125rem',
+                fontFamily: 'var(--font-sans)',
+                lineHeight: 1.5,
+                resize: 'vertical',
+                outline: 'none',
+                minHeight: '80px'
+              }}
+            />
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+              {notesEdited && (
+                <button
+                  onClick={() => {
+                    setNotesInput(selectedJob.notes || '');
+                    setNotesEdited(false);
+                  }}
+                  style={{
+                    padding: '6px 12px',
+                    borderRadius: 'var(--radius-sm)',
+                    border: '1px solid var(--border-color)',
+                    backgroundColor: 'transparent',
+                    color: 'var(--text-muted)',
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                >
+                  Cancel
+                </button>
+              )}
+              <button
+                onClick={handleSaveNotes}
+                disabled={!notesEdited}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  padding: '6px 14px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: 'none',
+                  backgroundColor: notesEdited ? 'var(--border-focus)' : 'var(--bg-elevated)',
+                  color: notesEdited ? '#ffffff' : 'var(--text-muted)',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  cursor: notesEdited ? 'pointer' : 'default',
+                  transition: 'all 150ms ease'
+                }}
+              >
+                <Save size={13} />
+                <span>{notesEdited ? 'Save Notes' : 'Saved'}</span>
+              </button>
+            </div>
           </div>
 
         </div>

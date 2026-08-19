@@ -21,6 +21,16 @@ namespace NextApply.Api.Models
         public bool ReferralNeeded { get; set; } = false;
         public string? ReferralContactName { get; set; }
         public string? HrRecruiterName { get; set; }
+        public string? HrRecruiterEmail { get; set; }
+        public string? HrRecruiterLinkedIn { get; set; }
+        public string? HrRecruiterPhone { get; set; }
+        
+        public string? ReferralContactRole { get; set; }
+        public string? ReferralContactEmail { get; set; }
+        public string? ReferralContactLinkedIn { get; set; }
+        
+        public DateOnly? FollowUpDate { get; set; }
+        
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 

@@ -124,13 +124,13 @@ function mapJobToFrontend(job: any): JobItem {
     jdContent: job.notes && job.notes.length > 0 ? job.notes.find((n:any)=>n.noteType==='JD')?.content || '' : '',
     
     // Unused but required by TS currently
-    referralContactRole: '',
-    referralContactEmail: '',
-    referralContactLinkedIn: '',
-    hrRecruiterEmail: '',
-    hrRecruiterLinkedIn: '',
-    hrRecruiterPhone: '',
-    followUpDate: '',
+    referralContactRole: job.referralContactRole || '',
+    referralContactEmail: job.referralContactEmail || '',
+    referralContactLinkedIn: job.referralContactLinkedIn || '',
+    hrRecruiterEmail: job.hrRecruiterEmail || '',
+    hrRecruiterLinkedIn: job.hrRecruiterLinkedIn || '',
+    hrRecruiterPhone: job.hrRecruiterPhone || '',
+    followUpDate: job.followUpDate || '',
     responseStatus: '',
     interviewStage: '',
   };
@@ -150,7 +150,15 @@ function mapPatchToBackend(patch: Partial<JobItem>): any {
     if (patch.techStack !== undefined) backendPatch.techStack = patch.techStack.join(', ');
     if (patch.referralNeeded !== undefined) backendPatch.referralNeeded = patch.referralNeeded;
     if (patch.referralContactName !== undefined) backendPatch.referralContactName = patch.referralContactName;
+    if (patch.referralContactRole !== undefined) backendPatch.referralContactRole = patch.referralContactRole;
+    if (patch.referralContactEmail !== undefined) backendPatch.referralContactEmail = patch.referralContactEmail;
+    if (patch.referralContactLinkedIn !== undefined) backendPatch.referralContactLinkedIn = patch.referralContactLinkedIn;
     if (patch.hrRecruiterName !== undefined) backendPatch.hrRecruiterName = patch.hrRecruiterName;
+    if (patch.hrRecruiterEmail !== undefined) backendPatch.hrRecruiterEmail = patch.hrRecruiterEmail;
+    if (patch.hrRecruiterLinkedIn !== undefined) backendPatch.hrRecruiterLinkedIn = patch.hrRecruiterLinkedIn;
+    if (patch.hrRecruiterPhone !== undefined) backendPatch.hrRecruiterPhone = patch.hrRecruiterPhone;
+    if (patch.appliedDate !== undefined) backendPatch.appliedDate = patch.appliedDate || null;
+    if (patch.followUpDate !== undefined) backendPatch.followUpDate = patch.followUpDate || null;
     if (patch.domain !== undefined) backendPatch.domain = mapDomainToBackend(patch.domain);
     return backendPatch;
 }
