@@ -16,7 +16,8 @@ import {
   Globe,
   X,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  BadgeHelp
 } from 'lucide-react';
 
 interface NavItem {
@@ -310,7 +311,7 @@ export const Sidebar: React.FC = () => {
             title={isSidebarCollapsed ? "Support & Feedback" : undefined}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <MessageSquare size={18} style={{ color: filterState.viewMode === 'support' ? '#38bdf8' : 'var(--text-muted)' }} />
+              <BadgeHelp size={18} style={{ color: filterState.viewMode === 'support' ? '#38bdf8' : 'var(--text-muted)' }} />
               {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Support & Feedback</span>}
             </div>
           </div>
