@@ -38,7 +38,10 @@ namespace NextApply.Api.Controllers
                                          (j.TargetRole != null && j.TargetRole.ToLower().Contains(lowerSearch)));
             }
 
-            var jobs = await query.OrderByDescending(j => j.CreatedAt).ToListAsync();
+            var jobs = await query
+                .Include(j => j.Notes)
+                .OrderByDescending(j => j.CreatedAt)
+                .ToListAsync();
             return Ok(jobs);
         }
 

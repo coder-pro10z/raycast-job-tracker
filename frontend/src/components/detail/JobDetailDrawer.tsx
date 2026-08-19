@@ -712,9 +712,16 @@ export const JobDetailDrawer: React.FC = () => {
           {/* Section 6: Timeline & Follow-up */}
           {renderSectionHeader('Timeline & Follow-ups', <Calendar size={15} />)}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-            <div style={{ padding: '10px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+            <div 
+              onClick={() => {
+                const el = document.getElementById('applied-date-input') as any;
+                if (el && el.showPicker) el.showPicker();
+              }}
+              style={{ padding: '10px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', cursor: 'pointer' }}
+            >
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Date Applied</div>
               <input 
+                id="applied-date-input"
                 type="date"
                 value={appliedDate}
                 onChange={(e) => {
@@ -731,15 +738,24 @@ export const JobDetailDrawer: React.FC = () => {
                   padding: '2px 4px',
                   marginLeft: '-4px',
                   width: '100%',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  colorScheme: 'dark'
                 }}
+                onClick={(e) => e.stopPropagation()}
                 onFocus={(e) => e.target.style.border = '1px solid var(--border-color)'}
                 onBlur={(e) => e.target.style.border = '1px solid transparent'}
               />
             </div>
-            <div style={{ padding: '10px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
+            <div 
+              onClick={() => {
+                const el = document.getElementById('followup-date-input') as any;
+                if (el && el.showPicker) el.showPicker();
+              }}
+              style={{ padding: '10px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', cursor: 'pointer' }}
+            >
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '4px' }}>Follow-Up Date</div>
               <input 
+                id="followup-date-input"
                 type="date"
                 value={followUpDate}
                 onChange={(e) => {
@@ -756,8 +772,10 @@ export const JobDetailDrawer: React.FC = () => {
                   padding: '2px 4px',
                   marginLeft: '-4px',
                   width: '100%',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  colorScheme: 'dark'
                 }}
+                onClick={(e) => e.stopPropagation()}
                 onFocus={(e) => e.target.style.border = '1px solid var(--border-color)'}
                 onBlur={(e) => e.target.style.border = '1px solid transparent'}
               />

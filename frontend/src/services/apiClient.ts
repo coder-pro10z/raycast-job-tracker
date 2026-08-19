@@ -120,8 +120,8 @@ function mapJobToFrontend(job: any): JobItem {
     referralContactName: job.referralContactName || '',
     hrRecruiterName: job.hrRecruiterName || '',
     // Map Notes logic if notes relation exists, else just string
-    notes: job.notes && job.notes.length > 0 ? job.notes.find((n:any)=>n.noteType==='General')?.content || '' : '',
-    jdContent: job.notes && job.notes.length > 0 ? job.notes.find((n:any)=>n.noteType==='JD')?.content || '' : '',
+    notes: job.notes && job.notes.length > 0 ? [...job.notes].sort((a:any, b:any) => (b.id || 0) - (a.id || 0)).find((n:any)=>n.noteType==='General')?.content || '' : '',
+    jdContent: job.notes && job.notes.length > 0 ? [...job.notes].sort((a:any, b:any) => (b.id || 0) - (a.id || 0)).find((n:any)=>n.noteType==='JD')?.content || '' : '',
     
     // Unused but required by TS currently
     referralContactRole: job.referralContactRole || '',
