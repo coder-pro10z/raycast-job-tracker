@@ -85,7 +85,7 @@ export const Sidebar: React.FC = () => {
           borderRight: '1px solid var(--border-color)',
           display: 'flex',
           flexDirection: 'column',
-          padding: 'var(--space-4) 0',
+          padding: 'var(--space-2) 0',
           userSelect: 'none',
           flexShrink: 0,
           transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -123,8 +123,8 @@ export const Sidebar: React.FC = () => {
 
 
         {/* Domain Track Switcher Section */}
-        <div style={{ padding: '0 var(--space-4) var(--space-4)', borderBottom: '1px solid var(--border-color)', marginBottom: 'var(--space-3)' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '12px', paddingLeft: isSidebarCollapsed ? '0' : '4px', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'space-between' }} title="Domain Workspace">
+        <div style={{ padding: '0 var(--space-4) var(--space-2)', borderBottom: '1px solid var(--border-color)', marginBottom: 'var(--space-2)' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: isSidebarCollapsed ? '0' : '4px', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'space-between' }} title="Domain Workspace">
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
               <Layers size={15} style={{ color: 'var(--text-accent)' }} />
               {!isSidebarCollapsed && <span>Domain Workspace</span>}
@@ -141,7 +141,7 @@ export const Sidebar: React.FC = () => {
             </button>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {domains.map((domain) => {
               const isActive = filterState.activeDomain === domain.id;
               const Icon = domain.icon;
@@ -154,7 +154,7 @@ export const Sidebar: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     width: '100%',
-                    padding: isSidebarCollapsed ? '10px 0' : '8px 10px',
+                    padding: isSidebarCollapsed ? '8px 0' : '6px 10px',
                     borderRadius: 'var(--radius-sm)',
                     backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
                     border: isActive ? '1px solid var(--border-focus)' : '1px solid transparent',
@@ -194,13 +194,13 @@ export const Sidebar: React.FC = () => {
         </div>
 
         {/* Pipeline View Status Navigation */}
-        <div style={{ padding: '0 var(--space-4) var(--space-2)', marginTop: '8px' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
+        <div style={{ padding: '0 var(--space-4) var(--space-2)', marginTop: '4px' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '4px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
             {isSidebarCollapsed ? '...' : 'Pipeline Status'}
           </div>
         </div>
 
-        <nav style={{ flex: '1', padding: '0 var(--space-3)', display: 'flex', flexDirection: 'column', gap: '2px' }}>
+        <nav style={{ flex: '1', padding: '0 var(--space-3)', display: 'flex', flexDirection: 'column', gap: '0px' }}>
           {navItems.map((item) => {
             const isActive = filterState.viewMode === item.id;
             const Icon = item.icon;
@@ -214,7 +214,7 @@ export const Sidebar: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: isSidebarCollapsed ? '10px' : 'var(--space-2) var(--space-3)',
+                  padding: isSidebarCollapsed ? '8px' : '6px 12px',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
                   color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
@@ -253,8 +253,8 @@ export const Sidebar: React.FC = () => {
 
         
         {/* Outreach Hub Section */}
-        <div style={{ padding: 'var(--space-2) var(--space-4)' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
+        <div style={{ padding: '4px var(--space-4)' }}>
+          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '4px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
             {isSidebarCollapsed ? '...' : 'Outreach Hub'}
           </div>
           <div 
@@ -263,7 +263,7 @@ export const Sidebar: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
-              padding: isSidebarCollapsed ? '10px' : 'var(--space-2) var(--space-3)',
+              padding: isSidebarCollapsed ? '8px' : '6px 12px',
               borderRadius: 'var(--radius-sm)',
               backgroundColor: filterState.viewMode === 'outreach-templates' ? 'var(--bg-active)' : 'transparent',
               color: filterState.viewMode === 'outreach-templates' ? 'var(--text-primary)' : 'var(--text-secondary)',
@@ -287,14 +287,14 @@ export const Sidebar: React.FC = () => {
         </div>
 
         {/* Support Section */}
-        <div style={{ padding: 'var(--space-2) var(--space-4)', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
+        <div style={{ padding: '4px var(--space-4)', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '12px' }}>
           <div 
             onClick={() => handleNavSelect('support')}
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
-              padding: isSidebarCollapsed ? '10px' : 'var(--space-2) var(--space-3)',
+              padding: isSidebarCollapsed ? '8px' : '6px 12px',
               borderRadius: 'var(--radius-sm)',
               backgroundColor: filterState.viewMode === 'support' ? 'var(--bg-active)' : 'transparent',
               color: filterState.viewMode === 'support' ? 'var(--text-primary)' : 'var(--text-secondary)',
