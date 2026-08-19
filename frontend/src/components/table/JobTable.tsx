@@ -97,7 +97,7 @@ export const JobTable: React.FC = () => {
         }}
         style={{ 
           width: '100%',
-          height: 'calc(100vh - 140px)',
+          height: 'calc(100dvh - 140px)',
           overflow: 'auto', 
           WebkitOverflowScrolling: 'touch',
           borderTop: '1px solid var(--border-color)',

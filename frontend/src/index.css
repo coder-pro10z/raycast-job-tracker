@@ -332,13 +332,13 @@ body {
     padding: 0 10px !important;
   }
   .table-scroll-box {
-    height: calc(100vh - 95px) !important;
-    min-height: calc(100vh - 95px) !important;
+    height: calc(100dvh - 95px) !important;
+    min-height: calc(100dvh - 95px) !important;
   }
 }
 
 .table-scroll-box {
-  height: calc(100vh - 200px);
+  height: calc(100dvh - 200px);
   min-height: 480px;
 }
 

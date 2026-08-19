@@ -6,7 +6,7 @@ export const PassphraseGate: React.FC<{ children: React.ReactNode }> = ({ childr
   if (unlocked) return <>{children}</>;
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw', height: '100vh', backgroundColor: 'var(--bg-primary)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw', height: '100dvh', backgroundColor: 'var(--bg-primary)' }}>
       <form 
         onSubmit={(e) => {
           e.preventDefault();

@@ -77,7 +77,7 @@ const MainWorkspace: React.FC = () => {
   }
 
   return (
-    <div style={{ display: 'flex', width: '100vw', height: 'calc(100vh - 64px)', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+    <div style={{ display: 'flex', width: '100vw', height: 'calc(100dvh - 64px)', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
       {/* Left Navigation Sidebar */}
       <Sidebar />
 
@@ -109,7 +109,7 @@ export const App: React.FC = () => {
     <QueryClientProvider client={queryClient}>
       <JobProvider>
         <PassphraseGate>
-          <div style={{ display: 'flex', flexDirection: 'column', width: '100vw', height: '100vh', overflow: 'hidden' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', width: '100vw', height: '100dvh', overflow: 'hidden' }}>
             <Header />
             <MainWorkspace />
           </div>
