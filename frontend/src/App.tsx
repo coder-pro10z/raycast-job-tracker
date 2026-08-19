@@ -10,6 +10,8 @@ import { CommandPalette } from './components/search/CommandPalette';
 import { Toast } from './components/ui/Toast';
 import { ColdOutreachWorkspace } from './components/outreach/ColdOutreachWorkspace';
 
+import { SupportPage } from './components/dashboard/SupportPage';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJobs } from './hooks/useJobs';
 import { PassphraseGate } from './components/auth/PassphraseGate';
@@ -81,7 +83,9 @@ const MainWorkspace: React.FC = () => {
 
       {/* Main Content Workspace Area */}
       <main style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
-        {filterState.viewMode === 'outreach-templates' ? (
+        {filterState.viewMode === 'support' ? (
+          <SupportPage />
+        ) : filterState.viewMode === 'outreach-templates' ? (
           <ColdOutreachWorkspace />
         ) : (
           <>

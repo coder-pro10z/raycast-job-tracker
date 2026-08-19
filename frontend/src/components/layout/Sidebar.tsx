@@ -285,6 +285,36 @@ export const Sidebar: React.FC = () => {
           </div>
         </div>
 
+        {/* Support Section */}
+        <div style={{ padding: 'var(--space-2) var(--space-4)', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
+          <div 
+            onClick={() => handleNavSelect('support')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
+              padding: isSidebarCollapsed ? '10px' : 'var(--space-2) var(--space-3)',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: filterState.viewMode === 'support' ? 'var(--bg-active)' : 'transparent',
+              color: filterState.viewMode === 'support' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              cursor: 'pointer',
+              transition: 'all 150ms ease',
+              fontWeight: filterState.viewMode === 'support' ? 600 : 500,
+            }}
+            onMouseEnter={(e) => {
+              if (filterState.viewMode !== 'support') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+            }}
+            onMouseLeave={(e) => {
+              if (filterState.viewMode !== 'support') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
+            title={isSidebarCollapsed ? "Support & Feedback" : undefined}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
+              <MessageSquare size={18} style={{ color: filterState.viewMode === 'support' ? '#38bdf8' : 'var(--text-muted)' }} />
+              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Support & Feedback</span>}
+            </div>
+          </div>
+        </div>
 
       </aside>
     </>
