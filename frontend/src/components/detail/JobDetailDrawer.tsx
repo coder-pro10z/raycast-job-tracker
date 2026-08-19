@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import { useUpdateJob, useAddNote, useCheckDuplicateJob } from '../../hooks/useJobs';
-import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { PriorityBadgeDropdown } from '../common/PriorityBadgeDropdown';
 import { DomainBadgeDropdown } from '../common/DomainBadgeDropdown';
@@ -20,7 +19,6 @@ import {
   Copy,
   Check,
   Save,
-  Cloud,
   Edit3,
   Phone
 } from 'lucide-react';
@@ -153,7 +151,6 @@ export const JobDetailDrawer: React.FC = () => {
 
   // Compute Domain Track tag strictly from domain attribute
   const isCloud = selectedJob.domain === 'cloud';
-  const isDual = selectedJob.domain === 'dual';
 
   return (
     <>
