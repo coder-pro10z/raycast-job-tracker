@@ -77,6 +77,7 @@ namespace NextApply.Api.Controllers
                     job.AppliedDate = DateOnly.FromDateTime(DateTime.UtcNow);
             }
             if (dto.Priority is not null) job.Priority = dto.Priority;
+            if (dto.Domain is not null) job.Domain = dto.Domain;
             if (dto.NextAction is not null) job.NextAction = dto.NextAction;
             if (dto.TargetRole is not null) job.TargetRole = dto.TargetRole;
             if (dto.Location is not null) job.Location = dto.Location;

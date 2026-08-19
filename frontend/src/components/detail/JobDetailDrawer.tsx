@@ -3,7 +3,9 @@ import { useJobStore } from '../../state/useJobStore';
 import { useUpdateJob, useAddNote, useCheckDuplicateJob } from '../../hooks/useJobs';
 import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
-import { 
+import { PriorityBadgeDropdown } from '../common/PriorityBadgeDropdown';
+import { DomainBadgeDropdown } from '../common/DomainBadgeDropdown';
+import {  
   X, 
   ExternalLink, 
   Building2, 
@@ -190,46 +192,7 @@ export const JobDetailDrawer: React.FC = () => {
               <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-muted)' }}>
                 {selectedJob.companyName}
               </span>
-              <div style={{ position: 'relative' }}>
-                <select
-                  value={selectedJob.domain || 'sde'}
-                  onChange={(e) => updateJob({ id: selectedJob.id, patch: { domain: e.target.value as any } })}
-                  style={{
-                    appearance: 'none',
-                    background: 'transparent',
-                    border: 'none',
-                    position: 'absolute',
-                    top: 0, left: 0, right: 0, bottom: 0,
-                    width: '100%', height: '100%',
-                    opacity: 0,
-                    cursor: 'pointer',
-                    zIndex: 2
-                  }}
-                  title="Change Domain Track"
-                >
-                  <option value="sde">SDE / FullStack Track</option>
-                  <option value="cloud">Cloud / DevOps Track</option>
-                  <option value="dual">Dual Domain</option>
-                  <option value="general">General</option>
-                </select>
-                {isDual ? (
-                  <span title="Dual Domain (SDE + Cloud)" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 800, backgroundColor: 'rgba(251, 146, 60, 0.15)', color: '#fb923c', padding: '2px 8px', borderRadius: '4px' }}>
-                    &lt;/&gt; <Cloud size={12} />
-                  </span>
-                ) : isCloud ? (
-                  <span title="Cloud / DevOps Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '22px', backgroundColor: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', borderRadius: '4px' }}>
-                    <Cloud size={14} />
-                  </span>
-                ) : selectedJob.domain === 'general' ? (
-                  <span title="General Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 800, backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-secondary)', padding: '2px 8px', borderRadius: '4px' }}>
-                    GEN
-                  </span>
-                ) : (
-                  <span title="SDE / FullStack Track" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontFamily: 'monospace', fontWeight: 800, backgroundColor: 'rgba(129, 140, 248, 0.15)', color: '#818cf8', padding: '2px 8px', borderRadius: '4px', letterSpacing: '-0.05em' }}>
-                    &lt;/&gt;
-                  </span>
-                )}
-              </div>
+              <DomainBadgeDropdown jobId={selectedJob.id} currentDomain={selectedJob.domain || 'sde'} />
             </div>
             {/* Editable Target Role */}
             <div style={{ position: 'relative', marginTop: '4px' }}>
@@ -288,29 +251,7 @@ export const JobDetailDrawer: React.FC = () => {
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px', alignItems: 'center' }}>
               <StatusBadgeDropdown jobId={selectedJob.id} currentStatus={selectedJob.applicationStatus} size="md" />
-              <div style={{ position: 'relative', display: 'inline-block' }}>
-                <select
-                  value={selectedJob.priority}
-                  onChange={(e) => updateJob({ id: selectedJob.id, patch: { priority: e.target.value as any } })}
-                  style={{
-                    appearance: 'none',
-                    background: 'transparent',
-                    border: 'none',
-                    position: 'absolute',
-                    top: 0, left: 0, right: 0, bottom: 0,
-                    width: '100%', height: '100%',
-                    opacity: 0,
-                    cursor: 'pointer',
-                    zIndex: 2
-                  }}
-                  title="Change Priority"
-                >
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
-                </select>
-                <Badge type="priority" value={`Priority: ${selectedJob.priority}`} size="md" />
-              </div>
+              <PriorityBadgeDropdown jobId={selectedJob.id} currentPriority={selectedJob.priority} size="md" />
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.75rem', color: 'var(--text-secondary)', backgroundColor: 'var(--bg-tertiary)', padding: '2px 10px', borderRadius: 'var(--radius-full)' }}>
                 <MapPin size={12} />
                 {selectedJob.location} ({selectedJob.workMode})

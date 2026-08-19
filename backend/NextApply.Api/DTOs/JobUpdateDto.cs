@@ -7,6 +7,7 @@ namespace NextApply.Api.DTOs
         public string? ApplicationStatus { get; set; }
         public string? Priority { get; set; }
         public string? NextAction { get; set; }
+        public string? Domain { get; set; }
         
         // Allowed for updating notes inline, etc.
         public string? TargetRole { get; set; }
