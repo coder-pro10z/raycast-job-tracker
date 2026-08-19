@@ -256,40 +256,40 @@ export const JobTable: React.FC = () => {
                   <span style={{ color: 'var(--text-muted)', marginLeft: '6px', fontSize: '0.75rem' }}>({job.workMode})</span>
                 </div>
 
-                {/* Unified Action Row: JD / Application Link / Find Leads */}
-                <div style={{ flex: columns[3].flex, minWidth: columns[3].minWidth, paddingRight: '12px', display: 'flex', alignItems: 'center', gap: 'var(--space-3)', overflow: 'visible', height: '100%' }}>
-                  {(!hasJd && !hasLink) ? (
-                    <button
-                      onMouseDown={(e) => e.stopPropagation()}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                        setEditCoords({ top: rect.bottom + 4, left: rect.left });
-                        setEditingJdId(job.id);
-                      }}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        padding: '4px 12px',
-                        borderRadius: 'var(--radius-full)',
-                        border: '1px dashed var(--border-color)',
-                        backgroundColor: 'transparent',
-                        color: 'var(--text-muted)',
-                        fontSize: 'var(--text-xs)',
-                        fontWeight: 'var(--weight-medium)',
-                        cursor: 'pointer',
-                        transition: 'all 150ms ease'
-                      }}
-                      className="glow-hover"
-                      title="Add Application URL or JD text"
-                    >
-                      <Plus size={12} strokeWidth={1.5} style={{ color: 'var(--text-secondary)' }} />
-                      <span>Add Details</span>
-                    </button>
-                  ) : (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)', width: '100%', justifyContent: 'space-between' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                {/* Unified Action Row: JD / Application Link / Find Leads */}                
+                <div style={{ flex: columns[3].flex, minWidth: columns[3].minWidth, paddingRight: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-3)', overflow: 'visible', height: '100%' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    {(!hasJd && !hasLink) ? (
+                      <button
+                        onMouseDown={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                          setEditCoords({ top: rect.bottom + 4, left: rect.left });
+                          setEditingJdId(job.id);
+                        }}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          padding: '4px 12px',
+                          borderRadius: 'var(--radius-full)',
+                          border: '1px dashed var(--border-color)',
+                          backgroundColor: 'transparent',
+                          color: 'var(--text-muted)',
+                          fontSize: 'var(--text-xs)',
+                          fontWeight: 'var(--weight-medium)',
+                          cursor: 'pointer',
+                          transition: 'all 150ms ease'
+                        }}
+                        className="glow-hover"
+                        title="Add Application URL or JD text"
+                      >
+                        <Plus size={12} strokeWidth={1.5} style={{ color: 'var(--text-secondary)' }} />
+                        <span>Add Details</span>
+                      </button>
+                    ) : (
+                      <>
                         {hasLink && (
                           <a
                             href={job.jobApplicationLink.startsWith('http') ? job.jobApplicationLink : `https://${job.jobApplicationLink}`}
@@ -342,45 +342,45 @@ export const JobTable: React.FC = () => {
                             <span>JD</span>
                           </span>
                         )}
-                      </div>
-                      
-                      {/* Secondary Icon Cluster */}
-                      <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: '2px', opacity: 0.6, transition: 'opacity 150ms ease' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}>
-                        <button
-                          className="icon-btn"
-                          onMouseDown={(e) => e.stopPropagation()}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-                            setEditCoords({ top: rect.bottom + 4, left: rect.left });
-                            setEditingJdId(job.id);
-                          }}
-                          title="Edit Details"
-                        >
-                          <Pencil size={13} strokeWidth={1.5} />
-                        </button>
-                        <FindLeadsMenu 
-                          job={job} 
-                          compact={true} 
-                          isOpen={activeLeadsRowId === job.id}
-                          onToggle={(isOpen) => setActiveLeadsRowId(isOpen ? job.id : null)}
-                        />
-                        <button
-                          className="icon-btn"
-                          onMouseDown={(e) => e.stopPropagation()}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            cloneJob(job.id, {
-                              onSuccess: (newJob) => setSelectedJobId(newJob.id)
-                            });
-                          }}
-                          title="Clone job for a different role"
-                        >
-                          <Copy size={13} strokeWidth={1.5} />
-                        </button>
-                      </div>
-                    </div>
-                  )}
+                      </>
+                    )}
+                  </div>
+                  
+                  {/* Secondary Icon Cluster */}
+                  <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: '2px', opacity: 0.6, transition: 'opacity 150ms ease' }} onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} onMouseLeave={(e) => e.currentTarget.style.opacity = '0.6'}>
+                    <button
+                      className="icon-btn"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+                        setEditCoords({ top: rect.bottom + 4, left: rect.left });
+                        setEditingJdId(job.id);
+                      }}
+                      title="Edit Details"
+                    >
+                      <Pencil size={13} strokeWidth={1.5} />
+                    </button>
+                    <FindLeadsMenu 
+                      job={job} 
+                      compact={true} 
+                      isOpen={activeLeadsRowId === job.id}
+                      onToggle={(isOpen) => setActiveLeadsRowId(isOpen ? job.id : null)}
+                    />
+                    <button
+                      className="icon-btn"
+                      onMouseDown={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        cloneJob(job.id, {
+                          onSuccess: (newJob) => setSelectedJobId(newJob.id)
+                        });
+                      }}
+                      title="Clone job for a different role"
+                    >
+                      <Copy size={13} strokeWidth={1.5} />
+                    </button>
+                  </div>
 
                   {isEditingThisJd && (
                     <EditLinkPopover 
