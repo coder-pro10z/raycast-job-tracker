@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Badge } from './Badge';
 import { ChevronDown } from 'lucide-react';
 import { useUpdateJob } from '../../hooks/useJobs';
@@ -45,7 +45,7 @@ export const PriorityBadgeDropdown: React.FC<PriorityBadgeDropdownProps> = ({ jo
           display: 'flex', alignItems: 'center', gap: '4px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' 
         }}
       >
-        <Badge type="priority" value={Priority: } size={size} />
+        <Badge type="priority" value={`Priority: ${currentPriority}`} size={size} />
         <span style={{ 
           display: 'flex', alignItems: 'center', justifyContent: 'center', 
           width: size === 'md' ? '20px' : '16px', 

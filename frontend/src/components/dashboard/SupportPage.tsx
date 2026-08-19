@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Send, Bug, Lightbulb, MessageCircle } from 'lucide-react';
 
 export const SupportPage: React.FC = () => {
@@ -8,16 +8,16 @@ export const SupportPage: React.FC = () => {
 
   const handleSendEmail = () => {
     const to = '2pkashyap2001+JobTrackerSupport@gmail.com';
-    const emailSubject = encodeURIComponent([] );
+    const emailSubject = encodeURIComponent(`[${issueType}] ${subject || 'Support Request'}`);
     const emailBody = encodeURIComponent(
-      Issue Type: \n\n +
-      Details:\n\n\n +
-      ---\n +
-      App Version: 1.0.0\n +
-      User Agent: 
+      `Issue Type: ${issueType}\n\n` +
+      `Details:\n${details}\n\n` +
+      `---\n` +
+      `App Version: 1.0.0\n` +
+      `User Agent: ${navigator.userAgent}`
     );
 
-    window.location.href = \mailto:\?subject=\&body=\\;
+    window.location.href = `mailto:${to}?subject=${emailSubject}&body=${emailBody}`;
   };
 
   return (
