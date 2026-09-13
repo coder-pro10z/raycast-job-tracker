@@ -11,6 +11,7 @@ import { Toast } from './components/ui/Toast';
 import { ColdOutreachWorkspace } from './components/outreach/ColdOutreachWorkspace';
 
 import { SupportPage } from './components/dashboard/SupportPage';
+import { WorkspaceLoader } from './components/layout/WorkspaceLoader';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJobs } from './hooks/useJobs';
@@ -69,11 +70,17 @@ const MainWorkspace: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [filteredJobs, selectedJobId, setSelectedJobId, setCommandPaletteOpen]);
 
-  if (isLoading && filteredJobs.length === 0) {
-     return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%', color: 'var(--text-secondary)' }}>Loading Workspace...</div>;
-  }
-  if (error) {
-     return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', width: '100%', color: 'var(--red)' }}>Error loading jobs: {(error as Error).message}</div>;
+  if ((isLoading && filteredJobs.length === 0) || error) {
+    return (
+      <div style={{ display: 'flex', width: '100vw', height: 'calc(100dvh - 64px)', overflow: 'hidden', backgroundColor: 'var(--bg-primary)' }}>
+        <Sidebar />
+        <main style={{ flex: '1', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+          <WorkspaceLoader isLoading={isLoading && filteredJobs.length === 0} error={error}>
+            <div />
+          </WorkspaceLoader>
+        </main>
+      </div>
+    );
   }
 
   return (
