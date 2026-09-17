@@ -18,9 +18,9 @@ namespace NextApply.Api.Controllers;
 [Route("api/jobs")]
 public class JobApplicationImportController : ControllerBase
 {
-    private readonly ApplicationDbContext _db;
+    private readonly AppDbContext _db;
 
-    public JobApplicationImportController(ApplicationDbContext db)
+    public JobApplicationImportController(AppDbContext db)
     {
         _db = db;
     }
