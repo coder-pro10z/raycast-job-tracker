@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphify - NextApply Job Tracker Architecture</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Vis Network for Interactive Graphing -->
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    #mynetwork {
+      width: 100%;
+      height: calc(100vh - 64px);
+    }
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+    /* Graphify Floating Hover Tooltip Pill (Zoomed Out Label Popover) */
+    div.vis-tooltip {
+      position: absolute;
+      padding: 6px 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0F172A;
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body id="body-root" class="bg-[#0B0F19] text-slate-100 min-h-screen flex flex-col overflow-hidden select-none">
+
+  <!-- Header Bar -->
+  <header id="header-root" class="h-16 bg-[#0E1322] border-b border-slate-800/80 px-6 flex items-center justify-between z-10">
+    <div class="flex items-center gap-3">
+      <span class="text-sm font-bold text-white tracking-wide flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+        NextApply Job Tracker — Architecture Graph
+      </span>
+    </div>
+
+    <!-- Right Actions & View Switcher -->
+    <div class="flex items-center gap-3">
+      <!-- Fit View Button -->
+      <button id="btn-fit-view" class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-all flex items-center gap-1 cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-2V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+        </svg>
+        Fit View
+      </button>
+
+      <!-- Mode Toggle Switch -->
+      <div id="toggle-container" class="bg-slate-900 border border-slate-700/80 p-1 rounded-xl flex items-center gap-1 text-xs">
+        <button id="btn-mode-graphify" class="px-3.5 py-1.5 rounded-lg font-semibold transition-all bg-indigo-600 text-white shadow-xs flex items-center gap-1.5 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+          </svg>
+          Graphify Mode
+        </button>
+        <button id="btn-mode-cards" class="px-3.5 py-1.5 rounded-lg font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-1.5 cursor-pointer">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+          </svg>
+          Structured Cards
+        </button>
+      </div>
+
+      <a href="./index.html" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-semibold transition-all">
+        Close
+      </a>
+    </div>
+  </header>
+
+  <!-- Main View Area -->
+  <div class="flex-1 flex relative overflow-hidden">
+    <!-- Network Graph Canvas -->
+    <div id="mynetwork" class="flex-1 bg-[#0B0F19] transition-colors duration-300"></div>
+
+    <!-- Right Sidebar Inspector & Communities Panel -->
+    <div id="sidebar-root" class="w-80 bg-[#111625] border-l border-slate-800/80 p-5 flex flex-col justify-between z-10 transition-colors duration-300">
+      
+      <div class="space-y-6 overflow-y-auto pr-1 flex-1">
+        <!-- Search Input -->
+        <div>
+          <div class="relative">
+            <input type="text" id="search-input" placeholder="Search nodes..." class="w-full px-3.5 py-2 text-xs rounded-lg border border-slate-700/80 bg-[#171D30] text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 transition-all">
+          </div>
+        </div>
+
+        <!-- Node Info Section -->
+        <div>
+          <h3 class="text-[11px] font-bold text-slate-400 tracking-wider uppercase mb-2">Node Info</h3>
+          <div id="node-info-box" class="space-y-2">
+            <p id="node-sub" class="text-xs text-slate-500 italic">Click a node to inspect it</p>
+            <div id="node-details" class="hidden space-y-3 pt-1">
+              <div>
+                <span id="node-badge" class="inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">MODULE</span>
+                <h4 id="node-title" class="text-base font-bold text-white mt-1 break-all">Node Title</h4>
+              </div>
+
+              <div>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Path / ID</label>
+                <span id="node-path" class="text-xs font-mono font-medium text-slate-300 block mt-0.5 break-all">path/to/file.js</span>
+              </div>
+
+              <div>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Role & Reusable UI Specs</label>
+                <p id="node-desc" class="text-xs text-slate-400 mt-0.5 leading-relaxed">Description text goes here.</p>
+              </div>
+
+              <div>
+                <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider">Connected Dependencies</label>
+                <ul id="node-connections" class="text-xs text-slate-300 mt-1 space-y-1"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layers / Communities Section -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-[11px] font-bold text-slate-400 tracking-wider uppercase">Communities / Layers</h3>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <label class="flex items-center gap-2 text-slate-300 cursor-pointer font-medium hover:text-white transition-all">
+              <input type="checkbox" id="chk-select-all" checked class="rounded border-slate-700 bg-slate-800 text-indigo-600 focus:ring-0 accent-indigo-600 cursor-pointer">
+              <span>Select All</span>
+            </label>
+            <div id="layer-checkboxes-container" class="space-y-2 pt-1 border-t border-slate-800/80"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer Stats -->
+      <div class="pt-4 border-t border-slate-800/80 text-[11px] font-mono text-slate-500 flex items-center justify-between">
+        <span id="stat-footer-text">0 nodes · 0 edges · 0 layers</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── NextApply Job Tracker — 7-Layer Architecture Graph ─────────────────────
+    // 42 nodes across: Entry, Frontend, API Gateway, Controllers, Data, Automation, Infra
+
+    const rawNodes = [
+
+      // ── Layer 1: Entry ────────────────────────────────────────────────────────
+      {
+        id: 'browser', label: 'Browser', layer: 'Entry',
+        path: '—',
+        desc: 'Responsibility: User\'s web browser accessing the SPA\nAPI: http://localhost:5173 (dev) | Vercel CDN (prod)',
+        color: '#818cf8'
+      },
+      {
+        id: 'raycast-ext', label: 'Raycast Extension', layer: 'Entry',
+        path: '(origin repo)',
+        desc: 'Responsibility: Original keyboard-first Raycast extension for fast job logging\nDocs: README.md',
+        color: '#818cf8'
+      },
+
+      // ── Layer 2: Frontend ─────────────────────────────────────────────────────
+      {
+        id: 'react-spa', label: 'React SPA', layer: 'Frontend',
+        path: 'frontend/src/App.tsx',
+        desc: 'Responsibility: Root SPA component — routes, QueryClientProvider, theme context\nFile: frontend/src/App.tsx\nDocs: docs/02-frontend.md',
+        color: '#22d3ee', value: 5
+      },
+      {
+        id: 'vite', label: 'Vite 8', layer: 'Frontend',
+        path: 'frontend/vite.config.ts',
+        desc: 'Responsibility: Build tool & dev server\nFile: frontend/vite.config.ts',
+        color: '#67e8f9'
+      },
+      {
+        id: 'tanstack-query', label: 'TanStack Query v5', layer: 'Frontend',
+        path: 'frontend/src/hooks/useJobs.ts',
+        desc: 'Responsibility: Server state management, optimistic updates, cache invalidation\nFile: frontend/src/hooks/useJobs.ts\nDocs: docs/02-frontend.md',
+        color: '#22d3ee', value: 4
+      },
+      {
+        id: 'tanstack-virtual', label: 'TanStack Virtual v3', layer: 'Frontend',
+        path: 'frontend/src/components/table/JobTable.tsx',
+        desc: 'Responsibility: Row virtualization for 500+ job records with zero scroll jank\nFile: frontend/src/components/table/JobTable.tsx',
+        color: '#67e8f9'
+      },
+      {
+        id: 'vanilla-css', label: 'Vanilla CSS Design System', layer: 'Frontend',
+        path: 'frontend/src/index.css',
+        desc: 'Responsibility: Token-based design system — spacing, color, typography primitives\nFile: frontend/src/index.css\nDocs: docs/06-design-system.md',
+        color: '#22d3ee'
+      },
+      {
+        id: 'lucide', label: 'Lucide React Icons', layer: 'Frontend',
+        path: 'frontend/package.json',
+        desc: 'Responsibility: Consistent SVG icon system (stroke-width: 2, 24x24)',
+        color: '#67e8f9'
+      },
+      {
+        id: 'job-app-panel', label: 'JobApplicationPanel', layer: 'Frontend',
+        path: 'frontend/src/components/jobapp/JobApplicationPanel.tsx',
+        desc: 'Responsibility: Displays auto-imported applications from the Gmail JD Automator\nFile: frontend/src/components/jobapp/JobApplicationPanel.tsx [Phase 3]\nAPI: GET /api/jobs (filtered by gmailDraftId != null)\nDocs: docs/phases/PHASE_3_FRONTEND_UI.md',
+        color: '#38bdf8', value: 3
+      },
+
+      // ── Layer 3: API Gateway ──────────────────────────────────────────────────
+      {
+        id: 'dotnet-api', label: '.NET 9 Web API', layer: 'API Gateway',
+        path: 'backend/NextApply.Api/Program.cs',
+        desc: 'Responsibility: ASP.NET Core REST API — routing, DI, middleware pipeline\nFile: backend/NextApply.Api/Program.cs\nURL: http://localhost:5089 (dev)\nDocs: docs/03-backend.md',
+        color: '#a78bfa', value: 5
+      },
+      {
+        id: 'api-key-middleware', label: 'ApiKeyAuthMiddleware', layer: 'API Gateway',
+        path: 'backend/NextApply.Api/Middleware/ApiKeyAuthMiddleware.cs',
+        desc: 'Responsibility: Validates X-Api-Key header on every request. Returns 401 on invalid key.\nFile: backend/NextApply.Api/Middleware/ApiKeyAuthMiddleware.cs',
+        color: '#c4b5fd'
+      },
+      {
+        id: 'cors', label: 'CORS Policy', layer: 'API Gateway',
+        path: 'backend/NextApply.Api/Program.cs',
+        desc: 'Responsibility: AllowFrontend policy — AllowAnyOrigin, AllowAnyMethod, AllowAnyHeader\nFile: backend/NextApply.Api/Program.cs',
+        color: '#a78bfa'
+      },
+
+      // ── Layer 4: Controllers ──────────────────────────────────────────────────
+      {
+        id: 'jobs-ctrl', label: 'JobsController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/JobsController.cs',
+        desc: 'Responsibility: Core CRUD for Job records\nEndpoints: GET/POST /api/jobs, GET/PATCH/DELETE /api/jobs/{id}, POST /api/jobs/{id}/clone, GET /api/jobs/check-duplicate\nDocs: docs/03-backend.md',
+        color: '#c084fc', value: 5
+      },
+      {
+        id: 'notes-ctrl', label: 'NotesController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/NotesController.cs',
+        desc: 'Responsibility: Job notes CRUD\nEndpoints: GET/POST /api/jobs/{jobId}/notes, DELETE /api/jobs/{jobId}/notes/{noteId}',
+        color: '#d8b4fe'
+      },
+      {
+        id: 'outreach-ctrl', label: 'OutreachController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/OutreachController.cs',
+        desc: 'Responsibility: Outreach template usage logging\nEndpoints: GET/POST /api/jobs/{jobId}/outreach',
+        color: '#d8b4fe'
+      },
+      {
+        id: 'dashboard-ctrl', label: 'DashboardController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/DashboardController.cs',
+        desc: 'Responsibility: Aggregated dashboard metrics\nEndpoints: GET /api/dashboard/next-batch, GET /api/dashboard/weekly-summary',
+        color: '#d8b4fe'
+      },
+      {
+        id: 'settings-ctrl', label: 'SettingsController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/SettingsController.cs',
+        desc: 'Responsibility: User settings persistence\nEndpoints: GET/PUT /api/settings',
+        color: '#d8b4fe'
+      },
+      {
+        id: 'import-ctrl', label: 'JobApplicationImportController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/JobApplicationImportController.cs',
+        desc: 'Responsibility: Receives webhook from Gmail JD Automator, creates Job records\nEndpoint: POST /api/jobs/import-from-automator\nDocs: docs/08-job-application-module.md | docs/phases/PHASE_2_BACKEND_INTEGRATION.md',
+        color: '#c084fc', value: 4
+      },
+
+      // ── Layer 5: Data ─────────────────────────────────────────────────────────
+      {
+        id: 'ef-core', label: 'Entity Framework Core 9', layer: 'Data',
+        path: 'backend/NextApply.Api/Data/ApplicationDbContext.cs',
+        desc: 'Responsibility: ORM — maps C# models to PostgreSQL tables, manages migrations\nFile: backend/NextApply.Api/Data/ApplicationDbContext.cs',
+        color: '#2dd4bf', value: 4
+      },
+      {
+        id: 'job-model', label: 'Job Model', layer: 'Data',
+        path: 'backend/NextApply.Api/Models/Job.cs',
+        desc: 'Responsibility: Core domain entity — CompanyName, ApplicationStatus, GmailDraftId, AutomatorStatus, OutreachSubject, OutreachBodyPreview\nFile: backend/NextApply.Api/Models/Job.cs\nDocs: docs/04-database.md',
+        color: '#5eead4', value: 5
+      },
+      {
+        id: 'note-model', label: 'Note Model', layer: 'Data',
+        path: 'backend/NextApply.Api/Models/Note.cs',
+        desc: 'Responsibility: Job-linked notes with noteType (JD, manual)\nFile: backend/NextApply.Api/Models/Note.cs',
+        color: '#99f6e4'
+      },
+      {
+        id: 'outreach-model', label: 'OutreachTemplateUsed', layer: 'Data',
+        path: 'backend/NextApply.Api/Models/OutreachTemplateUsed.cs',
+        desc: 'Responsibility: Tracks which outreach templates were applied per job\nFile: backend/NextApply.Api/Models/OutreachTemplateUsed.cs',
+        color: '#99f6e4'
+      },
+      {
+        id: 'postgres', label: 'PostgreSQL 15', layer: 'Data',
+        path: '(Supabase hosted)',
+        desc: 'Responsibility: Primary data persistence — jobs, notes, outreach, settings\nHost: Supabase\nDocs: docs/04-database.md',
+        color: '#2dd4bf', value: 5
+      },
+      {
+        id: 'migrations', label: 'EF Core Migrations', layer: 'Data',
+        path: 'backend/NextApply.Api/Migrations/',
+        desc: 'Responsibility: Schema version history. Run: dotnet ef database update\nFile: backend/NextApply.Api/Migrations/',
+        color: '#5eead4'
+      },
+
+      // ── Layer 6: Automation ───────────────────────────────────────────────────
+      {
+        id: 'automator', label: 'Gmail JD Automator', layer: 'Automation',
+        path: 'automation/gmail-jd-automator/main.py',
+        desc: 'Responsibility: Python sidecar — scans Gmail drafts, OCRs JD screenshots, calls Claude, creates outreach email drafts, webhooks to NextApply\nFile: automation/gmail-jd-automator/main.py\nDocs: automation/gmail-jd-automator/README.md | docs/08-job-application-module.md',
+        color: '#fbbf24', value: 5
+      },
+      {
+        id: 'tesseract', label: 'Tesseract OCR', layer: 'Automation',
+        path: 'automation/gmail-jd-automator/main.py (ocr_images)',
+        desc: 'Responsibility: OS-level OCR binary wrapped by pytesseract. Extracts JD text from image attachments.\nFunction: ocr_images() in main.py',
+        color: '#fcd34d'
+      },
+      {
+        id: 'claude-api', label: 'Claude API (Anthropic)', layer: 'Automation',
+        path: 'automation/gmail-jd-automator/main.py (generate_email)',
+        desc: 'Responsibility: Generates tailored outreach email subject + body grounded in resume content\nModel: claude-sonnet-5\nFunction: generate_email() in main.py',
+        color: '#f59e0b', value: 4
+      },
+      {
+        id: 'gmail-api', label: 'Gmail API', layer: 'Automation',
+        path: 'automation/gmail-jd-automator/main.py (gmail_auth)',
+        desc: 'Responsibility: OAuth2 authenticated access to Gmail — list drafts, fetch attachments, create drafts, label messages\nScopes: gmail.modify, gmail.compose',
+        color: '#fbbf24'
+      },
+      {
+        id: 'pdfplumber', label: 'Resume Extractor (pdfplumber)', layer: 'Automation',
+        path: 'automation/gmail-jd-automator/main.py (extract_resume_text)',
+        desc: 'Responsibility: Extracts plain text from PDF resume for Claude context\nFunction: extract_resume_text() in main.py',
+        color: '#fcd34d'
+      },
+
+      // ── Layer 7: Infra ────────────────────────────────────────────────────────
+      {
+        id: 'vercel', label: 'Vercel CDN', layer: 'Infra',
+        path: '(frontend hosting)',
+        desc: 'Responsibility: Static SPA hosting with global CDN edge network\nURL: raycast-job-tracker.vercel.app',
+        color: '#94a3b8', value: 4
+      },
+      {
+        id: 'render', label: 'Render Web Service', layer: 'Infra',
+        path: 'render.yaml',
+        desc: 'Responsibility: PaaS hosting for the .NET 9 Web API\nFile: render.yaml\nDocs: docs/01-architecture-overview.md',
+        color: '#94a3b8', value: 4
+      },
+      {
+        id: 'supabase', label: 'Supabase', layer: 'Infra',
+        path: '(backend/NextApply.Api/appsettings.json)',
+        desc: 'Responsibility: Managed PostgreSQL 15 hosting with connection pooling\nConfig: ConnectionStrings__DefaultConnection in appsettings.json',
+        color: '#94a3b8', value: 4
+      },
+
+      // ── Docs & Prompts Layer ──────────────────────────────────────────────────
+      {
+        id: 'docs-arch', label: 'docs/01-architecture-overview', layer: 'Documentation',
+        path: 'docs/01-architecture-overview.md',
+        desc: 'Responsibility: High-level system topology, tech stack, env vars, docs index\nDocs: docs/01-architecture-overview.md',
+        color: '#fb923c'
+      },
+      {
+        id: 'docs-job-app', label: 'docs/08-job-application-module', layer: 'Documentation',
+        path: 'docs/08-job-application-module.md',
+        desc: 'Responsibility: Gmail JD Automator PRD, tech docs, and NextApply integration spec\nDocs: docs/08-job-application-module.md',
+        color: '#fb923c'
+      },
+      {
+        id: 'prompt-lib', label: 'prompt-lib/ (11 prompts)', layer: 'Documentation',
+        path: 'prompt-lib/',
+        desc: 'Responsibility: SDLC system prompts — PRD, Design, Code, Test, Graphify, Refactor\nDocs: docs/09-prompt-library.md',
+        color: '#fdba74'
+      },
+      {
+        id: 'graphify-prompt', label: 'graphify.md', layer: 'Documentation',
+        path: 'prompt-lib/graphify.md',
+        desc: 'Responsibility: Knowledge Graph Architect system prompt — generates this graph\nDocs: prompt-lib/graphify.md',
+        color: '#fb923c'
+      }
+    ];
+
+    // ── Edges ─────────────────────────────────────────────────────────────────
+    const rawEdges = [
+      // Entry → Frontend
+      { from: 'browser', to: 'react-spa', label: 'loads' },
+      { from: 'raycast-ext', to: 'jobs-ctrl', label: 'origin' },
+
+      // Frontend internals
+      { from: 'react-spa', to: 'vite', label: 'built by' },
+      { from: 'react-spa', to: 'tanstack-query', label: 'uses' },
+      { from: 'react-spa', to: 'tanstack-virtual', label: 'uses' },
+      { from: 'react-spa', to: 'vanilla-css', label: 'styles' },
+      { from: 'react-spa', to: 'lucide', label: 'icons' },
+      { from: 'react-spa', to: 'job-app-panel', label: 'renders' },
+
+      // Frontend → API
+      { from: 'tanstack-query', to: 'dotnet-api', label: 'fetches' },
+      { from: 'job-app-panel', to: 'tanstack-query', label: 'via hook' },
+
+      // API Gateway internals
+      { from: 'dotnet-api', to: 'cors', label: 'middleware' },
+      { from: 'dotnet-api', to: 'api-key-middleware', label: 'middleware' },
+      { from: 'cors', to: 'api-key-middleware', label: 'then' },
+
+      // API → Controllers
+      { from: 'api-key-middleware', to: 'jobs-ctrl', label: 'routes to' },
+      { from: 'api-key-middleware', to: 'notes-ctrl', label: 'routes to' },
+      { from: 'api-key-middleware', to: 'outreach-ctrl', label: 'routes to' },
+      { from: 'api-key-middleware', to: 'dashboard-ctrl', label: 'routes to' },
+      { from: 'api-key-middleware', to: 'settings-ctrl', label: 'routes to' },
+      { from: 'api-key-middleware', to: 'import-ctrl', label: 'routes to' },
+
+      // Controllers → Data
+      { from: 'jobs-ctrl', to: 'ef-core', label: 'via' },
+      { from: 'notes-ctrl', to: 'ef-core', label: 'via' },
+      { from: 'outreach-ctrl', to: 'ef-core', label: 'via' },
+      { from: 'dashboard-ctrl', to: 'ef-core', label: 'via' },
+      { from: 'import-ctrl', to: 'ef-core', label: 'via' },
+      { from: 'ef-core', to: 'job-model', label: 'maps' },
+      { from: 'ef-core', to: 'note-model', label: 'maps' },
+      { from: 'ef-core', to: 'outreach-model', label: 'maps' },
+      { from: 'ef-core', to: 'postgres', label: 'persists to' },
+      { from: 'migrations', to: 'postgres', label: 'migrates' },
+      { from: 'ef-core', to: 'migrations', label: 'tracks' },
+
+      // Automation internals
+      { from: 'automator', to: 'gmail-api', label: 'reads/writes' },
+      { from: 'automator', to: 'tesseract', label: 'OCRs via' },
+      { from: 'automator', to: 'claude-api', label: 'generates via' },
+      { from: 'automator', to: 'pdfplumber', label: 'reads resume' },
+      { from: 'automator', to: 'import-ctrl', label: 'POST webhook' },
+
+      // Infra
+      { from: 'react-spa', to: 'vercel', label: 'hosted on' },
+      { from: 'dotnet-api', to: 'render', label: 'hosted on' },
+      { from: 'postgres', to: 'supabase', label: 'hosted on' },
+
+      // Docs
+      { from: 'docs-arch', to: 'docs-job-app', label: 'links to' },
+      { from: 'prompt-lib', to: 'graphify-prompt', label: 'includes' },
+      { from: 'graphify-prompt', to: 'docs-arch', label: 'generates' },
+    ];
+
+    ];
+
+
+    let currentMode = 'graphify'; // 'graphify' or 'cards'
+    let selectedLayers = new Set(rawNodes.map(n => n.layer));
+
+    // Vis.js DataSets
+    const nodesDataSet = new vis.DataSet([]);
+    const edgesDataSet = new vis.DataSet([]);
+
+    const container = document.getElementById('mynetwork');
+    const networkData = { nodes: nodesDataSet, edges: edgesDataSet };
+
+    function getOptions(mode) {
+      if (mode === 'graphify') {
+        return {
+          nodes: {
+            font: { face: 'Inter', color: '#CBD5E1', size: 11 },
+            borderWidth: 0,
+            shadow: { enabled: true, color: 'rgba(0,0,0,0.6)', size: 8, x: 0, y: 2 }
+          },
+          edges: {
+            dashes: [4, 4],
+            smooth: false, // Straight vectors
+            color: { color: 'rgba(255, 255, 255, 0.25)', highlight: '#818CF8' },
+            width: 1.2
+          },
+          physics: {
+            solver: 'forceAtlas2Based',
+            forceAtlas2Based: {
+              gravitationalConstant: -150,
+              centralGravity: 0.008,
+              springLength: 170,
+              springConstant: 0.04,
+              damping: 0.4
+            },
+            maxVelocity: 50,
+            timestep: 0.35,
+            stabilization: { iterations: 200 }
+          },
+          interaction: { hover: true, tooltipDelay: 20 }
+        };
+      } else {
+        // Structured Cards Mode
+        return {
+          nodes: {
+            font: { face: 'Inter', color: '#1E293B', size: 12 },
+            borderWidth: 1.5,
+            shadow: { enabled: true, color: 'rgba(0,0,0,0.06)', size: 6, x: 0, y: 3 }
+          },
+          edges: {
+            dashes: [4, 4],
+            arrows: 'to',
+            color: { color: '#94A3B8', highlight: '#4F46E5' },
+            width: 1.5,
+            smooth: { type: 'cubicBezier' }
+          },
+          physics: {
+            solver: 'barnesHut',
+            barnesHut: { gravitationalConstant: -3500, centralGravity: 0.2, springLength: 140 }
+          },
+          interaction: { hover: true, tooltipDelay: 20 }
+        };
+      }
+    }
+
+    let network = new vis.Network(container, networkData, getOptions('graphify'));
+
+    function renderGraph() {
+      const activeNodes = rawNodes.filter(n => selectedLayers.has(n.layer));
+      const activeNodeIds = new Set(activeNodes.map(n => n.id));
+      const activeEdges = rawEdges.filter(e => activeNodeIds.has(e.from) && activeNodeIds.has(e.to));
+
+      // Calculate node connection degree dynamically
+      const nodeDegreeMap = {};
+      activeNodes.forEach(n => nodeDegreeMap[n.id] = 0);
+      activeEdges.forEach(e => {
+        if (nodeDegreeMap[e.from] !== undefined) nodeDegreeMap[e.from]++;
+        if (nodeDegreeMap[e.to] !== undefined) nodeDegreeMap[e.to]++;
+      });
+
+      const formattedNodes = activeNodes.map(n => {
+        const tooltipText = `${n.label}  ·  ${n.layer}`;
+        const degree = nodeDegreeMap[n.id] || 1;
+        // Standard size = 10px, scales up dynamically with connection count
+        const dynamicSize = Math.max(10, 10 + (degree * 2.5));
+
+        if (currentMode === 'graphify') {
+          return {
+            id: n.id,
+            label: n.label,
+            title: tooltipText,
+            shape: 'dot',
+            size: dynamicSize,
+            color: {
+              background: n.color,
+              highlight: { background: '#FFFFFF', border: n.color }
+            }
+          };
+        } else {
+          return {
+            id: n.id,
+            label: `${n.label}\n(${n.layer})`,
+            title: tooltipText,
+            shape: 'box',
+            color: {
+              background: '#FFFFFF',
+              border: n.color,
+              highlight: { background: '#EEF2FF', border: '#4F46E5' }
+            }
+          };
+        }
+      });
+
+      nodesDataSet.clear();
+      edgesDataSet.clear();
+      nodesDataSet.add(formattedNodes);
+      edgesDataSet.add(activeEdges);
+
+      network.setOptions(getOptions(currentMode));
+
+      // Update footer stats
+      document.getElementById('stat-footer-text').textContent = 
+        `${activeNodes.length} nodes · ${activeEdges.length} edges · ${selectedLayers.size} layers`;
+
+      // Auto-fit after physics stabilization
+      network.once('stabilizationIterationsDone', function () {
+        network.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+      });
+    }
+
+    // Build Community Checkboxes in Sidebar
+    function initLayerCheckboxes() {
+      const container = document.getElementById('layer-checkboxes-container');
+      container.innerHTML = '';
+
+      const layers = Array.from(new Set(rawNodes.map(n => n.layer)));
+
+      layers.forEach(layer => {
+        const sampleNode = rawNodes.find(n => n.layer === layer);
+        const label = document.createElement('label');
+        label.className = 'flex items-center justify-between text-slate-300 text-xs cursor-pointer font-medium hover:text-white transition-all';
+        label.innerHTML = `
+          <div class="flex items-center gap-2">
+            <input type="checkbox" value="${layer}" checked class="layer-chk rounded border-slate-700 bg-slate-800 text-indigo-600 focus:ring-0 accent-indigo-600 cursor-pointer">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full inline-block" style="background-color: ${sampleNode.color}"></span>
+              ${layer}
+            </span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">(${rawNodes.filter(n => n.layer === layer).length})</span>
+        `;
+
+        container.appendChild(label);
+      });
+
+      // Bind event listeners
+      container.querySelectorAll('.layer-chk').forEach(chk => {
+        chk.addEventListener('change', (e) => {
+          if (e.target.checked) selectedLayers.add(e.target.value);
+          else selectedLayers.delete(e.target.value);
+
+          document.getElementById('chk-select-all').checked = selectedLayers.size === layers.length;
+          renderGraph();
+        });
+      });
+
+      document.getElementById('chk-select-all').addEventListener('change', (e) => {
+        const isChecked = e.target.checked;
+        container.querySelectorAll('.layer-chk').forEach(chk => {
+          chk.checked = isChecked;
+        });
+        if (isChecked) selectedLayers = new Set(layers);
+        else selectedLayers.clear();
+        renderGraph();
+      });
+    }
+
+    // Mode Switcher Event Wiring
+    const btnGraphify = document.getElementById('btn-mode-graphify');
+    const btnCards = document.getElementById('btn-mode-cards');
+    const btnFit = document.getElementById('btn-fit-view');
+    const bodyRoot = document.getElementById('body-root');
+    const headerRoot = document.getElementById('header-root');
+    const sidebarRoot = document.getElementById('sidebar-root');
+
+    btnFit.addEventListener('click', () => {
+      network.fit({ animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
+    });
+
+    function setMode(mode) {
+      currentMode = mode;
+      if (mode === 'graphify') {
+        btnGraphify.className = 'px-3.5 py-1.5 rounded-lg font-semibold transition-all bg-indigo-600 text-white shadow-xs flex items-center gap-1.5 cursor-pointer';
+        btnCards.className = 'px-3.5 py-1.5 rounded-lg font-semibold transition-all text-slate-400 hover:text-white flex items-center gap-1.5 cursor-pointer';
+        bodyRoot.className = 'bg-[#0B0F19] text-slate-100 min-h-screen flex flex-col overflow-hidden select-none';
+        headerRoot.className = 'h-16 bg-[#0E1322] border-b border-slate-800/80 px-6 flex items-center justify-between z-10';
+        sidebarRoot.className = 'w-80 bg-[#111625] border-l border-slate-800/80 p-5 flex flex-col justify-between z-10 transition-colors duration-300';
+        document.getElementById('mynetwork').style.backgroundColor = '#0B0F19';
+      } else {
+        btnCards.className = 'px-3.5 py-1.5 rounded-lg font-semibold transition-all bg-indigo-600 text-white shadow-xs flex items-center gap-1.5 cursor-pointer';
+        btnGraphify.className = 'px-3.5 py-1.5 rounded-lg font-semibold transition-all text-slate-400 hover:text-slate-900 flex items-center gap-1.5 cursor-pointer';
+        bodyRoot.className = 'bg-slate-50 text-slate-900 min-h-screen flex flex-col overflow-hidden select-none';
+        headerRoot.className = 'h-16 bg-white border-b border-slate-200 px-6 flex items-center justify-between z-10';
+        sidebarRoot.className = 'w-80 bg-white border-l border-slate-200 p-5 flex flex-col justify-between z-10 transition-colors duration-300';
+        document.getElementById('mynetwork').style.backgroundColor = '#F8FAFC';
+      }
+      renderGraph();
+    }
+
+    btnGraphify.addEventListener('click', () => setMode('graphify'));
+    btnCards.addEventListener('click', () => setMode('cards'));
+
+    // Node Inspector Handling
+    network.on('selectNode', function (params) {
+      const nodeId = params.nodes[0];
+      const nodeData = rawNodes.find(n => n.id === nodeId);
+      if (!nodeData) return;
+
+      document.getElementById('node-sub').classList.add('hidden');
+      document.getElementById('node-details').classList.remove('hidden');
+
+      document.getElementById('node-badge').textContent = nodeData.layer;
+      document.getElementById('node-badge').style.borderColor = `${nodeData.color}60`;
+      document.getElementById('node-badge').style.color = nodeData.color;
+
+      document.getElementById('node-title').textContent = nodeData.label;
+      document.getElementById('node-path').textContent = nodeData.path;
+      document.getElementById('node-desc').textContent = nodeData.desc;
+
+      const connectedEdges = rawEdges.filter(e => e.from === nodeId || e.to === nodeId);
+      const connList = document.getElementById('node-connections');
+      connList.innerHTML = '';
+
+      if (connectedEdges.length === 0) {
+        connList.innerHTML = '<li class="text-slate-500 italic">No connected dependencies</li>';
+      } else {
+        connectedEdges.forEach(e => {
+          const isOut = e.from === nodeId;
+          const targetId = isOut ? e.to : e.from;
+          const targetNode = rawNodes.find(n => n.id === targetId);
+
+          const li = document.createElement('li');
+          li.className = 'flex items-center justify-between text-xs py-1 border-b border-slate-800/40';
+          li.innerHTML = `
+            <span class="flex items-center gap-1.5 font-mono text-[11px] text-slate-300">
+              <span class="${isOut ? 'text-indigo-400 font-bold' : 'text-emerald-400 font-bold'}">${isOut ? '→' : '←'}</span>
+              ${targetNode ? targetNode.label : targetId}
+            </span>
+            <span class="text-[10px] text-slate-500 font-sans">${isOut ? 'uses' : 'used by'}</span>
+          `;
+          connList.appendChild(li);
+        });
+      }
+    });
+
+    network.on('deselectNode', function () {
+      document.getElementById('node-sub').classList.remove('hidden');
+      document.getElementById('node-details').classList.add('hidden');
+    });
+
+    // Node Search Input
+    document.getElementById('search-input').addEventListener('input', function (e) {
+      const term = e.target.value.toLowerCase().trim();
+      if (!term) return;
+      const match = rawNodes.find(n => n.label.toLowerCase().includes(term) || n.id.toLowerCase().includes(term) || n.desc.toLowerCase().includes(term));
+      if (match && selectedLayers.has(match.layer)) {
+        network.selectNodes([match.id]);
+        network.focus(match.id, { scale: 1.3, animation: true });
+        network.emit('selectNode', { nodes: [match.id] });
+      }
+    });
+
+    // Init
+    initLayerCheckboxes();
+    renderGraph();
+  </script>
+</body>
+</html>

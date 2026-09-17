@@ -133,6 +133,13 @@ function mapJobToFrontend(job: any): JobItem {
     followUpDate: job.followUpDate || '',
     responseStatus: '',
     interviewStage: '',
+
+    // Gmail JD Automator integration fields
+    gmailDraftId: job.gmailDraftId || undefined,
+    automatorStatus: job.automatorStatus || undefined,
+    outreachSubject: job.outreachSubject || undefined,
+    outreachBodyPreview: job.outreachBodyPreview || undefined,
+    createdAt: job.createdAt || undefined,
   };
 }
 
@@ -160,5 +167,9 @@ function mapPatchToBackend(patch: Partial<JobItem>): any {
     if (patch.appliedDate !== undefined) backendPatch.appliedDate = patch.appliedDate || null;
     if (patch.followUpDate !== undefined) backendPatch.followUpDate = patch.followUpDate || null;
     if (patch.domain !== undefined) backendPatch.domain = mapDomainToBackend(patch.domain);
+    if (patch.automatorStatus !== undefined) backendPatch.automatorStatus = patch.automatorStatus;
+    if (patch.gmailDraftId !== undefined) backendPatch.gmailDraftId = patch.gmailDraftId;
+    if (patch.outreachSubject !== undefined) backendPatch.outreachSubject = patch.outreachSubject;
+    if (patch.outreachBodyPreview !== undefined) backendPatch.outreachBodyPreview = patch.outreachBodyPreview;
     return backendPatch;
 }

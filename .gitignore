@@ -1,7 +1,18 @@
-# Frontend
+# Dependencies & Builds
+node_modules/
 frontend/node_modules/
 frontend/dist/
 frontend/dist-ssr/
+dist/
+
+# Automation sidecar secrets and generated data
+automation/**/credentials/
+automation/**/token.json
+automation/**/.venv/
+automation/**/venv/
+automation/**/__pycache__/
+automation/**/processed_drafts.json
+automation/**/review_log.csv
 
 # Backend
 backend/NextApply.Api/bin/

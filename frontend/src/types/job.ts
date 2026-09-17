@@ -10,7 +10,20 @@ export type ApplicationStatus =
   | 'Archived'
   | string;
 
-export type ViewMode = 'dashboard' | 'all' | 'ready' | 'applied' | 'interview' | 'offers' | 'rejected' | 'archived' | 'outreach-templates' | 'support';
+export type ViewMode = 
+  | 'dashboard' 
+  | 'all' 
+  | 'ready' 
+  | 'applied' 
+  | 'interview' 
+  | 'offers' 
+  | 'rejected' 
+  | 'archived' 
+  | 'outreach-templates' 
+  | 'support'
+  | 'job-applications'
+  | 'graph';
+
 export type JobDomain = 'sde' | 'cloud' | 'dual' | 'general';
 export type ActiveDomain = 'all' | 'sde' | 'cloud';
 
@@ -42,6 +55,13 @@ export interface JobItem {
   nextAction: string;
   notes: string;
   domain: JobDomain; // Auto-classified from keywords or Excel Track override
+
+  // Gmail JD Automator integration fields
+  gmailDraftId?: string;
+  automatorStatus?: 'Draft Created' | 'Sent' | 'Skipped' | string;
+  outreachSubject?: string;
+  outreachBodyPreview?: string;
+  createdAt?: string;
 }
 
 export interface FilterState {

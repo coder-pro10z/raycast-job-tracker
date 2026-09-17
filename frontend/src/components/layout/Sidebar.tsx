@@ -17,7 +17,9 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  BadgeHelp
+  BadgeHelp,
+  Mail,
+  Share2
 } from 'lucide-react';
 
 interface NavItem {
@@ -255,8 +257,52 @@ export const Sidebar: React.FC = () => {
         {/* Outreach Hub Section */}
         <div style={{ padding: '4px var(--space-4)' }}>
           <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '4px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
-            {isSidebarCollapsed ? '...' : 'Outreach Hub'}
+            {isSidebarCollapsed ? '...' : 'Outreach & Apps'}
           </div>
+
+          {/* Job Applications (Automator) */}
+          <div 
+            onClick={() => handleNavSelect('job-applications')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: isSidebarCollapsed ? 'center' : 'space-between',
+              padding: isSidebarCollapsed ? '8px' : '6px 12px',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: filterState.viewMode === 'job-applications' ? 'var(--bg-active)' : 'transparent',
+              color: filterState.viewMode === 'job-applications' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              cursor: 'pointer',
+              transition: 'all 150ms ease',
+              fontWeight: filterState.viewMode === 'job-applications' ? 600 : 500,
+              marginBottom: '2px',
+            }}
+            onMouseEnter={(e) => {
+              if (filterState.viewMode !== 'job-applications') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+            }}
+            onMouseLeave={(e) => {
+              if (filterState.viewMode !== 'job-applications') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
+            title={isSidebarCollapsed ? "Job Applications" : undefined}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
+              <Mail size={18} style={{ color: filterState.viewMode === 'job-applications' ? '#38bdf8' : 'var(--text-muted)' }} />
+              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Job Applications</span>}
+            </div>
+            {!isSidebarCollapsed && jobs.filter(j => Boolean(j.gmailDraftId)).length > 0 && (
+              <span style={{
+                fontSize: '0.6875rem',
+                fontWeight: 700,
+                padding: '1px 6px',
+                borderRadius: 'var(--radius-full)',
+                backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                color: '#38bdf8',
+              }}>
+                {jobs.filter(j => Boolean(j.gmailDraftId)).length}
+              </span>
+            )}
+          </div>
+
+          {/* Cold Templates */}
           <div 
             onClick={() => handleNavSelect('outreach-templates')}
             style={{
@@ -270,6 +316,7 @@ export const Sidebar: React.FC = () => {
               cursor: 'pointer',
               transition: 'all 150ms ease',
               fontWeight: filterState.viewMode === 'outreach-templates' ? 600 : 500,
+              marginBottom: '2px',
             }}
             onMouseEnter={(e) => {
               if (filterState.viewMode !== 'outreach-templates') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
@@ -282,6 +329,35 @@ export const Sidebar: React.FC = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
               <MessageSquare size={18} style={{ color: filterState.viewMode === 'outreach-templates' ? '#38bdf8' : 'var(--text-muted)' }} />
               {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Cold Templates</span>}
+            </div>
+          </div>
+
+          {/* Architecture Graph */}
+          <div 
+            onClick={() => handleNavSelect('graph')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
+              padding: isSidebarCollapsed ? '8px' : '6px 12px',
+              borderRadius: 'var(--radius-sm)',
+              backgroundColor: filterState.viewMode === 'graph' ? 'var(--bg-active)' : 'transparent',
+              color: filterState.viewMode === 'graph' ? 'var(--text-primary)' : 'var(--text-secondary)',
+              cursor: 'pointer',
+              transition: 'all 150ms ease',
+              fontWeight: filterState.viewMode === 'graph' ? 600 : 500,
+            }}
+            onMouseEnter={(e) => {
+              if (filterState.viewMode !== 'graph') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
+            }}
+            onMouseLeave={(e) => {
+              if (filterState.viewMode !== 'graph') e.currentTarget.style.backgroundColor = 'transparent';
+            }}
+            title={isSidebarCollapsed ? "Architecture Graph" : undefined}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
+              <Share2 size={18} style={{ color: filterState.viewMode === 'graph' ? '#818cf8' : 'var(--text-muted)' }} />
+              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>System Graph</span>}
             </div>
           </div>
         </div>

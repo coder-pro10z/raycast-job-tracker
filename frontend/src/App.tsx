@@ -12,10 +12,19 @@ import { ColdOutreachWorkspace } from './components/outreach/ColdOutreachWorkspa
 
 import { SupportPage } from './components/dashboard/SupportPage';
 import { WorkspaceLoader } from './components/layout/WorkspaceLoader';
+import { JobApplicationPanel } from './components/jobapp/JobApplicationPanel';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJobs } from './hooks/useJobs';
 import { PassphraseGate } from './components/auth/PassphraseGate';
+
+const GraphViewer: React.FC = () => (
+  <iframe
+    src="/graph.html"
+    style={{ width: '100%', height: 'calc(100dvh - 64px)', border: 'none', backgroundColor: '#0B0F19' }}
+    title="NextApply System Architecture Graph"
+  />
+);
 
 const queryClient = new QueryClient();
 
@@ -94,6 +103,10 @@ const MainWorkspace: React.FC = () => {
           <SupportPage />
         ) : filterState.viewMode === 'outreach-templates' ? (
           <ColdOutreachWorkspace />
+        ) : filterState.viewMode === 'job-applications' ? (
+          <JobApplicationPanel />
+        ) : filterState.viewMode === 'graph' ? (
+          <GraphViewer />
         ) : (
           <>
             <DashboardMetrics />

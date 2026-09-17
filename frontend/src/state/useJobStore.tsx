@@ -51,7 +51,7 @@ const getSavedDomain = (): ActiveDomain => {
 
 const getSavedViewMode = (): ViewMode => {
   const saved = localStorage.getItem('job_tracker_view_mode') as ViewMode;
-  const valid: ViewMode[] = ['dashboard', 'all', 'ready', 'applied', 'interview', 'offers', 'rejected', 'archived', 'outreach-templates'];
+  const valid: ViewMode[] = ['dashboard', 'all', 'ready', 'applied', 'interview', 'offers', 'rejected', 'archived', 'outreach-templates', 'support', 'job-applications', 'graph'];
   return (saved && valid.includes(saved)) ? saved : 'all';
 };
 

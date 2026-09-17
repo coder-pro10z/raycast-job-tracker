@@ -11,6 +11,12 @@ graph TD
     Vercel --> API["⚙️ Render\n.NET 9 Web API"]
     API --> Supabase[("🐘 Supabase\nPostgreSQL 15")]
     Browser --> LinkedIn["🔗 LinkedIn\n(Opens in new tab)"]
+
+    User --> Automator["🐍 Gmail JD Automator\n(Python sidecar)"]
+    Automator --> GmailAPI["📧 Gmail API"]
+    Automator --> ClaudeAPI["🤖 Claude API\n(Anthropic)"]
+    Automator --> Tesseract["🔍 Tesseract OCR"]
+    Automator -->|"POST /api/jobs/import-from-automator"| API
 ```
 
 ## Technology Stack
@@ -67,15 +73,66 @@ Job-Tracker/
 │   │   ├── types/       # TypeScript types
 │   │   └── utils/       # LinkedIn URL builders, helpers
 │   └── public/
+│       └── graph.html       # Graphify architecture visualizer
 ├── backend/
 │   └── NextApply.Api/   # .NET 9 REST API
 │       ├── Controllers/
+│       │   └── JobApplicationImportController.cs  # [Phase 2]
 │       ├── Models/
 │       ├── DTOs/
 │       ├── Data/        # EF Core DbContext
 │       ├── Middleware/  # API key auth
 │       └── Migrations/
+├── automation/
+│   └── gmail-jd-automator/  # Python sidecar — OCR + Claude outreach
+├── prompt-lib/              # 11 SDLC system prompts
+├── tests/                   # Vitest test suite
 ├── sheets/              # Master Excel tracking files
 ├── docs/                # This documentation
+│   └── phases/          # Per-phase implementation docs
 └── archive/
 ```
+
+---
+
+## Job Application Automation Layer
+
+The **Gmail JD Automator** (`automation/gmail-jd-automator/`) is a Python sidecar that:
+
+1. Scans Gmail drafts containing job-description screenshots
+2. OCRs images with Tesseract to extract JD text
+3. Calls Claude to generate a tailored outreach email grounded in the user's resume
+4. Creates a new Gmail draft (or sends directly if configured)
+5. Optionally POSTs to `POST /api/jobs/import-from-automator` to create a job record in NextApply
+
+This creates a closed loop: outreach is automated **and** tracked in the same platform.
+
+Full documentation: [`docs/08-job-application-module.md`](./08-job-application-module.md)
+
+---
+
+## Documentation Index
+
+| # | Doc | Contents |
+|---|-----|---------|
+| 01 | [Architecture Overview](./01-architecture-overview.md) | This file — high-level topology, tech stack, env vars, auth flow |
+| 02 | [Frontend](./02-frontend.md) | React component structure, hooks, TanStack Query patterns |
+| 03 | [Backend](./03-backend.md) | .NET API endpoints, DTOs, middleware, error handling |
+| 04 | [Database](./04-database.md) | PostgreSQL schema, EF Core models, migration history |
+| 05 | [Data Flow](./05-data-flow.md) | End-to-end request/response flows |
+| 06 | [Design System](./06-design-system.md) | CSS tokens, typography, spacing, color palette |
+| 07 | [Feature Reference](./07-feature-reference.md) | Every user-facing feature: purpose, files, API calls |
+| 08 | [Job Application Module](./08-job-application-module.md) | Gmail JD Automator PRD + technical docs + API integration |
+| 09 | [Prompt Library](./09-prompt-library.md) | Index of all 11 SDLC prompts in `prompt-lib/` |
+| 10 | [Graphify Guide](./10-graphify-guide.md) | How to use, extend, and regenerate the architecture graph |
+
+---
+
+## Architecture Visualizer
+
+An interactive **Graphify Dark Constellation** graph of the full system architecture is available at:
+
+- **Local dev:** `http://localhost:5173/graph`  
+- **Direct file:** `frontend/public/graph.html`
+
+See [`docs/10-graphify-guide.md`](./10-graphify-guide.md) for details.

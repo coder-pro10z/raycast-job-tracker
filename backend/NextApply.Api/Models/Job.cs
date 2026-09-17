@@ -40,5 +40,15 @@ namespace NextApply.Api.Models
 
         public int? ClonedFromJobId { get; set; }
         public Job? ClonedFromJob { get; set; }
+
+        // ── Gmail JD Automator integration fields ─────────────────────────────
+        /// <summary>Gmail draft ID — used as idempotency key in import-from-automator endpoint.</summary>
+        public string? GmailDraftId { get; set; }
+        /// <summary>Automator run result: "Draft Created" | "Sent" | "Skipped".</summary>
+        public string? AutomatorStatus { get; set; }
+        /// <summary>Claude-generated subject line for the outreach email.</summary>
+        public string? OutreachSubject { get; set; }
+        /// <summary>First 300 characters of the Claude-generated email body.</summary>
+        public string? OutreachBodyPreview { get; set; }
     }
 }

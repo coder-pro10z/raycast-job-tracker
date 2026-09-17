@@ -1,0 +1,13 @@
+{
+  "name": "job-tracker-monorepo",
+  "private": true,
+  "scripts": {
+    "test": "vitest run",
+    "test:automation": "vitest run tests/automation",
+    "test:frontend": "vitest run tests/frontend"
+  },
+  "devDependencies": {
+    "jsdom": "^27.0.0",
+    "vitest": "^5.0.0"
+  }
+}

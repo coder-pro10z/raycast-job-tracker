@@ -1,0 +1,19 @@
+# OAuth credentials — never commit
+credentials/credentials.json
+credentials/token.json
+
+# Runtime secrets
+.env
+
+# Generated output files
+processed_drafts.json
+review_log.csv
+
+# Python runtime
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
