@@ -32,6 +32,7 @@ The backend is secured using an API key mechanism via the `ApiKeyAuthMiddleware`
 | Dashboard | GET | `/api/dashboard/weekly-summary` | Yes | None | None | `MetricsDto` |
 | Settings | GET | `/api/settings` | Yes | None | None | `SettingsDto` |
 | Settings | PUT | `/api/settings` | Yes | None | `SettingsDto` | `SettingsDto` |
+| JobApplicationImport | POST | `/api/jobs/import-from-automator` | Yes | None | `JobApplicationImportDto` | `201 Created` / `200 OK` (idempotent) |
 
 ## Detailed Endpoint Specs
 
@@ -53,6 +54,35 @@ Returns the updated Job object.
 **Response:** `201 Created`
 Returns the newly created Job object.
 
+### POST /api/jobs/import-from-automator
+Webhook endpoint called by the Python sidecar (`automation/gmail-jd-automator/main.py`) after processing an outreach email draft.
+- **Idempotency**: Checks if `GmailDraftId` already exists. Returns `200 OK` if duplicate, `201 Created` if new.
+- **Company Name Extraction**: Uses regex heuristics on `GeneratedSubject` and `RawJdText` to extract company names automatically.
+
+**Request:**
+```json
+{
+  "gmailDraftId": "18e47f9a123bc",
+  "recipientEmail": "recruiter@acme.com",
+  "generatedSubject": "Senior .NET Developer – ACME Corp",
+  "generatedBodyPreview": "Hi John, I noticed your opening...",
+  "status": "DRAFT CREATED",
+  "rawJdText": "Senior .NET Developer at ACME Corp..."
+}
+```
+**Response:** `201 Created` with full `Job` object.
+
+## JobApplicationImportDto Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `GmailDraftId` | string | Unique Gmail draft ID used as idempotency key |
+| `RecipientEmail` | string | Email from the draft `To:` header |
+| `GeneratedSubject` | string | Claude-generated email subject |
+| `GeneratedBodyPreview` | string | First 300 characters of email body |
+| `Status` | string | "DRAFT CREATED", "SENT", or "SKIPPED" |
+| `RawJdText` | string | Extracted JD text (up to 2000 chars) for parsing |
+
 ## JobUpdateDto Fields
 
 | Field | Type | Description |
@@ -69,6 +99,10 @@ Returns the newly created Job object.
 | ReferralNeeded | bool? | Nullable boolean |
 | ReferralContactName | string | Name of contact |
 | HrRecruiterName | string | Name of recruiter |
+| GmailDraftId | string | Unique Gmail draft ID |
+| AutomatorStatus | string | "Draft Created", "Sent", "Skipped" |
+| OutreachSubject | string | Generated outreach subject |
+| OutreachBodyPreview | string | Generated outreach snippet |
 
 ## Clone Job Logic
 
@@ -101,22 +135,23 @@ sequenceDiagram
     participant Controller
     
     Client->>CORS: Request
-    CORS-->>Client: Preflight Response (if applicable)
-    CORS->>ApiKeyAuth: Forward Request
-    
-    alt Invalid API Key
-        ApiKeyAuth-->>Client: 401 Unauthorized
-    else Valid API Key
-        ApiKeyAuth->>Controller: Process Request
-        Controller-->>ApiKeyAuth: Response Data
-        ApiKeyAuth-->>CORS: Forward Response
-        CORS-->>Client: Final Response
+    alt Preflight OPTIONS
+        CORS-->>Client: 204 No Content (Headers allowed)
+    else Actual Request
+        CORS->>ApiKeyAuth: Next()
+        alt Missing or Invalid X-Api-Key
+            ApiKeyAuth-->>Client: 401 Unauthorized
+        else Valid Key
+            ApiKeyAuth->>Controller: Next()
+            Controller-->>Client: Response (200, 201, etc.)
+        end
     end
 ```
 
 ## Error Responses
 
 - **401 Unauthorized**: Missing or invalid `X-Api-Key` header.
+- **400 Bad Request**: Validation failure (missing required fields, invalid JSON).
 - **404 Not Found**: The requested resource (Job, Note, etc.) does not exist.
 - **500 Internal Server Error**: Unhandled backend exception.
 
@@ -129,20 +164,22 @@ backend/
 │   ├── NotesController.cs
 │   ├── OutreachController.cs
 │   ├── DashboardController.cs
-│   └── SettingsController.cs
+│   ├── SettingsController.cs
+│   └── JobApplicationImportController.cs  # Automator webhook import
 ├── Data/
 │   ├── ApplicationDbContext.cs
 │   └── Migrations/
 ├── DTOs/
 │   ├── JobCreateDto.cs
 │   ├── JobUpdateDto.cs
+│   ├── JobApplicationImportDto.cs         # Automator payload DTO
 │   └── ...
 ├── Middleware/
 │   └── ApiKeyAuthMiddleware.cs
 ├── Models/
-│   ├── Job.cs
+│   ├── Job.cs                             # Contains AutomatorStatus, GmailDraftId
 │   ├── Note.cs
-│   └── Outreach.cs
+│   └── OutreachTemplateUsed.cs
 ├── Program.cs
 └── appsettings.json
 ```

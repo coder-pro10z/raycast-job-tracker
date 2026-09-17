@@ -4,31 +4,33 @@
 
 ```
 frontend/src/
-├── App.tsx                   # Root: QueryClientProvider + JobProvider + Router
+├── App.tsx                   # Root: QueryClientProvider + JobProvider + Router + GraphViewer
 ├── main.tsx                  # Entry point
 ├── index.css                 # Global CSS, design tokens
 ├── components/
 │   ├── NewJobModal.tsx        # Modal for creating a new job from scratch
 │   ├── auth/                 # Auth gate components (API key entry)
-│   ├── common/               # Badge, StatusBadgeDropdown
-│   ├── dashboard/            # DashboardMetrics (metric cards)
+│   ├── common/               # Badge, StatusBadgeDropdown, PriorityBadgeDropdown
+│   ├── dashboard/            # DashboardMetrics (metric cards), SupportPage
 │   ├── detail/               # JobDetailDrawer, OutreachStudio, FindLeadsMenu
-│   ├── layout/               # Header, Sidebar, main layout
-│   ├── outreach/             # Outreach template components
+│   ├── jobapp/               # JobApplicationPanel, AutomatorStatusBadge (Gmail Automator sync)
+│   ├── layout/               # Header, Sidebar, WorkspaceLoader
+│   ├── outreach/             # ColdOutreachWorkspace, template studio
 │   ├── search/               # FilterBar, CommandPalette
 │   ├── settings/             # SettingsModal
 │   ├── table/                # JobTable, EditLinkPopover, cell renderers
-│   ├── ui/                   # Generic UI primitives
+│   ├── ui/                   # Generic UI primitives, Toast
 │   └── upload/               # UploadModal (Excel import)
 ├── hooks/
-│   └── useJobs.ts            # TanStack Query hooks
+│   ├── useJobs.ts            # TanStack Query hooks (jobs CRUD, notes, clone)
+│   └── useJobApplicationImport.ts # Automator jobs query, metrics, mark-as-applied
 ├── services/
-│   ├── apiClient.ts          # Fetch wrapper, field mapping
+│   ├── apiClient.ts          # Fetch wrapper, field mapping (including automator fields)
 │   └── excelAdapter.ts       # Excel parse + export (SheetJS/xlsx)
 ├── state/
-│   └── useJobStore.tsx       # React Context store + JobProvider
+│   └── useJobStore.tsx       # React Context store + JobProvider (view modes, filters)
 ├── types/
-│   └── job.ts                # All TypeScript types (JobItem, FilterState, etc.)
+│   └── job.ts                # TypeScript types (JobItem, ViewMode, FilterState)
 └── utils/
     └── linkedinSearch.ts     # URL builders for LinkedIn people + job search
 ```
@@ -53,6 +55,13 @@ graph TD
     MainContent --> DashboardMetrics
     MainContent --> FilterBar
     MainContent --> JobTable
+    MainContent --> JobApplicationPanel[JobApplicationPanel (from Automator)]
+    MainContent --> ColdOutreachWorkspace[ColdOutreachWorkspace]
+    MainContent --> GraphViewer[GraphViewer (iframe to /graph.html)]
+    MainContent --> SupportPage[SupportPage]
+
+    JobApplicationPanel --> AutomatorStatusBadge
+    JobApplicationPanel --> StatusBadgeDropdown
 
     JobTable --> EditLinkPopover
     JobTable --> FindLeadsMenu
@@ -99,11 +108,27 @@ Data fetching is handled by TanStack Query (v5).
 | Hook | Query Key | Stale Time | Purpose |
 | --- | --- | --- | --- |
 | `useJobs` | `['jobs']` | 5 mins | Fetches all jobs with Notes included |
+| `useJobApplicationImport` | `['jobs']` | 5 mins | Derived hook filtering automator jobs (`gmailDraftId != null`), computes metrics, provides `markAsApplied` |
 | `useUpdateJob` | N/A | N/A | Updates a job. Performs optimistic UI update. |
 | `useCreateJob` | N/A | N/A | Creates a new job. Invalidates `['jobs']` on success. |
 | `useAddNote` | N/A | N/A | Adds a note to a job. Invalidates `['jobs']` on success. |
 | `useCloneJob` | N/A | N/A | Clones a job. Invalidates `['jobs']` on success. |
 | `useCheckDuplicateJob` | `['check-duplicate', company, role, id]` | 60 secs | Checks for duplicate job entries based on company and role. |
+
+## Job Applications (Automator) Panel
+
+The `JobApplicationPanel` (`components/jobapp/JobApplicationPanel.tsx`) renders all opportunities imported via the Gmail JD Automator sidecar:
+- **Badge Indicators:** `AutomatorStatusBadge` displays run results: `Draft Created` (blue), `Sent` (green), and `Skipped` (amber).
+- **Direct Gmail Deep Links:** "Open Draft" anchors directly to `https://mail.google.com/mail/#drafts/<gmailDraftId>`.
+- **One-Click Application:** "Mark Applied" triggers an optimistic PATCH to transition `applicationStatus` to `Applied`, automatically setting the `appliedDate`.
+- **Full Lineage:** Clicking any row opens the full `JobDetailDrawer` for notes and LinkedIn lead discovery.
+
+## System Architecture Graph (Graphify)
+
+Selecting **System Graph** from the sidebar loads `/graph.html` inside `GraphViewer` (`App.tsx`):
+- Features both **Dark Constellation Mode** (`#0B0F19`) and **Structured Cards Mode**.
+- Interactive Vis.js network with 42 nodes across all 7 layers of NextApply.
+- Two-Tier Rule enforcement: clicking any node opens the Node Inspector sidebar with file paths, responsibilities, API endpoints, and links to `/docs`.
 
 ## Optimistic Updates
 

@@ -144,3 +144,47 @@ flowchart TD
     O --> P{Sort Config?}
     P -->|Sort Field/Dir| Q[Final Displayed Jobs]
 ```
+
+---
+
+## Automator → NextApply Webhook & UI Flow
+
+This flow connects the offline Python automation pipeline directly into the live NextApply tracker.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Gmail as Gmail API
+    participant Automator as Python Automator (main.py)
+    participant Claude as Claude API
+    participant API as NextApply .NET API
+    participant DB as Supabase PostgreSQL
+    participant UI as React UI (JobApplicationPanel)
+
+    Automator->>Gmail: List unprocessed drafts & download attachments
+    Automator->>Automator: OCR image attachments via Tesseract
+    Automator->>Claude: Generate tailored email subject + body from resume
+    Claude-->>Automator: Returns JSON { subject, body }
+    Automator->>Gmail: Create generated draft (or send email)
+    
+    rect rgb(30, 41, 59)
+    Note over Automator,API: Webhook Sync Step
+    Automator->>API: POST /api/jobs/import-from-automator (JobApplicationImportDto)
+    API->>DB: Check if GmailDraftId exists (Idempotency)
+    alt Draft already imported
+        DB-->>API: Existing Job record
+        API-->>Automator: 200 OK
+    else New Draft
+        API->>API: Extract company name via regex
+        API->>DB: INSERT into jobs (status: Not Started, automatorStatus: Draft Created)
+        DB-->>API: Created Job record
+        API-->>Automator: 201 Created
+    end
+    end
+
+    UI->>API: GET /api/jobs (via useJobApplicationImport)
+    API-->>UI: Returns jobs including automator fields
+    UI->>UI: User clicks "Open Draft" (opens Gmail)
+    UI->>API: User clicks "Mark Applied" -> PATCH /api/jobs/{id} (status: Applied)
+    API->>DB: UPDATE jobs SET application_status = 'Applied', applied_date = NOW()
+```

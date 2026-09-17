@@ -33,6 +33,10 @@ erDiagram
         datetime created_at
         datetime updated_at
         int cloned_from_job_id FK
+        string gmail_draft_id
+        string automator_status
+        string outreach_subject
+        string outreach_body_preview
     }
     notes {
         int id PK
@@ -88,6 +92,10 @@ erDiagram
 | `created_at` | datetime | No | CURRENT_TIMESTAMP | Record creation timestamp |
 | `updated_at` | datetime | No | CURRENT_TIMESTAMP | Record update timestamp |
 | `cloned_from_job_id`| int | Yes | null | Self-referencing FK for cloned jobs |
+| `gmail_draft_id` | string | Yes | null | Unique Gmail draft ID (idempotency key for automator sync) |
+| `automator_status` | string | Yes | null | Status from automator: "Draft Created", "Sent", "Skipped" |
+| `outreach_subject` | string | Yes | null | Claude-generated email subject line |
+| `outreach_body_preview` | string | Yes | null | First 300 characters of the generated outreach email |
 
 ### `notes`
 | Column Name | Type | Nullable | Default | Description |

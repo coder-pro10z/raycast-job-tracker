@@ -111,3 +111,17 @@
 - **Files Involved**: Header component, `linkedinSearch.ts`
 - **API Calls Made**: None.
 - **Edge Cases/Notes**: Defaults to jobs posted in the last 30 minutes.
+
+## 17. Job Applications (Automator Import)
+- **Purpose**: Centralized dashboard of outreach emails auto-generated from screenshot JDs by the Gmail JD Automator sidecar.
+- **How to Use**: Click "Job Applications" in the sidebar. Search, filter by run status, click "Open Draft" to review in Gmail, or click "Mark Applied" to update status in one click.
+- **Files Involved**: `JobApplicationPanel.tsx`, `AutomatorStatusBadge.tsx`, `useJobApplicationImport.ts`, `JobApplicationImportController.cs`
+- **API Calls Made**: POST `/api/jobs/import-from-automator` (webhook ingestion), PATCH `/api/jobs/{id}` (marking as Applied).
+- **Edge Cases/Notes**: Strict idempotency using `GmailDraftId`. Displays color-coded run badges: Draft Created (blue), Sent (green), Skipped (amber).
+
+## 18. System Architecture Graph (Graphify)
+- **Purpose**: Interactive visualizer of NextApply's 7-layer architecture (Entry, Frontend, API Gateway, Controllers, Data, Automation, Infra) with node inspections and community clustering.
+- **How to Use**: Click "System Graph" in the sidebar. Toggle between Dark Constellation and Structured Cards modes. Click any node to open the inspector with source file links, API contracts, and docs references.
+- **Files Involved**: `frontend/public/graph.html`, `GraphViewer` in `App.tsx`, `Sidebar.tsx`, `docs/10-graphify-guide.md`
+- **API Calls Made**: None (client-side interactive Vis.js graph).
+- **Edge Cases/Notes**: Fully accessible locally at `/graph` or standalone in any web browser. Embedded via responsive zero-border iframe.
