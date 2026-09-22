@@ -18,8 +18,8 @@ import {
   ChevronLeft,
   ChevronRight,
   BadgeHelp,
-  Mail,
-  Share2
+  Share2,
+  Bot
 } from 'lucide-react';
 
 interface NavItem {
@@ -282,11 +282,11 @@ export const Sidebar: React.FC = () => {
             onMouseLeave={(e) => {
               if (filterState.viewMode !== 'job-applications') e.currentTarget.style.backgroundColor = 'transparent';
             }}
-            title={isSidebarCollapsed ? "Job Applications" : undefined}
+            title={isSidebarCollapsed ? "Gmail JD Automator" : undefined}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <Mail size={18} style={{ color: filterState.viewMode === 'job-applications' ? '#38bdf8' : 'var(--text-muted)' }} />
-              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Job Applications</span>}
+              <Bot size={18} style={{ color: filterState.viewMode === 'job-applications' ? '#38bdf8' : 'var(--text-muted)' }} />
+              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Gmail JD Automator</span>}
             </div>
             {!isSidebarCollapsed && jobs.filter(j => Boolean(j.gmailDraftId)).length > 0 && (
               <span style={{
