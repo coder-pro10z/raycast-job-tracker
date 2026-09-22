@@ -104,6 +104,13 @@
   --priority-medium-text: #facc15;
   --priority-low-bg: rgba(107, 114, 128, 0.15);
   --priority-low-text: #9ca3af;
+
+  /* LinkedIn Brand Tokens */
+  --linkedin-primary: #0a66c2;
+  --linkedin-hover: #004182;
+  --linkedin-active: #095196;
+  --linkedin-bg: rgba(10, 102, 194, 0.15);
+  --linkedin-border: rgba(10, 102, 194, 0.35);
 }
 
 /* Light Mode Palette Override */
@@ -146,6 +153,13 @@
   --priority-medium-text: #a16207;
   --priority-low-bg: #f3f4f6;
   --priority-low-text: #4b5563;
+
+  /* LinkedIn Brand Tokens Light */
+  --linkedin-primary: #0a66c2;
+  --linkedin-hover: #004182;
+  --linkedin-active: #095196;
+  --linkedin-bg: rgba(10, 102, 194, 0.12);
+  --linkedin-border: rgba(10, 102, 194, 0.3);
 }
 
 * {
@@ -199,6 +213,35 @@ body {
 .glow-hover:hover {
   box-shadow: var(--shadow-glow);
   border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* LinkedIn Button Utilities */
+.btn-linkedin {
+  background-color: var(--linkedin-primary) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--linkedin-primary) !important;
+  transition: all 150ms ease;
+}
+.btn-linkedin:hover {
+  background-color: var(--linkedin-hover) !important;
+  border-color: var(--linkedin-hover) !important;
+}
+
+.btn-channel-linkedin-active {
+  background-color: var(--linkedin-primary) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--linkedin-primary) !important;
+  box-shadow: 0 0 12px rgba(10, 102, 194, 0.45) !important;
+}
+
+.btn-channel-linkedin-inactive {
+  background-color: var(--linkedin-bg) !important;
+  color: var(--linkedin-primary) !important;
+  border: 1px solid var(--linkedin-border) !important;
+}
+.btn-channel-linkedin-inactive:hover {
+  background-color: rgba(10, 102, 194, 0.25) !important;
+  color: #ffffff !important;
 }
 
 .metric-card-hover {

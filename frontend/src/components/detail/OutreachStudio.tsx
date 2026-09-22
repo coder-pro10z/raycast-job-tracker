@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import type { JobItem } from '../../types/job';
-import { Copy, Check, Mail, MessageSquare, Send, Sparkles, RefreshCw, User, FileText } from 'lucide-react';
+import { Copy, Check, Mail, MessageSquare, Send, Sparkles, RefreshCw, User, FileText, Globe } from 'lucide-react';
 import { useJobStore } from '../../state/useJobStore';
 
 interface OutreachStudioProps {
@@ -153,14 +153,16 @@ export const OutreachStudio: React.FC<OutreachStudioProps> = ({ job }) => {
               gap: '6px',
               padding: '6px 12px',
               borderRadius: 'var(--radius-full)',
-              border: '1px solid var(--border-color)',
-              backgroundColor: activeChannel === 'linkedin-note' ? '#2563eb' : 'var(--bg-tertiary)',
-              color: activeChannel === 'linkedin-note' ? '#ffffff' : 'var(--text-secondary)',
+              border: activeChannel === 'linkedin-note' ? '1px solid var(--linkedin-primary)' : '1px solid var(--linkedin-border)',
+              backgroundColor: activeChannel === 'linkedin-note' ? 'var(--linkedin-primary)' : 'var(--linkedin-bg)',
+              color: activeChannel === 'linkedin-note' ? '#ffffff' : 'var(--linkedin-primary)',
               fontSize: '0.75rem',
               fontWeight: 700,
               cursor: 'pointer',
+              boxShadow: activeChannel === 'linkedin-note' ? '0 0 10px rgba(10, 102, 194, 0.4)' : 'none',
               transition: 'all 150ms ease'
             }}
+            className="glow-hover focus-ring"
           >
             <MessageSquare size={13} />
             <span>LinkedIn Note (&lt;300 chars)</span>
@@ -174,14 +176,16 @@ export const OutreachStudio: React.FC<OutreachStudioProps> = ({ job }) => {
               gap: '6px',
               padding: '6px 12px',
               borderRadius: 'var(--radius-full)',
-              border: '1px solid var(--border-color)',
-              backgroundColor: activeChannel === 'inmail' ? '#6366f1' : 'var(--bg-tertiary)',
-              color: activeChannel === 'inmail' ? '#ffffff' : 'var(--text-secondary)',
+              border: activeChannel === 'inmail' ? '1px solid var(--linkedin-primary)' : '1px solid var(--linkedin-border)',
+              backgroundColor: activeChannel === 'inmail' ? 'var(--linkedin-primary)' : 'var(--linkedin-bg)',
+              color: activeChannel === 'inmail' ? '#ffffff' : 'var(--linkedin-primary)',
               fontSize: '0.75rem',
               fontWeight: 700,
               cursor: 'pointer',
+              boxShadow: activeChannel === 'inmail' ? '0 0 10px rgba(10, 102, 194, 0.4)' : 'none',
               transition: 'all 150ms ease'
             }}
+            className="glow-hover focus-ring"
           >
             <Send size={13} />
             <span>LinkedIn InMail</span>
@@ -366,12 +370,16 @@ export const OutreachStudio: React.FC<OutreachStudioProps> = ({ job }) => {
             gap: '8px',
             borderRadius: 'var(--radius-sm)',
             border: 'none',
-            backgroundColor: 'var(--border-focus)',
+            backgroundColor: (activeChannel === 'linkedin-note' || activeChannel === 'inmail')
+              ? 'var(--linkedin-primary)'
+              : 'var(--border-focus)',
             color: '#ffffff',
             fontWeight: 700,
             fontSize: '0.875rem',
             cursor: 'pointer',
-            boxShadow: 'var(--shadow-md)',
+            boxShadow: (activeChannel === 'linkedin-note' || activeChannel === 'inmail')
+              ? '0 0 14px rgba(10, 102, 194, 0.45)'
+              : 'var(--shadow-md)',
             transition: 'all 150ms ease'
           }}
           className="glow-hover"
@@ -380,29 +388,58 @@ export const OutreachStudio: React.FC<OutreachStudioProps> = ({ job }) => {
           <span>{copiedField === 'message' ? 'Message Copied!' : 'Copy to Clipboard'}</span>
         </button>
 
-        <button
-          onClick={handleMailto}
-          style={{
-            height: '40px',
-            padding: '0 18px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            borderRadius: 'var(--radius-sm)',
-            border: '1px solid var(--border-color)',
-            backgroundColor: 'var(--bg-secondary)',
-            color: 'var(--text-primary)',
-            fontWeight: 600,
-            fontSize: '0.8125rem',
-            cursor: 'pointer',
-            transition: 'all 150ms ease'
-          }}
-          className="glow-hover"
-        >
-          <Mail size={16} style={{ color: '#10b981' }} />
-          <span>Launch Email App</span>
-        </button>
+        {(activeChannel === 'linkedin-note' || activeChannel === 'inmail') && (job.hrRecruiterLinkedIn || job.referralContactLinkedIn) ? (
+          <a
+            href={job.hrRecruiterLinkedIn || job.referralContactLinkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              height: '40px',
+              padding: '0 18px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--linkedin-primary)',
+              backgroundColor: 'var(--linkedin-bg)',
+              color: 'var(--linkedin-primary)',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              cursor: 'pointer',
+              textDecoration: 'none',
+              transition: 'all 150ms ease'
+            }}
+            className="glow-hover"
+          >
+            <Globe size={16} style={{ color: 'var(--linkedin-primary)' }} />
+            <span>Open Profile on LinkedIn</span>
+          </a>
+        ) : (
+          <button
+            onClick={handleMailto}
+            style={{
+              height: '40px',
+              padding: '0 18px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              borderRadius: 'var(--radius-sm)',
+              border: '1px solid var(--border-color)',
+              backgroundColor: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+              fontWeight: 600,
+              fontSize: '0.8125rem',
+              cursor: 'pointer',
+              transition: 'all 150ms ease'
+            }}
+            className="glow-hover"
+          >
+            <Mail size={16} style={{ color: '#10b981' }} />
+            <span>Launch Email App</span>
+          </button>
+        )}
       </div>
     </div>
   );

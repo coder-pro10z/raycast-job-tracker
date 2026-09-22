@@ -1,0 +1,3 @@
+@import './index.css';
+/* LinkedIn brand styling exported for direct stylesheet access */
+:root { --linkedin-primary: #0a66c2; --linkedin-hover: #004182; --linkedin-bg: rgba(10, 102, 194, 0.15); }
