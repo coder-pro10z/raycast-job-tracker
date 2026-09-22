@@ -127,6 +127,12 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🚀 Milestone 6: Brand-Accurate LinkedIn Outreach Studio Styling
+- [x] **Design Tokens**: Added `--linkedin-primary: #0a66c2`, `--linkedin-hover: #004182`, `--linkedin-bg`, and `--linkedin-border` in `index.css` and `styles.css`.
+- [x] **Channel Navigation Pills**: Updated `LinkedIn Note (<300 chars)` and `LinkedIn InMail` buttons in `OutreachStudio.tsx` to use the official LinkedIn primary background.
+- [x] **Contextual Action Bar**: Dynamic LinkedIn action button that switches to LinkedIn brand blue and surfaces direct "Open Profile on LinkedIn" links when recruiter contact information is present.
+
+---
 
 ### Category A: Authentication & User Management
 - [ ] **JWT Token Expiration & Refresh Flow**: Upgrade token string to signed HMAC-SHA256 JWT tokens with 7-day expiration and silent refresh.
