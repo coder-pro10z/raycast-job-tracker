@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useJobStore } from '../../state/useJobStore';
-import { LogOut, Settings, UserPlus, Check, ChevronDown } from 'lucide-react';
+import { LogOut, Settings, UserPlus, Check, ChevronDown, User } from 'lucide-react';
 
 export const ProfileMenu: React.FC = () => {
   const { 
@@ -28,7 +28,7 @@ export const ProfileMenu: React.FC = () => {
   }, []);
 
   const getInitials = (name?: string) => {
-    if (!name) return 'U';
+    if (!name) return '';
     const parts = name.trim().split(' ');
     if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
     return name.slice(0, 2).toUpperCase();
@@ -40,20 +40,22 @@ export const ProfileMenu: React.FC = () => {
     return 'Dual';
   };
 
+  const isGuest = !currentUser || !activeUserId;
+
   return (
     <div ref={dropdownRef} style={{ position: 'relative' }}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        title="Active User Profile & Switcher"
+        title={isGuest ? "Sign In or Select Profile" : "Active User Profile & Switcher"}
         style={{
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
           height: '36px',
-          padding: '0 8px',
+          padding: '0 10px',
           borderRadius: 'var(--radius-sm)',
-          border: '1px solid var(--border-color)',
-          backgroundColor: 'var(--bg-tertiary)',
+          border: isGuest ? '1px dashed var(--text-accent)' : '1px solid var(--border-color)',
+          backgroundColor: isGuest ? 'rgba(99, 102, 241, 0.08)' : 'var(--bg-tertiary)',
           color: 'var(--text-primary)',
           cursor: 'pointer',
           transition: 'all 150ms ease'
@@ -64,23 +66,24 @@ export const ProfileMenu: React.FC = () => {
           width: '26px',
           height: '26px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
-          color: '#fff',
+          background: isGuest ? 'var(--bg-tertiary)' : 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+          color: isGuest ? 'var(--text-accent)' : '#fff',
           fontSize: '0.6875rem',
           fontWeight: 700,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          border: isGuest ? '1px solid var(--border-color)' : 'none'
         }}>
-          {getInitials(currentUser?.fullName)}
+          {isGuest ? <User size={14} /> : getInitials(currentUser.fullName)}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.1 }} className="desktop-only">
-          <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-primary)', maxWidth: '110px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: isGuest ? 'var(--text-accent)' : 'var(--text-primary)', maxWidth: '110px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {currentUser?.fullName || 'Sign In'}
           </span>
           <span style={{ fontSize: '0.6875rem', color: 'var(--text-muted)' }}>
-            {domainLabel(currentUser?.targetDomain)}
+            {isGuest ? '0 Tracked' : domainLabel(currentUser?.targetDomain)}
           </span>
         </div>
 
@@ -107,11 +110,11 @@ export const ProfileMenu: React.FC = () => {
         >
           {/* Active User Header */}
           <div style={{ padding: '8px 10px', borderBottom: '1px solid var(--border-color)', marginBottom: '4px' }}>
-            <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--text-primary)' }}>
-              {currentUser?.fullName || 'Not Signed In'}
+            <div style={{ fontWeight: 700, fontSize: '0.875rem', color: isGuest ? 'var(--text-accent)' : 'var(--text-primary)' }}>
+              {currentUser?.fullName || 'Guest Mode'}
             </div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-              {currentUser?.email || 'Select or create a profile'}
+              {currentUser?.email || '0 application statuses tracked'}
             </div>
             {currentUser?.currentRole && (
               <div style={{ fontSize: '0.6875rem', color: 'var(--text-accent)', marginTop: '2px', fontWeight: 500 }}>
@@ -119,6 +122,35 @@ export const ProfileMenu: React.FC = () => {
               </div>
             )}
           </div>
+
+          {/* Guest Action: Sign In Button */}
+          {isGuest && (
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                setAuthModalOpen(true);
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '8px 12px',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+                color: '#fff',
+                cursor: 'pointer',
+                fontWeight: 600,
+                fontSize: '0.8125rem',
+                margin: '2px 0 6px 0'
+              }}
+              className="glow-hover"
+            >
+              <UserPlus size={15} />
+              <span>Sign In / Create Account</span>
+            </button>
+          )}
 
           {/* Quick Switch Profiles */}
           <div style={{ padding: '4px 10px', fontSize: '0.6875rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
@@ -178,77 +210,83 @@ export const ProfileMenu: React.FC = () => {
 
           <hr style={{ border: 'none', borderTop: '1px solid var(--border-color)', margin: '4px 0' }} />
 
-          {/* Action: Profile Settings */}
-          <button
-            onClick={() => {
-              setIsOpen(false);
-              setSettingsModalOpen(true);
-            }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 10px',
-              borderRadius: 'var(--radius-sm)',
-              border: 'none',
-              backgroundColor: 'transparent',
-              color: 'var(--text-primary)',
-              cursor: 'pointer',
-              fontSize: '0.8125rem'
-            }}
-            className="glow-hover"
-          >
-            <Settings size={15} style={{ color: 'var(--text-muted)' }} />
-            <span>Profile & Preferences</span>
-          </button>
+          {/* Action: Profile Settings (if logged in) */}
+          {!isGuest && (
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                setSettingsModalOpen(true);
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 10px',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                backgroundColor: 'transparent',
+                color: 'var(--text-primary)',
+                cursor: 'pointer',
+                fontSize: '0.8125rem'
+              }}
+              className="glow-hover"
+            >
+              <Settings size={15} style={{ color: 'var(--text-muted)' }} />
+              <span>Profile & Preferences</span>
+            </button>
+          )}
 
-          {/* Action: New Profile */}
-          <button
-            onClick={() => {
-              setIsOpen(false);
-              setAuthModalOpen(true);
-            }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 10px',
-              borderRadius: 'var(--radius-sm)',
-              border: 'none',
-              backgroundColor: 'transparent',
-              color: 'var(--text-primary)',
-              cursor: 'pointer',
-              fontSize: '0.8125rem'
-            }}
-            className="glow-hover"
-          >
-            <UserPlus size={15} style={{ color: 'var(--text-muted)' }} />
-            <span>New Profile / Sign In</span>
-          </button>
+          {/* Action: New Profile / Sign In */}
+          {!isGuest && (
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                setAuthModalOpen(true);
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 10px',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                backgroundColor: 'transparent',
+                color: 'var(--text-primary)',
+                cursor: 'pointer',
+                fontSize: '0.8125rem'
+              }}
+              className="glow-hover"
+            >
+              <UserPlus size={15} style={{ color: 'var(--text-muted)' }} />
+              <span>Add / Switch Profile</span>
+            </button>
+          )}
 
           {/* Action: Logout */}
-          <button
-            onClick={() => {
-              setIsOpen(false);
-              logout();
-            }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 10px',
-              borderRadius: 'var(--radius-sm)',
-              border: 'none',
-              backgroundColor: 'transparent',
-              color: '#ef4444',
-              cursor: 'pointer',
-              fontSize: '0.8125rem'
-            }}
-            className="glow-hover"
-          >
-            <LogOut size={15} />
-            <span>Sign Out</span>
-          </button>
+          {!isGuest && (
+            <button
+              onClick={() => {
+                setIsOpen(false);
+                logout();
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 10px',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                backgroundColor: 'transparent',
+                color: '#ef4444',
+                cursor: 'pointer',
+                fontSize: '0.8125rem'
+              }}
+              className="glow-hover"
+            >
+              <LogOut size={15} />
+              <span>Sign Out</span>
+            </button>
+          )}
         </div>
       )}
     </div>

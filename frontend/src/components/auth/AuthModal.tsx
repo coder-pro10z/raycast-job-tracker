@@ -8,7 +8,6 @@ export const AuthModal: React.FC = () => {
     setAuthModalOpen, 
     login, 
     signup, 
-    currentUser, 
     showToast 
   } = useJobStore();
 
@@ -97,7 +96,7 @@ export const AuthModal: React.FC = () => {
         padding: '20px'
       }}
       onClick={() => {
-        if (currentUser) setAuthModalOpen(false);
+        setAuthModalOpen(false);
       }}
     >
       <div 
@@ -135,19 +134,18 @@ export const AuthModal: React.FC = () => {
               </p>
             </div>
           </div>
-          {currentUser && (
-            <button 
-              onClick={() => setAuthModalOpen(false)}
-              style={{
-                background: 'transparent', border: '1px solid var(--border-color)',
-                color: 'var(--text-muted)', width: '30px', height: '30px', borderRadius: 'var(--radius-sm)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'
-              }}
-              className="glow-hover"
-            >
-              <X size={16} />
-            </button>
-          )}
+          <button 
+            onClick={() => setAuthModalOpen(false)}
+            title="Close / Browse as Guest"
+            style={{
+              background: 'transparent', border: '1px solid var(--border-color)',
+              color: 'var(--text-muted)', width: '30px', height: '30px', borderRadius: 'var(--radius-sm)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer'
+            }}
+            className="glow-hover"
+          >
+            <X size={16} />
+          </button>
         </div>
 
         {/* Tab Switcher */}

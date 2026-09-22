@@ -71,6 +71,20 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 7: Hardcoded Default User Fallback Overrode Unauthenticated Guest Experience
+- **Component**: Backend (`JobsController.cs`) & Frontend Store (`useJobStore.tsx`)
+- **Error / Issue**: When opening the application for the first time without a logged-in session, the application defaulted to Praveen's profile (`user_praveen`), leaking Praveen's 12 active application statuses and bypassing the user login prompt.
+- **Root Cause**: `GetUserId()` in `JobsController.cs` had a fallback `return "user_praveen"`, and `useJobStore.tsx` initialized `activeUserId` to `'user_praveen'`.
+- **Resolution**:
+  - Updated `GetUserId()`: returns `null` when no `X-User-Id` or `Authorization` header is present.
+  - Updated `GetJobs()` and `GetJob()`: when `userId` is empty/null, all jobs project safely in guest mode with `application_status: "Not Started"`, `priority: "Medium"`, and empty notes (0 active statuses).
+  - Updated `UpdateJob()`: returns `401 Unauthorized` if a guest tries to mutate application statuses without logging in.
+  - Updated frontend `useJobStore.tsx`: `activeUserId` initializes to `''`, `currentUser` to `null`, and `isAuthModalOpen` automatically defaults to `true` for first-time visitors.
+  - Updated `ProfileMenu.tsx`: renders a guest button with "Sign In", "0 Tracked", and a quick-login CTA.
+  - Result: Verified via `node tests/verify-profiles.cjs` that guest views contain exactly 0 active application statuses across all jobs.
+
+---
+
 ## 2. Completed Features & Release Milestones
 
 ### 🚀 Milestone 1: Multi-User Profile & Authentication System
@@ -87,25 +101,32 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
-### 🚀 Milestone 2: Gmail JD Automator Sidecar & Webhook Pipeline
+### 🚀 Milestone 2: Guest Mode with Zero Application Statuses & Immediate Login Prompt
+- [x] **Zero Application Status Default**: Unauthenticated visitors see central job listings with 0 applied/interviewing statuses (all `"Not Started"`).
+- [x] **Immediate Login / Register Popup**: First-time visitors are immediately presented with `AuthModal` to log in or create an account.
+- [x] **Unauthorized Mutation Guard**: Read-only browsing is permitted; attempting to edit job statuses as a guest returns `401 Unauthorized`.
+- [x] **Database Sanitation**: Cleaned up leftover test candidate accounts in Supabase PostgreSQL, preserving solely Praveen Kashyap and Anam Ansari.
+
+---
+
+### 🚀 Milestone 3: Gmail JD Automator Sidecar & Webhook Pipeline
 - [x] **Sidecar Integration**: Migrated Python automator with Claude API, Tesseract OCR, and automated Gmail drafts creation.
 - [x] **Webhook Endpoint**: Implemented `POST /api/jobs/import-from-automator` with draft idempotency and company name extraction.
 - [x] **Frontend Panel**: Created `JobApplicationPanel.tsx` with filterable automator status badges and "Open Draft in Gmail" deep-links.
 
 ---
 
-### 🚀 Milestone 3: System Knowledge Graph (Graphify Mode)
+### 🚀 Milestone 4: System Knowledge Graph (Graphify Mode)
 - [x] **Re-targeted Graph**: `frontend/public/graph.html` with 42 nodes and 38 edges across 7 architecture layers (Frontend UI, TanStack Query, Controllers, DTOs, EF Core, Supabase PostgreSQL, Python Automator).
 - [x] **Two-Tier System**: Node inspector sidebar with design tokens and code symbol references.
 
 ---
 
-### 🚀 Milestone 4: Windows Local Developer Experience
+### 🚀 Milestone 5: Windows Local Developer Experience
 - [x] **1-Click Launchers**: Created `run.bat` (boots both .NET API and Vite frontend concurrently) and `stop.bat` (gracefully stops both processes).
 
 ---
 
-## 3. Active Backlog & Future Roadmap
 
 ### Category A: Authentication & User Management
 - [ ] **JWT Token Expiration & Refresh Flow**: Upgrade token string to signed HMAC-SHA256 JWT tokens with 7-day expiration and silent refresh.

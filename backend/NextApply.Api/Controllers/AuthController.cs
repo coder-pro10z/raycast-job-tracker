@@ -199,6 +199,16 @@ namespace NextApply.Api.Controllers
         {
             int changes = 0;
 
+            // Remove test dummy users created during test runs
+            var testUsers = await db.UserProfiles
+                .Where(u => u.Email.StartsWith("user_1") || u.Email.StartsWith("test_") || u.Email.StartsWith("testuser_"))
+                .ToListAsync();
+            if (testUsers.Count > 0)
+            {
+                db.UserProfiles.RemoveRange(testUsers);
+                await db.SaveChangesAsync();
+            }
+
             // 1. Seed Praveen Kashyap
             var praveen = await db.UserProfiles.FirstOrDefaultAsync(u => u.Email.ToLower() == "2pkashyap2001@gmail.com");
             if (praveen == null)

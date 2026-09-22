@@ -135,17 +135,23 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   // Authentication & Multi-User Profile State
   const [activeUserId, setActiveUserId] = useState<string>(() => {
-    return localStorage.getItem('job_tracker_active_user_id') || 'user_praveen';
+    return localStorage.getItem('job_tracker_active_user_id') || '';
   });
   const [currentUser, setCurrentUser] = useState<UserProfileDto | null>(null);
   const [usersList, setUsersList] = useState<PublicUserSummary[]>([]);
-  const [isAuthModalOpen, setAuthModalOpen] = useState<boolean>(false);
+  const [isAuthModalOpen, setAuthModalOpen] = useState<boolean>(() => {
+    return !localStorage.getItem('job_tracker_active_user_id');
+  });
 
   const refreshUsers = async () => {
     try {
       const users = await apiClient.getUsers();
       setUsersList(users);
-      const activeId = localStorage.getItem('job_tracker_active_user_id') || 'user_praveen';
+      const activeId = localStorage.getItem('job_tracker_active_user_id') || '';
+      if (!activeId) {
+        setCurrentUser(null);
+        return;
+      }
       const match = users.find(u => u.id === activeId);
       if (match) {
         try {
@@ -166,6 +172,8 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         } catch {
           setCurrentUser(match as any);
         }
+      } else {
+        setCurrentUser(null);
       }
     } catch (e) {
       console.error('Failed to load users', e);
@@ -245,6 +253,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const logout = () => {
     localStorage.removeItem('job_tracker_token');
     localStorage.removeItem('job_tracker_active_user_id');
+    setActiveUserId('');
     setCurrentUser(null);
     setAuthModalOpen(true);
   };

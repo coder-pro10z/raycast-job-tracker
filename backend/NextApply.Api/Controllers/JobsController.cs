@@ -17,11 +17,13 @@ namespace NextApply.Api.Controllers
             _db = db;
         }
 
-        private string GetUserId()
+        private string? GetUserId()
         {
             if (Request.Headers.TryGetValue("X-User-Id", out var userIdVal) && !string.IsNullOrWhiteSpace(userIdVal))
             {
-                return userIdVal.ToString().Trim();
+                var id = userIdVal.ToString().Trim();
+                if (!string.Equals(id, "guest", StringComparison.OrdinalIgnoreCase) && !string.IsNullOrEmpty(id))
+                    return id;
             }
 
             if (Request.Headers.TryGetValue("Authorization", out var authVal) && !string.IsNullOrWhiteSpace(authVal))
@@ -30,13 +32,14 @@ namespace NextApply.Api.Controllers
                 if (authStr.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
                 {
                     var token = authStr.Substring(7).Trim();
-                    if (token.StartsWith("token_")) return token.Substring(6);
-                    return token;
+                    if (token.StartsWith("token_")) token = token.Substring(6);
+                    if (!string.IsNullOrEmpty(token) && !string.Equals(token, "guest", StringComparison.OrdinalIgnoreCase))
+                        return token;
                 }
             }
 
-            // Fallback default: Praveen
-            return "user_praveen";
+            // For guests / new users without login: return null so all jobs show 0 application statuses
+            return null;
         }
 
         [HttpGet]
@@ -60,10 +63,14 @@ namespace NextApply.Api.Controllers
                 .OrderByDescending(j => j.CreatedAt)
                 .ToListAsync();
 
-            // Fetch user-specific job states for the active user
-            var userStates = await _db.UserJobStates
-                .Where(s => s.UserId == userId)
-                .ToDictionaryAsync(s => s.JobId);
+            // Fetch user-specific job states for the active user if authenticated
+            Dictionary<int, UserJobState> userStates = new();
+            if (!string.IsNullOrEmpty(userId))
+            {
+                userStates = await _db.UserJobStates
+                    .Where(s => s.UserId == userId)
+                    .ToDictionaryAsync(s => s.JobId);
+            }
 
             var filtered = new List<Job>(jobs.Count);
 
@@ -124,7 +131,11 @@ namespace NextApply.Api.Controllers
                 
             if (job is null) return NotFound();
 
-            var state = await _db.UserJobStates.FirstOrDefaultAsync(s => s.UserId == userId && s.JobId == id);
+            UserJobState? state = null;
+            if (!string.IsNullOrEmpty(userId))
+            {
+                state = await _db.UserJobStates.FirstOrDefaultAsync(s => s.UserId == userId && s.JobId == id);
+            }
             if (state != null)
             {
                 job.ApplicationStatus = state.ApplicationStatus;
@@ -203,6 +214,11 @@ namespace NextApply.Api.Controllers
         public async Task<IActionResult> UpdateJob(int id, [FromBody] JobUpdateDto dto)
         {
             var userId = GetUserId();
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized(new { message = "Please sign in or create a profile to update application status." });
+            }
+
             var job = await _db.Jobs.Include(j => j.Notes).FirstOrDefaultAsync(j => j.Id == id);
             if (job is null) return NotFound();
 

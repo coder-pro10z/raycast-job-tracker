@@ -1,46 +1,66 @@
 const BASE = 'http://localhost:5089';
 
 async function main() {
-  console.log('--- 1. Fetching Users ---');
+  console.log('=== 1. Fetching Seeded Users ===');
   const resUsers = await fetch(`${BASE}/api/auth/users`);
   const users = await resUsers.json();
-  console.log('Seeded Users in DB:', users.map(u => ({ id: u.id, email: u.email, name: u.fullName })));
+  console.log('Users in DB:', users.map(u => ({ id: u.id, email: u.email, name: u.fullName })));
 
-  console.log('\n--- 2. Logging in as Praveen ---');
-  const praveenRes = await fetch(`${BASE}/api/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: '2pkashyap2001@gmail.com', password: 'Password123!' })
+  console.log('\n=== 2. Testing Guest / Unauthenticated Mode (No User Logged In) ===');
+  const guestJobsRes = await fetch(`${BASE}/api/jobs`, {
+    headers: { 'X-Api-Key': 'dev-local-key' } // No X-User-Id
   });
-  const praveenData = await praveenRes.json();
-  console.log('Praveen Login OK:', praveenData.user.fullName, 'ID:', praveenData.user.id);
+  if (guestJobsRes.status !== 200) {
+    throw new Error(`Guest jobs fetch failed with status ${guestJobsRes.status}`);
+  }
+  const guestJobs = await guestJobsRes.json();
+  console.log(`Fetched ${guestJobs.length} jobs as Guest.`);
 
-  console.log('\n--- 3. Logging in as Anam ---');
-  const anamRes = await fetch(`${BASE}/api/auth/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: 'anamansari.0406@gmail.com', password: 'Password123!' })
+  const nonStartedGuestJobs = guestJobs.filter(j => j.applicationStatus !== 'Not Started');
+  console.log(`Guest non-started jobs count: ${nonStartedGuestJobs.length}`);
+  if (nonStartedGuestJobs.length === 0) {
+    console.log('>>> SUCCESS: Guest view has 0 active application statuses (all "Not Started")!');
+  } else {
+    throw new Error(`Guest view leaked ${nonStartedGuestJobs.length} application statuses!`);
+  }
+
+  console.log('\n=== 3. Testing Guest Mutation Block (Unauthorized) ===');
+  const testJobId = guestJobs[0].id;
+  const guestPatchRes = await fetch(`${BASE}/api/jobs/${testJobId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': 'dev-local-key'
+      // No X-User-Id
+    },
+    body: JSON.stringify({ applicationStatus: 'Applied' })
   });
-  const anamData = await anamRes.json();
-  console.log('Anam Login OK:', anamData.user.fullName, 'ID:', anamData.user.id);
+  console.log(`Guest PATCH response status: ${guestPatchRes.status}`);
+  if (guestPatchRes.status === 401) {
+    console.log('>>> SUCCESS: Guest mutation is rejected with 401 Unauthorized!');
+  } else {
+    throw new Error(`Expected 401 Unauthorized for guest mutation, got ${guestPatchRes.status}`);
+  }
 
-  console.log('\n--- 4. Checking First Job for Praveen & Anam ---');
+  console.log('\n=== 4. Testing Authenticated Praveen Session ===');
   const praveenJobsRes = await fetch(`${BASE}/api/jobs`, {
     headers: { 'X-User-Id': 'user_praveen', 'X-Api-Key': 'dev-local-key' }
   });
   const praveenJobs = await praveenJobsRes.json();
-  const testJob = praveenJobs[0];
-  console.log(`Test Job #${testJob.id} (${testJob.companyName}):`);
-  console.log(`Praveen Initial Status: "${testJob.applicationStatus}"`);
+  const praveenActive = praveenJobs.filter(j => j.applicationStatus !== 'Not Started');
+  console.log(`Praveen has ${praveenActive.length} active applications.`);
 
-  const anamJobRes = await fetch(`${BASE}/api/jobs/${testJob.id}`, {
+  console.log('\n=== 5. Testing Authenticated Anam Session ===');
+  const anamJobsRes = await fetch(`${BASE}/api/jobs`, {
     headers: { 'X-User-Id': 'user_anam', 'X-Api-Key': 'dev-local-key' }
   });
-  const anamJobInitial = await anamJobRes.json();
-  console.log(`Anam Initial Status: "${anamJobInitial.applicationStatus}"`);
+  const anamJobs = await anamJobsRes.json();
+  const anamActive = anamJobs.filter(j => j.applicationStatus !== 'Not Started');
+  console.log(`Anam has ${anamActive.length} active applications.`);
 
-  console.log(`\n--- 5. Mutating Job #${testJob.id} for Praveen ONLY to "Interviewing" ---`);
-  const patchRes = await fetch(`${BASE}/api/jobs/${testJob.id}`, {
+  console.log('\n=== 6. Testing Isolated Mutation Between Users ===');
+  // Mutate testJobId for Praveen
+  await fetch(`${BASE}/api/jobs/${testJobId}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -49,50 +69,35 @@ async function main() {
     },
     body: JSON.stringify({ applicationStatus: 'Interviewing' })
   });
-  const patchedJob = await patchRes.json();
-  console.log(`Praveen Patched Status: "${patchedJob.applicationStatus}"`);
 
-  console.log(`\n--- 6. Verifying Anam's Status remains completely UNTOUCHED ---`);
-  const anamJobAfter = await (await fetch(`${BASE}/api/jobs/${testJob.id}`, {
+  const checkPraveen = await (await fetch(`${BASE}/api/jobs/${testJobId}`, {
+    headers: { 'X-User-Id': 'user_praveen', 'X-Api-Key': 'dev-local-key' }
+  })).json();
+
+  const checkAnam = await (await fetch(`${BASE}/api/jobs/${testJobId}`, {
     headers: { 'X-User-Id': 'user_anam', 'X-Api-Key': 'dev-local-key' }
   })).json();
-  console.log(`Anam Status: "${anamJobAfter.applicationStatus}"`);
 
-  if (anamJobAfter.applicationStatus !== 'Interviewing') {
-    console.log('>>> SUCCESS: Anam application status is ISOLATED from Praveen!');
-  } else {
-    console.error('>>> FAILURE: Status leaked between users!');
-    process.exit(1);
-  }
-
-  console.log('\n--- 7. Registering Brand New 3rd User ---');
-  const newEmail = `user_${Date.now()}@example.com`;
-  const signupRes = await fetch(`${BASE}/api/auth/signup`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      fullName: 'New Candidate',
-      email: newEmail,
-      password: 'Password123!',
-      targetDomain: 'sde'
-    })
-  });
-  const signupData = await signupRes.json();
-  console.log('Created 3rd user:', signupData.user.id, signupData.user.email);
-
-  const newUserJob = await (await fetch(`${BASE}/api/jobs/${testJob.id}`, {
-    headers: { 'X-User-Id': signupData.user.id, 'X-Api-Key': 'dev-local-key' }
+  const checkGuest = await (await fetch(`${BASE}/api/jobs/${testJobId}`, {
+    headers: { 'X-Api-Key': 'dev-local-key' }
   })).json();
-  console.log(`New User Status for Job #${testJob.id}: "${newUserJob.applicationStatus}"`);
 
-  if (newUserJob.applicationStatus === 'Not Started') {
-    console.log('>>> SUCCESS: New user starts with "Not Started" status on catalog job!');
+  console.log(`Job #${testJobId} Statuses:`);
+  console.log(`- Praveen: "${checkPraveen.applicationStatus}"`);
+  console.log(`- Anam: "${checkAnam.applicationStatus}"`);
+  console.log(`- Guest: "${checkGuest.applicationStatus}"`);
+
+  if (checkPraveen.applicationStatus === 'Interviewing' &&
+      checkAnam.applicationStatus !== 'Interviewing' &&
+      checkGuest.applicationStatus === 'Not Started') {
+    console.log('>>> SUCCESS: Status mutation is 100% isolated to Praveen, Anam is unaffected, and Guest remains "Not Started"!');
   } else {
-    console.error('>>> FAILURE: Expected "Not Started" for new user');
-    process.exit(1);
+    throw new Error('Status isolation failed between Praveen, Anam, and Guest!');
   }
 
-  console.log('\nALL PROFILE & MULTI-USER ISOLATION TESTS PASSED!');
+  console.log('\n========================================');
+  console.log('ALL TESTS PASSED: GUEST ZERO-STATE & USER ISOLATION VERIFIED!');
+  console.log('========================================');
 }
 
 main().catch(err => {
