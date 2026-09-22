@@ -2,9 +2,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiClient } from '../services/apiClient';
 import type { JobItem } from '../types/job';
 
-export function useJobs() {
+export function useJobs(activeUserId?: string) {
   return useQuery({
-    queryKey: ['jobs'],
+    queryKey: ['jobs', activeUserId || 'default'],
     queryFn: () => apiClient.getJobs(),
     staleTime: 5 * 60 * 1000, // 5 minutes
   });

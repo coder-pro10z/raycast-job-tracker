@@ -5,6 +5,7 @@ import { Search, RefreshCcw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings,
 import { UploadModal } from '../upload/UploadModal';
 import { SettingsModal } from '../settings/SettingsModal';
 import { NewJobModal } from '../NewJobModal';
+import { ProfileMenu } from './ProfileMenu';
 import { buildLinkedInJobSearchUrl, DEFAULT_LEAD_SEARCH_CONFIG } from '../../utils/linkedinSearch';
 
 export const Header: React.FC = () => {
@@ -258,6 +259,8 @@ export const Header: React.FC = () => {
           >
             <Settings size={17} />
           </button>
+
+          <ProfileMenu />
 
           <button
             onClick={handleReload}

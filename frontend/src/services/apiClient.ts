@@ -1,11 +1,27 @@
 import type { JobItem, JobDomain, Priority, WorkMode, ApplicationStatus } from '../types/job';
+import type { UserProfileDto, PublicUserSummary, AuthResponse } from '../types/auth';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5089';
+
+function getAuthHeaders(): Record<string, string> {
+  const headers: Record<string, string> = {
+    'X-Api-Key': localStorage.getItem('apiKey') || 'dev-local-key'
+  };
+  const token = localStorage.getItem('job_tracker_token');
+  const userId = localStorage.getItem('job_tracker_active_user_id');
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  if (userId) {
+    headers['X-User-Id'] = userId;
+  }
+  return headers;
+}
 
 export const apiClient = {
   async getJobs(): Promise<JobItem[]> {
     const res = await fetch(`${API_BASE}/api/jobs`, {
-      headers: { 'X-Api-Key': localStorage.getItem('apiKey') ?? '' }
+      headers: getAuthHeaders()
     });
     if (!res.ok) {
         if (res.status === 401) throw new Error('Unauthorized');
@@ -21,7 +37,7 @@ export const apiClient = {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
-        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
+        ...getAuthHeaders()
       },
       body: JSON.stringify(backendPatch)
     });
@@ -36,7 +52,7 @@ export const apiClient = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
+        ...getAuthHeaders()
       },
       body: JSON.stringify(backendJob)
     });
@@ -50,7 +66,7 @@ export const apiClient = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
+        ...getAuthHeaders()
       },
       body: JSON.stringify({ content, noteType: type })
     });
@@ -61,9 +77,7 @@ export const apiClient = {
   async cloneJob(id: string): Promise<JobItem> {
     const res = await fetch(`${API_BASE}/api/jobs/${id}/clone`, {
       method: 'POST',
-      headers: {
-        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
-      }
+      headers: getAuthHeaders()
     });
     if (!res.ok) throw new Error('Failed to clone job');
     const data = await res.json();
@@ -78,11 +92,91 @@ export const apiClient = {
       url.searchParams.append('excludeJobId', excludeJobId);
     }
     const res = await fetch(url.toString(), {
-      headers: {
-        'X-Api-Key': localStorage.getItem('apiKey') ?? ''
-      }
+      headers: getAuthHeaders()
     });
     if (!res.ok) throw new Error('Failed to check duplicate job');
+    return res.json();
+  },
+
+  // Auth & Profile methods
+  async login(email: string, password: string): Promise<AuthResponse> {
+    const res = await fetch(`${API_BASE}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': 'dev-local-key'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ message: 'Login failed' }));
+      throw new Error(err.message || 'Invalid email or password');
+    }
+    return res.json();
+  },
+
+  async signup(data: {
+    email: string;
+    password: string;
+    fullName: string;
+    targetDomain?: string;
+    currentRole?: string;
+    yoe?: string;
+    keyStrengths?: string;
+    linkedinUrl?: string;
+    phone?: string;
+    resumeSummary?: string;
+  }): Promise<AuthResponse> {
+    const res = await fetch(`${API_BASE}/api/auth/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Api-Key': 'dev-local-key'
+      },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ message: 'Sign up failed' }));
+      throw new Error(err.message || 'Sign up failed');
+    }
+    return res.json();
+  },
+
+  async getCurrentUser(): Promise<UserProfileDto> {
+    const res = await fetch(`${API_BASE}/api/auth/me`, {
+      headers: getAuthHeaders()
+    });
+    if (!res.ok) throw new Error('Failed to fetch user profile');
+    return res.json();
+  },
+
+  async updateProfile(updates: Partial<UserProfileDto>): Promise<UserProfileDto> {
+    const res = await fetch(`${API_BASE}/api/auth/profile`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
+      body: JSON.stringify(updates)
+    });
+    if (!res.ok) throw new Error('Failed to update profile');
+    return res.json();
+  },
+
+  async getUsers(): Promise<PublicUserSummary[]> {
+    const res = await fetch(`${API_BASE}/api/auth/users`, {
+      headers: getAuthHeaders()
+    });
+    if (!res.ok) throw new Error('Failed to fetch users');
+    return res.json();
+  },
+
+  async seedInitialUsers(): Promise<{ message: string }> {
+    const res = await fetch(`${API_BASE}/api/auth/seed-initial-users`, {
+      method: 'POST',
+      headers: getAuthHeaders()
+    });
+    if (!res.ok) throw new Error('Failed to seed users');
     return res.json();
   }
 };

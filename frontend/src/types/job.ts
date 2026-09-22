@@ -99,6 +99,7 @@ export interface DomainMetrics {
 }
 
 export interface UserProfile {
+  id?: string;
   fullName: string;
   currentRole: string;
   yoe: string;
@@ -107,4 +108,6 @@ export interface UserProfile {
   phone: string;
   linkedinUrl: string;
   githubUrl: string;
+  targetDomain?: 'sde' | 'cloud' | 'dual' | string;
+  resumeSummary?: string;
 }

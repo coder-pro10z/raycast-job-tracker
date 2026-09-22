@@ -48,4 +48,19 @@ app.UseMiddleware<ApiKeyAuthMiddleware>();
 
 app.MapControllers();
 
+// Seed initial users (Praveen Kashyap and Anam Ansari) and initial states
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    try
+    {
+        await NextApply.Api.Controllers.AuthController.SeedUsersAndStatesAsync(db);
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding users and states.");
+    }
+}
+
 app.Run();

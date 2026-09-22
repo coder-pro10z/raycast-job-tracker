@@ -18,14 +18,33 @@ namespace NextApply.Api.Middleware
 
         public async Task InvokeAsync(HttpContext context)
         {
-            // Simple check: looking for the 'X-Api-Key' header
-            if (!context.Request.Headers.TryGetValue("X-Api-Key", out var key) || key != _validKey)
+            var path = context.Request.Path.Value ?? string.Empty;
+
+            // Allow public auth endpoints, swagger documentation, and CORS preflight options
+            if (context.Request.Method == "OPTIONS" || 
+                path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase) || 
+                path.StartsWith("/api/auth", StringComparison.OrdinalIgnoreCase))
             {
-                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                await context.Response.WriteAsync("Unauthorized: Invalid API Key");
+                await _next(context);
                 return;
             }
-            await _next(context);
+
+            // Allow if valid X-Api-Key is passed
+            if (context.Request.Headers.TryGetValue("X-Api-Key", out var key) && key == _validKey)
+            {
+                await _next(context);
+                return;
+            }
+
+            // Allow if X-User-Id or Authorization header is provided
+            if (context.Request.Headers.ContainsKey("X-User-Id") || context.Request.Headers.ContainsKey("Authorization"))
+            {
+                await _next(context);
+                return;
+            }
+
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            await context.Response.WriteAsync("Unauthorized: Invalid API Key or User Context");
         }
     }
 }

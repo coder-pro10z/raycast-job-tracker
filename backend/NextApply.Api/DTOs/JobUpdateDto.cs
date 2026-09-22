@@ -27,5 +27,9 @@ namespace NextApply.Api.DTOs
         public string? ReferralContactLinkedIn { get; set; }
         public DateOnly? FollowUpDate { get; set; }
         public DateOnly? AppliedDate { get; set; }
+        public string? GmailDraftId { get; set; }
+        public string? AutomatorStatus { get; set; }
+        public string? OutreachSubject { get; set; }
+        public string? OutreachBodyPreview { get; set; }
     }
 }

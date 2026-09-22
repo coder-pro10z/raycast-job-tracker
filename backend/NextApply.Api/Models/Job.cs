@@ -37,6 +37,7 @@ namespace NextApply.Api.Models
         // Navigation properties
         public List<Note> Notes { get; set; } = new();
         public List<OutreachTemplateUsed> OutreachTemplatesUsed { get; set; } = new();
+        public List<UserJobState> UserJobStates { get; set; } = new();
 
         public int? ClonedFromJobId { get; set; }
         public Job? ClonedFromJob { get; set; }

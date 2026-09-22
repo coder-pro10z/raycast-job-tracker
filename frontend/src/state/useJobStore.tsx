@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import type { ReactNode } from 'react';
 import type { JobItem, FilterState, ViewMode, Priority, WorkMode, ApplicationStatus, DomainMetrics, ActiveDomain, UserProfile } from '../types/job';
+import type { UserProfileDto, PublicUserSummary } from '../types/auth';
 import { excelAdapter } from '../services/excelAdapter';
+import { apiClient } from '../services/apiClient';
 
 interface JobStoreContextType {
   jobs: JobItem[];
@@ -17,6 +19,10 @@ interface JobStoreContextType {
   isSidebarOpen: boolean;
   
   userProfile: UserProfile;
+  currentUser: UserProfileDto | null;
+  activeUserId: string;
+  usersList: PublicUserSummary[];
+  isAuthModalOpen: boolean;
   isSettingsModalOpen: boolean;
   toastMessage: string | null;
   showToast: (msg: string) => void;
@@ -39,8 +45,14 @@ interface JobStoreContextType {
   setSidebarOpen: (open: boolean) => void;
   isSidebarCollapsed: boolean;
   setSidebarCollapsed: (collapsed: boolean) => void;
-  updateUserProfile: (profile: Partial<UserProfile>) => void;
+  updateUserProfile: (profile: Partial<UserProfile>) => Promise<void>;
   setSettingsModalOpen: (open: boolean) => void;
+  setAuthModalOpen: (open: boolean) => void;
+  login: (email: string, password: string) => Promise<void>;
+  signup: (data: any) => Promise<void>;
+  logout: () => void;
+  switchUser: (userId: string) => Promise<void>;
+  refreshUsers: () => Promise<void>;
   setJobs: (jobs: JobItem[]) => void;
 }
 
@@ -121,6 +133,122 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [userProfile, setUserProfile] = useState<UserProfile>(getSavedUserProfile());
   const [isSettingsModalOpen, setSettingsModalOpen] = useState<boolean>(false);
 
+  // Authentication & Multi-User Profile State
+  const [activeUserId, setActiveUserId] = useState<string>(() => {
+    return localStorage.getItem('job_tracker_active_user_id') || 'user_praveen';
+  });
+  const [currentUser, setCurrentUser] = useState<UserProfileDto | null>(null);
+  const [usersList, setUsersList] = useState<PublicUserSummary[]>([]);
+  const [isAuthModalOpen, setAuthModalOpen] = useState<boolean>(false);
+
+  const refreshUsers = async () => {
+    try {
+      const users = await apiClient.getUsers();
+      setUsersList(users);
+      const activeId = localStorage.getItem('job_tracker_active_user_id') || 'user_praveen';
+      const match = users.find(u => u.id === activeId);
+      if (match) {
+        try {
+          const profile = await apiClient.getCurrentUser();
+          setCurrentUser(profile);
+          setUserProfile((prev) => ({
+            ...prev,
+            fullName: profile.fullName || prev.fullName,
+            email: profile.email || prev.email,
+            currentRole: profile.currentRole || prev.currentRole,
+            yoe: profile.yoe || prev.yoe,
+            keyStrengths: profile.keyStrengths || prev.keyStrengths,
+            linkedinUrl: profile.linkedinUrl || prev.linkedinUrl,
+            phone: profile.phone || prev.phone,
+            targetDomain: profile.targetDomain || prev.targetDomain,
+            resumeSummary: profile.resumeSummary || prev.resumeSummary
+          }));
+        } catch {
+          setCurrentUser(match as any);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load users', e);
+    }
+  };
+
+  useEffect(() => {
+    refreshUsers();
+  }, [activeUserId]);
+
+  const login = async (email: string, password: string) => {
+    const res = await apiClient.login(email, password);
+    localStorage.setItem('job_tracker_token', res.token);
+    localStorage.setItem('job_tracker_active_user_id', res.user.id);
+    setActiveUserId(res.user.id);
+    setCurrentUser(res.user);
+    setUserProfile((prev) => ({
+      ...prev,
+      fullName: res.user.fullName,
+      email: res.user.email,
+      currentRole: res.user.currentRole || '',
+      yoe: res.user.yoe || '',
+      keyStrengths: res.user.keyStrengths || '',
+      linkedinUrl: res.user.linkedinUrl || '',
+      phone: res.user.phone || '',
+      targetDomain: res.user.targetDomain,
+      resumeSummary: res.user.resumeSummary || ''
+    }));
+    await refreshUsers();
+  };
+
+  const signup = async (data: any) => {
+    const res = await apiClient.signup(data);
+    localStorage.setItem('job_tracker_token', res.token);
+    localStorage.setItem('job_tracker_active_user_id', res.user.id);
+    setActiveUserId(res.user.id);
+    setCurrentUser(res.user);
+    setUserProfile((prev) => ({
+      ...prev,
+      fullName: res.user.fullName,
+      email: res.user.email,
+      currentRole: res.user.currentRole || '',
+      yoe: res.user.yoe || '',
+      keyStrengths: res.user.keyStrengths || '',
+      linkedinUrl: res.user.linkedinUrl || '',
+      phone: res.user.phone || '',
+      targetDomain: res.user.targetDomain,
+      resumeSummary: res.user.resumeSummary || ''
+    }));
+    await refreshUsers();
+  };
+
+  const switchUser = async (userId: string) => {
+    localStorage.setItem('job_tracker_active_user_id', userId);
+    setActiveUserId(userId);
+    try {
+      const profile = await apiClient.getCurrentUser();
+      setCurrentUser(profile);
+      setUserProfile((prev) => ({
+        ...prev,
+        fullName: profile.fullName || prev.fullName,
+        email: profile.email || prev.email,
+        currentRole: profile.currentRole || prev.currentRole,
+        yoe: profile.yoe || prev.yoe,
+        keyStrengths: profile.keyStrengths || prev.keyStrengths,
+        linkedinUrl: profile.linkedinUrl || prev.linkedinUrl,
+        phone: profile.phone || prev.phone,
+        targetDomain: profile.targetDomain || prev.targetDomain,
+        resumeSummary: profile.resumeSummary || prev.resumeSummary
+      }));
+    } catch {
+      const u = usersList.find(x => x.id === userId);
+      if (u) setCurrentUser(u as any);
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('job_tracker_token');
+    localStorage.removeItem('job_tracker_active_user_id');
+    setCurrentUser(null);
+    setAuthModalOpen(true);
+  };
+
   useEffect(() => {
     const html = document.documentElement;
     if (theme === 'dark') {
@@ -175,8 +303,15 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     }
   };
 
-  const updateUserProfile = (updates: Partial<UserProfile>) => {
+  const updateUserProfile = async (updates: Partial<UserProfile>) => {
     setUserProfile((prev: UserProfile) => ({ ...prev, ...updates }));
+    try {
+      const updated = await apiClient.updateProfile(updates as any);
+      setCurrentUser(updated);
+      showToast('Profile updated successfully');
+    } catch (err: any) {
+      console.error('Failed to sync profile to server', err);
+    }
   };
 
   const toggleTheme = () => {
@@ -457,6 +592,16 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setCommandPaletteOpen,
         setJobs,
         userProfile,
+        currentUser,
+        activeUserId,
+        usersList,
+        isAuthModalOpen,
+        setAuthModalOpen,
+        login,
+        signup,
+        logout,
+        switchUser,
+        refreshUsers,
         isSettingsModalOpen,
         updateUserProfile,
         setSettingsModalOpen,

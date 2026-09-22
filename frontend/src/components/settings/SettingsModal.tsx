@@ -116,6 +116,18 @@ export const SettingsModal: React.FC = () => {
                   style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none' }}
                 />
               </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Target Domain</label>
+                <select
+                  value={form.targetDomain || 'dual'}
+                  onChange={(e) => setForm({ ...form, targetDomain: e.target.value as any })}
+                  style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none' }}
+                >
+                  <option value="sde">Software Engineering (SDE)</option>
+                  <option value="cloud">Cloud / DevOps</option>
+                  <option value="dual">Dual Domain / Full Stack</option>
+                </select>
+              </div>
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '16px' }}>

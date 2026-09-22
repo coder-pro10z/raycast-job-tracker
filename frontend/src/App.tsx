@@ -17,6 +17,7 @@ import { JobApplicationPanel } from './components/jobapp/JobApplicationPanel';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useJobs } from './hooks/useJobs';
 import { PassphraseGate } from './components/auth/PassphraseGate';
+import { AuthModal } from './components/auth/AuthModal';
 
 const GraphViewer: React.FC = () => (
   <iframe
@@ -29,8 +30,8 @@ const GraphViewer: React.FC = () => (
 const queryClient = new QueryClient();
 
 const MainWorkspace: React.FC = () => {
-  const { filteredJobs, selectedJobId, setSelectedJobId, setCommandPaletteOpen, filterState, setJobs } = useJobStore();
-  const { data: jobs, isLoading, error } = useJobs();
+  const { filteredJobs, selectedJobId, setSelectedJobId, setCommandPaletteOpen, filterState, setJobs, activeUserId } = useJobStore();
+  const { data: jobs, isLoading, error } = useJobs(activeUserId);
 
   // Sync React Query data to Zustand store
   useEffect(() => {
@@ -119,6 +120,7 @@ const MainWorkspace: React.FC = () => {
       {/* Overlays & Drawers */}
       <JobDetailDrawer />
       <CommandPalette />
+      <AuthModal />
       <Toast />
     </div>
   );
