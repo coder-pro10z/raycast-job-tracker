@@ -125,6 +125,7 @@ Full documentation: [`docs/08-job-application-module.md`](./08-job-application-m
 | 08 | [Job Application Module](./08-job-application-module.md) | Gmail JD Automator PRD + technical docs + API integration |
 | 09 | [Prompt Library](./09-prompt-library.md) | Index of all 11 SDLC prompts in `prompt-lib/` |
 | 10 | [Graphify Guide](./10-graphify-guide.md) | How to use, extend, and regenerate the architecture graph |
+| 11 | [Product Backlog & Defect Log](./BACKLOG.md) | Resolved development errors, completed milestones, and future roadmap |
 
 ---
 

@@ -6,7 +6,8 @@
 
   <p>
     <a href="https://raycast-job-tracker.vercel.app/"><b>Live Demo →</b></a> · 
-    <a href="./docs/01-architecture-overview.md"><b>Documentation →</b></a>
+    <a href="./docs/01-architecture-overview.md"><b>Documentation →</b></a> · 
+    <a href="./BACKLOG.md"><b>Product Backlog & Defect Log →</b></a>
   </p>
 </div> 
 
