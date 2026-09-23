@@ -11,7 +11,9 @@ import {
   Copy, 
   ExternalLink, 
   Laptop,
-  CheckCircle2
+  CheckCircle2,
+  Terminal,
+  Play
 } from 'lucide-react';
 
 interface WebAutomatorModalProps {
@@ -215,10 +217,14 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
               border: 'none',
               cursor: 'pointer',
               color: activeTab === 'generator' ? 'var(--text-accent)' : 'var(--text-muted)',
-              borderBottom: activeTab === 'generator' ? '2px solid var(--text-accent)' : '2px solid transparent'
+              borderBottom: activeTab === 'generator' ? '2px solid var(--text-accent)' : '2px solid transparent',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            ⚡ In-Browser / Mobile Generator
+            <Smartphone size={14} />
+            <span>Web & Mobile Generator</span>
           </button>
           <button
             onClick={() => setActiveTab('cloud')}
@@ -230,10 +236,14 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
               border: 'none',
               cursor: 'pointer',
               color: activeTab === 'cloud' ? 'var(--text-accent)' : 'var(--text-muted)',
-              borderBottom: activeTab === 'cloud' ? '2px solid var(--text-accent)' : '2px solid transparent'
+              borderBottom: activeTab === 'cloud' ? '2px solid var(--text-accent)' : '2px solid transparent',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            ☁️ 24/7 Cloud Runner (GitHub Actions)
+            <Cloud size={14} />
+            <span>Cloud Runner (GitHub Actions)</span>
           </button>
           <button
             onClick={() => setActiveTab('local')}
@@ -245,10 +255,14 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
               border: 'none',
               cursor: 'pointer',
               color: activeTab === 'local' ? 'var(--text-accent)' : 'var(--text-muted)',
-              borderBottom: activeTab === 'local' ? '2px solid var(--text-accent)' : '2px solid transparent'
+              borderBottom: activeTab === 'local' ? '2px solid var(--text-accent)' : '2px solid transparent',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px'
             }}
           >
-            💻 1-Click Machine Setup
+            <Laptop size={14} />
+            <span>1-Click Machine Setup</span>
           </button>
         </div>
 
@@ -267,7 +281,7 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
                 color: 'var(--text-secondary)',
                 lineHeight: 1.4
               }}>
-                📱 <strong>Mobile & Zero-Install Ready:</strong> Paste the JD or role details below. We synthesize a grounded cold email and give you a 1-tap button to open Gmail with everything pre-filled directly on your phone or desktop.
+                <strong>Mobile & Zero-Install Ready:</strong> Paste the JD or role details below. We synthesize a grounded cold email and give you a 1-tap button to open Gmail with everything pre-filled directly on your phone or desktop.
               </div>
 
               {/* Form Grid */}
@@ -421,8 +435,9 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
                   gap: '10px'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-accent)' }}>
-                      ✉️ Generated Outreach (Ready for 1-Tap Send)
+                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-accent)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                      <Mail size={14} />
+                      <span>Generated Outreach (Ready for 1-Tap Send)</span>
                     </span>
                     <button
                       type="button"
@@ -598,11 +613,13 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
                   Included 1-Click Launchers in Repository Root:
                 </span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                  <div style={{ padding: '8px 12px', backgroundColor: 'var(--bg-tertiary)', borderRadius: '4px', fontSize: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>⚙️ <code>setup-automator.bat</code> — 1-click automated dependency installation</span>
+                  <div style={{ padding: '8px 12px', backgroundColor: 'var(--bg-tertiary)', borderRadius: '4px', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Terminal size={14} style={{ color: 'var(--text-accent)' }} />
+                    <span><code>setup-automator.bat</code> — 1-click automated dependency installation</span>
                   </div>
-                  <div style={{ padding: '8px 12px', backgroundColor: 'var(--bg-tertiary)', borderRadius: '4px', fontSize: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>▶️ <code>run-automator.bat</code> — 1-click headless pipeline execution</span>
+                  <div style={{ padding: '8px 12px', backgroundColor: 'var(--bg-tertiary)', borderRadius: '4px', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Play size={14} style={{ color: 'var(--text-accent)' }} />
+                    <span><code>run-automator.bat</code> — 1-click headless pipeline execution</span>
                   </div>
                 </div>
               </div>

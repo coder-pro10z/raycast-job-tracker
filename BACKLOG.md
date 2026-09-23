@@ -106,6 +106,18 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 9: Redundant Emoji Decoration in UI Action Controls
+- **Component**: Frontend UI Design System (`JobApplicationPanel.tsx`, `WebAutomatorModal.tsx`, `Sidebar.tsx`, `CommandPalette.tsx`)
+- **Error / Issue**: Buttons and tab navigation controls paired Lucide SVG icons with redundant raw Unicode emojis (e.g. `<Smartphone size={15} /> <span>📱 Run Online Automator</span>`), resulting in double icons, jarring platform emoji style mismatches (Windows Segoe vs macOS Apple Color Emoji), and screen-reader accessibility issues.
+- **Root Cause**: Ad-hoc emoji usage in JSX labels without a strict design system rule prohibiting raw Unicode emojis alongside vector icons.
+- **Resolution**:
+  - Removed all raw Unicode emojis from button labels, tab titles, and headers in `JobApplicationPanel.tsx` (`<span>📱 Run Online Automator</span>` -> `<span>Run Online Automator</span>`), `WebAutomatorModal.tsx` (`⚡`, `☁️`, `💻`, `📱`, `✉️`, `⚙️`, `▶️`), `Sidebar.tsx` (`🧭` -> `<Briefcase />`), and `CommandPalette.tsx` (`⚡` -> `<Zap />`).
+  - Created permanent architectural standard **`RULES.md`** enforcing Lucide React SVG icons exclusively, typography inheritance (`font-family: inherit`), and tabular number formatting.
+  - Added verification scanner script to confirm 0 raw emojis remain in interactive UI elements.
+  - Verified clean TypeScript build via `npm run build` with 0 errors.
+
+---
+
 ## 2. Completed Features & Release Milestones
 
 ### 🚀 Milestone 1: Multi-User Profile & Authentication System

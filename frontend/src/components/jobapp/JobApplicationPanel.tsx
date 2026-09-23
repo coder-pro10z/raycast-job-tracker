@@ -298,7 +298,7 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
               className="glow-hover"
             >
               <Smartphone size={15} />
-              <span>📱 Run Online Automator</span>
+              <span>Run Online Automator</span>
             </button>
 
             <button

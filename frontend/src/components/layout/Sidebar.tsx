@@ -192,7 +192,10 @@ export const Sidebar: React.FC = () => {
           fontWeight: 700,
           fontSize: '0.9375rem'
         }}>
-          <span>🧭 Job Tracker</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Briefcase size={18} style={{ color: 'var(--text-accent)' }} />
+            <span>Job Tracker</span>
+          </div>
           <button
             type="button"
             onClick={() => setSidebarOpen(false)}

@@ -244,7 +244,10 @@ export const CommandPalette: React.FC = () => {
           justifyContent: 'space-between'
         }}>
           <span>Use <strong>↑↓</strong> to navigate, <strong>Enter</strong> to select</span>
-          <span>⚡ Raycast Mode</span>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+            <Zap size={13} style={{ color: 'var(--text-accent)' }} />
+            <span>Raycast Mode</span>
+          </span>
         </div>
       </div>
     </div>
