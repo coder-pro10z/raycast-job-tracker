@@ -25,6 +25,7 @@ import {
   Smartphone
 } from 'lucide-react';
 import { WebAutomatorModal } from './WebAutomatorModal';
+import { assembleFullOutreachEmail } from '../../services/emailAssembler';
 
 interface JobApplicationPanelProps {
   jobs?: JobItem[];
@@ -168,13 +169,14 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
       };
     }
 
-    // Direct pre-filled compose in target Gmail account
+    // Direct pre-filled compose in target Gmail account with full multi-paragraph pitch & signature
     const to = encodeURIComponent(job.hrRecruiterName || '');
     const su = encodeURIComponent(job.outreachSubject || '');
-    const body = encodeURIComponent(job.outreachBodyPreview || '');
+    const fullBody = assembleFullOutreachEmail(job, userProfile);
+    const body = encodeURIComponent(fullBody);
     return {
       label: 'Open Draft',
-      title: `Open pre-filled draft in Gmail (${userEmail})`,
+      title: `Open publication-ready draft in Gmail (${userEmail})`,
       url: `https://mail.google.com/mail/u/?${authParam}&view=cm&fs=1&to=${to}&su=${su}&body=${body}`,
       icon: ExternalLink
     };

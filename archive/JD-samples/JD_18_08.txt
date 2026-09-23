@@ -1,0 +1,3648 @@
+Company logo for, Infosys.
+Infosys
+
+
+.Net Fullstack (React) Developer 
+
+Bengaluru East, Karnataka, India · Reposted 2 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+You’d be a top applicant and more likely to hear back
+
+Your profile and resume seem to match the required qualifications well.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Shashank and others in your network
+
+Show all
+About the job
+Minimum Qualifications:
+
+ Education: BE, ME, BTECH, MTECH, MCA, MSC, MBA.
+ 3–5 years of hands-on experience in .NET full-stack development with ReactJS.
+ Strong proficiency in C#, ASP.NET Core, and building RESTful services.
+ Solid experience with React fundamentals, component-based architecture, and state management concepts.
+ Experience working with relational databases and writing performant queries.
+ Understanding of SDLC practices, Git-based version control, and collaborative development workflows. Key Responsibilities:
+ Design, develop, and maintain full-stack web applications using .NET and ReactJS for high performance and usability.
+ Build and integrate RESTful APIs, ensuring clean contracts, versioning, and reliable error handling.
+ Implement responsive UI components with React, focusing on accessibility, reusability, and consistent UX patterns.
+ Work with databases to design schemas, write efficient queries, and optimize data access patterns.
+ Ensure application security using best practices (authentication/authorization, secure coding, and data protection).
+ Write unit/integration tests, participate in code reviews, and maintain high engineering standards.
+ Collaborate with cross-functional teams to refine requirements, estimate work, and deliver features on time.
+ Troubleshoot production issues, perform root-cause analysis, and implement preventive improvements.
+ Contribute to AI-enabled enhancements (e.g., smart search, recommendations, automation) where applicable. About us: Infosys is a global leader in next-generation digital services and consulting. We enable clients in more than 50 countries to navigate their digital transformation. With over four decades of experience in managing the systems and workings of global enterprises, we expertly steer our clients through their digital journey. We do it by enabling the enterprise with an AI-powered core that helps prioritize the execution of change. We also empower the business with agile digital at scale to deliver unprecedented levels of performance and customer delight. Our always-on learning agenda drives their continuous improvement through building and transferring digital skills, expertise, and ideas from our innovation ecosystem. Infosys provides equal employment opportunities to applicants and employees without regard to race, color, sex, gender identity; sexual orientation, religious practices and observances; national origin; pregnancy, childbirth, or related medical conditions; status as a protected veteran or spouse/family member of a protected veteran; or disability.
+
+---
+Company logo for, TekWissen India.
+TekWissen India
+
+
+Full Stack Engineer
+
+India · 1 week ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+You’d be a top applicant, we can help you stand out
+
+Your profile and resume match several of the required qualifications.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+Meet the hiring team
+
+
+Venkat J Swaroop 
+
+• 2nd
+
+Director Of Operations | Relentless Individual | Building Global Recruitment Ecosystems | Innovation Advocate | Transformation Agent | Applying AI to Business Operations & Talent | Recruiter IQ
+
+Job poster
+
+Message
+About the job
+Overview:
+TekWissen Group is a workforce management provider throughout India and many other countries in the world.
+Position: Full Stack EngineerLocation: RemoteJob Type: Full TimeWork Type: Remote
+Job Description: 
+Job Description & Summary
+We are seeking Full Stack Engineers to join our team.
+You will collaborate with product teams, architects, platform engineers, and analysts to build scalable, secure, and resilient applications.
+This includes creating new features, improving existing services, supporting production systems, and contributing to our engineering standards and best practices.
+As A Full Stack Engineer, You Will:
+Design and build applications and services using C# .NET / Python on the backend and React on the frontend.
+Contribute to API development, microservices, integration layers, and domain logic following clean code and SOLID principles.
+Develop intuitive, performant user interfaces using React, TypeScript, and modern frontend tooling.
+Work closely with platform engineers to define infrastructure, deployment, and environment requirements in Azure.
+Background in building solutions that leverage AI.
+Participate in the full SDLC, including requirements for refinement, technical design, implementation, testing, and deployment.
+Improve and maintain CI/CD pipelines to support efficient build, test, and release processes.
+Assist in the diagnosing and resolving of system issues to ensure system availability and performance.
+Produce documentation and contribute to internal engineering knowledge bases.
+Collaborate with cross-functional teams and provide technical input during planning sessions.
+Required Technical Skills:
+3+ years of experience in software engineering, ideally building cloud-hosted applications in .NET ecosystems.
+Strong expertise in C# .NET / Python for backend systems or React for frontend development (full stack preferred).
+Solid understanding of RESTful APIs, microservices, and application integration patterns.
+Background in building solutions that leverage AI.
+Experience working with relational databases.
+Familiarity with cloud platforms such as Azure for application hosting and configuration.
+Good understanding of Git workflows, CI/CD practices, and modern DevOps principles.
+Excellent communication and collaboration skills; ability to work effectively across distributed teams.
+Fluent in English, both conversational and technical.
+
+TekWissen® Group is an equal opportunity employer supporting workforce diversity.
+
+---
+Company logo for, Hyqoo.
+Hyqoo
+
+
+Full Stack Engineer 
+
+India · 3 weeks ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Mohammad Arshad
+
+• 2nd
+
+Senior SDE@Hyqoo | Building H.R Tech platform | Google - soc 21 && Ex sde intern at M20ZERO DOHA QATAR | Flutter, Dart, Node.js,Next.js, Java, MySql, firebase cloud function, AWS Bedrock, MQTT, SOCKET.IO, Azure
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+Message
+Meet the hiring team
+
+
+Mohd Faizan 
+
+• 1st
+
+Senior Talent Sourcing Specialist @ Hyqoo | Creative Talent Sourcing Strategies  |  💡 Your Go-To Sourcer for Talent Solutions | Let's Network! 🤝 | 🌟 Talent Matchmaker | Let's Build Success Together 🚀
+
+Job poster
+
+Message
+About the job
+Job Description – Full Stack Developer Job Title: Full Stack DeveloperExperience: 5–7 YearsLocation: RemoteEmployment Type: Full-Time
+Key Responsibilities
+Design, develop, and maintain scalable web applications using .NET 8+, Angular, and SQL Server.
+Build and maintain RESTful APIs and Microservices following best practices.
+Develop responsive and user-friendly front-end applications using Angular, TypeScript, HTML5, and CSS.
+Deploy and manage applications using Docker and Azure Kubernetes Service (AKS).
+Work with Azure services for application hosting, monitoring, storage, and security.
+Design and optimize SQL Server databases, stored procedures, and queries.
+Use Entity Framework Core for data access and migrations.
+Collaborate with architects, product owners, QA teams, and DevOps engineers throughout the software development lifecycle.
+Implement secure coding standards, logging, monitoring, and performance optimization.
+Participate in code reviews and mentor junior developers.
+Troubleshoot production issues and provide timely resolutions.
+
+Required Skills
+.NET 8 or above, C#, ASP.NET Core
+Angular 14+, TypeScript, Node.js
+HTML5, CSS3
+SQL Server, Entity Framework Core
+REST APIs and Microservices
+Docker and Azure Kubernetes Service (AKS)
+Microsoft Azure
+Git and CI/CD pipelines
+Qualification: Bachelor's degree in Computer Science, IT, or a related field with 5–7 years of relevant experience.
+
+Requirements added by the job poster
+
+• 4+ years of work experience with Angular
+
+• 3+ years of work experience with .NET Architecture
+
+• 4+ years of work experience with Azure Kubernetes Service (AKS)
+---
+
+Company logo for, Particle41.
+Particle41
+
+
+Full Stack Developer (.NET)
+
+India · 5 months ago · Over 100 applicants
+
+No response insights available yet
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Ayush D. 
+
+• 2nd
+
+Software Engineer | Web & Cross-platform mobile App Developer | Python + FastAPI + Typescript | Agent Orchestration
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+
+Follow
+About the job
+NET Full Stack Developer
+
+Particle41 is seeking a skilled and experienced .NET Developer to join our dynamic team. As a .NET Developer, you will be responsible for designing, developing, and maintaining software solutions using the .NET framework. You will collaborate with cross-functional teams to deliver high-quality, scalable, and efficient software applications that meet the needs of our clients. This role offers the opportunity to work on exciting projects, leverage cutting-edge technologies, and contribute to the growth and success of our company.
+
+In This Role, You Will:
+
+Software Development:
+
+Design, develop, and maintain software applications using the .NET framework.
+Utilize programming languages such as C# or VB.NET to implement robust and scalable solutions.
+Follow established coding standards, design patterns, and best practices to ensure code quality and maintainability.
+Collaborate with cross-functional teams to translate business requirements into technical specifications and software designs.
+Conduct thorough code reviews and provide constructive feedback to team members to improve code quality and adherence to coding standards.
+
+Requirements Gathering and Analysis:
+
+Work closely with product managers, business analysts, and stakeholders to understand project objectives, user needs, and functional requirements.
+Conduct a thorough analysis of requirements to identify potential challenges, risks, and dependencies.
+Proactively communicate with stakeholders to clarify requirements, gather feedback, and ensure alignment between business goals and technical solutions.
+
+Testing and Quality Assurance:
+
+Develop and execute comprehensive test plans, test cases, and test scripts to validate software functionality, performance, and reliability.
+Perform unit testing, integration testing, and system testing to identify and resolve defects in software applications.
+Collaborate with quality assurance engineers to automate testing processes and enhance test coverage.
+Continuously monitor and improve software quality through regular code reviews, testing feedback, and bug-fixing efforts.
+
+Troubleshooting and Debugging:
+
+Investigate and troubleshoot software issues reported by end-users or identified during testing.
+Analyze log files, error messages, and system behavior to diagnose root causes of technical issues.
+Develop and implement effective solutions to resolve software defects, performance bottlenecks, and other technical challenges.
+Document troubleshooting steps, resolutions, and lessons learned to facilitate knowledge sharing and future problem-solving efforts.
+
+Performance Optimization:
+
+Identify opportunities to optimize application performance, scalability, and resource utilization.
+Analyze code, algorithms, and database queries to identify inefficiencies and areas for improvement.
+Implement performance-tuning techniques such as caching, indexing, and code refactoring to enhance application responsiveness and throughput.
+Collaborate with infrastructure engineers and DevOps teams to optimize server configurations, network settings, and deployment processes for improved performance.
+
+Collaboration and Communication:
+
+Work collaboratively with cross-functional teams, including product managers, designers, and quality assurance engineers, to deliver high-quality software solutions.
+Communicate effectively with team members, stakeholders, and project managers to provide status updates, solicit feedback, and address concerns.
+Participate in Agile/Scrum ceremonies, including sprint planning, daily stand-ups, sprint reviews, and retrospectives, to ensure alignment and transparency across the team.
+Foster a culture of open communication, collaboration, and continuous improvement within the software development team.
+
+Continuous Learning and Professional Development:
+
+Stay abreast of emerging technologies, industry trends, and best practices in software development.
+Participate in training programs, workshops, and conferences to expand technical skills and domain knowledge.
+Engage in self-directed learning activities, such as online courses, tutorials, and reading technical literature, to enhance expertise in relevant technologies and tools.
+Share knowledge and expertise with team members through mentorship, knowledge-sharing sessions, and technical presentations.
+
+Skills and Experience We Value:
+
+Bachelor's degree in Computer Science, Engineering, or a related field.
+3-6 years of professional experience in software development using the .NET framework.
+Proficiency in programming languages such as C# or VB.NET, with a strong understanding of object-oriented programming principles.
+Experience with frontend technologies such as Typescript, AngularJS, or ReactJS is highly advantageous.
+Solid understanding of database technologies, including MySQL and PostgreSQL.
+Proven track record of designing, developing, and maintaining software solutions using the .NET framework.
+
+About Particle41
+
+Our core values of Empowering, Leadership, Innovation, Teamwork, and Excellence drive everything we do to achieve the ultimate outcomes for our clients. Empowering Leadership for Innovation in Teamwork with Excellence ( ELITE )
+
+E - Empowering: Enabling individuals to reach their full potential.
+L - Leadership: Taking initiative and guiding each other toward success.
+I - Innovation: Embracing creativity and new ideas to stay ahead.
+T - Teamwork: Collaborating with empathy to achieve common goals.
+E - Excellence: Striving for the highest quality in everything we do.
+
+We seek team members who embody these values and are committed to contributing to our mission. Particle41 welcomes individuals from all backgrounds who are committed to our mission and values. We provide equal employment opportunities to all employees and applicants, ensuring that hiring and employment decisions are based on merit and qualifications without discrimination based on race, color, religion, caste, age, sex, national origin, disability status, genetics, protected veteran status, sexual orientation, gender identity or expression, or any other characteristic protected by federal, state, local, or international laws. This policy applies to all aspects of employment and hiring.
+
+We appreciate your interest and encourage applicants from these regions to apply. If you need any assistance during the application or interview process, please feel free to reach out to us at careers@Particle41.com.
+
+---
+
+Company logo for, Jobgether.
+Jobgether
+
+
+Application Developer
+
+India · 22 hours ago · Over 100 applicants
+
+No response insights available yet
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+About the job
+This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for an Application Developer based in India.
+
+This is an opportunity to design and develop modern, scalable applications using the .NET and Angular technology stack.
+
+You’ll contribute to end-to-end platform solutions, translating business requirements into pragmatic technical architectures and production-ready software.
+
+The role combines hands-on development with collaboration across engineering, research, data, and client-facing teams.
+
+You’ll work in an Agile environment, contributing to sprint delivery, technical refinement, coding standards, and continuous improvement.
+
+The position offers exposure to complex business challenges and opportunities to work with modern cloud-oriented development practices.
+
+You’ll also play an active role in knowledge sharing, technical presentations, proposal development, and helping the wider team strengthen its engineering capabilities.
+
+Accountabilities
+
+Design and develop scalable application and platform solutions using .NET, C#, ASP.NET Core, Angular, and SQL, translating business requirements into pragmatic technical blueprints.
+Collaborate with engineers, researchers, data specialists, and other cross-functional stakeholders to create efficient and maintainable solutions for complex business challenges.
+Build responsive, reliable applications and continuously improve their quality, performance, maintainability, and user experience.
+Develop RESTful APIs and Web API-based services while applying sound object-oriented programming and software engineering principles.
+Follow established coding standards, development best practices, version-control processes, and repository management practices.
+Participate in Agile delivery processes, including sprint planning, backlog refinement, development, and timely completion of assigned work.
+Work closely with technical leads and senior developers to troubleshoot issues, resolve technical challenges, and deliver high-quality solutions.
+Share knowledge gained through client-facing meetings, requirements discussions, and whiteboarding sessions with the broader engineering team.
+Contribute to technical proposals and solution documentation alongside other engineers.
+Participate in improving development practices, engineering standards, quality processes, and team productivity.
+Demonstrate continuous learning by exploring and adopting relevant technologies, techniques, and development practices.
+
+Requirements
+
+Bachelor’s degree in Computer Science, Software Engineering, or another relevant engineering discipline; a strong academic background is preferred.
+Strong hands-on experience with Angular 13 or later.
+Strong development experience with ASP.NET Core 6/7 and the broader .NET ecosystem.
+Solid proficiency in C#, object-oriented programming concepts, and structured software development.
+Strong knowledge of RESTful APIs and Web API concepts.
+Strong SQL development and database-querying skills.
+Strong general programming and logical reasoning capabilities.
+Understanding of version-control systems, particularly Git; experience with Azure DevOps is desirable.
+Strong analytical and problem-solving skills, with the ability to approach complex technical challenges methodically.
+Excellent communication and presentation skills, including the ability to explain technical concepts clearly to both technical and non-technical stakeholders.
+A proactive, collaborative mindset and willingness to learn and master new technologies and development techniques.
+Ability to work effectively in a cross-functional Agile team and manage assigned work against defined sprint timelines.
+
+Benefits
+
+Full-time position with a remote work model in India.
+Opportunity to work on challenging enterprise technology and application-development projects.
+Exposure to modern technologies including .NET, ASP.NET Core, Angular, REST APIs, SQL, Git, and Azure DevOps.
+Collaborative environment with engineers, researchers, data specialists, and other technical professionals.
+Opportunities for continuous learning, technical knowledge sharing, and professional development.
+Exposure to client-facing requirements discussions, solution design, whiteboarding, and technical proposal development.
+Agile working environment focused on engineering quality, collaboration, and continuous improvement.
+Opportunity to contribute to scalable solutions addressing complex business challenges.
+
+How Jobgether Works
+
+We use an AI-powered matching process to ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.
+
+We appreciate your interest and wish you the best!
+
+ Why Apply Through Jobgether?
+
+Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
+
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.
+
+---
+
+Company logo for, Digile.
+Digile
+
+
+.Net Fullstack Developer 
+
+India · Reposted 2 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Company alumni from Coforge
+
+Show all
+About the job
+Key Responsibilities
+
+Strong experience in .NET technologies including .NET Core, Entity Framework, Web API, React, and JavaScript. 
+Working experience in building web-based applications based on microservices architecture in .Net Core & C#. 
+Strong experience in React and Redux. 
+Strong understanding of Microservice Architecture (MSA) and design patterns to build highly scalable modules. 
+Proficient with both NoSQL & SQL (preferably Mongo, Redis, Redis Search, MySQL) 
+Working experience of containerization framework (Docker, Kubernetes) 
+Good understanding of authentication frameworks and data communication protocols like web Sockets. 
+Good working knowledge of CI/CD environments or pipelines. 
+Show work responsibility, excellent organization, communication, and interpersonal skills. 
+Strong analytical and problem-solving skills with the ability to work in an unstructured, fast-paced environment. 
+Strong organizational and problem-solving skills with great attention to detail, critical thinking, and solid communication skills 
+Experience in Kubernetes, Pipelines, Data Structures, User Experience, Docker 
+Being ambitious and learning about new technologies that does not know about or future innovations and being open to continuous self-improvement. 
+API Debugging, Logging, Database query optimization. 
+
+careers@digile.com
+
+---
+Company logo for, GoodSpace AI.
+GoodSpace AI
+
+
+Software Engineer
+
+India · 17 hours ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Shivam Verma
+
+• 1st
+
+HR Recruiter | AI-Driven Hiring  | IT & Tech | Non IT | MBA ( IT & HR )
+
+People in your network
+
+Message
+Meet the hiring team
+
+
+Saksham Sandhu 
+
+• 2nd
+
+Co-Founder & CEO at GoodSpace AI | Reimagining Recruitment with AI
+
+Job poster
+
+Message
+About the job
+Job Title: Software EngineerExperience: 0–3 YearsLocation: Remote (India)Company: Goodspace (Noida)Salary: ₹9–12 LPAAbout GoodspaceGoodspace is building AI-powered products that help millions of professionals discover better career opportunities and help companies hire faster. As a Software Engineer, you'll work on scalable products, solve real-world engineering challenges, and collaborate with cross-functional teams to build features used by millions of users.What You'll Do
+Design, develop, test, and maintain scalable web applications.
+Build new product features and improve existing functionality.
+Write clean, efficient, and maintainable code.
+Collaborate with Product Managers, Designers, and Engineers throughout the development lifecycle.
+Debug, troubleshoot, and resolve technical issues.
+Participate in code reviews and contribute to engineering best practices.
+Continuously learn and adopt modern technologies and development practices.
+Requirements
+0–3 years of experience (freshers are welcome to apply).
+Bachelor's degree in Computer Science, Information Technology, or a related field.
+Strong understanding of programming fundamentals and data structures.
+Familiarity with at least one programming language such as JavaScript, TypeScript, Python, Java, or C++.
+Basic understanding of databases, APIs, and version control (Git).
+Strong problem-solving skills and eagerness to learn.
+Comfortable working in a fast-paced startup environment.
+Good to Have
+Internship or personal software development projects.
+Experience with React, Node.js, Next.js, or similar frameworks.
+Familiarity with cloud platforms (AWS, GCP, or Azure).
+Knowledge of REST APIs, SQL, or NoSQL databases.
+Experience using AI coding tools such as GitHub Copilot, Cursor, or ChatGPT.
+Why Join Goodspace?
+Competitive salary of ₹9–12 LPA
+Fully remote work environment
+Build AI-powered products used by millions of professionals
+High ownership and rapid career growth
+Work with experienced Product, Engineering, and Design teams
+Opportunity to learn modern technologies and contribute from day one
+
+---
+
+
+Company logo for, EverestEngineering.
+EverestEngineering
+
+
+Dotnet Developer
+
+Bengaluru, Karnataka, India · 6 months ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+About the job
+At Everest, we innovateat the intersection of design and engineering to produce outstanding products. The work we do is meaningful and challenging, which makes it interesting. Imagine each line of your code, making the world a better place. We work five workdays a week, and overtime is a rarity. If clean architecture, TDD, DDD, DevOps, Microservices, Micro-frontends, and scalable systems resonate with you, write to us with a link to your LinkedIn profile and CV at
+
+Requirements
+
+Can write reliable, scalable, testable and maintainable code.
+Familiarity with Agile methodologies and clean code.
+Design and/or contribute to client-side and server-side architecture.
+Well versed with fundamentals of REST.
+Build the front-end of applications through appealing visual design.
+Knowledge of one or more front-end languages and libraries (e. g. JavaScript, Typescript), JavaScript frameworks (e. g. Angular, React, Vue.js )
+Knowledge of one or more back-end languages (e. g. C#, frameworks like. NET Core)
+Well versed with fundamentals of database design.
+Familiarity with databases - RDBMS like MySQL, Postgres and NoSQL like MongoDB, DynamoDB.
+Well-versed with one or more cloud platforms like AWS, Azure, and GCP.
+Familiar with Infrastructure as Code - CloudFormation, Terraform and deployment tools like Docker, Kubernetes.
+Familiarity with CI/CD tools like Jenkins, CircleCI, Github Actions.
+Unit testing tools like Junit, Mockito, Chai, Mocha, and Jest.
+
+This job was posted by Shikha Ragesh from EverestEngineering.
+
+---
+Company logo for, Upland Software.
+Upland Software
+
+
+Software Engineer II 
+
+India · 1 month ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Vatsal Bhavsar 
+
+• 2nd
+
+Senior Software Engineer at Upland Software
+
+Company alum from Coforge
+
+
+Connect
+About the job
+Job Description
+
+Opportunity Summary
+
+We are looking for an enthusiastic and dynamic individual to join Upland India as a Software Engineer I (Full stack) for our Panviva product. The individual will work with our global development team.
+
+What would you do?
+
+Develop, Review, test and maintain application code
+Collaborating with other developers and product to fulfil objectives Troubleshoot and diagnose issues
+Take lead on tasks as needed
+Jump in and help the team deliver features when it is required
+
+What are we looking for?
+
+Technical Skills
+
+The following skills are needed for this role. 
+
+Experience
+
+3-6 years
+
+Skills To Test
+
+Experience with front-end React/Jquery/Javascript, HTML and CSS Frameworks; Solid experience in.NET Core, SQL Server, Strong
+
+Understanding of OOPS concepts and SOLID principles, Unit testing tools, Debugging techniques
+
+SQL or other RDBMS
+
+Primary Skills
+
+Real-World Problem Solving;
+
+Solid understanding of Agile development processes, including sprint planning, daily stand-ups, retrospectives, and backlog grooming
+
+Familiarity with Agile tools such as JIRA for tracking tasks,
+
+managing workflows, and collaborating across teams Experience working in cross-functional Agile teams and contributing to iterative development cycles Experience building modern, scalable, reliable applications on the MS Azure cloud such as Azure service bus/Event hubs, App services, Azure cosmos DB, Azure Search etc.,
+
+Solid experience in.NET Core, Microsoft SQL Server (writing optimized queries, stored procedures, triggers, executing query plans, etc.)
+
+API Design (REST)
+
+Frontend frameworks (React and/or Angular)
+
+Pure JavaScript, jQuery
+
+Bootstrap, HTML5, CSS, SASS
+
+Worked with any cloud-based version control mainly GitHub or
+
+Bitbucket
+
+Cloud native deployment tools such as AKS
+
+Secondary Skills (nice To Have)
+
+Basic Understanding of Al models
+
+Python
+
+CRM Integration (Salesforce, Dynamics, ServiceNow)
+
+Authentication and Authorization (SAML, OAuth, OpenID, Okta) Logging and monitoring tools such as NewRelic, Grafana, Cloudwatch etc.,
+
+Understanding of containerization and orchestration - Docker, Kubernetes etc.,
+
+Azure dev ops or any other CI/CD platforms
+
+Soft Skills
+
+Thrives collaborating in a team environment with a diverse range of people
+
+Passionate about delivering an amazing customer experience Able to have a change of mind, and able to change the minds of others
+
+Write clearly and concisely
+
+Capable of working without a company office, with a fully
+
+remote team
+
+Growth Skills
+
+Possesses a good work ethic; a self-starter with a desire to grow Always looking for better ways to get the job done
+
+Qualification
+
+A Bachelor’s degree in Computer Science or equivalent will be required for this role.
+
+This role requires overlap with multiple time zones for planning meetings, status updates etc. on a regular basis. The duration of these overlaps can change depending on the type of meeting. Upland India has the flexibility to manage your working hours accordingly to help in your work-life balance. You can find out more about this during your interview conversation.
+
+Upland Software is an Equal Employment Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, religion, sex, sexual orientation, gender identity, national origin, disability, veteran status or other legally protected status.
+
+About Panvia
+
+Upland Panviva is a knowledge management platform built for customers and industries which are compliance driven, highly regulated and often, with complex business processes. Shifting knowledge into the digital age, Panviva also enables organizations to take an omni-channel approach in integrating IVR, chat bots, self-service portals, and many other channels. Most recently, we’ve added Nugget to our product which is a self-service bot empowering remote employees with instant answers, giving them extra time to deal with more complex issues for their customers.
+
+Our R&D teams are primarily located in Melbourne Australia with our customers being enterprise level around the world. The team is small enough for employees to play a pivotal role in the development of our product, but we’re supported by a large global business meaning it’s also big enough for you to learn and develop your skills within an experienced team.
+
+About Upland
+
+Upland Software (Nasdaq: UPLD) is a leader in AI-powered knowledge and content management software. Our solutions help enterprises unlock critical knowledge, automate content workflows, and drive measurable ROI—enhancing customer and employee experiences while supporting regulatory compliance. More than 1,100 enterprise customers rely on Upland to solve complex challenges and provide a trusted path for AI adoption.
+
+Upland India is a fully owned subsidiary of Upland Software and headquartered in Bangalore. We are a remote-first company. Interviews and on-boarding are conducted virtually.
+
+---
+Company logo for, Jobgether.
+Jobgether
+
+
+Software Engineer II
+
+India · 4 days ago · Over 100 applicants
+
+No response insights available yet
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+About the job
+This position is listed on behalf of a partner company, who manages all applications and next steps. Our partner is looking for a Software Engineer II based in India.
+
+This is a hands-on software engineering role focused on maintaining and modernizing a business-critical billing workflow platform.
+
+You will work across desktop application development, SQL Server, automated testing, and ongoing platform enhancements.
+
+The role combines ownership of an established VB.NET application with opportunities to contribute to its transition toward modern web architecture.
+
+You will collaborate closely with BI, analytics, processing, and submission teams to turn business requirements into reliable technical solutions.
+
+The position offers exposure to technologies such as ASP.NET Core, Blazor, C#, Angular, Azure DevOps, and AI-assisted development tools.
+
+You will work in a collaborative, technology-driven environment with guidance from senior engineers while progressively expanding your technical ownership.
+
+This is an excellent opportunity for a developer who enjoys solving real business problems while contributing to a long-term modernization journey.
+
+Accountabilities
+
+Design, develop, maintain, and enhance a critical VB.NET WinForms desktop application supporting monthly billing workflows.
+Develop and optimize T-SQL queries, stored procedures, database components, and SQL Server Agent jobs.
+Build new features, system enhancements, and performance improvements as part of an ongoing platform modernization initiative.
+Contribute to the migration toward a modern web-based architecture, including technologies such as ASP.NET Core and Blazor, under the guidance of senior engineers.
+Write, maintain, and expand automated unit, functional, and regression tests to improve platform reliability and test coverage.
+Participate in code reviews and consistently follow established coding standards, development practices, style guidelines, and code-audit processes.
+Work with BI, Analyst, Processing, and Submission stakeholders to understand billing workflow requirements and translate them into robust software solutions.
+Contribute to technical design discussions covering both the existing platform and its future architecture.
+Investigate and resolve application and database issues while supporting performance, stability, and maintainability.
+Use AI-assisted development tools, including Claude Code or comparable solutions, to improve development efficiency and code quality.
+Estimate and deliver well-defined software solutions while progressively taking greater technical ownership.
+Collaborate with senior engineers and cross-functional stakeholders to support continuous improvement of the platform.
+
+Requirements
+
+3–5 years of hands-on professional software development experience.
+Strong practical experience with VB.NET and .NET Framework, including development and maintenance of production applications.
+Hands-on experience building and maintaining WinForms desktop applications, including MDI architecture.
+Strong T-SQL and SQL Server capabilities, including database design, query optimization, stored procedures, and SQL Server Agent scheduling.
+Experience developing and maintaining automated tests within a .NET environment, including unit, functional, or regression testing.
+Fluent English communication skills at approximately C1 level or equivalent, with the ability to collaborate effectively with technical and business stakeholders.
+Ability to translate business requirements into well-designed, estimable, and maintainable software solutions.
+Understanding of financial systems, billing processes, and invoicing terminology is highly desirable.
+Exposure to C#, ASP.NET Core, Blazor, or Entity Framework Core is an advantage.
+Familiarity with Angular is a plus.
+Experience with Azure DevOps, including Boards and Pipelines, as well as GitHub and code-quality tools such as SonarQube, is beneficial.
+Experience using Claude Code or other AI-assisted software development tools is preferred.
+Strong problem-solving skills, attention to detail, and commitment to software quality.
+Willingness to learn, work collaboratively, and progressively expand technical ownership with support from senior engineers.
+
+Benefits
+
+Fully remote, work-from-home opportunity in India.
+Opportunity to work in a collaborative, technology-driven software engineering environment.
+Hands-on exposure to an active platform modernization initiative and future web-based architecture.
+Opportunities to work with modern technologies including ASP.NET Core, Blazor, C#, Azure DevOps, and AI-assisted development tools.
+Mentorship and guidance from experienced senior engineers while developing greater technical ownership.
+Cross-functional collaboration with BI, Analytics, Processing, and Submission teams.
+Opportunity to contribute to business-critical software supporting financial and billing operations.
+Inclusive working environment that values diverse backgrounds, experiences, and perspectives.
+
+How Jobgether Works
+
+We use an AI-powered matching process to ensure your application is reviewed quickly, objectively, and fairly against the role's core requirements. Our system identifies the top-fitting candidates, and this shortlist is then shared directly with the hiring company. The final decision and next steps (interviews, assessments) are managed by their internal team.
+
+We appreciate your interest and wish you the best!
+
+ Why Apply Through Jobgether?
+
+Data Privacy Notice: By submitting your application, you acknowledge that Jobgether will process your personal data to evaluate your candidacy and share relevant information with the hiring employer. This processing is based on legitimate interest and pre-contractual measures under applicable data protection laws (including GDPR). You may exercise your rights (access, rectification, erasure, objection) at any time.
+
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.
+
+
+---
+	Company logo for, CoverForce.
+CoverForce
+
+
+Software Engineer - Backend
+
+India · Reposted 2 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Recent Software Engineer hires at CoverForce
+
+Show all
+About the job
+About CoverForce
+
+At CoverForce, we're on a mission to transform the insurance industry by making it faster and easier for businesses to get the coverage they need. Now is the perfect time to join our team and help shape the future of insurtech. Thousands of insurance agents and corporate customers depend on our tools to simplify quoting, comparing, and buying insurance policies. We partner with top insurers like Travelers, Liberty Mutual, and Chubb to streamline underwriting and sales, cutting the time spent on a single insurance policy by 75%.
+
+Our Innovative Solutions Include
+
+Quote and Bind Platform: Trusted by several of the Top 100 insurance distributors in the US, our platform lets agents generate and purchase business insurance quotes with a single click, saving time and eliminating repetitive paperwork. Carriers also use it to digitally empower their appointed agencies. 
+Embedded Commercial Product: This allows partners like Walmart, Gusto, and Uber to offer business insurance directly through their platforms using our API. It also integrates with other Agency Management Systems to enhance their quote and binding capabilities. 
+
+We're positioned to be the central API for insurance distribution, much like how Plaid has transformed banking. Whether through our user-friendly web platform or our powerful API, CoverForce is here to make insurance purchasing easy, digital and efficient. Join us and be part of a team that's dedicated to innovation and excellence. We are headquartered in New York City and have our engineering team based in India.
+
+The Opportunity
+
+As an engineer at CoverForce, you will work on designing and implementing the core infrastructure of the API platform. You will work on Carrier Integrations, partner integrations, developing the CoverForce engine, and other core features of the product. As we build out our Public API, you will be involved in discussions about the structure, models, synchronicity, and other key decisions of a complex Public facing API.
+
+This role is a perfect fit for an engineer who thrives in fast-paced environments looking to build a product from the ground up. You will have the opportunity to take ownership and wear many hats as you develop the product. As an early engineer, you'll impact product development, system architecture, engineering culture, and more. You will work across the stack building out our centralized API and the front-end portal. We use ReactJS, NodeJS, MongoDB, Docker, and Javascript/Typescript on AWS.
+
+Our product was inspired by talking with 100s of agents and identifying the critical pain points in the quote, bind, and payment process. We see our solution scaling to independent agencies, agency management systems, and corporate customers.
+
+Tasks Will Include
+
+Integrating with Insurance carriers
+Researching the API of an insurance carrier. 
+Designing a solution to integrate with the carrier
+Designing the strategy to develop a unified commercial insurance API to work with multiple carriers. 
+Build features for enterprise customers that solve their unique needs while being easily re-useable across other customers
+Proactively identify opportunities to improve the quality, stability, and scalability of our systems. 
+Conduct code reviews and provide helpful feedback that maintains our high code quality behind our systems
+Collaborate cross-functionally to solve business problems and continue to support our rapid growth
+
+What We Are Looking For
+
+We are looking for strong, independent engineers who would like to work in a fast-paced environment with lots of responsibility and scale. We have open roles for Backend and Frontend engineers. Ideal candidates will have prior startup experience and the ability to build systems from scratch.
+
+To succeed in this role, you have
+
+Strong ownership mentality – You take initiative, see projects through from start to finish, and treat the codebase and product as if you built the company yourself
+Exceptional communication skills – You can clearly articulate technical problems, propose solutions, and collaborate effectively across teams. You understand that in a startup, clear pro-active communication is as important as clean code
+Intellectual curiosity and learning agility – You're excited to dive into unfamiliar territory, whether it's insurance domain knowledge, a new carrier's API, or an emerging technology. You ask questions, seek to understand the "why," and continuously expand your skill set
+Comfort with ambiguity – You thrive in environments where requirements evolve, and you can navigate complex systems that require deep domain context
+Pragmatic approach to AI tooling – You actively leverage and experiment with the latest AI development tools (like Cursor, Claude, GitHub Copilot) to accelerate your work and aren't afraid to build on top of LLM APIs to solve business problems
+Quality-focused craftsmanship – You take pride in writing clean, maintainable code and understand that good testing empowers rather than burdens the team
+3+ years of production software development experience – Ideally with backend systems (RESTful APIs, databases) and modern web technologies
+
+Nice To Have, But Not Essential
+
+Previous startup experience and understanding of the rapid pace and evolving priorities
+Production experience with our tech stack: Node, TypeScript, React, MongoDB
+Familiarity with AWS or other cloud environments
+Experience working with external APIs and third-party integrations
+
+What CoverForce Offers
+
+CoverForce has been a remote-first company in India since its inception and will always strive to be flexible to employees’ preferences. We know how to cultivate a successful and highly collaborative environment despite the distance. This includes:
+
+Quarterly virtual events to connect with your team members while celebrating our success and accomplishments
+Clear norms and etiquette around virtual meetings. 
+Team building activities every month to let off steam and relax.
+
+---
+
+Company logo for, CodeGeniusRecruit.
+CodeGeniusRecruit
+
+
+Software Engineer | Remote
+
+India · 4 days ago · Over 100 applicants
+
+Promoted by hirer · No response insights available yet
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+About the job
+Work SnapshotType: Full-timeLocation: IndiaCommitment: 10-40 hrs/weekCommission: $25-$30 per hour
+What You'll Be Doing
+Build and ship full-stack applications, services, and internal tools using Python, Java, Rust, C#, C++, or TypeScript.
+Integrate pre-release model APIs into working software, including tool interfaces, evaluation harnesses, and telemetry.
+Diagnose and document model and integration failure modes, providing clear feedback to the research team.
+Prototype quickly against shifting requirements, delivering working increments with limited up-front specification.
+Collaborate with the engineering manager and other engineers to maintain consistency in code quality and architecture.
+
+What We're Looking For
+Have strong relevant experience in the domain with of professional experience building and shipping production software.
+Production experience in at least one of Python, Java, Rust, C#, or C++, with proficiency in a second language.
+Hands-on experience across the stack, including backend services, modern front-end frameworks, databases, and cloud deployment.
+Ability to onboard onto an unfamiliar codebase and deliver working code quickly with minimal ramp-up.
+Strong written communication skills and the ability to explain complex technical decisions clearly.
+
+Application Process
+Submit your application through the Easy Apply button.
+Each application will be reviewed against the role requirements.
+Candidates who meet the requirements will receive an email with the next steps.
+Follow the instructions provided in the email to complete the remainder of the application process.
+
+
+---
+
+Company logo for, Sprinto.
+Sprinto
+
+
+Senior Full-stack Engineer - Remote 
+
+India · Reposted 1 week ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+Remote
+Full-time
+
+Easy Apply
+
+Save
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Hemant Pratap Singh 
+
+• 3rd
+
+Solution Engineer @ Sprinto
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+Message
+About the job
+Sprinto is an Autonomous Trust Platform that centralizes trust requirements across security frameworks, vendors, and customers.
+Sprinto autonomously executes tasks needed to maintain trust across compliance, audits, risk management, vendor risk, privacy, and AI governance, enabling organizations to maintain a strong, reliable trust posture without draining operational bandwidth and resources on repetitive tasks.
+
+Backed by top-tier investors such as Accel, Elevation, and Blume Ventures, we’ve raised $31.8M in funding to fuel our mission. Trusted by over 4,000 organizations across 75 countries, Sprinto helps organizations stay audit-ready, manage real-time risks, and scale fearlessly. With 300+ native integrations and AI-driven automation, Sprinto supports 200+ global security standards natively, including SOC 2, ISO 27001, GDPR, HIPAA, PCI-DSS, and more. Sprinto's extensible architecture enables organizations to build and support an infinite number of custom integrations and frameworks.
+
+Founded in 2020 by second-time founders Girish Redekar and Raghuveer Kancherla, Sprinto powers compliance for organizations like Whatfix, Encora, Anaconda, Whatnot, Ultrahuman, WeWork, Everstage, AI Foundation, HackerRank, and many more.
+
+Life as a Sprinter -
+Nobody succeeds at Sprinto by staying in their lane.
+
+We are organized around problems, not job titles. Sprinters take ownership beyond their role, solve hard problems, and care deeply about the impact they create. If something can be improved, fixed, or built, we don't wait for permission; we step in.
+
+Being remote means we rely less on proximity and more on trust. We write things down, communicate openly, and move quickly because great teams aren't built by sitting together, they're built by pulling in the same direction.
+
+We believe progress beats perfection, feedback is a gift, and doing the right thing matters, even when nobody is watching.
+
+And while we move with urgency, we never move alone.
+
+The mission -
+Where you'll leave your mark?
+
+
+Work across the entire stack — seamlessly transitioning between frontend, backend, and infrastructure tasks rather than staying boxed into one layer
+Be the go-to person for technical guidance and architectural decisions within the team — assuming a leadership role when systems face challenges and driving effective problem resolution
+Apply a discerning eye to identify and address premature over-engineering, keeping projects moving efficiently instead of gold-plating
+Navigate long-term trade-offs — recognise the downstream consequences of programming choices and optimise solutions accordingly
+Ship with the business in mind — code serves the customer problem it aims to solve, and you thrive on making informed trade-offs that address those problems efficiently
+
+
+
+The kind of builder we're looking for -
+
+
+A minimum of four years of professional programming experience, preferably within a small team where individual ownership is high
+Language- and tool-agnostic — not dogmatic about a specific programming language, editor, or library; you pick what fits the problem
+A holistic engineer — comfortable moving fluidly across frontend, backend, and infrastructure rather than identifying with a single specialty
+A pragmatist over a perfectionist — you spot over-engineering early and know when "good enough now" beats "perfect later."
+Business-aware — you understand that engineering decisions are trade-offs in service of the customer problem, and you're energised by making those calls well
+
+
+
+How we care for our Sprinters?
+
+Work wherever you are: We are 100% remote, so you get to choose if you want to work from home, a cafe, the hills, or the beach
+Co-working, on the house: If co-working is your jam, we offer a generous annual allowance
+We care about your learning: We are invested in seeing you grow and commit USD 1,000 annually to help you level up your skills
+We count your spark, not your leaves: Unlimited leave so you can reset when you need to
+Your Safety Net, Woven In: Health insurance with coverage up to INR 10 lakh for you and your family, accident protection of an additional INR 10 lakh, and life insurance worth 3x your annual salary
+Workspace setup of your dreams: We chip in INR 35,000 to help you build a setup that works for you
+
+
+
+Inclusion & Diversity -
+At Sprinto, talent, curiosity, and ownership matter more than where you come from. We hire people for the problems they can solve, the impact they create, and the way they help others succeed—not their background, identity, or personal circumstances. We believe the best teams are built when people with different perspectives come together around a shared ambition to build something meaningful.
+
+We're proud to be an equal opportunity employer and are committed to creating a fair, inclusive, and accessible hiring process for everyone.
+
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.
+
+Benefits found in job post
+
+Medical insurance
+
+---
+Company logo for, Aspire Software.
+Aspire Software
+
+
+Senior .NET/C# Developer 
+
+Bengaluru, Karnataka, India · Reposted 2 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Saved
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Recent Senior Software Engineer hires at Aspire Software
+
+Show all
+About the job
+Description
+
+We are looking for a .NET/C# Developer with hands-on experience to join a small team of passionate developers. You will help transform how enterprises and government organizations manage correspondence. In this role, you will maintain, evolve, and modernize our dotnet based platform using latest AI coding tools.
+
+What You’ll Do
+
+Your primary mission is to design, maintain, develop, and integrate advanced new features into our platform. You will build new dotnet-based services, refine existing components, and ensure high performance, security, and maintainability across the system. You will also have the opportunity to integrate LLMs and Generative AI inside our platform and work on our new automated workflow product that leverages generative AI to automate correspondence processes.
+
+Day-to-Day Breakdown
+
+Development & Integration: Build and test a new web platform using .NET/C#, while also migrating our existing Java application to dotnet using AI tools and maintaining an existing platform.
+
+Collaboration & Code Quality: Work closely with team members, participate in code reviews, and ensure adherence to best practices in software development.
+
+Research & Innovation: Stay updated on emerging AI trends, experiment with new technologies, and continuously propose improvements to our platform.
+
+Responsibilities
+
+Development & Integration
+
+Design and Build Solutions: Architect and implement new modules and services that extend our correspondence-management platform.
+Migrate Java Application: Leverage AI tools to migrate our existing Java services to dotnet.
+Maintain & Enhance Platform: Provide ongoing maintenance, updates, and bug fixes for the existing platform to ensure performance and reliability.
+API & Service Integration: Develop and maintain integrations between RESTful services, messaging queues, third-party APIs, and the core platform.
+Quality and Documentation: Write clean, efficient, and well-documented code, following the industry’s best practices and coding standards.
+
+Collaboration & Continuous Improvement
+
+Team Collaboration: Work closely with other developers, product managers, and stakeholders to gather requirements and translate them into technical solutions.
+Documentation & Best Practices: Create and maintain detailed documentation for system designs, integrations, and technical processes.
+
+Requirements
+
+Requirements:
+
+Technical Skills
+
+Proficient in .NET/C# with hands-on experience using dotnet to build production systems.
+Experience with HTML, CSS, JavaScript, ASP.NET MVC, Angular/React, and Web API is ideal. While you won't be expected to master these technologies from day one, a strong willingness to learn and expand your skillset is essential.
+Ability to write clean, maintainable, and well-documented code.
+API Integration & Database Knowledge: Skilled in integrating APIs, working with databases (especially SQL Server and Oracle), and managing web services within enterprise applications.
+Monitoring & Debugging: Familiarity with tools and techniques for database/application monitoring, debugging, and troubleshooting.
+AI Development Tools: Familiarity with AI development tools like Cursor, Windsurf, Claude, or similar platforms that enhance and expedite the development process.
+
+Soft Skills
+
+Autonomy & Adaptability: High level of independence and adaptability; capable of working without direct oversight and proactively taking initiative.
+Problem-Solving Skills: Strong analytical skills with the ability to troubleshoot and resolve complex technical issues efficiently.
+Effective Communication: Excellent collaboration and communication skills, with the ability to explain complex concepts to both technical and non-technical stakeholders.
+Attention to Detail: Commitment to writing high-quality code and ensuring the reliability and performance of applications.
+Continuous Learning: Proactive in learning new technologies and responsive to shifting priorities.
+
+Desired Experience
+
+Bachelor’s degree in computer science, engineering, or related field (or equivalent practical experience).
+7+ years of experience in software development, with a focus on .NET/C#.
+Experience with automated testing frameworks and practices to ensure code quality and reliability.
+Able to work aligned with the Eastern Time (EST).
+---
+
+Company logo for, HighLevel.
+HighLevel
+
+
+Full Stack Builder (Team of One)
+
+India · Reposted 2 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+Meet the hiring team
+
+
+Margaret Dsouza 
+
+• 2nd
+
+VP, People @ HighLevel | Global HR Executive | People, Talent, Total Rewards & Organizational Strategy
+
+Message
+About the job
+About HighLevel:
+
+HighLevel is an AI-powered operating system that helps businesses grow. Over 1 million businesses globally run on HighLevel, processing 15+ billion API hits, 2.5 billion messaging events, and 470 terabytes of data daily across 250+ micro services and 1 million+ domains worldwide. HighLevel answers over 1.3m+ calls a month using AI, and sends over 17m text messages using AI. Together with AskAI, the agent builder and the AI employee it is the AI platform of choice to grow.
+
+Our People:
+
+With over 1,500 team members across 15+ countries, we operate in a global, remote-first environment. We are building more than software; we are building a global community rooted in creativity, collaboration, and impact. We take pride in cultivating a culture where innovation thrives, ideas are celebrated, and people come first, no matter where they call home.
+
+About the Role:
+
+The traditional model of siloed product managers, designers, and engineers is too slow for modern AI-native development. At HighLevel, every engineer owns a product outcome end-to-end, from idea to prototype to production to scale. You will operate as a Team of One. With AI tooling and strong engineering infrastructure, a single engineer can now build what previously required an entire squad. You are not implementing tickets. You own the product.
+
+What You'll Do:
+
+End-to-End Product Ownership:
+Translate business goals into working, deployable systems
+Define architecture, workflows, and implementation plans
+Ship and maintain production-grade systems — not demos or prototypes
+Rapid Prototyping & Iteration:
+Turn ambiguous ideas into working demos within hours or days
+Prototype using code, AI tooling, automation, or low-code systems
+Validate through experiments and real user feedback, then iterate to production quality
+Build AI-Native Systems: 
+Design and orchestrate LLM agents, retrieval pipelines, workflow automation, memory layers, APIs, and guardrails. Build for resilience against hallucinations, model variability, and quality degradation over time.
+Design for Scale, Cost & Performance: 
+Reason through token consumption, inference cost, latency constraints, infrastructure scalability, and system resilience. The goal: systems that work efficiently at scale.
+Operational Excellence: 
+Instrument systems with monitoring and telemetry
+Build evaluation loops for continuous quality improvement
+Automate workflows that increase engineering velocity
+Maintain clear, repeatable documentation
+
+Minimum Qualifications:
+
+Demonstrated track record of shipping production systems
+Strong systems thinking and logical reasoning
+High ownership mindset; operates well with minimal supervision
+Comfortable with ambiguity and fast iteration cycles
+Experience with APIs, automation tools, or AI platforms
+Ability to reason about infrastructure tradeoffs and system reliability
+
+Preferred Qualifications:
+
+Experience building LLM-based or AI-driven products
+Familiarity with evaluation frameworks, monitoring, or instrumentation
+Experience with data pipelines, analytics, or telemetry
+Strong UX and front-end sensibility
+Portfolio or GitHub showcasing deployed systems
+Stack: React / Vue / Angular
+ Node.js / Python / Java
+
+What Success Looks Like:
+
+Consistently reduces cycle time from idea to production
+Ships production-grade systems, not experiments
+Balances quality, latency, and cost in system design
+Builds evaluation loops that improve product performance over time
+
+Why You'll Love Working Here:
+
+Massive Impact: Your work directly affects millions of businesses worldwide
+High Autonomy: We trust builders to own outcomes, not just tasks
+Remote-First: Work from anywhere; we measure results, not hours
+AI-Native Stack: Latest tooling to accelerate building and experimentation
+Builder Culture: We value speed, ownership, clarity of thought, and execution
+
+EEO Statement:
+
+The company is an Equal Opportunity Employer. As an employer subject to affirmative action regulations, we invite you to voluntarily provide the following demographic information. This information is used solely for compliance with government record-keeping, reporting, and other legal requirements. Providing this information is voluntary and refusal to do so will not affect your application status. This data will be kept separate from your application and will not be used in the hiring decision.
+
+We encourage you to review our Privacy Policy before submitting your application.
+
+We may use artificial intelligence (AI) tools to support parts of the hiring process, such as reviewing applications, analyzing resumes, or assessing responses and identifying potential inconsistencies or verification signals in application materials based on available information. These tools assist our recruitment team but do not replace human judgment. Final hiring decisions are ultimately made by humans. If you would like more information about how your data is processed, please contact us.
+
+
+---
+
+
+Company logo for, Pearson.
+Pearson
+
+
+Software Engineer III 
+
+India · Reposted 6 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Role: Software Engineer III
+
+Job SummaryAs a Software Engineer III, you will independently deliver high-quality, reliable code for moderately complex features while contributing to overall system performance and stability. You will own workstreams end-to-end—from design through release—collaborate across teams, and proactively identify improvements to code, systems, and processes. You will also support team growth through mentorship and knowledge sharing, while adapting to modern engineering practices including AI-assisted development.
+
+Key Responsibilities
+
+Feature Development & Delivery
+
+Design, develop, test, and release robust features with a strong focus on reliability and performance
+Own delivery of moderately complex work independently, from backlog refinement through production deployment
+Ensure code quality through unit testing, integration testing, and adherence to engineering standards
+
+
+Quality, Reliability & Operations
+
+Proactively identify and fix root cause issues to improve system stability
+Troubleshoot and resolve production incidents, ensuring minimal impact and effective follow-up
+Maintain clear and up-to-date technical documentation
+
+
+Collaboration & Execution
+
+Work closely with product, QA, and DevOps teams to deliver features aligned with business goals
+Participate actively in sprint planning, design discussions, and code reviews
+Contribute to improving team velocity and delivery predictability
+
+
+Mentorship & Growth
+
+Support onboarding and mentor junior engineers through guidance and knowledge sharing
+Continuously learn and apply new technologies, tools, and best practices
+Contribute to a collaborative, inclusive, and accountable engineering culture
+
+
+Required Skills & Competencies
+
+Core Engineering
+
+Solid understanding of software design principles, object-oriented programming, and system design fundamentals
+Experience with API development and microservices-based architectures
+Understanding of cloud computing (Azure or AWS) and modern application development patterns
+Knowledge of data security and secure coding practices
+
+
+Modern Engineering & AI
+
+Exposure to AI tools and AI-assisted development workflows
+Basic experience integrating or working with AI/ML or generative AI capabilities
+Willingness to adopt emerging areas such as AI agents and automated AI workflows ( AutoAI )
+
+
+Collaboration & Problem Solving
+
+Strong analytical and problem-solving skills with attention to detail
+Effective communication and collaboration across cross-functional teams
+Adaptability in fast-paced, iterative environments
+Commitment to ethical and responsible engineering practices
+
+
+Qualifications (Education & Experience)
+
+5+ years of experience in software engineering and application development
+Proven ability to independently deliver features and manage assigned workstreams
+Experience working in cross-functional, Agile teams
+Demonstrated ability to troubleshoot issues and improve system reliability
+
+
+Technical Skills
+
+Proficiency in:
+Backend: C#, .NET, Python
+Frontend: React, Redux, Material UI, Bootstrap
+Experience with Web APIs and microservices architectures
+Familiarity with source control systems (e.g., GitHub)
+Experience with databases (e.g., SQL Server, PostgreSQL, DynamoDB)
+Strong fundamentals in cloud platforms (Azure/AWS) with application development experience
+Exposure to AI technologies and tools
+Working knowledge of CI/CD pipelines (GitHub Actions, Azure DevOps)
+Familiarity with Agile development practices and DevOps principles
+Ability to quickly learn new technologies and share knowledge with the team
+
+
+Nice to Have
+
+Certifications in Cloud (Azure/AWS) or AI/ML
+Experience contributing to performance optimization or reliability initiatives
+
+
+Who we are:At Pearson, our purpose is simple: to help people realize the life they imagine through learning. We believe that every learning opportunity is a chance for a personal breakthrough. We are the world's lifelong learning company. For us, learning isn't just what we do. It's who we are. To learn more: We are Pearson.Pearson is an Equal Opportunity Employer and a member of E-Verify. Employment decisions are based on qualifications, merit and business need. Qualified applicants will receive consideration for employment without regard to race, ethnicity, color, religion, sex, sexual orientation, gender identity, gender expression, age, national origin, protected veteran status, disability status or any other group protected by law. We actively seek qualified candidates who are protected veterans and individuals with disabilities as defined under VEVRAA and Section 503 of the Rehabilitation Act.If you are an individual with a disability and are unable or limited in your ability to use or access our career site as a result of your disability, you may request reasonable accommodations by emailing TalentExperienceGlobalTeam@grp.pearson.com.
+
+Job: Engineering
+
+Job Family: TECHNOLOGY
+
+Organization: Virtual Learning
+
+Schedule: FULL_TIME
+
+Workplace Type: Remote
+
+Req ID: 24752
+----
+
+
+Company logo for, CSG.
+CSG
+
+
+Senior Software Development Engineer 
+
+India · 1 week ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Job Description
+
+Hi, I'm Arpana D.R, your Recruiter and guide to joining CSG! We are excited to learn more about you and your unique background.
+
+At CSG, you're more than your resume. We want your diverse perspective and unique background to help us enrich the work we do together. We believe that by channelling the power of all, we make ordinary customer and employee experiences extraordinary.
+
+This is your opportunity to join one of our high-performing teams. Channel the power of YOU and begin the journey to becoming a CSGer.
+
+As a Senior Software Development Engineer at CSG, you will lead the design, development, and testing of complex software systems, applying your expertise in agile methodologies and providing technical guidance to junior engineers.
+
+We are looking for Senior Software Development Engineer who will: 
+
+You will lead the full software development lifecycle, from requirements gathering and design to implementation, testing, and deployment
+You will design and implement robust, scalable, and high-performance software architectures and solutions
+You will conduct thorough debugging and performance optimization to ensure the stability and efficiency of software systems
+You will mentor and guide junior software engineers, fostering their technical growth and development
+You will collaborate effectively with stakeholders to understand business requirements, define technical specifications, and ensure alignment on project goals
+You will drive the adoption of best practices in software development, including code reviews, continuous integration, and automated testing
+You will perform systems analysis to identify areas for improvement and propose innovative solutions
+You will actively participate in agile development processes, including sprint planning, daily stand-ups, and retrospectives
+
+Is this opportunity right for you? We are looking for candidates who have:
+
+Bachelor’s degree in computer science, Software Engineering, or related field, or equivalent practical experience
+5–8 years’ experience in Software Development with C# and .NET
+Proven experience in full-stack software development, with a strong focus on backend systems.
+Expert-level proficiency in at least one major programming language (e.g. Python)
+Extensive experience with Agile Development methodologies
+Demonstrated expertise in Software Architectures and Software Design principles
+Strong skills in Debugging and troubleshooting complex software issues
+Experience with Software Testing strategies, including unit, integration, and end-to-end testing
+Excellent communication and interpersonal skills for effective Mentorship and Stakeholder Management
+Proficient in Systems Analysis and problem-solving.
+
+CSGer Perks & Benefits: 
+
+Work from Home, in-office, or hybrid
+Employee Belonging Groups
+Healthcare: Dental, Medical, and Vision
+Paid Vacation, Volunteer, and Holiday Time Off
+And so much more!
+
+Location(s):
+
+India Remote
+
+Accommodation:
+
+If you would like to be considered for employment opportunities with CSG and need special assistance due to a disability or accommodation for a disability throughout any aspect of the application process, please call us at +1 (402) 431-7440 or email us at accommodations@csgi.com. CSG provides accommodations for persons with disabilities in employment, including during the hiring process and any interview and/or testing processes.
+
+Our Guiding Principles:
+
+Impact: Always help and empower others, whether they’re colleagues or customers. When our employees set their minds to something, great things happen.
+
+Integrity: Do what’s right for our customers and our people while being authentic. We treat everyone with trust and respect—that’s just who we are.
+
+Inspiration: Be bold in the way you think and passionate about the work you do. Test out innovative ideas without the fear of failure.
+
+Our Story: 
+
+CSG empowers companies to build unforgettable experiences, making it easier for people and businesses to connect with, use and pay for the services they value most. For over 40 years, CSG's technologies and people have helped some of the world's most recognizable brands solve their toughest business challenges and evolve to meet the demands of today's digital economy.
+
+By channeling the power of all, we make ordinary customer and employee experiences extraordinary. Our people [CSGers] are fearlessly committed and connected, high on integrity and low on ego, making us the easiest company to do business with and the best place to work. We power a culture of integrity, innovation, and impact across our locations, representing the most authentic version of ourselves to build a better future together. That's just who we are. Learn more about CSG Inclusion & Impact here.
+
+---
+	
+Company logo for, Granicus India.
+Granicus India
+
+
+Software Engineer 3
+
+India · 1 month ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Prashant Tripathi
+
+• 1st
+
+DevOps Engineer ll at Granicus
+
+People in your network
+
+Message
+About the job
+The Company
+
+Serving the People Who Serve the People
+
+Granicus is driven by the excitement of building, implementing, and maintaining technology that is transforming the Govtech industry by bringing governments and its constituents together. We are on a mission to support our customers with meeting the needs of their communities and implementing our technology in ways that are equitable and inclusive. Granicus has consistently appeared on the GovTech 100 list over the past 5 years and has been recognized as the best companies to work on BuiltIn.
+
+Over the last 25 years, we have served 5,500 federal, state, and local government agencies and more than 300 million citizen subscribers power an unmatched Subscriber Network that use our digital solutions to make the world a better place. With comprehensive cloud-based solutions for communications, government website design, meeting and agenda management software, records management, and digital services, Granicus empowers stronger relationships between government and residents across the U.S., U.K., Australia, New Zealand, and Canada. By simplifying interactions with residents, while disseminating critical information, Granicus brings governments closer to the people they serve—driving meaningful change for communities around the globe.
+
+Want to know more? See more of what we do here .
+
+Job Summary
+
+The Software Engineer three role at Granicus is for developers early in their careers who are looking for a fun, supportive, and fast-paced environment to grow their skills and contribute code to production systems. The Software Engineer three role will be expected to take on leadership roles in the maintenance of automation test suites, and they will be tasked to work on production code as well. All Granicus Software Engineers are expected to contribute to the broader Granicus technology organization in the deployment and support of these applications in higher environments. All Granicus Software Engineers are expected to ownership of AI-driven solutions—ensuring are expected to design, build, and integrate AI capabilities as a fundamental part of their day-to-day responsibilities.
+
+What Your Impact Will Look Like
+
+Collaborate with product management and business stakeholders to deliver SaaS based solutions.
+Communicate and work effectively with others to create great high quality software.
+Proactively improve our processes and the design and architecture of our products.
+Drive innovation by coming up with new product ideas.
+Perform technology and feasibility studies
+Design solutions that are highly secure, performant, scalable and highly available.
+Come up with technical solutions to complex problems and push them through to implementation. 
+Troubleshoot and fix production issues related to deployments, networking, configuration, databases, performance, stability, security, application logic, etc 
+Help team members solve complex/urgent problems.
+Mentor and provide technical training to team members. Help train and onboard new hires.
+Champion the development team’s core values
+Clear ownership of integrating AI into product features, workflows, and decision-making processes.
+Proactively identifying opportunities where AI can improve efficiency, automation, or customer value, and driving those initiatives end-to-end.
+
+ You Will Love This Job If You Have 
+
+ Minimum of 4+ years of experience as a .NET Developer, developing, testing, shipping, and supporting production-quality SaaS based web applications
+Write clean, maintainable, and efficient code while adhering to coding standards and best practices.
+Conduct code reviews to ensure code quality and provide constructive feedback to team members.
+Troubleshoot, debug, and resolve software defects and issues in a timely manner. 
+ Proficient in C# and .NET framework 
+ Experience with ASP.NET MVC, Web API, .Net 6/8 and other .NET technologies. 
+Strong experience developing unit tests, integration tests, E2E tests, load/stress Strong experience with relational databases (MS SQL etc.)
+Strong understanding of Azure services, Azure Blob Storage, Azure functions, AKS etc.
+Knowledge of front-end technologies such as HTML, CSS, React and JavaScript /jQuery 
+Demonstrated experience with AI/ML technologies, applied AI use cases, and modern AI tooling.
+Experimentation with generative AI tools (Copilot, ChatGPT, etc.)
+Strong communication skills and the ability to collaborate effectively with cross-functional teams.
+Analytical mindset with excellent problem-solving skills.
+Experience working in Agile development environments.
+Proficient in using version control systems, such as Git.
+Willingness to stay updated on industry trends and continuously improve skills.
+
+About Us
+
+Don’t have all the skills/experience mentioned above? At Granicus, we are trying to build diverse, inclusive teams. We do not have degree requirements for most of our roles. If you don’t meet every requirement above but are excited to learn more, we encourage you to apply. We might just be able to find another role that could be a perfect fit!
+
+Security And Privacy Requirements
+
+Responsible for Granicus information security by appropriately preserving the Confidentiality, Integrity, and Availability (CIA) of Granicus information assets in accordance with the company's information security program.
+Responsible for ensuring the data privacy of our employees and customers, their data, as well as taking all required privacy training in a timely manner, in accordance with company policies.
+
+The Team
+
+We are a remote-first company with a globally distributed workforce across the United States, Canada, United Kingdom, India, Armenia, Australia, and New Zealand.
+
+The Culture
+
+At Granicus, we are building a transparent, inclusive, and safe space for everyone who wants to be a part of our journey.
+A few culture highlights include – Employee Resource Groups to encourage diverse voices
+Coffee with Mark sessions – Our employees get to interact with our CEO on very important and sometimes difficult issues ranging from mental health to work-life balance and current affairs.
+Microsoft Teams communities focused on wellness, art, furbabies, family, parenting, and more.
+We bring in special guests from time to time to discuss issues that impact our employee population
+
+The Impact
+
+We are proud to serve dynamic organizations around the globe that use our digital solutions to make the world a better place — quite literally. We have so many powerful success stories that illustrate how our solutions are impacting the world. See more of our impact here .
+---
+
+
+Company logo for, Flexiple.
+Flexiple
+
+
+Software Engineer 
+
+India · 13 hours ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Akash Taliyan 
+
+• 2nd
+
+AI Infrastructure & DevOps Engineer | Founding engineer: LLM document extraction at 20k docs/day, GraphRAG on Neo4j, anomaly detection | AWS · Kubernetes · Terraform | Climate tech & healthcare · US & EU teams
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+
+Following
+Meet the hiring team
+
+
+Suvansh Bansal 
+
+• 3rd
+
+Co-founder, Flexiple | Helping companies build & scale high-impact offshore teams/ GCCs | IIM-A & DCE alum
+
+Job poster
+
+Message
+About the job
+Software EngineerA high-growth, VC-backed SaaS company hiring its founding India teamLocation: Bengaluru, Mumbai, Delhi NCR, Hyderabad, Pune, Chennai, Kolkata, Ahmedabad — or Remote (India)About the CompanyA high-growth, VC-backed SaaS company is hiring its founding India team and has partnered with Flexiple to bring on software engineers for its product engineering team. You will build and ship features used by real customers from day one. Flexiple is a managed marketplace that helps global companies build high-performing teams and GCCs in India.Role OverviewAs a Software Engineer, you will design, build, and maintain product features end to end, working closely with product and design to turn requirements into reliable, well-tested code.Key ResponsibilitiesProduct Development
+Build and ship features across the stack, from design through to production
+Write clean, well-tested code and review peers' pull requests
+Break down requirements into shippable increments and estimate work realistically
+Quality & Collaboration
+Debug and resolve production issues, tracing root causes rather than symptoms
+Collaborate closely with product, design, and QA through the feature lifecycle
+Keep documentation, tests, and CI pipelines current for the code you own
+Ideal Candidate Profile
+2 to 5 years building production software in a modern language (e.g. Python, Java, Go, JavaScript/TypeScript)
+Solid computer-science fundamentals: data structures, algorithms, and system design basics
+Comfort working with relational or NoSQL databases and REST/GraphQL APIs
+Clear written and spoken English and a reliable remote-work setup
+Preferred Qualifications
+Exposure to a public cloud platform (AWS, GCP, or Azure) and containerised deployments
+Contributions to open-source projects or a strong personal GitHub history
+A degree in computer science, engineering, or a related field
+What We Offer
+A software engineer seat at a VC-backed SaaS company's founding India team
+Remote-friendly, pan-India hiring with long-term placement
+Ownership of real product surface area from your first sprint
+One application considered for this and future matched roles
+Hiring ProcessHR Screening → Technical Assessment → Technical Round 1 → Technical Round 2 → Culture Fit
+
+---
+
+Company logo for, KLDiscovery.
+KLDiscovery
+
+
+Software Engineer II 
+
+India · 1 week ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Akshat Pathak 
+
+• 3rd
+
+eDiscovery Professional | Project Management
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+
+Follow
+About the job
+Job Description
+
+KLDiscovery, a leading global provider of electronic discovery, information governance and data recovery services, is currently seeking a Software Engineer II, for an exciting new opportunity. If you like working in a creative, technology-driven, high energy, collaborative, casual environment, and you have strong software development abilities, this is the opportunity for you!
+
+Remote, work from home opportunity.
+
+Responsibilities
+
+ Design, develop, and maintain our internal billing workflow platform's VB.NET WinForms desktop application — a critical service in our monthly billing workflow system processing all our monthly client billings before getting invoiced. This is a primary day-to-day responsibility. 
+ Work directly with SQL Server: write and optimize T-SQL, stored procedures, and SQL Server Agent jobs 
+ Contribute to the development of new features, system enhancements, and performance optimization initiatives as part of the platform's ongoing in-place modernization effort 
+ Contribute to execution of the platform's future migration to a modern web-based architecture, helping implement target architecture (e.g., ASP.NET Core/Blazor) under the guidance of senior engineers and BI leadership. 
+ Write and maintain automated tests; grow test coverage from its current thin baseline. 
+ Participate in code reviews and follow the team's established coding standards, style guide, and code-audit protocol 
+ Collaborate with BI, Analyst, Processing, and Submission team stakeholders to translate billing workflow requirements into robust technical solutions 
+ Assist with technical design discussions for both the current system and its future state, under the guidance of senior engineers 
+ Leverage Claude Code and other AI-assisted development tools to improve productivity and code quality. 
+
+
+Qualifications
+
+ Fluent English communication skills (C1 level or equivalent). 
+ 3–5 years of hands-on software development experience 
+ Hands-on experience with VB.NET & .NET Framework required; exposure to C#, ASP.NET Core, Blazor, or Entity Framework Core a plus 
+ Hands-on T-SQL and SQL Server experience — database design, query optimization, stored procedures, and SQL Server Agent job scheduling 
+ Experience developing and maintaining WinForms desktop applications, including MDI (multi-document interface) architecture 
+ Familiarity with Angular a plus 
+ Experience writing and maintaining automated tests (unit/functional/regression) in a .NET environment. 
+ Experience with Azure DevOps (Boards, Pipelines), GitHub and code-quality gating tools (e.g., SonarQube) is a plus 
+ Ability to design, estimate, and deliver well-defined software solutions from business requirements 
+ Understanding of financial systems, financial processes, and billing/invoicing terminology is highly desirable 
+ Eagerness to grow technical ownership over time, with mentorship and guidance from senior engineers on the team 
+ Experience with Claude Code or similar AI-assisted development tools is preferred 
+
+
+Who We Are
+
+KLDiscovery provides technology-enabled services and software to help law firms, corporations, and government agencies solve complex data challenges. With offices in 26 locations across 17 countries, KLDiscovery is a global leader in delivering best-in-class data management, information governance, and eDiscovery solutions to support the litigation, regulatory compliance, and internal investigation needs of clients. Our Nebula Ecosystem provides powerful end-to-end eDiscovery and enterprise-grade information governance. Through its global Ontrack data recovery business, KLDiscovery delivers world-class data recovery, disaster recovery, email extraction and restoration, data destruction, and tape management.
+
+We Provide Equal Employment Opportunity.
+
+At KLDiscovery we believe that inclusion and diversity make us stronger. We are committed to fostering an inclusive environment for all employees that enhances wellbeing and belonging. We welcome and celebrate individuals of all backgrounds, experiences, and perspectives.
+
+We do not discriminate on the basis of race, color, religion, gender, pregnancy, gender identity, sexual orientation, national origin, age, disability, genetic information, veteran status, or any other protected status. We are happy to support you with any accommodation request at any stage in our hiring process.
+
+---
+
+Company logo for, Uplers.
+Uplers
+
+
+.Net Developer
+
+India · 5 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Experience: 4.00 + years
+
+Salary: Confidential (based on experience)
+
+Expected Notice Period: 7 Days
+
+Shift: (GMT+05:30) Asia/Kolkata (IST)
+
+Opportunity Type: Remote
+
+Placement Type: Full Time Contract for 12 Months(40 hrs a week/160 hrs a month)
+
+(*Note: This is a requirement for one of Uplers' client - Global leader in data integrity)
+
+What do you need for this opportunity?
+
+Must have skills required:
+
+Google Workspace, SAP Integration, .NET, Angular 18/19/20, Mongo DB, AWS, RESTAPI, SQL
+
+Global leader in data integrity is Looking for:
+
+Job Description
+
+Job Title: Software Engineer(.Net)
+
+Department: India - R&D
+
+Reports To: Manager, Software Development
+
+Location: India
+
+This company is a global leader in data integrity, providing accuracy and consistency in data for 12,000 customers in more than 100 countries, including 90 percent of the Fortune 100. Company''''s data integration, data quality, location intelligence, and data enrichment products power better business decisions to create better outcomes. We are looking for talented individuals WITH_REPLACED the experience and motivation to join our innovative, fast-paced our Team.
+
+YOUR ROLE
+
+As a Software Engineer in a product development organization, you will be part of the team that designs and develops .Net applications in the enterprise domain. You will collaborate WITH_REPLACED architects, product managers and other software developers for developing products features. You are expected to be hands on in .Net and up to date WITH_REPLACED the latest development technologies such as C#, .Net, Angular, REST API, etc.
+
+Your Essential Duties And Responsibilities
+
+You Will
+
+▪ Design & develop .Net Applications
+
+▪ Unit Test, UI Automation/API Automation
+
+▪ Collaborate WITH_REPLACED other team members, also work WITH_REPLACED cross-functional teams as required
+
+▪ Work WITH_REPLACED technical staff to understand problems WITH_REPLACED software and resolve them Independently
+
+▪ Resolves customer complaints WITH_REPLACED software and responds to suggestions for improvements and enhancements.
+
+▪ Make contribution to tune existing design, performance and initiatives taken for future development and early identification of risk.
+
+▪ Improve quality of code & work on Non-Functional Requirements such as Performance, Scalability, Reliability, etc.
+
+▪ Perform code review and assist in improving engineering processes and development of software user manuals.
+
+Minimum Requirements
+
+You have
+
+ 3+years of software industry experience and successful track record in product development.
+ BE/BTech/MCA/Equivalent degree in Computer Science or a related technical field from an accredited university or college.
+ Good understanding of Design Patterns & Architectural Patterns and hands on experience to apply them in day- to-day design
+ Experience in developing & consuming REST APIs in building scalable, modern Web applications
+ 3+ years of Hands on Experience WITH_REPLACED .Net
+ Knowledge on Cloud Database Mongo
+ You have Good knowledge of Latest Angular
+ Hands on Experience WITH_REPLACED SQL Server Database and writing SQL Scripts, Stored Procedures.
+
+
+PREFERRED REQUIREMENTS:
+
+ Experience of AWS & Gateway, Mongo, Kafka
+ Knowledge of Google Workspace Add ons
+ Experience in SAP Basic Knowledge
+
+
+How to apply for this opportunity?
+
+Step 1: Click On Apply! And Register or Login on our portal.
+Step 2: Complete the Screening Form & Upload updated Resume
+Step 3: Increase your chances to get shortlisted & meet the client for the Interview!
+
+
+About Uplers:
+
+Our goal is to make hiring reliable, simple, and fast. Our role will be to help all our talents find and apply for relevant contractual onsite opportunities and progress in their career. We will support any grievances or challenges you may face during the engagement.
+
+(Note: There are many more opportunities apart from this on the portal. Depending on the assessments you clear, you can apply for them as well).
+
+So, if you are ready for a new challenge, a great work environment, and an opportunity to take your career to the next level, don't hesitate to apply today. We are waiting for you!
+---
+
+Company logo for, Cognizant.
+Cognizant
+
+
+.Net full stack developer with Angular 
+
+Bangalore Urban, Karnataka, India · Reposted 2 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+You’d be a top applicant, we can help you stand out
+
+Your profile and resume match several of the required qualifications.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Arohi and others in your network
+
+Show all
+About the job
+Job Summary
+
+Sr Software Engineer contributes advanced expertise in Azure based web applications using Net Core Angular and TypeScript to build secure scalable solutions for consumer facing platforms while working in a hybrid day shift model and collaborating with agile teams to deliver high quality features that improve customer lending experiences and operational efficiency for a global enterprise.
+
+Responsibilities
+
+Design end to end web application solutions using Net Core Angular and Azure that deliver secure high performance experiences for consumer facing platforms and align with enterprise technology standards.
+Develop modular TypeScript HTML CSS and Bootstrap components that create accessible responsive user interfaces and support consistent design across products and devices.
+Implement robust Rest API services using Net Core and C sharp that enable reliable integration with internal systems and external partners while maintaining strong performance and security controls.
+Optimize data access layers with Entity Framework and TSQL to improve query efficiency ensure data integrity and support high volume transaction processing in lending and related domains.
+Apply agile methodologies to plan refine and deliver user stories in short iterations ensuring transparent communication predictable delivery and continuous alignment with business priorities.
+Conduct thorough unit integration and functional testing using modern testing frameworks to improve code reliability reduce defects and support frequent deployments in a hybrid work model.
+Collaborate with product owners business analysts and quality engineers to translate complex requirements into clear technical designs that reduce rework and accelerate time to market.
+Refactor legacy Net Framework and Java scripting code into maintainable Net Core solutions that improve system stability reduce technical debt and simplify future enhancements.
+Monitor application performance and availability in Azure environments and implement improvements such as caching configuration tuning and resource optimization to provide consistent user experiences.
+Document technical designs coding standards and deployment procedures in a clear reusable format that supports knowledge sharing across distributed teams and ensures smooth onboarding of new engineers.
+Support production deployments and incident resolution during day shift by analyzing logs debugging issues and applying fixes that protect customer trust and minimize service disruption.
+Engage in code reviews and pair programming activities to strengthen code quality encourage best practices and develop shared ownership of critical services across the engineering team.
+Contribute to continuous improvement initiatives by proposing tooling process and automation enhancements that increase development efficiency and improve the reliability of consumer lending solutions.
+
+Qualifications
+
+Demonstrate strong proficiency in Net Core Net Framework and C sharp with a track record of building maintainable enterprise applications and mentoring peers on coding standards.
+Show deep hands on experience with Angular TypeScript HTML CSS and Bootstrap for creating responsive single page applications that deliver intuitive workflows for complex business processes.
+Exhibit practical knowledge of Entity Framework TSQL and relational database design including query optimization and transaction handling for high volume business applications.
+Apply real world experience with Azure services such as application hosting monitoring and configuration management to support secure scalable and resilient cloud based solutions.
+Utilize solid understanding of agile methodologies including backlog management sprint planning and retrospective participation to collaborate effectively in hybrid cross functional teams.
+Leverage skills in Rest API design and implementation with clear versioning error handling and documentation to enable consistent integration patterns across multiple consumer facing systems.
+Bring domain awareness or interest in consumer lending processes credit assessment and regulatory requirements to design solutions that are compliant user centric and operationally efficient.
+Communicate clearly with stakeholders and teammates through concise technical explanations and written documentation to ensure shared understanding and reduce ambiguity across locations.
+Apply structured problem solving and debugging techniques using logs metrics and tracing tools to quickly identify root causes and implement sustainable fixes in production environments.
+---
+Company logo for, Cognizant.
+Cognizant
+
+
+.Net full stack developer with Angular 
+
+Bangalore Urban, Karnataka, India · Reposted 2 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+You’d be a top applicant, we can help you stand out
+
+Your profile and resume match several of the required qualifications.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Arohi and others in your network
+
+Show all
+About the job
+Job Summary
+
+Sr Software Engineer contributes advanced expertise in Azure based web applications using Net Core Angular and TypeScript to build secure scalable solutions for consumer facing platforms while working in a hybrid day shift model and collaborating with agile teams to deliver high quality features that improve customer lending experiences and operational efficiency for a global enterprise.
+
+Responsibilities
+
+Design end to end web application solutions using Net Core Angular and Azure that deliver secure high performance experiences for consumer facing platforms and align with enterprise technology standards.
+Develop modular TypeScript HTML CSS and Bootstrap components that create accessible responsive user interfaces and support consistent design across products and devices.
+Implement robust Rest API services using Net Core and C sharp that enable reliable integration with internal systems and external partners while maintaining strong performance and security controls.
+Optimize data access layers with Entity Framework and TSQL to improve query efficiency ensure data integrity and support high volume transaction processing in lending and related domains.
+Apply agile methodologies to plan refine and deliver user stories in short iterations ensuring transparent communication predictable delivery and continuous alignment with business priorities.
+Conduct thorough unit integration and functional testing using modern testing frameworks to improve code reliability reduce defects and support frequent deployments in a hybrid work model.
+Collaborate with product owners business analysts and quality engineers to translate complex requirements into clear technical designs that reduce rework and accelerate time to market.
+Refactor legacy Net Framework and Java scripting code into maintainable Net Core solutions that improve system stability reduce technical debt and simplify future enhancements.
+Monitor application performance and availability in Azure environments and implement improvements such as caching configuration tuning and resource optimization to provide consistent user experiences.
+Document technical designs coding standards and deployment procedures in a clear reusable format that supports knowledge sharing across distributed teams and ensures smooth onboarding of new engineers.
+Support production deployments and incident resolution during day shift by analyzing logs debugging issues and applying fixes that protect customer trust and minimize service disruption.
+Engage in code reviews and pair programming activities to strengthen code quality encourage best practices and develop shared ownership of critical services across the engineering team.
+Contribute to continuous improvement initiatives by proposing tooling process and automation enhancements that increase development efficiency and improve the reliability of consumer lending solutions.
+
+Qualifications
+
+Demonstrate strong proficiency in Net Core Net Framework and C sharp with a track record of building maintainable enterprise applications and mentoring peers on coding standards.
+Show deep hands on experience with Angular TypeScript HTML CSS and Bootstrap for creating responsive single page applications that deliver intuitive workflows for complex business processes.
+Exhibit practical knowledge of Entity Framework TSQL and relational database design including query optimization and transaction handling for high volume business applications.
+Apply real world experience with Azure services such as application hosting monitoring and configuration management to support secure scalable and resilient cloud based solutions.
+Utilize solid understanding of agile methodologies including backlog management sprint planning and retrospective participation to collaborate effectively in hybrid cross functional teams.
+Leverage skills in Rest API design and implementation with clear versioning error handling and documentation to enable consistent integration patterns across multiple consumer facing systems.
+Bring domain awareness or interest in consumer lending processes credit assessment and regulatory requirements to design solutions that are compliant user centric and operationally efficient.
+Communicate clearly with stakeholders and teammates through concise technical explanations and written documentation to ensure shared understanding and reduce ambiguity across locations.
+Apply structured problem solving and debugging techniques using logs metrics and tracing tools to quickly identify root causes and implement sustainable fixes in production environments.
+
+---
+
+Company logo for, HealthEdge.
+HealthEdge
+
+
+Software Engineer (.Net Full-Stack) 
+
+Bengaluru, Karnataka, India · Reposted 5 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+You’d be a top applicant and more likely to hear back
+
+Your profile and resume seem to match the required qualifications well.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Overview
+
+Software Engineer ( Care Solution Bengaluru ) :
+
+ Position Overview: 
+
+We are seeking a talented Software Engineer to join our Bengaluru-based team, focusing on developing and maintaining code for GuidingCare while supporting integration features with Wellframe. This role offers an excellent opportunity for engineers with 2-4 years of experience to work on innovative healthcare solutions while collaborating with cross-functional teams. You'll contribute to building a cutting-edge Digital Health Management platform that meaningfully impacts patient care and health outcomes.
+
+Responsibilities
+
+ Development & Implementation : Design, develop, and maintain software solutions for Care-Wellframe integration using modern technologies and frameworks. Leverage AI tools (ChatGPT, Claude, GitHub Copilot) and agentic AI workflows to accelerate development and improve code quality. 
+ Code Quality : Write clean, optimized, and well-documented code following industry best practices and coding standards. 
+ Feature Development : Build application features, user interfaces, and databases that support seamless integration between GuidingCare and Wellframe. 
+ Testing & Debugging : Develop and execute unit test cases, debug existing code, and ensure products function correctly in controlled environments before deployment. 
+ Data Management : Work with large volumes of data, ensuring proper modeling , analysis, and management. 
+ Collaboration : Partner with multidisciplinary teams including product managers, designers, and senior engineers to translate requirements into technical solutions. 
+ Learning & Growth : Actively seek opportunities to learn new technologies and methodologies while contributing to innovative solutions. 
+ Problem Solving : Troubleshoot and resolve technical challenges within software systems, ensuring robustness and customer satisfaction. 
+ On-call Support : Participate in on-call rotations to support the systems owned by your team. 
+
+Basic Qualifications
+
+ Education : Bachelor's degree in Computer Science, Information Technology, Engineering, or a related field. 
+ Experience : 2-4 years of hands-on software development experience. 
+
+Skills & Competencies
+
+ Technical Skills: 
+
+ Experience with Microsoft platform (ASP.NET, MVC, C#) is advantageous 
+ Hands-on experience with React or other modern front-end frameworks ( Angular , Vue .js ) 
+ Knowledge of RESTful APIs , Web Services, JSON, and XML 
+ Experience with SQL databases (MySQL, PostgreSQL, SQL Server) and writing SQL queries 
+ Understanding of MVC architecture and software design principles 
+ Familiarity with version control systems (GIT) 
+ Basic understanding of cloud platforms (AWS, Azure, GCP) 
+ Experience using AI coding assistants (GitHub Copilot, Cursor, etc.) and agentic AI tools (ChatGPT, Claude) for development tasks 
+
+ Soft Skills: 
+
+ Strong analytical and problem-solving abilities 
+ Good communication and collaboration skills 
+ Ability to work independently and as part of a team 
+ Adaptability to fast-paced, dynamic environments 
+ Eagerness to learn and continuously improve 
+ Customer-centric mindset with attention to detail 
+ Demonstrated ability to effectively leverage AI tools as productivity multipliers 
+
+Preferred Qualifications
+
+ Understanding of Ruby on Rails 
+ Understanding of Java and Spring Boot framework 
+ Knowledge of message queues (Kafka, RabbitMQ) 
+ Familiarity with Kubernetes and containerization technologies 
+ Experience with T-SQL 
+ Experience with R elational database design 
+ Exposure to microservices architecture 
+ Understanding of DevOps practices and CI/CD pipelines 
+ Active involvement in open-source projects or tech communities 
+ Experience in healthcare technology or digital health solutions
+---
+
+
+Company logo for, LSEG.
+LSEG
+
+
+Software Engineer 
+
+Bengaluru, Karnataka, India · Reposted 1 week ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Responsibilities/Activities include:
+
+3 years of experience as a Full stack developer with knowledge in front-end technologies like HTML5, CSS3, JavaScript.
+
+Strong Development experience with C#, ASP.Net Core required
+
+Strong knowledge of Oracle or MySQL or PL/SQL required
+
+Exposure and/or experience in formal software development lifecycle.
+
+Analyze, develop, code, debug and document programming to satisfy business requirements for large, complex projects.
+
+Ability to multi-task and engage productively on multiple projects simultaneously
+
+Good communication skills (verbal and written) with the ability to communicate complex issues to technical and non-technical audiences that include peers, partners, and senior IT and Business management
+
+Adhere to architecture standards and security policies.
+
+Troubleshoot ongoing production issues as and when needed.
+
+Nice to have:
+
+Knowledge of third-party libraries like jQuery, Angular and React Js is desirable
+
+Knowledge of CI/CD, DevOps and Agile
+
+Qualifications:
+
+Bachelor Degree in Computer Science / Engineering or equivalent job experience
+
+Minimum 3 Years Of Experience
+
+LSEG is a leading global financial markets infrastructure and data provider. Our purpose is driving financial stability, empowering economies and enabling customers to create sustainable growth.
+
+Our purpose is the foundation on which our culture is built. Our values of Integrity, Partnership, Excellence and Change underpin our purpose and set the standard for everything we do, every day. They go to the heart of who we are and guide our decision making and everyday actions.
+
+Working with us means that you will be part of a dynamic organisation of 25,000 people across 65 countries. However, we will value your individuality and enable you to bring your true self to work so you can help enrich our diverse workforce. You will be part of a collaborative and creative culture where we encourage new ideas and are committed to sustainability across our global business. You will experience the critical role we have in helping to re-engineer the financial ecosystem to support and drive sustainable economic growth. Together, we are aiming to achieve this growth by accelerating the just transition to net zero, enabling growth of the green economy and creating inclusive economic opportunity.
+
+LSEG offers a range of tailored benefits and support, including healthcare, retirement planning, paid volunteering days and wellbeing initiatives.
+
+We are proud to be an equal opportunities employer. This means that we do not discriminate on the basis of anyone’s race, religion, colour, national origin, gender, sexual orientation, gender identity, gender expression, age, marital status, veteran status, pregnancy or disability, or any other basis protected under applicable law. Conforming with applicable law, we can reasonably accommodate applicants' and employees' religious practices and beliefs, as well as mental health or physical disability needs.
+
+Please take a moment to read this privacy notice carefully, as it describes what personal information London Stock Exchange Group (LSEG) (we) may hold about you, what it’s used for, and how it’s obtained, your rights and how to contact us as a data subject.
+
+If you are submitting as a Recruitment Agency Partner, it is essential and your responsibility to ensure that candidates applying to LSEG are aware of this privacy notice.
+
+---
+
+Company logo for, Infosys.
+Infosys
+
+
+.Net /Dot Net Full Stack Developer 
+
+Bengaluru East, Karnataka, India · Reposted 2 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+You’d be a top applicant and more likely to hear back
+
+Your profile and resume seem to match the required qualifications well.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Shashank and others in your network
+
+Show all
+About the job
+Technical Skill Set: .NET, ASP.NET, MVC, C#, WPF, WCF, SQL Server, Entity Framework, Angular, React.js
+
+ Analyzing user requirements, envisioning system features and functionality.
+ Design, build, and maintain efficient, reusable, and reliable .Net codes by setting expectations and features priorities throughout development life cycle
+ Identify bottlenecks and bugs, and recommend system solutions by comparing advantages and disadvantages of custom development
+ Contributing to team meetings, troubleshooting development and production problems across multiple environments and operating platforms
+ Understand Architecture Requirements and ensure effective Design, Development, Validation and Support activities
+ In-depth knowledge of design issues and best practices
+ Solid understanding of object-oriented programming
+ Familiar with various design, architectural patterns and software development process.
+ Experience with both external and embedded databases
+ Creating database schemas that represent and support business processes
+ Implementing automated testing platforms and unit tests
+ Good verbal and written communication skills
+ Ability to communicate with remote teams in effective manner
+ High flexibility to travel
+
+---
+	
+Company logo for, LTM.
+LTM
+
+
+.Net Fullstack (Angular / React)
+
+Bengaluru, Karnataka, India · 1 week ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+Hybrid
+Full-time
+
+Easy Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Prashant and others in your network
+
+Show all
+Meet the hiring team
+
+Kirithika Balaji 
+
+• 2nd
+
+Specialist - Talent Acquisition @ LTM
+
+Job poster
+
+Message
+About the job
+Job Location: Bangalore/ Bhuvneshwar / Chennai/Coimbatore/Kolkata/Pune/Hyderabad/Mumbai/Noida.Role & responsibilities
+Hands on experience as a Full Stack Developer
+Proficiency in .NET Core, C#, ASP.NET Core Web API
+Strong hands-on experience with Angular (14+)or React, TypeScript, RxJS
+Good understanding of SQL Server, indexing & query optimization
+Knowledge of Azure Cloud: App Services, Functions, Storage, DevOps
+Familiarity with Microservices, Docker, containerization
+Strong understanding of OOPS, DSA, SOLID principles
+Experience with Entity Framework Core and REST API development
+Ability to work in fast-paced, agile teams
+Strong debugging, troubleshooting, and analytical skills
+Familiarity with MongoDB, NoSQL concepts (Optional)
+Exposure to AI/LLM APIs or integration (Optional)
+---
+
+Company logo for, Deloitte.
+Deloitte
+
+
+.Net + Angular 
+
+Bengaluru, Karnataka, India · 2 weeks ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+On-site
+Full-time
+
+Easy Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Kripa and others in your network
+
+Show all
+About the job
+What impact will you make?Every day, your work will make an impact that matters, while you thrive in a dynamic culture of inclusion, collaboration and high performance. As the undisputed leader in professional services, Deloitte is where you will find unrivaled opportunities to succeed and realize your full potential.
+The TeamDeloitte’s Technology & Transformation practice can help you uncover and unlock the value buried deep inside vast amounts of data. Our global network provides strategic guidance and implementation services to help companies manage data from disparate sources and convert it into accurate, actionable information that can support fact-driven decision-making and generate an insight-driven advantage. Our practice addresses the continuum of opportunities in business intelligence & visualization, data management, performance management and next-generation analytics and technologies, including big data, cloud, cognitive and machine learning.
+Total years of experience – 6-9 yearsLocation – Bangalore (Only Local Candidates )Mode of Interview - Face to FaceEducation – GraduateImmediate Joiners Only
+Your work profileWe are seeking a skilled Full Stack Developer with expertise in modern web technologies, backend development, and Docker-based application containerization. The ideal candidate will contribute to designing scalable systems, implementing new features, and ensuring high-quality application performance.
+Key Skills Required: Design, develop, and maintain applications using C#, .NET Core, Angular.• Implement, manage, and optimize RESTful APIs.• Collaborate with cross-functional teams to define, design, and deliver new features.• Ensure the performance, quality, and responsiveness of applications.• Identify bottlenecks, troubleshoot issues, and implement reliable fixes.• Maintain high standards of code quality, structure, and automation.• Write and maintain unit tests using established unit testing frameworks (e.g., xUnit, nUnit) to ensure code quality.5+ years of experience in full stack development with C#, .NET Core and Angular.• Strong hands-on experience with RESTful APIs and Entity Framework.• Expertise in Angular for front-end development.• Solid understanding of advanced C# features.• Experience with NUnit or similar unit testing frameworks.• Hands-on experience with Docker for containerizing applications.
+Required Skills & Qualifications
+• Education - B.E/B. Tech/MCA/M. E/M. Tech/MSc in Computer Science or a related field.• Proven experience as a Full Stack Developer or in a similar development role.• Strong analytical and problem-solving skills with keen attention to detail.• Excellent communication and teamwork abilities.
+
+How you wilAt Deloitte our professional development plan focuses on helping people at every level of their career to identify and use their strengths to do their best work every day. From entry-level employees to senior leaders, we believe there is always room to learn. We offer opportunities to help build excellent skills in addition to hands-on experience in the global, fast-changing business world. From on-the-job learning experiences to formal development programs at Deloitte University, our professionals have a variety of opportunities to continue to grow throughout their career.
+Career At DeloitteAt Deloitte we know that great people make a great organization. We value our people and offer employees a broad range of benefits.Our purpose Deloitte is led by a purpose:To make an impact that matters. Every day, Deloitte people are making a real impact in the places they live and work. We pride ourselves on doing not only what is good for clients, but also what is good for our people and the Communities in which we live and work—always striving to be an organization that is held up as a role model of quality, integrity, and positive
+Recruiter TipsWe want job seekers exploring opportunities at Deloitte to feel prepared and confident. To help you with your interview, we suggest that you do your research: know some background about the organization and the business area you are applying to.
+
+---
+
+
+Company logo for, Infosys.
+Infosys
+
+
+.Net Fullstack (Angular) Engineer 
+
+Bengaluru East, Karnataka, India · Reposted 1 week ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+You’d be a top applicant and more likely to hear back
+
+Your profile and resume seem to match the required qualifications well.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Shashank and others in your network
+
+Show all
+About the job
+Minimum Qualifications: - Bachelor’s or Master’s degree in BE, BTech, ME, MTech, MCA, MSc, MBA (or equivalent). - 3–5 years of hands-on experience in .NET Core, .NET Full Stack, and Angular development. - Solid knowledge of web fundamentals (HTTP, JSON, browser behavior) and debugging across the full stack. - Experience working in a collaborative Agile development environment. Preferred Qualifications: - Experience with AI-enabled features such as integrating AI services/APIs, intelligent search, summarization, recommendations, or workflow automation. - Strong proficiency with Angular best practices (RxJS patterns, state management concepts, modular architecture). - Familiarity with CI/CD practices, automated testing strategies, and release management.
+
+Key Responsibilities: Full-stack Development - Design, develop, and maintain web applications using .NET Core (backend) and Angular (frontend). - Build reusable UI components, implement responsive layouts, and ensure smooth user interactions. - Develop secure and performant RESTful APIs, integrating them effectively with Angular services. - Implement robust validation, error handling, logging, and exception management across the stack. Quality, Performance & Delivery - Write clean, testable code and contribute to unit/integration testing for both frontend and backend. - Participate in code reviews, refactoring, and improving maintainability and coding standards. - Troubleshoot production issues, optimize application performance, and reduce technical debt. - Collaborate in Agile ceremonies (planning, stand-ups, reviews) and deliver features within timelines.
+
+About us: Infosys is a global leader in next-generation digital services and consulting. We enable clients in more than 50 countries to navigate their digital transformation. With over four decades of experience in managing the systems and workings of global enterprises, we expertly steer our clients through their digital journey. We do it by enabling the enterprise with an AI-powered core that helps prioritize the execution of change. We also empower the business with agile digital at scale to deliver unprecedented levels of performance and customer delight. Our always-on learning agenda drives their continuous improvement through building and transferring digital skills, expertise, and ideas from our innovation ecosystem.
+
+---
+Company logo for, r3 Consultant.
+r3 Consultant
+
+
+Fullstack Dot Net Core 
+
+Bengaluru, Karnataka, India · 5 months ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+On-site
+Full-time
+Apply
+
+Save
+You’d be a top applicant and more likely to hear back
+
+Your profile and resume seem to match the required qualifications well.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+Anvita Mishra 
+
+• 3rd
+
+Talent Acquisition Specialist | Recruiter | HR Professional | Helping Businesses Scale by Hiring the Right Talent | Strategic Talent Acquisition | Skill & Culture Fit Specialist | AI Assisted sourcing and screening
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+Message
+About the job
+Full Stack Engineer
+
+Job Description
+
+As a Full Stack Engineer, you will play a critical role in transforming legacy.NET Framework applications into modern, scalable, and efficient solutions. You will be a part of engineering team, work closely with stakeholders, and apply your technical expertise in modernization of our software stack. This is an exciting opportunity to shape the future of our technology landscape.
+
+Key Responsibilities:
+
+ Implement modernization solutions using.NET Core and other relevant technologies.
+ Work on (UI) Front End part of the application
+ Ensure code quality, performance, and security in all modernization efforts.
+ Stay current with industry trends and best practices in.NET development.
+ Troubleshoot and resolve technical issues. Requirements The ideal candidates must have:
+ Bachelor's or Master's degree in Computer Science, Software Engineering, or a related field.
+ 3-4 years of experience in software development including front-end with a focus on.NET technologies.
+ Expertise in Microsoft.NET Stack (C#, ASP.Net, Web API, .NET Framework, .NET Core)
+ Expertise in HTML 5, CSS, JavaScript, Typescript, Node.js, and Angular Knowledge of Entity Framework, RESTful API design and development
+ Knowledge of SQL Server, PostgreSQL
+ Familiarity with cloud platforms (e.g., Azure, AWS) and containerization (Docker).
+ Familiarity with modern software development practices such as DevOps, CI/CD
+ Proficient in effective troubleshooting and issue-resolution techniques
+ Write clean, efficient, and scalable code for both front-end and back-end components
+ Ability to work effectively in a collaborative team environment.
+ A commitment to staying up-to-date with the latest industry trends and technologies
+---
+Company logo for, Deloitte.
+Deloitte
+
+
+.Net Full Stack (Angular) 
+
+Bengaluru, Karnataka, India · 3 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match summary not available
+
+This job post doesn’t have enough information to generate a match summary.
+
+
+People you can reach out to
+
+
+
+Kripa and others in your network
+
+Show all
+About the job
+The team
+Deloitte’s Technology & Transformation practice can help you uncover and unlock the value buried deep inside vast amounts of data. Our global network provides strategic guidance and implementation services to help companies manage data from disparate sources and convert it into accurate, actionable information that can support fact-driven decision-making and generate an insight-driven advantage. Our practice addresses the continuum of opportunities in business intelligence & visualization, data management, performance management and next-generation analytics and technologies, including big data, cloud, cognitive and machine learning. Your work profile
+The Full Stack .NET Developer is responsible for designing, developing, and maintaining scalable enterprise applications using .NET technologies and modern frontend frameworks such as Angular. This role collaborates closely with product owners, business stakeholders, architects, and cross-functional engineering teams to deliver high-quality software solutions aligned with business and technical goals.
+Key skills required
+• Analyze software requirements and functional specifications to design, develop, and integrate software components for energy automation products• Perform code and design reviews to ensure adherence to coding standards, best practices, and organizational quality requirements• Create and maintain comprehensive technical documentation including requirements, design specifications, code documentation, and test plans• Ensure continuous integration of solution artifacts into software configuration management system, within committed delivery timelines• Collaborate with cross-functional stakeholders including product owners, architects, and QA engineers throughout the software development lifecycle
+Preferred Qualifications
+• Bachelor’s degree in Computer Science, Information Technology, or related field• 5-9 years of professional experience in software design and development• Deep understanding of object-oriented programming principles and software design patterns• Proven expertise in building RESTful Web APIs and desktop applications using C# .NET• Advanced proficiency in modern web development with Angular 12+, including SCSS/LESS/CSS and Bootstrap• Strong command of TypeScript and JavaScript• Hands-on experience with unit testing frameworks (Jasmine/Jest for frontend, NUnit for backend)• Solid analytical and problem-solving abilities with attention to detail• Excellent verbal and written communication skills• Self-motivated learner who stays current with emerging technologies and industry trends• Demonstrated ability to collaborate effectively with cross-functional teams and technical/non-technical stakeholders
+Key Skills & Competencies
+• Full stack application development• .NET Core and C# expertise• Angular frontend development• Excellent written and verbal communication skills
+---
+
+Analyst - Full Stack Web C# .Net 
+
+MUFG • Greater Bengaluru Area
+
+
+Save
+Apply
+
+Company logo for, MUFG.
+MUFG
+
+
+Analyst - Full Stack Web C# .Net 
+
+Greater Bengaluru Area · 1 month ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Do you want your voice heard and your actions to count? 
+
+Discover your opportunity with Mitsubishi UFJ Financial Group (MUFG), one of the world’s leading financial groups. Across the globe, we’re 150,000 colleagues, striving to make a difference for every client, organization, and community we serve. We stand for our values, building long-term relationships, serving society, and fostering shared and sustainable growth for a better world.
+
+With a vision to be the world’s most trusted financial group, it’s part of our culture to put people first, listen to new and diverse ideas and collaborate toward greater innovation, speed and agility. This means investing in talent, technologies, and tools that empower you to own your career.
+
+Join MUFG, where being inspired is expected and making a meaningful impact is rewarded.
+
+About Us
+
+Mitsubishi UFJ Financial Group, Inc. (MUFG) is one of the world’s leading financial groups. Headquartered in Tokyo and with over 360 years of history, MUFG has a global network with over 2,100 locations in more than 50 markets. The Group has over 160,000 employees and offers services including commercial banking, trust banking, securities, credit cards, consumer finance, asset management, and leasing.
+
+The Group aims to “be the world’s most trusted financial group” through close collaboration among our operating companies and flexibly respond to all of the financial needs of our customers, serving society, and fostering shared and sustainable growth for a better world. MUFG’s shares trade on the Tokyo, Nagoya, and New York stock exchanges.
+
+MUFG Bank, Ltd. is Japan’s premier bank, with a global network spanning more than 50 markets. Outside of Japan, the bank offers an extensive scope of commercial and investment banking products and services to businesses, governments and individuals worldwide.
+
+In Asia, MUFG has a presence across 20 markets – Australia, Bangladesh, Cambodia, China, Hong Kong, Indonesia, India, South Korea, Laos, Malaysia, Mongolia, Myanmar, New Zealand, Pakistan, Philippines, Singapore, Sri Lanka, Taiwan, Thailand and Vietnam.
+
+It has also formed strategic partnerships with some of the most prominent banks in Southeast Asia, further augmenting its unrivalled network across the region – VietinBank in Vietnam, Krungsri in Thailand, Security Bank in the Philippines and Bank Danamon in Indonesia.
+
+For more information, visit https://www.mufg.jp/english
+
+MUFG Global Services
+
+Established in 2020, MUFG Global Services, is 100% subsidiary of MUFG Bank Ltd having offices in Bengaluru and Mumbai. MGS has been set up as a Global Capability Centre / Centre of Excellence to provide support services across various functions such as IT, KYC/ AML, Credit, Operations etc. to MUFG Bank offices globally. MGS has plans to significantly ramp-up its growth over the next 18-24 months while servicing MUFG’s global network across Americas, EMEA and Asia Pacific”
+
+About The Role
+
+Position Title : Software Engineer.
+
+Corporate Title: Analyst, Software Engineering
+
+Reporting to : Vice President
+
+Location : MGS - Bengaluru
+
+Job Profile 
+
+Position details
+
+With your deep expertise and proven success using analytical thinking and iterative problem-solving, you have what it takes to manage programs and processes strategically and tactically. Whether balancing the needs of multiple stakeholders or making sound decisions using data, analysis, past experience, and a risk mindset, you will serve as a trusted advisor who routinely solves complex business problems and delivers against milestones. In the process, you will have exciting opportunities to develop your skills, expand your network, and build your career.
+
+Roles And Responsibilities
+
+Participate in all phases of software engineering life cycle and troubleshoot technical problems as needed.
+Design, develop, deploy, and maintain applications, infrastructure, and platform according to changing requirements and following established processes and procedures.
+Lead in designing, developing, coding, and/or enhancing applications, features, infrastructure and/or application frameworks.
+Build and develop REST APIs and SOAP Services to integrate with other systems.
+Provide guidance and technical instruction to junior level engineers.
+Test, debug, and/or oversee the testing and validation of applications to ensure that quality and functionality are in line with the requirements, as well as industry security standards and protocols. 
+Resolve production defects within defined SLA.
+
+Job Requirements
+
+Bachelors’ Degree (or foreign equivalent degree) in Information Technology, Information Systems, Computer Science, Software Engineering, or a related field. Experience in the financial services or banking industry is preferred.
+
+ Minimum 2-5 years of developing at all levels of the application stack (front end/UI, middle/services, and back end/database)
+ Experience leading and mentoring technical teams developing and supporting modern web-based applications.
+Bachelors’ Degree (or foreign equivalent degree) in Information Technology, Information Systems, Computer Science and Software Engineering.
+Experience in the financial services or banking industry is preferred.
+Minimum 2-4 years of developing at all levels of the application stack (front end/UI, middle/services, and back end/database)
+Experience leading and mentoring technical teams developing and supporting modern web-based applications.
+Experience with C#, .NET Framework, .Net Core, WebSphere MQ, and Entity Framework
+Experience with Web application deployment and IIS (Internet Information services)
+Experience implementing and maintaining RESTful APIs
+Experience with Angular, jQuery, or similar framework.
+Advanced knowledge of application, data, and infrastructure architecture disciplines
+Experience in Amazon Web Services (AWS) and Load Balancer
+Experience in designing data models and structures to store various kinds of data in different formats.
+Experience with RDBMS based database such as SQL Server.
+Experience with monitoring systems e.g., Splunk, Dynatrace
+Experience with agile development processes and practices (e.g., Scrum)
+Knowledgeable in virtualization and containerization (e.g., VMware, Virtual Box)
+Knowledgeable in DevOps workflow tool including Azure DevOps Services (ADO)
+Knowledgeable on Atlassian Suite (Jira, Confluence, etc.)
+Ability to work collaboratively in teams and develop meaningful relationships to achieve common goals.
+Proven ability to work on multiple deliverables simultaneously, adhere to tight deadlines and adapt to change priorities.
+Good communication and written skills
+
+Equal Opportunity Employer
+
+The MUFG Group is committed to providing equal employment opportunities to all applicants and employees and does not discriminate on the basis of race, colour, national origin, physical appearance, religion, gender expression, gender identity, sex, age, ancestry, marital status, disability, medical condition, sexual orientation, genetic information, or any other protected status of an individual or that individual's associates or relatives, or any other classification protected by the applicable law.
+
+Mitsubishi UFJ Financial Group (MUFG) is an equal opportunity employer. We view our employees as our key assets as they are fundamental to our long-term growth and success. MUFG is committed to hiring based on merit and organsational fit, regardless of race, religion or gender.
+
+---
+Company logo for, Industrial Scientific.
+Industrial Scientific
+
+
+Software Engineer 
+
+Bengaluru East, Karnataka, India · Reposted 6 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+About the job
+Do you want a career that serves a higher purpose?
+
+The people at Industrial Scientific are committed to ending death on the job by 2050, and we need your help. We hire smart, motivated people, give them world-class tools in a supportive environment, and we let them do their job. We are seeking a highly skilled and motivated Mid-Level Full Stack Engineer to join our dynamic development team. The ideal candidate will have a strong background in designing, developing, and maintaining APIs using REACT (Next.js) .NET, C#, and Entity Framework. You will work closely with other developers, product managers, and stakeholders to build robust and scalable solutions that meet the needs of our clients and customers.
+
+Essential Duties And Responsibilities
+
+Design, develop, and maintain UIs and APIs using Next.js and and C# to support various applications and services.
+Implement and maintain data access layers using Entity Framework.
+Participate in code reviews and provide constructive feedback to peers.
+Debug and resolve issues in the development, testing, and production environments.
+Collaborate with software engineers, architects, and product managers to design scalable and reliable systems.
+Work with AWS services, including EC2, Lambda, S3, RDS, and others, to support application development and deployment.
+Contribute to continuous integration and continuous deployment (CI/CD) pipelines to facilitate seamless delivery of software updates.
+Collaborate with CloudOps teams to monitor, troubleshoot, and optimize application performance and cloud resource utilization.
+Demonstrate the ability to effectively leverage AI-assisted development tools to improve productivity, code quality, troubleshooting, and delivery outcomes while applying sound engineering judgment.
+Create and execute unit tests for Next.js UI components and Entity Framework APIs to improve application overall code quality.
+
+QUALIFICATIONS REQUIRED (Non-Negotiable)
+
+Bachelor's degree in Computer Science, Information Technology, or a related field, or equivalent work experience.
+3+ years of professional experience in software development, with full stack experience using React/Next.js and .NET C#.
+Strong problem-solving skills and a proactive approach to incident management and troubleshooting.
+Excellent communication skills and the ability to work collaboratively in a team environment.
+
+Qualifications Preferred
+
+AWS Certified Solutions Architect, Developer, or DevOps Engineer certification.
+Experience in CloudOps practices and cloud cost management.
+Experience with AWS services and cloud-based solutions.
+Familiarity with DevOps tools and methodologies, including CI/CD pipelines, version control systems such as Git, and containerization tools such as Docker or Kubernetes.
+Familiarity with monitoring and logging tools such as CloudWatch, Prometheus, or Grafana.
+Knowledge of additional programming languages (e.g., Python, JavaScript) is a plus.
+
+Fortive Corporation Overview
+
+Fortive's essential technology makes the world safer and more productive. We accelerate transformation in high-impact fields like workplace safety, build environments, and healthcare.
+
+We are a global industrial technology innovator with a startup spirit. Our forward-looking companies lead the way in healthcare sterilization, industrial safety, predictive maintenance, and other mission-critical solutions. We're a force for progress, working alongside our customers and partners to solve challenges on a global scale, from workplace safety in the most demanding conditions to advanced technologies that help providers focus on exceptional patient care.
+
+We are a diverse team 10,000 strong, united by a dynamic, inclusive culture and energized by limitless learning and growth. We use the proven Fortive Business System (FBS) to accelerate our positive impact.
+
+At Fortive, we believe in you. We believe in your potential—your ability to learn, grow, and make a difference.
+
+At Fortive, we believe in us. We believe in the power of people working together to solve problems no one could solve alone.
+
+At Fortive, we believe in growth. We're honest about what's working and what isn't, and we never stop improving and innovating.
+
+Fortive: For you, for us, for growth.
+
+About Industrial Scientific
+
+Industrial Scientific designs and manufactures gas detection products and solutions that protect workers from hazardous conditions around the world. Since our beginnings in 1985, we have pioneered numerous technologies, including the first 3-gas detector, 6-gas detector, wireless gas detector, and even the first gas detector to be included on a NASA space shuttle.Today, we continue to innovate and expand our hardware and software offerings to equip the connected workers of the future. Our latest solutions make it possible to see and respond to hazards in real time, bringing us one step closer to our vision of ending death on the job by 2050.
+
+We Are an Equal Opportunity Employer. Fortive Corporation and all Fortive Companies are proud to be equal opportunity employers. We value and encourage diversity and solicit applications from all qualified applicants without regard to race, color, national origin, religion, sex, age, marital status, disability, veteran status, sexual orientation, gender identity or expression, or other characteristics protected by law. Fortive and all Fortive Companies are also committed to providing reasonable accommodations for applicants with disabilities. Individuals who need a reasonable accommodation because of a disability for any part of the employment application process, please contact us at applyassistance@fortive.com.
+
+Bonus or Equity
+
+This position is also eligible for bonus as part of the total compensation package.
+
+Industrial Scientific designs and manufactures gas detection products and solutions that protect workers from hazardous conditions around the world. Since our beginnings in 1985, we have pioneered numerous technologies, including the first 3-gas detector, 6-gas detector, wireless gas detector, and even the first gas detector to be included on a NASA space shuttle.Today, we continue to innovate and expand our hardware and software offerings to equip the connected workers of the future. Our latest solutions make it possible to see and respond to hazards in real time, bringing us one step closer to our vision of ending death on the job by 2050.
+
+We Are an Equal Opportunity Employer. Fortive Corporation and all Fortive Companies are proud to be equal opportunity employers. We value and encourage diversity and solicit applications from all qualified applicants without regard to race, color, national origin, religion, sex, age, marital status, disability, veteran status, sexual orientation, gender identity or expression, or other characteristics protected by law. Fortive and all Fortive Companies are also committed to providing reasonable accommodations for applicants with disabilities. Individuals who need a reasonable accommodation because of a disability for any part of the employment application process, please contact us at applyassistance@fortive.com.
+
+This position is also eligible for bonus as part of the total compensation package.
+
+---
+Company logo for, HSBC.
+HSBC
+
+
+Full Stack Developer / Consultant Specialist 
+
+Pune Division, Maharashtra, India · 1 day ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Diksha and others in your network
+
+Show all
+About the job
+Some careers shine brighter than others.
+
+If you’re looking for a career that will help you stand out, join HSBC and fulfil your potential. Whether you want a career that could take you to the top, or simply take you in an exciting new direction, HSBC offers opportunities, support and rewards that will take you further.
+
+HSBC is one of the largest banking and financial services organisations in the world, with operations in 64 countries and territories. We aim to be where the growth is, enabling businesses to thrive and economies to prosper, and, ultimately, helping people to fulfil their hopes and realise their ambitions.
+
+We are currently seeking an experienced professional to join our team in the role of Consultant Specialist
+
+In This Role, You Will
+
+ Deliver full stack functionality (UI, APIs, services, and data changes) from design through to production. 
+ Collaborate with Product, UX, QA, and Platform teams to break down requirements into well-scoped technical tasks. 
+ Establish effective working relationships with all stakeholders. Strong communication skills and experience in liaising with stakeholders. 
+ Provide recommendations to the Product Owner and/or other project stakeholders on the product readiness to go live. 
+ Implement automated testing (unit/integration; e2e where relevant) and contribute to CI/CD pipeline improvements. 
+ Design and build well-structured REST APIs (GraphQL optional) with versioning and clear contracts. 
+ Need to close the gaps and work closely with team and measure the improvements. Contribution towards efficiency / Value addition. 
+
+To Be Successful, You Will
+
+ Back-end development experience in one or more of: Python/ Java (Spring Boot) 
+ Strong experience with TypeScript/JavaScript and a modern front-end framework (React or Angular preferred). 
+ Solid understanding of API design (REST, authentication/authorization patterns, error handling). 
+ Hands-on experience with SQL databases (schema design, query optimization) and familiarity with NoSQL is a plus. 
+ Testing mindset: unit + integration testing; familiarity with e2e frameworks (Cypress/Playwright) beneficial. 
+ CI/CD exposure (Git branching, pipeline builds, automated quality gates). 
+ Working knowledge of cloud and containerization concepts (Docker; Kubernetes and a major cloud provider are a plus). 
+ Good understanding of Kubernetes and Docker capabilities. 
+ Good understanding of Browser Stack or any other cloud-based device farms. 
+
+You’ll achieve more when you join HSBC.
+
+www.hsbc.com/careers
+
+HSBC is an equal opportunity employer committed to building a culture where all employees are valued, respected and opinions count. We take pride in providing a workplace that fosters continuous professional development, flexible working and, opportunities to grow within an inclusive and diverse environment. We encourage applications from all suitably qualified persons irrespective of, but not limited to, their gender or genetic information, sexual orientation, ethnicity, religion, social status, medical care leave requirements, political affiliation, people with disabilities, color, national origin, veteran status, etc., We consider all applications based on merit and suitability to the role.”
+
+Personal data held by the Bank relating to employment applications will be used in accordance with our Privacy Statement, which is available on our website.
+
+Issued by – HSBC Software Development India
+
+---
+
+Company logo for, HSBC.
+HSBC
+
+
+Full Stack Developer / Consultant Specialist 
+
+Pune Division, Maharashtra, India · 1 day ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+
+
+Diksha and others in your network
+
+Show all
+About the job
+Some careers shine brighter than others.
+
+If you’re looking for a career that will help you stand out, join HSBC and fulfil your potential. Whether you want a career that could take you to the top, or simply take you in an exciting new direction, HSBC offers opportunities, support and rewards that will take you further.
+
+HSBC is one of the largest banking and financial services organisations in the world, with operations in 64 countries and territories. We aim to be where the growth is, enabling businesses to thrive and economies to prosper, and, ultimately, helping people to fulfil their hopes and realise their ambitions.
+
+We are currently seeking an experienced professional to join our team in the role of Consultant Specialist
+
+In This Role, You Will
+
+ Deliver full stack functionality (UI, APIs, services, and data changes) from design through to production. 
+ Collaborate with Product, UX, QA, and Platform teams to break down requirements into well-scoped technical tasks. 
+ Establish effective working relationships with all stakeholders. Strong communication skills and experience in liaising with stakeholders. 
+ Provide recommendations to the Product Owner and/or other project stakeholders on the product readiness to go live. 
+ Implement automated testing (unit/integration; e2e where relevant) and contribute to CI/CD pipeline improvements. 
+ Design and build well-structured REST APIs (GraphQL optional) with versioning and clear contracts. 
+ Need to close the gaps and work closely with team and measure the improvements. Contribution towards efficiency / Value addition. 
+
+To Be Successful, You Will
+
+ Back-end development experience in one or more of: Python/ Java (Spring Boot) 
+ Strong experience with TypeScript/JavaScript and a modern front-end framework (React or Angular preferred). 
+ Solid understanding of API design (REST, authentication/authorization patterns, error handling). 
+ Hands-on experience with SQL databases (schema design, query optimization) and familiarity with NoSQL is a plus. 
+ Testing mindset: unit + integration testing; familiarity with e2e frameworks (Cypress/Playwright) beneficial. 
+ CI/CD exposure (Git branching, pipeline builds, automated quality gates). 
+ Working knowledge of cloud and containerization concepts (Docker; Kubernetes and a major cloud provider are a plus). 
+ Good understanding of Kubernetes and Docker capabilities. 
+ Good understanding of Browser Stack or any other cloud-based device farms. 
+
+You’ll achieve more when you join HSBC.
+
+www.hsbc.com/careers
+
+HSBC is an equal opportunity employer committed to building a culture where all employees are valued, respected and opinions count. We take pride in providing a workplace that fosters continuous professional development, flexible working and, opportunities to grow within an inclusive and diverse environment. We encourage applications from all suitably qualified persons irrespective of, but not limited to, their gender or genetic information, sexual orientation, ethnicity, religion, social status, medical care leave requirements, political affiliation, people with disabilities, color, national origin, veteran status, etc., We consider all applications based on merit and suitability to the role.”
+
+Personal data held by the Bank relating to employment applications will be used in accordance with our Privacy Statement, which is available on our website.
+
+Issued by – HSBC Software Development India
+
+---
+
+Company logo for, Atlas Copco Group.
+Atlas Copco Group
+
+
+Senior Software Engineer - .Net Fullstack 
+
+Pune Division, Maharashtra, India · 21 hours ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match is high, we can help you stand out
+
+Your profile and resume match the required qualifications well.
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Your Role
+
+Join us as a Senior Software Engineer within our Apps and Software development team, based out of
+
+Pune to deliver end-to-end customized application development.
+
+We expect you to participate & contribute to every stage of project right from interacting with internal
+
+customers/stakeholders, understanding their requirements, and proposing them the solutions which will be best fit to their expectations. You will be part of local team working from Atlas Copco, Pune office but you will have chance to be part of Global Projects delivery.
+
+You will be most important member of highly motivated Application development team leading the
+
+Microsoft Technology stack enabling the team members to deliver “first time right” application delivery.
+
+Principal Duties and Responsibilities
+
+ You will be responsible for the technical analysis of requirements and lead the project from technical perspective
+ You should be a problem solver and provide scalable and efficient technical solutions
+ You guarantee an excellent and scalable application development in an estimated timeline
+ You will interact with the customers/stakeholders, understand their requirements, and propose
+
+the solutions
+
+ You will work closely with ‘Application Owner’ and carry the entire responsibility of end-to-end
+
+processes/development
+
+ You will make technical & functional application documentation, release notes that will facilitate
+
+the aftercare of the application
+
+ You will support other colleagues and team mates technically wherever needed.
+
+To succeed, you will need 
+
+Knowledge, Skills And Qualifications
+
+ Education: BE Computers, Master’s degree in computer science or equivalent
+ Experience: Overall you have minimum 5-7 years of hands-on experience into application
+
+development.
+
+Required Skills
+
+ Front End - Strong working knowledge of React/Angular, HTML, CSS, Typescript/Javascript
+ Back End - C#.Net, .Net Core, ASP.Net Web API, Dapper, Microservices, Event Driven
+
+Architecture
+
+ Databases - Relational MSSQL, Non-Relational - Table Storage, Blob Storage, Cosmos DB
+ Infrastructure - DevOps - Git Repositories, CI/CD Pipelines, Containerization
+ Infrastructure - Microsoft Azure - Developing fully cloud native apps using serverless architecture
+ Fundamentals - Strong understanding on OOPS, SOLID principals, Development practices, Design
+
+Patterns
+
+ Strong understanding of service oriented architecture/Microservices
+ Excellent English communication skills (written, oral), with good listening capabilities
+ Exceptionally good technical analytical, debugging, and problem-solving skills
+ Has a reasonable balance between getting the job done vs technical debt
+ Enjoys producing top quality code in a fast-moving environment
+ Effective team player working in a team; willingness to put the needs of the team over their own
+ An eye for detail/CSS wizard, experience with CSS frameworks
+
+Preferred Skills
+
+ Experience with product development life cycle would be a plus
+ Experience with agile development methodology (Scrum)
+ Functional analysis skills and experience (Use cases, UML) is an asset
+
+In return, we offer you
+
+Who we are?
+
+Atlas Copco is a global, industrial company based in Stockholm, Sweden, with almost 40, 000 employees and customers in more than 180 countries. Atlas Copco has been driven by an innovative spirit ever since the start in 1873.
+
+The Apps and Software Development Team is a team of highly motivated resources who are responsible
+
+for application development, support, and maintenance. The rapid web application developments are aimed at supporting business needs. While you will be part of Local application development team, you will participate in Global Project Developments if required where you will play active role.
+
+City
+
+Pune
+
+Last Day to Apply
+
+10/04/2026
+
+Uniting curious minds
+
+Behind every innovative solution, there are people working together to transform the future. With careers sparked by initiative and lifelong learning, we unite curious minds, and you could be one of them.
+----
+
+Company logo for, ThoughtSol Infotech Ltd..
+ThoughtSol Infotech Ltd.
+
+
+Dotnet Developer 
+
+Noida, Uttar Pradesh, India · 16 hours ago · Over 100 applicants
+
+Promoted by hirer · Company review time is typically 1 week
+
+On-site
+Full-time
+
+Easy Apply
+
+Save
+You’d be a top applicant and more likely to hear back
+
+Your profile and resume seem to match the required qualifications well.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+Meet the hiring team
+
+
+Shubhangi . 
+
+• 2nd
+
+Sr. Executive Talent Acquistion at ThoughtSol Infotech Ltd #Hiring
+
+Job poster
+
+Message
+About the job
+
+📄 Job Title: .NET Developer (Azure & DevOps)Location: Noida (Sector 62 / 132)Experience: Min 2 YearsPreferred: - Immediate Joiner
+🔷 Job SummaryWe are looking for a skilled Full Stack .NET Developer with a minimum of 2 years of hands-on experience in ASP.NET, .NET Core, and Web API development. The candidate will be responsible for end-to-end application development, maintaining existing applications, and contributing to scalable and high-quality solutions
+🔷 Key Responsibilities💻 Application Development
+Develop scalable, secure, and high-performance web applications
+Build REST APIs and backend services
+Follow clean architecture and coding best practices
+
+🔗 Integration & Collaboration
+Work with frontend teams to integrate APIs seamlessly
+Participate in code reviews, technical discussions, and solution design
+Collaborate with QA, product, and stakeholders
+
+⚙️ Performance & Maintenance
+Troubleshoot and enhance existing applications
+Optimize applications for performance and scalability
+Improve legacy systems with modern coding practices
+
+☁️ Cloud & DevOps (Added Requirement)
+Deploy and manage applications on Microsoft Azure
+Work on CI/CD pipelines (Azure DevOps / Jenkins / GitHub Actions)
+Basic exposure to Docker, Kubernetes, and microservices architecture
+
+🔷 Required Skills & Qualifications🔹 Core Technical Skills
+Strong knowledge of C#, .NET Core, ASP.NET MVC, Web API
+Minimum 2+ years of hands-on experience in .NET technologies
+
+🔹 Database & Backend
+Experience with SQL Server (queries, stored procedures, indexing)
+Knowledge of Entity Framework / EF Core / ADO.NET
+
+🔹 Frontend Basics
+Understanding of HTML, CSS, JavaScript, jQuery
+Ability to work with UI teams for integration
+
+🔹 Professional Skills
+Strong debugging and problem-solving skills
+Good communication and teamwork abilities
+
+🔷 Good to Have
+Experience with React / Angular / Vue
+Exposure to Azure / AWS cloud platforms
+Knowledge of Docker, Microservices, CI/CD pipelines
+Familiarity with testing frameworks (xUnit, NUnit)
+---
+
+
+Company logo for, SimCorp.
+SimCorp
+
+
+Lead Full Stack Software Engineer (Angular , C#,.NET) 
+
+Noida, Uttar Pradesh, India · Reposted 20 hours ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Job match is medium, review match details
+
+Your profile and resume match several of the required qualifications.
+
+Show match details
+
+Help me update my profile
+
+Tailor my resume
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Senior Software Engineer 
+
+What Makes Us, Us
+
+Join some of the most innovative thinkers in FinTech as we lead the evolution of financial technology. If you are an innovative, curious, collaborative person who embraces challenges and wants to grow, learn and pursue outcomes with our prestigious financial clients, say Hello to SimCorp!
+
+At its foundation, SimCorp is guided by our values — caring, customer success-driven, collaborative, curious, and courageous. Our people-centered organization focuses on skills development, relationship building, and client success. We take pride in cultivating an environment where all team members can grow, feel heard, valued, and empowered.
+
+If you like
+
+what we’re saying, keep reading! 
+
+WHY THIS ROLE IS IMPORTANT TO US 
+
+You will join a team in Platform Product Development. As a Senior Software Engineer, you will leverage your expertise as a full stack engineer both front and backend technologies and the Azure cloud ecosystem. This role requires a comprehensive blend of practical engineering, architectural thinking, and leadership to ensure both immediate delivery and long-term sustainability.
+
+You will be part of a scrum team working closely with Product Owner and business stakeholders
+
+Besides your team you will work with other colleagues across our unit. Our teams are culturally diverse, English speaking, inclusive and we are all looking forward to getting a new colleague onboard.
+
+What You Will Be Responsible For
+
+You will apply your skills to all stages of the development lifecycle, including review of user stories, development, design, code reviews and writing automated tests.
+Work closely with product owner and other stakeholders to understand project requirements and provide technical insights.
+Setting up engineering excellence inside your team and continuously improving it
+Development of new functionalities.
+Managing quality assurance, refactor existing code, research tools and frameworks to enable future innovations.
+Work as part of your scrum team to reach the definition of done within each sprint.
+
+Knowledge & Experience:
+
+Essential
+
+Over 3 years of practical experience with JavaScript, TypeScript, HTML, CSS/SASS, Angular framework, and Node.js
+Over 2 years of direct experience utilizing .NET technologies, with a focus on C# and Microsoft .Net.
+Familiarity with front-end build tools (Webpack, NX, Angular CLI)
+Experience building responsive, accessible, and mobile-friendly web applications.
+Solid understanding of REST APIs, state management (NGRX), and browser performance tuning
+Knowledge of design patterns and principles (OOP, SOLID) and ability to use them in practice
+Knowledge of cloud services, infrastructure, pipelines, and architecture on Azure
+Practical knowledge of software development practices (like TDD, BDD)
+Practical experience doing peer reviews and utilizing code quality tools like SonarQube
+Experience in CI/CD and understanding of DevOps principles
+Proficient fundamentals in software testing tools, techniques and methodologies.
+Experience in building unit tests and integration tests (like Selenium, NUnit, Jasmine, Jest)
+Proficient in Git and practical experience with cloud-based applications, complemented by a background in Agile methodologies.
+Proficient problem-solving skills and the ability to make sound technical decisions.
+
+DESIRABLE
+
+Knowledge of writing VS Code extensions or Electron-based applications
+DB experience – SQL
+Experience in FinTech industry
+
+Personal Skills:
+
+Experience working in an international setting with people from many different cultures
+Proactive and reliable approach
+Positive and constructive mindset
+You prioritize your team and prioritize having an enjoyable working environment
+
+Benefits
+
+Attractive salary, bonus scheme, and pension are essential for any work agreement. However, in SimCorp we believe we can offer more. Therefore, in addition to the traditional benefit scheme, we provide a good work-life balance: flexible working hours and a hybrid model. Simcorp follows a global hybrid policy, asking employees to work from the office two days each week while allowing remote work on other days.
+
+Simcorp does offer opportunities for professional development: there is never just only one route - we offer an individual approach to professional development to support the direction you want to take.
+
+NEXT STEPS 
+
+Please send us your application in English via our career site as soon as possible, we process incoming applications continually. Please note that only applications sent through our system will be processed. At SimCorp, we recognize that bias can unintentionally occur in the recruitment process. To uphold fairness and equal opportunities for all applicants, we kindly ask you to exclude personal data such as photo, age, or any non-professional information from your application. Thank you for aiding us in our endeavor to mitigate biases in our recruitment process.
+
+For any questions you are welcome to contact Swati Pal(Swati.pal@simcorp.com), Talent Acquisition Partner. If you are interested in being a part of SimCorp but are not sure this role is suitable, submit your CV anyway. SimCorp is on an exciting growth journey, and our Talent Acquisition Team is ready to assist you discover the right role for you. The approximate time to consider your CV is three weeks.
+
+We are eager to continually improve our talent acquisition process and make everyone’s experience positive and valuable. Therefore, during the process we will ask you to provide your feedback, which is highly appreciated.
+
+WHO WE ARE? 
+
+For over 50 years, we have worked closely with investment and asset managers to become the world’s leading provider of integrated investment management solutions. We are 3,000+ colleagues with a broad range of nationalities, educations, professional experiences, ages, and backgrounds.
+
+SimCorp is an independent subsidiary of the Deutsche Börse Group. Following the recent merger with Axioma, we leverage the combined strength of our brands to provide an industry-leading, full, front-to-back offering for our clients.
+
+SimCorp is an equal opportunity employer and welcome applicants from all backgrounds, without regard to race, gender, age, disability, or any other protected status under applicable law. We are committed to building a culture where diverse perspectives and expertise are integrated into our everyday work. We believe in the continual growth and development of our employees, so that we can provide best-in-class solutions to our clients.
+----
+
+Company logo for, Taazaa Inc.
+Taazaa Inc
+
+
+Technical Architect_.NET Core
+
+Noida, Uttar Pradesh, India · Reposted 21 hours ago · Over 100 applicants
+
+Promoted by hirer · Company review time is typically 1 week
+
+Hybrid
+Full-time
+
+Easy Apply
+
+Save
+You’d be a top applicant, we can help you stand out
+
+Your profile and resume match several of the required qualifications.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+Meet the hiring team
+
+
+Geeta Mehra 
+
+• 2nd
+
+Assistant Manager – Talent Acquisition @ Taazaa Inc | Driving End-to-End Tech Hiring | Tech Talent Specialist
+
+Job poster
+
+Message
+About the job
+We’re looking for a Technical Architect to join our Core engineering team in Noida. Working at Taazaa involves engaging with cutting-edge technology and innovative software solutions in a collaborative environment. We emphasize on continuous professional growth, offering workshops and training. Our employees often interact with clients to tailor solutions to business needs, working on diverse projects across industries. We promote work-life balance with flexible hours and remote options, fostering a supportive and inclusive culture. Competitive salaries, health benefits, and various perks further enhance the work experience. Looking ahead, we aim to expand our technological capabilities and market reach, investing in advanced technologies and expanding our service offerings. We plan to deepen our expertise in AI and machine learning, enhance our cloud services, and continue fostering a culture of innovation and excellence. Taazaa is committed to staying at the forefront of technology trends, ensuring it delivers impactful and transformative solutions for its clients. We are seeking for an ambitious and self-driven Technical Architect in .Net with expertise in .NET Core, Microservices, Web API, LINQ, Software design and enterprise architecture patterns to join our team. As an architect, you will be responsible for making design choices, coordinate & oversee technical standards including software coding standard, tools and platforms. The ideal candidate should be strong in model training and deep learning. A deep knowledge of modern software development practices and the ability to lead and mentor a development team is good to have. What you’ll do:  Architecture Design and Strategy:  Design scalable, reliable, and high-performance architecture for web applications.Develop and maintain architectural guidelines, standards, and best practices.Evaluate and promote new technologies and development stacks to ensure the team stays up to date with industry trends.Understand system and infrastructure requirements, including databases, caching, and deployment. Design Patterns and Best Practices:  Apply and promote the use of design patterns and best practices in software development.Conduct regular code reviews and provide constructive feedback to maintain high-quality standards. Continuously assess and improve architectural processes and methodologies.Stay abreast of emerging technologies and industry best practices to drive innovation within the team. Roadmap and Product Vision:  Collaborate with stakeholders to understand product requirements and business goals.Define and maintain the technical roadmap aligning with the product vision.Ensure the architecture supports future growth and scalability needs. Team Collaboration and Leadership:  Work closely with product managers, developers, and other stakeholders to deliver high-quality solutions.Lead technical discussions, workshops, and training sessions to upskill the team.Your qualificationsTechnical: · Bachelor’s or Master’s degree in Computer Science, Engineering, or a related field.· Proven experience as a Technical Architect, or similar role.
+10 + years of designing and delivering .Net / SQL Server / Web Applications.
+Working knowledge of software design and enterprise architecture patterns.
+In-depth familiarity with Agile methodologies and pair programming is a plus
+Experience introducing new technologies & using open source solutions to solve problems
+Demonstrated experience with developing RESTful web services in production environment
+Demonstrated experience with unit/integration/functional testing.
+Demonstrated experience in the mechanisms source control, repositories, Wikis.
+Demonstrated experience in continuous integration.
+Strong analytical and critical thinking skills.
+Working knowledge of Microsoft Stack technologies.
+.NET Core 2+, Entity Framework, Web API, REST
+RDBMS - MS SQL Server, MySQL, PostgreSQL (any of these). Working knowledge with NoSQL such as MongoDB is a plus.
+Nice to have hands on exp for Frontend stack - JavaScript / ReactJS / Angular 2+.
+Demonstrated experience designing and architecting scalable and resilient software.
+Hands on experience with AI Productivity tools such as Chat GPT, Copilot, Gemini, Claude.
+ Behavioural: Here are five essential behavioural skills a Technical Architect should possess: 
+Effective Communication: Clearly and concisely convey ideas, requirements, and feedback to team members, stakeholders, and clients, fostering an environment of open dialogue and mutual understanding.
+Leadership and Mentorship: Inspire and guide the development team, providing support and encouragement, while promoting a culture of continuous learning and improvement.
+Problem-Solving Attitude: Approach challenges with a proactive mindset, quickly identifying issues and developing innovative solutions to overcome obstacles.
+Collaboration and Teamwork: Work well within a team, encouraging collaboration and valuing diverse perspectives to achieve common goals and deliver high-quality results.
+Adaptability and Flexibility: Stay adaptable in a fast-paced, dynamic environment, effectively managing changing priorities and requirements while maintaining focus on project objectives.
+  What you’ll get in return… Joining Taazaa Tech means thriving in a dynamic, innovative environment with competitive compensation and performance-based incentives. You'll have ample opportunities for professional growth through workshops and certifications, while enjoying a flexible work-life balance with remote options. Our collaborative culture fosters creativity and exposes you to diverse projects across various industries. We offer clear career advancement pathways, comprehensive health benefits, and perks like team-building activities. Who we are Taazaa Tech is a kaleidoscope of innovation, where every idea is a brushstroke on the canvas of tomorrow. It's a symphony of talent, where creativity dances with technology to orchestrate solutions beyond imagination. In this vibrant ecosystem, challenges are sparks igniting the flames of innovation, propelling us towards new horizons. Welcome to Taazaa, where we sculpt the future with passion, purpose, and boundless creativity.
+
+Requirements added by the job poster
+
+• 3+ years of work experience with .NET Architecture
+
+• 3+ years of work experience with Microservices
+---
+Company logo for, SimCorp.
+SimCorp
+
+
+Senior Software Engineer 
+
+Noida, Uttar Pradesh, India · Reposted 21 hours ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+You’d be a top applicant, we can help you stand out
+
+Your profile and resume match several of the required qualifications.
+
+
+Show match details
+
+Tailor my resume
+
+Help me stand out
+
+Create cover letter
+
+
+BETA • Is this information helpful?
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+What Makes Us, Us
+
+Join some of the most innovative thinkers in FinTech as we lead the evolution of financial technology. If you are an innovative, curious, collaborative person who embraces challenges and wants to grow, learn and pursue outcomes with our prestigious financial clients, say Hello to SimCorp!
+
+At its foundation, SimCorp is guided by our values — caring, customer success-driven, collaborative, curious, and courageous. Our people-centered organization focuses on skills development, relationship building, and client success. We take pride in cultivating an environment where all team members can grow, feel heard, valued, and empowered.
+
+If you like
+
+what we’re saying, keep reading!
+
+WHY THIS ROLE IS IMPORTANT TO US
+
+As our new Software Engineer, you will join SimCorp’s Product Division where you will become part of a cross functional and cross-located agile team. We are responsible for delivering functionality within a specific module of our product - SimCorp Dimension. It is an industry-proof investment management system, heavily based on financial modelling with multidimensional arrays, used by hundreds of corporate clients all over the world. You will apply your talents to all stages of the development lifecycle, including creation and review of user stories, development, design, testing, coding, code reviews, writing automated tests, and support.
+
+What You Will Be Responsible For
+
+You will be using multiple technologies, and your responsibilities will also include: 
+
+Developing core functionality to support the business modules   
+Maintaining the existing code base   
+Be part of reviewing product code and formulate test scenarios   
+Constantly learning and developing yourself, the team and our product  
+Working with product management to refine new features   
+
+WHAT WE VALUE:
+
+Advanced C# skills, good insight to the .NET framework and object-oriented software design and programming
+Understanding of functional programming languages (OCaml, APL, Standard ML, F#, Scala, Haskell)
+Experience in designing and developing Web APIs  
+Understanding of Service-Oriented Architectures  
+Have the ability to develop and maintain automated tests, underlying frameworks, and their integration into CI/CD pipelines
+Have motivation to work within the financial domain  
+You seek collaboration to find optimal solutions
+You are interested and able to work with complex architecture, think about complex systems and back-end solutions  
+You hold a M.Sc. or Ph.D. in Computer Science or a similar field   
+
+Benefits
+
+Attractive salary, bonus scheme, and pension are essential for any work agreement. However, in SimCorp we believe we can offer more. Therefore, in addition to the traditional benefit scheme, we provide a good work-life balance: flexible working hours and a hybrid model. Simcorp follows a global hybrid policy, asking employees to work from the office two days each week while allowing remote work on other days.
+
+Simcorp does offer opportunities for professional development: there is never just one route - we offer an individual approach to professional development to support the direction you want to take.
+
+
+
+NEXT STEPS
+
+Please send us your application in English via our career site as soon as possible, we process incoming applications continually. Please note that only applications sent through our system will be processed. At SimCorp, we recognize that bias can unintentionally occur in the recruitment process. To uphold fairness and equal opportunities for all applicants, we kindly ask you to exclude personal data such as photo, age, or any non-professional information from your application. Thank you for aiding us in our endeavor to mitigate biases in our recruitment process.
+
+For any questions you are welcome to contact Swati Pal(Swati.pal@simcorp.com), Talent Acquisition Partner. If you are interested in being a part of SimCorp but are not sure this role is suitable, submit your CV anyway. SimCorp is on an exciting growth journey, and our Talent Acquisition Team is ready to assist you discover the right role for you. The approximate time to consider your CV is three weeks.
+
+We are eager to continually improve our talent acquisition process and make everyone’s experience positive and valuable. Therefore, during the process we will ask you to provide your feedback, which is highly appreciated.
+
+WHO WE ARE?
+
+For over 50 years, we have worked closely with investment and asset managers to become the world’s leading provider of integrated investment management solutions. We are 3,000+ colleagues with a broad range of nationalities, education, professional experiences, ages, and backgrounds.
+
+SimCorp is an independent subsidiary of the Deutsche Börse Group. Following the recent merger with Axioma, we leverage the combined strength of our brands to provide an industry-leading, full, front-to-back offering for our clients.
+
+SimCorp is an equal opportunity employer and welcomes applicants from all backgrounds, without regard to race, gender, age, disability, or any other protected status under applicable law. We are committed to building a culture where diverse perspectives and expertise are integrated into our everyday work. We believe in the continual growth and development of our employees, so that we can provide best-in-class solutions to our clients.
+
+---
+	
+		

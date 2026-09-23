@@ -108,6 +108,8 @@ export interface UserProfile {
   phone: string;
   linkedinUrl: string;
   githubUrl: string;
+  portfolioUrl?: string;
+  flagshipAchievement?: string;
   targetDomain?: 'sde' | 'cloud' | 'dual' | string;
   resumeSummary?: string;
 }

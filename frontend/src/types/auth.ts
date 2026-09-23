@@ -7,7 +7,10 @@ export interface UserProfileDto {
   yoe?: string;
   keyStrengths?: string;
   linkedinUrl?: string;
+  githubUrl?: string;
+  portfolioUrl?: string;
   phone?: string;
+  flagshipAchievement?: string;
   resumeSummary?: string;
   createdAt?: string;
 }

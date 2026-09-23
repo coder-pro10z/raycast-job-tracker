@@ -122,7 +122,10 @@ namespace NextApply.Api.Controllers
             if (dto.Yoe != null) user.Yoe = dto.Yoe.Trim();
             if (dto.KeyStrengths != null) user.KeyStrengths = dto.KeyStrengths.Trim();
             if (dto.LinkedinUrl != null) user.LinkedinUrl = dto.LinkedinUrl.Trim();
+            if (dto.GithubUrl != null) user.GithubUrl = dto.GithubUrl.Trim();
+            if (dto.PortfolioUrl != null) user.PortfolioUrl = dto.PortfolioUrl.Trim();
             if (dto.Phone != null) user.Phone = dto.Phone.Trim();
+            if (dto.FlagshipAchievement != null) user.FlagshipAchievement = dto.FlagshipAchievement.Trim();
             if (dto.ResumeSummary != null) user.ResumeSummary = dto.ResumeSummary.Trim();
 
             user.UpdatedAt = DateTime.UtcNow;
@@ -189,7 +192,10 @@ namespace NextApply.Api.Controllers
                 Yoe = user.Yoe,
                 KeyStrengths = user.KeyStrengths,
                 LinkedinUrl = user.LinkedinUrl,
+                GithubUrl = user.GithubUrl,
+                PortfolioUrl = user.PortfolioUrl,
                 Phone = user.Phone,
+                FlagshipAchievement = user.FlagshipAchievement,
                 ResumeSummary = user.ResumeSummary,
                 CreatedAt = user.CreatedAt
             };

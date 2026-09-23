@@ -13,8 +13,10 @@ import {
   Laptop,
   CheckCircle2,
   Terminal,
-  Play
+  Play,
+  FileText
 } from 'lucide-react';
+import { FOUNDATIONAL_DRAFTS, interpolateDraft } from '../../data/foundationalDrafts';
 
 interface WebAutomatorModalProps {
   isOpen: boolean;
@@ -33,6 +35,7 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
   const [recruiterEmail, setRecruiterEmail] = useState('');
   const [jdText, setJdText] = useState('');
   const [domain, setDomain] = useState<'sde' | 'cloud' | 'dual'>('sde');
+  const [selectedTemplateId, setSelectedTemplateId] = useState<string>('auto');
   
   // Output State
   const [generating, setGenerating] = useState(false);
@@ -51,33 +54,31 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
 
     setGenerating(true);
 
-    // Simulate / execute AI tailored outreach synthesis grounded in active profile
     setTimeout(() => {
-      const candidateName = userProfile.fullName || 'Candidate';
-      const roleName = role.trim();
-      const companyName = company.trim();
-      
-      const subject = `${roleName} Application – ${candidateName}`;
-      
-      const strengths = domain === 'cloud' 
-        ? 'architecting resilient multi-region cloud infrastructure, container orchestration (Docker/K8s), and automated CI/CD pipelines'
-        : 'building scalable distributed backends with .NET Core/C#, responsive React frontends, and cloud microservices';
+      let template = FOUNDATIONAL_DRAFTS.find(t => t.id === selectedTemplateId);
+      if (!template) {
+        // Auto select based on domain and role keywords
+        const lowerRole = role.toLowerCase();
+        if (domain === 'cloud' || lowerRole.includes('cloud') || lowerRole.includes('devops') || lowerRole.includes('sre') || lowerRole.includes('infra')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'cloud-platform-devops') || FOUNDATIONAL_DRAFTS[0];
+        } else if (lowerRole.includes('backend') || lowerRole.includes('system') || lowerRole.includes('distributed')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'sde-distributed-backend') || FOUNDATIONAL_DRAFTS[0];
+        } else {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'sde-fullstack-product') || FOUNDATIONAL_DRAFTS[0];
+        }
+      }
 
-      const body = `Hi,\n\n` +
-        `I am writing to express my strong interest in the ${roleName} opportunity at ${companyName}.\n\n` +
-        `With over ${userProfile.yoe || '3+ years'} of hands-on software engineering experience specializing in ${strengths}, I have consistently delivered robust systems and solved high-throughput technical challenges.\n\n` +
-        `Having reviewed your opening, my background aligns closely with your team's tech stack and engineering standards. I have attached my resume for your review.\n\n` +
-        `I would welcome the opportunity to discuss how my skillset can contribute to ${companyName}'s product goals.\n\n` +
-        `Best regards,\n` +
-        `${candidateName}\n` +
-        `${userProfile.phone ? `${userProfile.phone}\n` : ''}` +
-        `${userProfile.linkedinUrl || ''}`;
+      const { subject, body } = interpolateDraft(template, userProfile, {
+        companyName: company.trim(),
+        targetRole: role.trim(),
+        hrRecruiterName: recruiterEmail.trim()
+      });
 
       setGeneratedSubject(subject);
       setGeneratedBody(body);
       setGenerating(false);
-      showToast('Outreach email synthesized!');
-    }, 600);
+      showToast(`Outreach email synthesized using template: ${template.title}!`);
+    }, 400);
   };
 
   const handleSaveToNextApply = async () => {
@@ -94,7 +95,7 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
         gmailDraftId: `web-${Date.now()}`,
         automatorStatus: 'Draft Created',
         outreachSubject: generatedSubject,
-        outreachBodyPreview: generatedBody.slice(0, 150) + '...',
+        outreachBodyPreview: generatedBody,
         appliedDate: new Date().toISOString().slice(0, 10),
         notes: `Generated via Online Web/Mobile Automator for ${company}.`
       });
@@ -349,6 +350,43 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
                       color: 'var(--text-primary)'
                     }}
                   />
+                </div>
+
+                <div style={{ gridColumn: 'span 2' }}>
+                  <label style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+                    <FileText size={12} /> Outreach Blueprint / Foundational Draft
+                  </label>
+                  <select
+                    value={selectedTemplateId}
+                    onChange={(e) => setSelectedTemplateId(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '8px 10px',
+                      fontSize: '0.8125rem',
+                      backgroundColor: 'var(--bg-tertiary)',
+                      border: '1px solid var(--border-color)',
+                      borderRadius: 'var(--radius-sm)',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
+                    }}
+                  >
+                    <option value="auto">Auto-Select Best Blueprint (Recommended)</option>
+                    <optgroup label="SDE & Full Stack">
+                      {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'SDE / Full Stack').map(d => (
+                        <option key={d.id} value={d.id}>{d.title}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Cloud, Platform & DevOps">
+                      {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'Cloud & DevOps').map(d => (
+                        <option key={d.id} value={d.id}>{d.title}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Specialized, Networking & Referrals">
+                      {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'Specialized & Networking').map(d => (
+                        <option key={d.id} value={d.id}>{d.title}</option>
+                      ))}
+                    </optgroup>
+                  </select>
                 </div>
               </div>
 

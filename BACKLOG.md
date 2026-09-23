@@ -178,10 +178,31 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 11: Incomplete Draft Body & Missing Signature in 'Open Draft' Redirection
+- **Component**: Job Application Panel (`JobApplicationPanel.tsx`), Web Automator (`WebAutomatorModal.tsx`), Settings Modal (`SettingsModal.tsx`)
+- **Error / Issue**: Clicking 'Open Draft' in the Automator redirected to Gmail compose with only a single-sentence teaser (`job.outreachBodyPreview`) without salutation, proof points, or candidate contact/signature block. Additionally, Settings lacked a separate field for Portfolio URL and live signature preview.
+- **Root Cause**: `getGmailAction` passed `encodeURIComponent(job.outreachBodyPreview)` into the Gmail URL without assembling greeting, value pitch, or candidate contact block.
+- **Resolution**:
+  - Created `frontend/src/services/emailAssembler.ts` providing `assembleFullOutreachEmail(job, userProfile)` and `assembleSignature(userProfile)` to generate publication-ready emails with formal greetings, tailored pitches, proof metrics, CTAs, and complete contact signatures.
+  - Added dedicated Portfolio URL, Flagship Achievement, and a live formatted Signature Preview card in `SettingsModal.tsx`.
+  - Updated backend models (`UserProfile.cs`), DTOs (`AuthDtos.cs`), API controller (`AuthController.cs`), client types, and store to persist Portfolio URL and Flagship Achievement.
+  - Created a 10 Foundational Drafts Library with standardized `{placeholders}` in `frontend/src/data/foundationalDrafts.ts` and integrated blueprint selection into `WebAutomatorModal.tsx`.
+  - Archived 10 realistic JDs in `docs/jd-samples/` (HashiCorp, Stripe, Snowflake, Datadog, AWS, OpenAI, GitHub, Airbnb, Uber, Netflix).
+
+---
+
 ### 🚀 Milestone 6: Brand-Accurate LinkedIn Outreach Studio Styling
 - [x] **Design Tokens**: Added `--linkedin-primary: #0a66c2`, `--linkedin-hover: #004182`, `--linkedin-bg`, and `--linkedin-border` in `index.css` and `styles.css`.
 - [x] **Channel Navigation Pills**: Updated `LinkedIn Note (<300 chars)` and `LinkedIn InMail` buttons in `OutreachStudio.tsx` to use the official LinkedIn primary background.
 - [x] **Contextual Action Bar**: Dynamic LinkedIn action button that switches to LinkedIn brand blue and surfaces direct "Open Profile on LinkedIn" links when recruiter contact information is present.
+
+---
+
+### 🚀 Milestone 7: Publication-Ready Email Assembly, Signature Studio & Foundational Drafts Library
+- [x] **Full Outreach Assembly**: Implemented `emailAssembler.ts` producing multi-paragraph outreach drafts with greeting, pitch, proof metric, and signature.
+- [x] **Candidate Signature Engine**: Supports Full Name, Role, Phone, Email, LinkedIn, GitHub, and Portfolio URLs with real-time preview in Settings.
+- [x] **10 Foundational Drafts Library**: Scaffolding in `foundationalDrafts.ts` with `{placeholder}` interpolation across SDE, Cloud, and Networking categories.
+- [x] **Realistic JD Archive**: Archived 10 realistic company JDs in `docs/jd-samples/`.
 
 ---
 

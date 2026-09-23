@@ -42,6 +42,9 @@ const DEMO_USERS: Record<string, { token: string; user: UserProfileDto }> = {
       keyStrengths: 'React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture',
       phone: '+91 98765 43210',
       linkedinUrl: 'https://www.linkedin.com/in/praveen-kashyap-8b8359190/',
+      githubUrl: 'https://github.com/coder-pro10z',
+      portfolioUrl: 'https://praveenkashyap.dev',
+      flagshipAchievement: 'Architected distributed event-driven microservices in .NET Core and modern React micro-frontends with sub-50ms latency',
       resumeSummary: 'Full Stack Software Development Engineer specializing in .NET Core, React, and AWS/Azure cloud distributed architectures.',
       createdAt: '2026-09-22T08:00:00Z'
     }
@@ -53,11 +56,14 @@ const DEMO_USERS: Record<string, { token: string; user: UserProfileDto }> = {
       fullName: 'Anam Ansari',
       email: 'anamansari.0406@gmail.com',
       targetDomain: 'dual',
-      currentRole: 'Software Engineer',
+      currentRole: 'Cloud & Platform Software Engineer',
       yoe: '3+ years',
-      keyStrengths: 'Full Stack Development, React, Python, Cloud Infrastructure, Agile',
+      keyStrengths: 'Full Stack Development, React, Python, Cloud Infrastructure, Docker, Kubernetes',
       phone: '+91 98765 43211',
       linkedinUrl: 'https://www.linkedin.com/in/anam-ansari',
+      githubUrl: 'https://github.com/anam-ansari',
+      portfolioUrl: 'https://anamansari.dev',
+      flagshipAchievement: 'Automated multi-region Kubernetes cluster deployments with zero downtime and automated Prometheus/Grafana observability',
       resumeSummary: 'Cloud & SDE Specialist with deep expertise in DevOps, Kubernetes orchestration, Docker, and multi-cloud solutions.',
       createdAt: '2026-09-22T08:00:00Z'
     }

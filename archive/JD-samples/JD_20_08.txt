@@ -1,0 +1,1422 @@
+Company logo for, Binary Semantics Ltd..
+Binary Semantics Ltd.
+
+
+Dotnet Developer 
+
+Gurugram, Haryana, India · 1 month ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+On-site
+Full-time
+
+Easy Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+Meet the hiring team
+
+
+Sangita H. 
+
+• 2nd
+
+Executive | Business Analysis | Stakeholder Alignment  | Data-Driven Decision Making | 22k+ Professional Network
+
+Job poster
+
+Message
+About the job
+About the Company
+At Binary Semantics, we build scalable, API-first, cloud-native enterprise platforms that drive Digital Transformation across global markets. Our solutions span AI/ML, IoT, InsureTech, TaxTech, Logistics Automation, Analytics, and XaaS ecosystems across APAC, MENA, and North America.
+About the Role
+We are currently looking for an experienced Developer & Team Lead – .NET Full Stack to join our Gurgaon team at Binary Semantics. We are seeking a hands-on technical leader who can drive architecture, scalability, and engineering excellence while mentoring a growing team.
+Responsibilities
+• Develop and maintain scalable web applications using .NET technologies • Design, develop, and enhance RESTful APIs • Build modern front-end applications using Next.js, Reactjs or Angular • Work with databases such as SQL Server / Oracle / MongoDB • Collaborate in an Agile development environment • Optimize application performance and maintain high code quality
+Qualifications
+1–7 years of IT experience
+Required Skills
+Strong expertise in AWS Cloud
+Hands-on experience with ASP.NET Core
+Experience with Angular/ ReactJS/ NextJS
+Strong knowledge of Web APIs
+Database expertise (MS SQL Server / Oracle / MongoDB)
+Experience working on Enterprise SaaS or product-based applications
+Strong understanding of Microservices architecture and DevOps practices
+Solid foundation in OOP, SOLID principles, and Design Patterns
+
+If you’re passionate about building scalable systems and leading engineering excellence, we would love to connect. Apply via LinkedIn or share your CV at Sangita.hazra@binarysemantics.com.
+
+Requirements added by the job poster
+
+• 3+ years of work experience with ASP.NET Core
+
+• 3+ years of work experience with ASP.NET
+---
+
+Company logo for, SMC Insurance Brokers Pvt Ltd.
+SMC Insurance Brokers Pvt Ltd
+
+
+Software Developer
+Experience - 2-5 yrs
+
+Noida, Uttar Pradesh, India · 1 week ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+On-site
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Back
+
+Software Developer
+
+Experience- 2-5 yrs
+
+Location- Noida Sec 62 
+
+Salary negotiable as per market
+
+Job Description: 
+
+We are looking for a passionate Software Engineer to design, develop and install software solutions.
+
+Software Engineer responsibilities include gathering user requirements, defining system functionality and writing code in various tools , like C#, Asp.net, Asp.net Core, MVC. Our ideal candidates are familiar with the software development life cycle (SDLC) with Data Base Exp MySql, Sql Server from preliminary system analysis to tests and deployment. Ultimately, the role of the Software Engineer is to build high-quality, innovative and fully performing software that complies with coding standards and technical design.
+
+Responsibilities: 
+
+Work with developers/other teams to design algorithms and flowcharts
+Produce clean and efficient code based on specifications
+Integrate software components.
+Verify and deploy programs and systems
+Troubleshoot, debug and upgrade existing software
+Gather and evaluate user feedback
+Recommend and execute improvements
+Create technical documentation for reference and reporting
+
+Requirements And Skills
+
+Proven experience as a Software Developer, Software Engineer or similar role
+Integration of Rest and Soap Services and Payment Gateways.
+Experience with software development in a test-driven environment
+Knowledge of coding languages/tools (e.g. C#, Asp.net, Asp.net Core)
+Experience with databases (MySQL, SQL Server)
+Knowledge of version control systems e.g. Git/SVN
+Ability to learn new languages and technologies
+Excellent communication skills
+Resourcefulness and troubleshooting aptitude
+Attention to detail
+Graduation in Computer Science, Engineering or a equivalent degree
+
+Nice To Have
+
+Exposure to cloud computing services.
+Knowledge of DevOps practices
+Knowledge of Insurance domain
+Knowledge of frontend libraries/frameworks e.g. React/Angular/etc.
+
+ Apply For This Job: 
+
+Inbox your CV at:  irecruitment@smcinsurance.com 
+
+Software Developer
+
+Experience- 2-5 yrs
+
+Location- Noida Sec 62 
+
+Salary negotiable as per market
+
+Job Description: 
+
+We are looking for a passionate Software Engineer to design, develop and install software solutions.
+
+Software Engineer responsibilities include gathering user requirements, defining system functionality and writing code in various tools , like C#, Asp.net, Asp.net Core, MVC. Our ideal candidates are familiar with the software development life cycle (SDLC) with Data Base Exp MySql, Sql Server from preliminary system analysis to tests and deployment. Ultimately, the role of the Software Engineer is to build high-quality, innovative and fully performing software that complies with coding standards and technical design.
+
+SMC Insurance
+
+Welcome to SMC.
+
+How may I assist you?
+
+---
+
+Company logo for, Landis+Gyr.
+Landis+Gyr
+
+
+Senior Engineer, Software Development (.NET Core) 
+
+Noida, Uttar Pradesh, India · Reposted 3 weeks ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Landis+Gyr is a leading global provider of integrated energy management solutions. We measure and analyze energy utilization to generate empowering analytics for smart grid and infrastructure management, enabling utilities and consumers to reduce energy consumption. Our innovative and proven portfolio of software, services and intelligent sensor technology is a key driver to decarbonize the grid and helped to avoid around 9 million tons of CO2 in FY 2023. With sales of USD 2.0 billion in FY 2023, Landis+Gyr employs around 6,900 talented people across five continents.
+
+For more than a century, we've been pioneers in energy innovation, and we continue to lead the way toward a more sustainable and efficient energy landscape.
+
+Join us at Landis+Gyr, where we manage energy better!
+
+About Company
+
+Landis+Gyr is a leading global provider of integrated energy management solutions for the utility sector. Offering one of the broadest portfolios, we deliver innovative and flexible solutions to help utilities solve their complex challenges in Smart Metering, Grid Edge Intelligence and Smart Infrastructure. With sales of USD 1.7 billion in FY 2019, Landis+Gyr employs approximately 5,500 people in over 30 countries across five continents, with the sole mission of helping the world manage energy better. More information is available at Landis+Gyr website landisgyr.eu
+
+Key Purpose of Role: 
+
+This role has responsibility for development and expected to work in all areas of software engineering (Core Development, design, Implement, review, document,) as the demand dictates.
+
+Job Description:
+
+Responsibilities / Tasks
+
+Excellent communication skills, both verbal and written.
+Strong hands-on experience in .NET Framework, .NET Core, C#, ASP.NET, and microservices.
+Strong development experience in C# and ASP.NET.
+.NET Core is must.
+.NET 8 is must.
+Development experience across multiple platforms, including Windows and Linux environments.
+Experience with Linux distributions such as Red Hat, CentOS, or Ubuntu is a plus.
+Strong understanding of Object-Oriented Programming (OOP) principles.
+Good experience with APIs, web services, and microservices architecture.
+Familiarity with PostgreSQL; experience with Oracle or other relational databases is also valuable.
+NoSQL experience is a plus.
+Experience with Kafka or other messaging platforms / message buses.
+Experience working with API gateways is a plus.
+Experience with popular web application frameworks.
+Experience in implementing automated testing frameworks and writing unit tests.
+Responsible and independent team member for coding and unit testing of .NET-related development.
+Strong cloud development experience with one or more of the major cloud platforms: AWS, Azure, or GCP.
+GCP experience is preferred.
+Hands-on experience with containerization and deployment tools such as:
+Docker
+Kubernetes
+Helm
+GitLab / GitLab CI
+ArgoCD
+Experience working in a Scrum or Kanban environment.
+Responsible for programming and delivering high-quality software applications.
+Responsible for quality and completeness of work, including:
+Development
+Bug fixing
+Documentation
+General product maintenance
+Ensure regular maintenance of application servers and databases.
+Relevant experience 3.6-7 years .NET, C#, ASP.NET
+
+Qualification & Soft skills:
+
+Must be a strong team player with good communication skills.
+Comfortable working in a globally distributed team.
+Ability to collaborate effectively across engineering, QA, DevOps, and product teams.
+Relevant qualification: B.E. (CS, IT, ECE), B.Tech (CS, IT, ECE), M.Tech, MCA.
+Experience: 4 to 7 years
+
+We're committed to shaping a better future for everyone. #EnergizeYourCareer and join us on our journey towards a greener tomorrow.
+---
+
+
+Company logo for, Binary Semantics Ltd..
+Binary Semantics Ltd.
+
+
+Sr .Net Developer 
+
+Gurugram, Haryana, India · 1 month ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+On-site
+Full-time
+
+Easy Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+Meet the hiring team
+
+
+Juhi Khubchandani 
+
+• 2nd
+
+Talent Acquisition Specialist
+
+Job poster
+
+Message
+About the job
+Dear Candidate,Greetings from Binary Semantics Ltd.!!
+Immediate Hiring for Sr .NET Full Stack Developer - Gurgaon(WFO)
+Note: Kindly immediate joiners only apply or who can join within 10-15 days.
+About Binary Semantics Ltd.:-Binary Semantics Limited (BSL) is a ISO 9001: 2015 & ISO 27001:2013 and CMMI Level 3 offshore development and a software services company headquartered in Gurugram. We have strong software engineering and service processes and are providing wide range of services varying from maintenance of existing applications to full life-cycle development of enterprise-wide business applications to the satisfaction of our customers since 1986. Our Robust Processes and Methodologies have been successfully tried and tested for over three decades with our clients. Our portfolio of services includes Application Engineering and Implementation, Product Engineering, Professional Consulting, IoT and Vehicle Telematics, Web Presence Enhancement, Business Intelligence & Analytics services and many more.List of our gold and silver partners and alliances includes Maplesoft, SAS, Microsoft and Oracle. Our practice area includes engineering and automotive manufacturing, personnel & compensation applications, insurance & finance etc.
+Position – Sr Developer -.NETExperience – 4-5 years onlyLocation – Gurgaon(WFO)Education – Btech/BCA+MCASalary – As per industry standards
+should have extensive technical knowledge in software development, strong logical and problem-solving skills.
+Ability to identify performance problem bottlenecks & come up with novel solutions.
+Support / Lead design, development, debug and maintenance of the product.
+Implement / Setup and maintain processes for Version Control & Code Quality standards & tools.
+Participate in product design meetings with team lead, other developers and cross-functional technical teams to ensure that development adheres to client specifications and is consistent across various units.
+Participate in determining standards and best practices within area of software development Implement quality measurement systems with strict adherence to quality standards by the entire team in all its processes. 
+
+Team-oriented personality with good communication with ability to balance and prioritize work.
+Good presentation and communication skills to communicate with clients, support personnel and management.
+Adapt to changing situations, handle multiple tasks simultaneously and switch between tasks quickly.
+Ability to anticipate problems, deal with and resolve ambiguity and take decisive action.
+Ability to work independently as well as a part of a team
+Pursue performance excellence through shared goals, shared leadership.
+Strong sense of accountability
+Ability to work with group to accomplish beyond individual self-interest. 
+
+Experience Strong knowledge of web development on .Net ecosystemProficient in C#, .NET Core and jQuery.Microservices exp is must.React exp is must.Strong knowledge of database development (SQL Server).
+Interested candidate can share their resume on below mentioned email id: juhi.khubchandani@binarysemantics.com
+Exp:Exp: in Microservices:Exp: in React:CTC:ECTC:NP:Location:Read For Gurgaon:
+Regards,Juhi KhubchandaniTalent AcquisitionBinary Semantics Ltd.Gurgaon
+
+Requirements added by the job poster
+
+• 4+ years of work experience with .NET Framework
+---
+Company logo for, Eicore.
+Eicore
+
+
+Software Engineer
+
+Gurugram, Haryana, India · 2 months ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+On-site
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Role & Responsibilities
+
+Strong Hands-on experience of .NET Core, C#, ASP.NET, MVC, Web API, WCF
+Having hands on experience of Angular
+Good understanding of Agile & Scrum
+Good knowledge of MS SQL Server (Writing SQL Queries, procedures and triggers)
+Good knowledge of JavaScript, AJAX and JQuery
+Knowledge of HTML, CSS
+Experience of maintaining, extending, and amending existing software as well as creating new applications.
+Knowledge in software design, object-oriented design and implementation techniques as well as n-tier application design.
+Knowledge of Design Patterns, SOLID principles, DI, IOC, SOAP
+Experience with database design and implementation.
+Must have experience with unit testing frameworks, code coverage and static code analysis
+Strong technical and analytical skills.
+Knowledge of creation and integration of Web Services, WSDLs / SOAP / REST and WCF Services.
+Experience with version control systems (Git)
+Exposure of AWS/Azure services, CI/CD, dockers and containers
+
+Preferred Candidate Profile
+
+BE/ B.tech& MCA
+---
+
+
+Alight Solutions
+
+
+IT Developer Analyst II 
+
+Gurgaon, Haryana, India · 6 days ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+
+
+Celeste and others in your network
+
+Show all
+About the job
+Our Story 
+
+At Alight, we believe a company’s success starts with its people. Alight embraces values that come directly from our people – purposeful, human, united and growth-minded – reflecting our inclusive culture and promise that our clients expect. We are passionate about connecting purpose with impact. Alight empowers clients to build a healthier and more financially secure workforce by unifying the benefits ecosystem across health, wealth, wellbeing, navigation, and absence management.
+
+Our Benefits
+
+With a comprehensive total rewards package, Alight offers programs and plans that support your mind, body, wallet, and life. Benefits include health, starting Day One. Additionally, Alight colleagues enjoy wellbeing programs, retirement plans, and career growth opportunities – all within a thriving global organization.
+
+Great Place to Work
+
+Thanks to the work of every colleague, Alight has received multiple awards of recognition including “Great Place to Work” for the past 7 years and Fortune’s “Best Companies to Work For.” To learn more about our company culture and awards Click Here.
+
+We invite you to join our team! Learn more at careers.alight.com .
+
+Overview of Role
+
+Seeking a talented .NET Developer with 7–10 years of experience in building modern MVC web applications using .NET and Angular. The role focuses entirely on application development and requires strong analytical and technical skills, the ability to thrive in an Agile Scrum environment, and a track record of delivering high‑quality code with minimal supervision.
+
+Responsibilities
+
+Design, develop, and maintain scalable web applications using ASP.NET MVC and C#.
+Build interactive, responsive, and high‑quality front‑end components using Angular.
+Develop and integrate RESTful APIs using .NET Core to support front‑end and backend interactions.
+Understand, interpret, and create detailed low‑level design (LLD) documents.
+Write clean, efficient, and well‑structured code aligned with industry best practices, including SOLID principles, design patterns, and code review standards.
+Collaborate with cross‑functional teams—QA, UX, DevOps, and Product—to translate business requirements into robust technical solutions.
+Troubleshoot, debug, and resolve application issues while continuously improving performance.
+Ensure application quality with regard to performance, security, scalability, and responsiveness.
+
+Technical Skills Required
+
+Strong proficiency in ASP.NET MVC and C# for developing scalable and maintainable web applications.
+Hands‑on experience with Angular (Angular 15+), including components, services, RxJS, routing, and state management.
+Expertise in .NET Core / .NET 6+ for building RESTful APIs and backend services and testing it through Postman.
+Experience with writing unit test cases using NUnit, Jest, and Vitest frameworks.
+Solid understanding of relational databases such as SQL Server, including writing queries, stored procedures, and performance optimization.
+Strong front-end knowledge in HTML5, CSS3, JavaScript, TypeScript, and UI design practices.
+Deep understanding of software design principles and best practices, including SOLID, design patterns, and clean coding standards.
+Good knowledge of Agile/Scrum methodologies and iterative development practices.
+Proficiency in version control systems, primarily Git (branching, merging, pull requests).
+Experience in debugging, troubleshooting, and performance tuning across both frontend and backend components.
+Experience using SonarQube for static code analysis and code quality improvements.
+Basic understanding of application security concepts, including authentication, authorization, and OWASP guidelines.
+Familiarity with DevOps and CI/CD pipelines using tools like Azure DevOps or GitHub Actions.
+Strong understanding of secure coding, input validation, authentication and authorization considerations, automated testing, and production readiness.
+Experience using AI-assisted development tools to improve software delivery productivity, such as GitHub Copilot, ChatGPT, Claude, Gemini, Perplexity, or similar tools.
+Ability to critically review, improve, and validate AI-generated code before implementation.
+Ability to critically review, improve, and validate AI-generated code before implementation.
+Ability to write effective prompts for code generation, refactoring, debugging, unit test creation, API design, and documentation.
+Preferred experience with AI-enabled application development, LLM concepts, RAG, semantic search, vector search, Azure OpenAI, or similar AI platforms.
+
+Required Qualifications
+
+Bachelor’s or master’s degree in computer science, Engineering, or a related technical field.
+Minimum 3 years of experience in application development.
+Strong analytical and problem-solving abilities.
+Excellent Communication and interpersonal skills.
+Ability to work independently and collaboratively in a fast-paced environment.
+Ability to work with the onshore team during some overlap US hours. 
+
+Application and Interview
+
+By applying for a position with Alight, you understand that, should you be made an offer, it will be contingent on your undergoing and successfully completing a background check consistent with Alight’s employment policies. Background checks may include some or all the following based on the nature of the position: Government ID validation, education verification, employment verification, and criminal check, search against global sanctions and government watch lists, credit check, and/or drug test. You will be notified during the hiring process which checks are required by the position.
+
+Alight requires all virtual interviews to be conducted on video. Please be aware that Alight is a camera-on culture and may require occasional travel to one of our physical office locations.
+
+Our commitment to Inclusion
+
+We celebrate differences and believe in fostering an environment where everyone feels valued, respected, and supported. We know that diverse teams are stronger, more innovative, and more successful.
+
+At Alight, we welcome and embrace all individuals, regardless of their background, and are dedicated to creating a culture that enables every employee to thrive. Join us in building a brighter, more inclusive future.
+
+As part of this commitment, Alight will ensure that persons with disabilities are provided with reasonable accommodation for the hiring process. If reasonable accommodation is needed, please contact alightcareers@alight.com .
+
+Equal Opportunity Policy Statement
+
+Alight is an Equal Employment Opportunity employer and does not discriminate against anyone based on sex, race, color, religion, creed, national origin, ancestry, age, physical or mental disability, medical condition, pregnancy, marital or domestic partner status, citizenship, military or veteran status, sexual orientation, gender, gender identity or expression, genetic information, or any other legally protected characteristics or conduct covered by federal, state, or local law. In addition, we take affirmative action to employ disabled persons, disabled veterans, and other covered veterans.
+
+Alight provides reasonable accommodation to the known limitations of otherwise qualified employees and applicants for employment with disabilities and sincerely held religious beliefs, practices and observances, unless doing so would result in undue hardship. Applicants for employment may request reasonable accommodations/modifications by contacting their recruiter.
+
+Authorization to work in the Employing Country
+
+Applicants for employment in the country in which they are applying (Employing Country) must have work authorization that does not, now or in the future, require sponsorship of a visa for employment authorization in the Employing Country and with Alight.
+
+Note, this job description does not restrict management's right to assign or reassign duties and responsibilities of this job to other entities; including but not limited to subsidiaries, partners, or purchasers of Alight business units.
+
+We offer you a competitive total rewards package, continuing education & training, and tremendous potential with a growing worldwide organization.
+
+DISCLAIMER:
+
+Nothing in this job description restricts management's right to assign or reassign duties and responsibilities of this job to other entities; including but not limited to subsidiaries, partners, or purchasers of Alight business units.
+---
+
+Company logo for, Spraxa Solutions Pvt Ltd.
+Spraxa Solutions Pvt Ltd
+
+
+Dotnet Developer
+
+Noida, Uttar Pradesh, India · 6 months ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+On-site
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Responsibilities
+
+Design, develop, and maintain robust, scalable, and efficient software applications. NET 8
+Collaborate with cross-functional teams to gather and analyse requirements and translate them into technical specifications.
+Write clean, maintainable, and efficient code while adhering to best practices and coding standards.
+Perform thorough testing and debugging to ensure high-quality software delivery.
+Optimise application performance and troubleshoot any issues that arise during development and post-production.
+Work with SQL databases to design and implement efficient data storage solutions.
+Participate in code reviews to maintain code quality and share knowledge with team members.
+Stay up-to-date with the latest industry trends and advancements. NET technologies.
+
+Requirements
+
+Bachelor's degree in Computer Science, Information Technology, or a related field.
+2 to 3 years of experience in software development with a focus on. NET technologies.
+Proven experience with. NET 8 and related frameworks.
+Strong proficiency in SQL and experience working with SQL databases (e. g., SQL Server, MySQL).
+Familiarity with the ASP. NET framework/C#/JavaScript/ SQL Server and design/architectural patterns (e. g., Model-View-Controller (MVC)).
+Knowledge of at least one of them. NET languages (e. g., C#, Visual Basic. NET) and HTML5/CSS3
+Familiarity with architecture styles/APIs (REST, RPC).
+Excellent problem-solving skills and attention to detail.
+Ability to work both independently and as part of a team in a fast-paced, dynamic environment.
+Strong communication skills and the ability to articulate technical concepts to non-technical stakeholders.
+
+This job was posted by Ritu Kumari from Spraxa Solutions.
+---
+	
+Company logo for, Iris Software Inc..
+Iris Software Inc.
+
+
+.Net Fullstack - Senior Engineer
+
+Noida, Uttar Pradesh, India · 3 weeks ago · 96 people clicked apply
+
+Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+
+
+Jiya and others in your network
+
+Show all
+About the job
+Why Join Iris?
+
+Are you ready to do the best work of your career at one of India’s Top 25 Best Workplaces in IT industry? Do you want to grow in an award-winning culture that truly values your talent and ambitions?
+
+Join Iris Software — one of the fastest-growing IT services companies — where you own and shape your success story.
+
+About Us
+
+At Iris Software, our vision is to be our client’s most trusted technology partner, and the first choice for the industry’s top professionals to realize their full potential.
+
+With over 4,300 associates across India, U.S.A, and Canada, we help our enterprise clients thrive with technology-enabled transformation across financial services, healthcare, transportation & logistics, and professional services.
+
+Our work covers complex, mission-critical applications with the latest technologies, such as high-value complex Application & Product Engineering, Data & Analytics, Cloud, DevOps, Data & MLOps, Quality Engineering, and Business Automation.
+
+Working with Us
+
+At Iris, every role is more than a job — it’s a launchpad for growth.
+
+Our Employee Value Proposition, “Build Your Future. Own Your Journey.” reflects our belief that people thrive when they have ownership of their career and the right opportunities to shape it.
+
+We foster a culture where your potential is valued, your voice matters, and your work creates real impact. With cutting-edge projects, personalized career development, continuous learning and mentorship, we support you to grow and become your best — both personally and professionally.
+
+Curious what it’s like to work at Iris? Head to this video for an inside look at the people, the passion, and the possibilities. Watch it here.
+
+Job Description
+
+Key Responsibilities
+
+Design and develop full stack scalable enterprise applications using ASP.NET Web API, Angular, and Microservices architecture. Ensure applications aligned with business goals and architecture standards.
+Define front-end-backend integration strategies and reusable Angular component architecture for enterprise applications.
+Define API contracts, service boundaries, and integration strategies for distributed and enterprise-grade systems.
+Design and develop reusable backend components, Angular components and frontend solutions using established design patterns.
+Optimize application performance through caching, asynchronous processing, database tuning, and optimization.
+Own end-to-end delivery of assigned modules including design, development, testing support, and deployment readiness.
+Implement enterprise security practices using OAuth2, JWT, ASP.NET Identity, and OWASP security standards.
+Conduct code reviews ensuring adherence to coding standards, security guidelines, and engineering best practices.
+Drive improvements in CI/CD pipelines, logging, monitoring, and deployment automation to improve operational efficiency.
+Troubleshoot production issues and performance bottlenecks by performing detailed root cause analysis and implementing sustainable fixes.
+Mentor junior developers on coding standards, debugging techniques, and modern .Net development practices.
+
+Soft Skills
+
+Demonstrates strong technical ownership in delivering complex development activities with high-quality execution.
+Collaborate effectively with cross-functional teams and business stakeholders for seamless delivery.
+Drives engineering excellence through code reviews, automation, performance optimization, and defect prevention.
+Apply strong analytical and problem-solving skills to resolve complex technical and production challenges.
+Mentor junior developers on coding standards, debugging techniques, and engineering best practices.
+Communicate effectively with technical and non-technical stakeholders on risks and delivery progress.
+Demonstrate adaptability and continuous learning toward evolving technologies and engineering practices.
+Maintains strong attention to detail in architecture, code quality, security, and performance optimization.
+Takes initiative in driving reusable frameworks, automation, and process improvements.
+Balances technical excellence with business priorities by delivering scalable and maintainable solutions.
+
+Mandatory Competencies
+
+Programming Language - C# - C#
+
+Programming Language - .Net - VB.NET
+
+Programming Language - .Net - Entity Framework
+
+User Interface - Angular - Jasmine, Karma , Jest
+
+Programming Language - .Net Full Stack - HTML CSS
+
+Programming Language - .Net Full Stack - Javascript
+
+Middleware - Message Oriented Middleware - Messaging (JMS, ActiveMQ, RabitMQ, Kafka, SQS, ASB etc)
+
+Architecture - Architectural Patterns - Microservices
+
+User Interface - Angular - Angular Components and Design Patterns
+
+Programming Language - .Net Full Stack - ASP.NET WEB API
+
+Programming Language - .Net Full Stack - OOPS Concepts
+
+Beh - Communication and collaboration
+
+Perks And Benefits For Irisians
+
+Iris provides world-class benefits for a personalized employee experience. These benefits are designed to support financial, health and well-being needs of Irisians for a holistic professional and personal growth. Click here to view the benefits.
+---
+
+Company logo for, TrueBlue India.
+TrueBlue India
+
+
+Software Engineer (.Net & React)
+
+Gurugram, Haryana, India · 3 weeks ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+Hybrid
+Full-time
+
+Easy Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+Recent Software Engineer (.Net & React) hires at TrueBlue India
+
+Show all
+About the job
+Who are we? TrueBlue (NYSE: TBI) is a leading staffing, recruiting and workforce management company.The company fills individual positions on demand, staffs entire facilities, and managesoutsourced recruiting processes and staffing vendor programs for a wide variety of clients.The company's specialized workforce solutions meet clients' needs for a reliable, efficientworkforce in a wide variety of industries including - construction, manufacturing, financialservices, pharmaceuticals, transportation, aviation, and energy. TrueBlue assigns as manyas 100,000 people to work each day, drawing from a data base of hundreds of thousands ofcandidates, and places more than 250,000 people in permanent positions each year.
+Software Engineer (React/.NET CORE/C#) The Software Engineer (REACT/.NET CORE/ C#) will participate in the development of one of PeopleReady’s enterprise applications. This person will develop software as part of a collaborative agile team, contributing not only quality code and ideas, but also helping grow the PeopleReady Technology culture: a group of people who deliver top-notch software solutions and enjoy working together to solve exciting problems. The role will require excellent software development skills, as well as a high level of verbal and written communication.
+Duties & Responsibilities:• Self-driven member of a software engineering team using the Agile Scrum process to successfully deliver a software product which will delight PeopleReady’s associates and/or customers.• Write high-quality code in React, C# .Net Core, Postgres to deliver critical PeopleReady business functionality.• Work collaboratively with PeopleReady software engineers as well as nearshore consultant engineers.• Passionately engage in an automation culture throughout delivery: testing, deployment, configuration.• Participate in user story estimation and grooming sessions, driving to delivery predictability and reliability.• Cooperate with software architects and lead software engineers to ensure that your workfollows PeopleReady Technology standards.• Participate in regular peer code reviews with other team members as well as full-team development showcases.
+Requirements: • 4+ years of full-stack software development experience• 4+ years of C# development experience• 4+ years of experience with relational databases such as SQL Server or Postgres• 3+ years front-end web development with React• Experience with .NET Core and other open-source frameworks• Experience with Agile Scrum methodology• Experience building APIs and implementing common SOA design patterns and experience with REST web services.• Solid ORM and OOD skills are required• Experience with AWS cloud-based infrastructure and services• Proven track record of building successful full-stack applications, products, and platforms• Desire to participate in building a Dev Ops and culture of commitment and ownership• Excellent written, verbal, and interpersonal communication skills
+Other Desirable Skills/Experience: • Hands-on experience with AWS serverless technologies such as API Gateway and Lambda• Experience with non-relational databases• Experience with Docker and Jenkins• Self-sufficient and highly motivated, self-directed, and possess high energy• Experience working in a virtual delivery environment
+
+---
+
+Company logo for, TrueBlue India.
+TrueBlue India
+
+
+Software Engineer (.Net & React)
+
+Gurugram, Haryana, India · 3 weeks ago · Over 100 applicants
+
+Promoted by hirer · Actively reviewing applicants
+
+Hybrid
+Full-time
+
+Easy Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+Recent Software Engineer (.Net & React) hires at TrueBlue India
+
+Show all
+About the job
+Who are we? TrueBlue (NYSE: TBI) is a leading staffing, recruiting and workforce management company.The company fills individual positions on demand, staffs entire facilities, and managesoutsourced recruiting processes and staffing vendor programs for a wide variety of clients.The company's specialized workforce solutions meet clients' needs for a reliable, efficientworkforce in a wide variety of industries including - construction, manufacturing, financialservices, pharmaceuticals, transportation, aviation, and energy. TrueBlue assigns as manyas 100,000 people to work each day, drawing from a data base of hundreds of thousands ofcandidates, and places more than 250,000 people in permanent positions each year.
+Software Engineer (React/.NET CORE/C#) The Software Engineer (REACT/.NET CORE/ C#) will participate in the development of one of PeopleReady’s enterprise applications. This person will develop software as part of a collaborative agile team, contributing not only quality code and ideas, but also helping grow the PeopleReady Technology culture: a group of people who deliver top-notch software solutions and enjoy working together to solve exciting problems. The role will require excellent software development skills, as well as a high level of verbal and written communication.
+Duties & Responsibilities:• Self-driven member of a software engineering team using the Agile Scrum process to successfully deliver a software product which will delight PeopleReady’s associates and/or customers.• Write high-quality code in React, C# .Net Core, Postgres to deliver critical PeopleReady business functionality.• Work collaboratively with PeopleReady software engineers as well as nearshore consultant engineers.• Passionately engage in an automation culture throughout delivery: testing, deployment, configuration.• Participate in user story estimation and grooming sessions, driving to delivery predictability and reliability.• Cooperate with software architects and lead software engineers to ensure that your workfollows PeopleReady Technology standards.• Participate in regular peer code reviews with other team members as well as full-team development showcases.
+Requirements: • 4+ years of full-stack software development experience• 4+ years of C# development experience• 4+ years of experience with relational databases such as SQL Server or Postgres• 3+ years front-end web development with React• Experience with .NET Core and other open-source frameworks• Experience with Agile Scrum methodology• Experience building APIs and implementing common SOA design patterns and experience with REST web services.• Solid ORM and OOD skills are required• Experience with AWS cloud-based infrastructure and services• Proven track record of building successful full-stack applications, products, and platforms• Desire to participate in building a Dev Ops and culture of commitment and ownership• Excellent written, verbal, and interpersonal communication skills
+Other Desirable Skills/Experience: • Hands-on experience with AWS serverless technologies such as API Gateway and Lambda• Experience with non-relational databases• Experience with Docker and Jenkins• Self-sufficient and highly motivated, self-directed, and possess high energy• Experience working in a virtual delivery environment
+
+---
+
+Company logo for, Comviva.
+Comviva
+
+
+Full Stack Developer 
+
+Gurugram, Haryana, India · 1 day ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University
+
+Show all
+About the job
+Key Accountabilities
+
+ Design, develop, test, and maintain scalable full stack web applications across frontend and backend layers
+ Build responsive, user-friendly, and high-performance web applications aligned with business and technical requirements
+ Develop and maintain frontend components, reusable UI modules, and backend services using modern frameworks and technologies
+ Design, build, enhance, and optimize RESTful APIs and microservices to support application functionality
+ Integrate frontend applications with backend services, databases, enterprise systems, and third-party APIs
+ Ensure seamless user experience through efficient application design, performance optimization, and cross-browser compatibility
+ Develop secure, reliable, and scalable solutions following industry best practices and organizational standards
+ Collaborate with UI/UX designers to implement intuitive and accessible user interfaces
+ Monitor, troubleshoot, and resolve application issues across frontend, backend, and integration layers
+ Optimize application performance, service response times, frontend rendering, and database interactions
+ Write clean, maintainable, and reusable code while adhering to coding standards and development guidelines
+ Participate in code reviews, testing, and quality assurance activities to ensure high-quality deliverables
+ Collaborate effectively with business analysts, architects, QA teams, product owners, and other stakeholders
+ Participate in Agile ceremonies including sprint planning, daily stand-ups, backlog grooming, reviews, and retrospectives
+ Maintain technical documentation for application architecture, APIs, integrations, components, and deployment processes
+ Provide regular updates on development progress, risks, dependencies, and assigned deliverables
+
+Mandatory Skills
+
+ Strong proficiency in JavaScript, TypeScript, and modern web development concepts
+ Hands-on experience with frontend frameworks such as Angular, React, or Vue.js
+ Strong experience in developing responsive web applications using HTML5, CSS3, and JavaScript
+ Experience in building reusable UI components and implementing responsive, mobile-first designs
+ Hands-on experience with backend development using Node.js, Java Spring Boot, .NET, or similar technologies
+ Strong experience in designing, developing, and optimizing RESTful APIs and microservices
+ Experience integrating frontend applications with backend services and external APIs
+ Knowledge of database design, querying, and performance optimization for SQL and NoSQL databases (including MongoDB)
+ Experience with authentication and authorization mechanisms such as OAuth2, JWT, and SSO
+ Familiarity with version control systems such as Git and collaborative development workflows
+ Understanding of software design principles, object-oriented programming, and application architecture patterns
+ Experience with testing frameworks and debugging techniques across frontend and backend applications
+
+Desirable Skills
+
+ Experience with Docker and Kubernetes
+ Exposure to CI/CD pipelines and DevOps practices
+ Familiarity with cloud platforms such as AWS, Azure, or Google Cloud
+ Experience with state management frameworks such as Redux, NgRx, or Vuex
+ Knowledge of server-side rendering (SSR) and frontend performance optimization techniques
+ Experience with event-driven architectures and messaging platforms such as Kafka or RabbitMQ
+ Familiarity with Apache Camel and enterprise integration patterns
+ Understanding of accessibility (WCAG) standards and UI/UX best practices
+ Exposure to automated testing tools such as Jest, Cypress, Selenium, JUnit, or Playwright
+ Strong communication, stakeholder management, and documentation skills
+ Experience working in Telecom, eCommerce, Retail, or high-volume transaction environments
+---
+
+
+Company logo for, UKG.
+UKG
+
+
+Software Engineer III- Eng (.Net Fullstack) 
+
+Noida, Uttar Pradesh, India · 2 months ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+On-site
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+
+
+Yash and others in your network
+
+Show all
+About the job
+Why UKG
+
+At UKG, the work you do matters. The code you ship, the decisions you make, and the care you show a customer all add up to real impact. Today, tens of millions of workers start and end their days with our workforce operating platform. Helping people get paid, grow in their careers, and shape the future of their industries. That’s what we do.
+
+We never stop learning. We never stop challenging the norm. We push for better, and we celebrate the wins along the way. Here, you’ll get flexibility that’s real, benefits you can count on, and a team that succeeds together. Because at UKG, your work matters—and so do you.
+
+About The Team
+
+You’ll join a collaborative engineering team focused on building and improving full-stack software solutions that support UKG products and customers. We work together across product, engineering, and other business partners to understand customer needs, solve complex problems, and deliver reliable, maintainable software.
+
+About The Role
+
+As a Software Engineer, you’ll design, build, test, and support full-stack web applications. You’ll use your understanding of software development, testing practices, design patterns, and application architecture to turn product needs into high-quality solutions.
+
+You’ll Also
+
+ Build and maintain software using technologies such as JavaScript, Angular, Node.js, CSS, VB.NET, and PostgreSQL.
+ Analyze complex issues across the application stack, from database to browser, and deliver practical, effective solutions.
+ Write clean, testable, maintainable code in a continuous integration environment.
+ Participate in code reviews to improve quality, share knowledge, and reduce defects.
+ Collaborate with product owners, engineers, and other partners to clarify requirements and support delivery.
+ Recommend improvements to tools, technologies, and development practices that help the team work more effectively.
+
+About You
+
+Basic Qualifications
+
+ Bachelor’s degree in Computer Science, Engineering, a related technical field, or equivalent practical experience.
+ Hands-on experience, typically 5+ years, in building full-stack web applications using JavaScript, Angular, Node.js, CSS, VB.NET, PostgreSQL, or similar technologies.
+ Experience with software development practices such as version control, testing, debugging, and continuous integration.
+ Ability to communicate clearly in written and spoken English and collaborate effectively with technical and non-technical partners.
+
+Preferred Qualifications
+
+ Experience working in an Agile software development environment.
+ Experience with test-driven development.
+ Familiarity with database design, query optimization, and performance troubleshooting.
+ Experience using Git or similar version control systems.
+ Strong understanding of design patterns, common algorithms, and practical software engineering principles.
+
+Company Overview
+
+UKG is the Workforce Operating Platform that puts workforce understanding to work. With the world's largest collection of workforce insights, and people-first AI, our ability to reveal unseen ways to build trust, amplify productivity, and empower talent, is unmatched. It's this expertise that equips our customers with the intelligence to solve any challenge in any industry — because great organizations know their workforce is their competitive edge. Learn more at ukg.com.
+
+UKG is proud to be an equal opportunity employer and is committed to promoting diversity and inclusion in the workplace, including the recruitment process.
+
+Disability Accommodation in the Application and Interview Process
+
+For individuals with disabilities that need additional assistance at any point in the application and interview process, please email UKGCareers@ukg.com
+
+---
+Company logo for, Optum India.
+Optum India
+
+
+Senior Software Engineer - Dot Net Fullstack
+
+Noida, Uttar Pradesh, India · 6 days ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Optum is a global organization that delivers care, aided by technology to help millions of people live healthier lives. The work you do with our team will directly improve health outcomes by connecting people with the care, pharmacy benefits, data and resources they need to feel their best. Here, you will find a culture guided by inclusion, talented peers, comprehensive benefits and career development opportunities. Come make an impact on the communities we serve as you help us advance health optimization on a global scale. Join us to start Caring. Connecting. Growing together. 
+
+Primary Responsibilities
+
+Prepare detail design for the Solution by discussing with PO and business. Consult with Business, Subject Master Expert, users to evaluate business requirements, evaluate existing or proposed systems, and prepare detailed technical design document from which programs will be written
+Walk-thru the technical design document with Business/SME/QA group and support team
+Develop high quality application as per Technical design
+Prepare test planning & setup test data. Execute test planning based on project requirements
+Ensuring timely deliveries for all assigned tasks
+Participation in Design reviews, Test Case reviews, and Production Support readiness reviews for new releases
+Support QA, UAT and Release phases of the project via defect analysis, change maintenance, etc.
+Adhere to all quality requirements
+Able to work independently
+Comply with the terms and conditions of the employment contract, company policies and procedures, and any and all directives (such as, but not limited to, transfer and/or re-assignment to different work locations, change in teams and/or work shifts, policies in regards to flexibility of work benefits and/or work environment, alternative work arrangements, and other decisions that may arise due to the changing business environment). The Company may adopt, vary or rescind these policies and directives in its absolute discretion and without any limitation (implied or otherwise) on its ability to do so
+
+Required Qualifications
+
+Graduate degree or equivalent experience
+Bachelor's degree in Computer Science, Engineering, or a related field
+5+ years of experience in C# and ASP.NET development
+Experience with front-end technologies such as HTML, CSS, JavaScript, and jQuery
+Knowledge of SQL and database development
+Solid understanding of object-oriented programming (OOP) principles
+Proficient in using ASP.NET, MVC, Web API, and Entity Framework, AI, Cloud
+Familiarity with agile development methodologies
+Understanding of software development lifecycle (SDLC) and version control systems (e.g., Git)
+Proven excellent problem-solving and analytical skills
+Proven solid communication and collaboration skills
+
+At UnitedHealth Group, our mission is to help people live healthier lives and make the health system work better for everyone. We believe everyone-of every race, gender, sexuality, age, location and income-deserves the opportunity to live their healthiest life. Today, however, there are still far too many barriers to good health which are disproportionately experienced by people of color, historically marginalized groups and those with lower incomes. We are committed to mitigating our impact on the environment and enabling and delivering equitable care that addresses health disparities and improves health outcomes - an enterprise priority reflected in our mission.
+
+
+---
+Company logo for, UKG.
+UKG
+
+
+Software Engineer III- Eng (.Net + AI) 
+
+Noida, Uttar Pradesh, India · 1 month ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+On-site
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+
+
+Yash and others in your network
+
+Show all
+About the job
+Why UKG
+
+At UKG, the work you do matters. The code you ship, the decisions you make, and the care you show a customer all add up to real impact. Today, tens of millions of workers start and end their days with our workforce operating platform. Helping people get paid, grow in their careers, and shape the future of their industries. That’s what we do.
+
+We never stop learning. We never stop challenging the norm. We push for better, and we celebrate the wins along the way. Here, you’ll get flexibility that’s real, benefits you can count on, and a team that succeeds together. Because at UKG, your work matters—and so do you.
+
+We are looking for a Software Engineer III to join our dynamic team. This role provides an opportunity to lead projects and contribute to high-impact software solutions used by enterprises and users worldwide. As a Software Engineer III, you will be responsible for the design, development, testing, deployment, and maintenance of complex software systems, as well as mentoring junior engineers. You will work in a collaborative environment, contributing to the technical foundation behind our flagship products and services, and will be expected to own and drive AI-enabled capabilities end-to-end within your domain.
+
+Responsibilities
+
+Software Development: Write clean, maintainable, and efficient code for various software applications and systems.
+Technical Leadership: Contribute to the design, development, and deployment of complex software applications and systems, ensuring they meet high standards of quality and performance.
+Project Management: Manage execution and delivery of features and projects, negotiating project priorities and deadlines, ensuring successful and timely completion with quality.
+Architectural Design: Participate in design reviews with peers and stakeholders and in the architectural design of new features and systems, ensuring scalability, reliability, and maintainability.
+Code Review: Diligently review code developed by other engineers; provide feedback and maintain a high bar of technical excellence ensuring adherence to coding guidelines, observability, and unit test coverage.
+Testing: Build testable software, define tests, participate in the testing process, automate tests using tools (e.g., JUnit, Selenium, Pytest) and design patterns leveraging the test automation pyramid.
+Service Health and Quality: Maintain the health and quality of services and incidents, proactively identifying and resolving issues. Utilize service health indicators and telemetry; conduct root cause analysis and drive preventive measures.
+DevOps Model: Take full ownership from requirements through design, develop, test, deploy, and maintain in a DevOps model.
+AI Feature Ownership: Design, build, and integrate AI/ML capabilities into production software systems; evaluate AI architectural tradeoffs and select appropriate approaches for given product features and use cases.
+Documentation: Properly document new features, enhancements, or fixes to the product, contributing to training materials.
+Mentorship: Guide and mentor P1/P2 engineers on engineering best practices, design thinking, and effective use of AI-augmented development workflows.
+
+Minimum Qualifications
+
+Bachelor’s degree in computer science, Engineering, or a related technical field, or equivalent practical experience.
+4+ years of professional software development experience.
+Deep expertise in one or more programming languages such as C#, .NET and JavaScript.
+Extensive experience with software development practices and design patterns.
+Proficiency with version control systems (e.g., GitHub) and work tracking systems (e.g., JIRA).
+Understanding of cloud technologies and DevOps principles.
+Hands-on experience designing, building, or integrating AI/ML capabilities into production software systems; ability to evaluate AI architectural tradeoffs and select appropriate approaches for product use cases.
+Proficient use of AI-assisted development tools (e.g., Claude, GitHub Copilot, Cursor) to accelerate design, implementation, and code review cycles; ability to validate and improve AI-generated outputs against quality, security, and performance standards.
+Experience with prompt engineering techniques applied to real product features, customer-facing experiences, or engineering tooling.
+
+Preferred Qualifications
+
+Experience with cloud platforms like Azure, AWS, or GCP.
+Familiarity with CI/CD pipelines and automation tools.
+Experience with test automation frameworks and tools.
+Knowledge of agile development methodologies.
+Familiarity with developing accessible technologies.
+Excellent communication and interpersonal skills.
+
+Company Overview
+
+UKG is the Workforce Operating Platform that puts workforce understanding to work. With the world's largest collection of workforce insights, and people-first AI, our ability to reveal unseen ways to build trust, amplify productivity, and empower talent, is unmatched. It's this expertise that equips our customers with the intelligence to solve any challenge in any industry — because great organizations know their workforce is their competitive edge. Learn more at ukg.com.
+
+UKG is proud to be an equal opportunity employer and is committed to promoting diversity and inclusion in the workplace, including the recruitment process.
+
+Disability Accommodation in the Application and Interview Process
+
+For individuals with disabilities that need additional assistance at any point in the application and interview process, please email UKGCareers@ukg.com
+
+---
+
+Company logo for, SimCorp.
+SimCorp
+
+
+Lead Software Engineer 
+
+Noida, Uttar Pradesh, India · Reposted 1 day ago · Over 100 people clicked apply
+
+Promoted by hirer · Responses managed off LinkedIn
+
+Hybrid
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+School alumni from Dr. A.P.J. Abdul Kalam Technical University and others in your network
+
+Show all
+About the job
+Senior Full-Stack Software Engineer 
+
+What Makes Us, Us
+
+Join some of the most innovative thinkers in FinTech as we lead the evolution of financial technology. If you are an innovative, curious, collaborative person who embraces challenges and wants to grow, learn and pursue outcomes with our prestigious financial clients, say Hello to SimCorp!
+
+At its foundation, SimCorp is guided by our values — caring, customer success-driven, collaborative, curious, and courageous. Our people-centered organization focuses on skills development, relationship building, and client success. We take pride in cultivating an environment where all team members can grow, feel heard, valued, and empowered.
+
+If you like
+
+what we’re saying, keep reading! 
+
+WHY THIS ROLE IS IMPORTANT TO US 
+
+Do you want to grow as a Full-Stack Developer by working on complex enterprise-grade solutions in a global fintech company?
+
+At SimCorp, we build products that power investment management and financial institutions worldwide.
+
+As part of our Collateral Management Product Area (Data and Post-trade Engineering Line, you will contribute to the development of enterprise products within the Collateral and Derivatives domain. You will collaborate with colleagues from Ukraine, Poland, Denmark, Austria, and Germany, while gaining deep expertise in applied finance and modern software engineering practices.
+
+What You Will Be Responsible For
+
+As a Senior Developer in a self-organized Scrum team, you will:
+
+Design, implement, and maintain new features across both front-end and back-end (SOA). 
+Take technical ownership of feature delivery, ensuring high quality, scalability, and performance. 
+Drive automation-first approach: design, implement, and maintain E2E, API, Integration tests. 
+Perform manual exploratory testing for complex scenarios. 
+Define test strategies at feature/module level. 
+Collaborate closely with Product Owners, Technical Leads, and teammates during analysis, refinement, and development. 
+Contribute to architectural discussions and participate in technical decision-making
+Mentor and support less experienced engineers through pair programming, code reviews, and knowledge sharing. 
+Drive improvements in automation, CI/CD pipelines, and development tools. 
+Ensure adherence to engineering best practices (XP, TDD, clean code). 
+Engage in Sprint Reviews/Demos and continuous process improvements
+
+Your Qualifications
+
+We are looking for an experienced engineer with well-developed technical and collaborative skills
+
+Bachelor’s or master’s degree in computer science, Engineering, Mathematics, or a related field. 
+5+ years of professional experience with C# and Angular. 
+Extensive experience in designing and developing enterprise applications. in.NET / C# and working knowledge of Angular. 
+Demonstrated expertise in automation frameworks and CI/CD
+Solid understanding of manual testing techniques and QA best practices. 
+Comprehensive understanding of Cloud and On-Prem infrastructures
+Deep knowledge of CI/CD processes and tools (Git, TeamCity, Azure DevOps). 
+Extensive experience with Microsoft Azure and building/managing pipelines
+Readiness to learn APL. 
+Solid understanding of software architecture and design patterns with experience in Domain-Driven Design
+Familiarity with XP practices (TDD, pair programming, CI). 
+Experience with relational databases (SQL). 
+Proficient English communication skills (Upper-Intermediate or higher), written and spoken
+Ability to mentor, guide, and inspire other developers. 
+
+Benefits
+
+Attractive salary, bonus scheme, and pension are essential for any work agreement. However, in SimCorp we believe we can offer more. Therefore, in addition to the traditional benefit scheme, we provide a good work-life balance: flexible working hours and a hybrid model. Simcorp follows a global hybrid policy, asking employees to work from the office two days each week while allowing remote work on other days.
+
+Simcorp does offer opportunities for professional development: there is never just only one route - we offer an individual approach to professional development to support the direction you want to take.
+
+NEXT STEPS 
+
+Please send us your application in English via our career site as soon as possible, we process incoming applications continually. Please note that only applications sent through our system will be processed. At SimCorp, we recognize that bias can unintentionally occur in the recruitment process. To uphold fairness and equal opportunities for all applicants, we kindly ask you to exclude personal data such as photo, age, or any non-professional information from your application. Thank you for aiding us in our endeavor to mitigate biases in our recruitment process.
+
+For any questions you are welcome to contact Swati Pal (Swati.pal@simcorp.com), Talent Acquisition Partner. If you are interested in being a part of SimCorp but are not sure this role is suitable, submit your CV anyway. SimCorp is on an exciting growth journey, and our Talent Acquisition Team is ready to assist you discover the right role for you. The approximate time to consider your CV is three weeks.
+
+We are eager to continually improve our talent acquisition process and make everyone’s experience positive and valuable. Therefore, during the process we will ask you to provide your feedback, which is highly appreciated.
+
+WHO WE ARE? 
+
+For over 50 years, we have worked closely with investment and asset managers to become the world’s leading provider of integrated investment management solutions. We are 3,000+ colleagues with a broad range of nationalities, educations, professional experiences, ages, and backgrounds.
+
+SimCorp is an independent subsidiary of the Deutsche Börse Group. Following the recent merger with Axioma, we leverage the combined strength of our brands to provide an industry-leading, full, front-to-back offering for our clients.
+
+SimCorp is an equal opportunity employer and welcome applicants from all backgrounds, without regard to race, gender, age, disability, or any other protected status under applicable law. We are committed to building a culture where diverse perspectives and expertise are integrated into our everyday work. We believe in the continual growth and development of our employees, so that we can provide best-in-class solutions to our clients.
+
+---
+Company logo for, XO Health Inc..
+XO Health Inc.
+
+
+Senior Full Stack Engineer
+
+Delhi, Delhi, India · 3 weeks ago · Over 100 people clicked apply
+
+Responses managed off LinkedIn
+
+Remote
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+People you can reach out to
+
+Abhilash Mohanty 
+
+• 2nd
+
+Engineering @XO Health | WatchGuard |TCS(Innovator Cadre)
+
+School alum from Dr. A.P.J. Abdul Kalam Technical University
+
+
+Connect
+About the job
+XO Health believes healthcare is fixable. Become part of the community changing the face of the industry.
+
+XO Health is the first health plan designed by and for self-insured employers that delivers a more unified health experience for everyone – from those who receive care, to those who deliver it, to those who pay for it.
+
+We are growing a multi-disciplinary team of diverse and digitally empowered employees ready to rebuild trust in healthcare through comprehensive and unified transformation.
+
+Senior Full Stack Engineer - India (Remote)
+
+About the Role:
+
+XO Health is seeking a Senior Software Engineer for building applications that enable a Provider's experience. This position will be responsible for the full stack design, development, testing, documentation, and analysis of features utilizing .Net, Angular, GraphQL, implementing a serverless architecture in AWS. The ideal candidate will be instrumental in designing and implementing solutions that are scalable, performance-optimized and maintainable.
+
+Responsibilities:
+
+Design, develop, and maintain scalable full-stack applications for a healthcare insurance platform 
+Engage with cross-functional teams to define and implement new features that meet the complex demands of the healthcare sector 
+Ensure application security and compliance with HIPAA and other regulations, focusing on performance and scalability 
+Implement serverless architectures on cloud platforms (Azure, AWS) to optimize backend functionality 
+Utilize modern front-end frameworks (React, Angular, Vue) to create responsive user interfaces 
+Integrate and customize rules engines for automated decision-making and efficiency 
+Employ microservices architecture to enhance application scalability, resilience, and deployment efficiency 
+Utilize GraphQL for efficient and flexible data retrieval, improving the application's data interaction layer 
+Mentor junior developers, fostering a culture of technical excellence, innovation, and ongoing learning 
+Stay updated on technology trends, regulatory changes, and best practices in healthcare to ensure our solutions are at the forefront 
+We're Looking for Candidates Who Have:
+
+Bachelor's degree in computer science, engineering, or a related field 
+Minimum of 8 years in full-stack software development, with a strong portfolio in both frontend (JavaScript, React, Angular, Vue) and backend (C#, .NET, JAVA) technologies 
+Proficiency in implementing solutions in cloud (AWS, Azure), including serverless environments 
+Strong understanding of software architecture principles, design patterns, and best practices. 
+Demonstrated ability to translate complex business requirements into a well-executed technical roadmap. 
+Demonstrated experience with microservices architecture, designing, deploying, and managing independently scalable service components 
+Experience with GraphQL for building APIs and efficient data retrieval. 
+Strong background in SQL or NoSQL, database design, and complex data architectures 
+Proficient in AWS OpenSearch for building scalable search and analytics solutions, including indexing, querying, and optimizing search performance in distributed systems 
+Skilled in AI-first development practices utilizing Claude Cursor or Codex for intelligent code generation, accelerated development workflows, and enhanced productivity 
+Familiarity with Agile methodologies and a comprehensive understanding of DevOps practices. 
+Exceptional problem-solving capabilities, adaptability, and leadership skills 
+Experience in the healthcare sector, especially with claims processing is a plus 
+Solid understanding of HIPAA and healthcare regulatory standards is a plus 
+Bonus: Experienced in iOS and Android app development, building cross-platform mobile applications with native performance and seamless user experiences 
+Full compensation packages are based on candidate experience and relevant certifications.
+
+₹2,500,000—₹3,500,000 INR
+
+XO Health is an equal opportunity employer committed to diversity and inclusion in the workplace. All qualified applicants will receive consideration for employment without regard to sex (including pregnancy, childbirth or related medical conditions), race, color, age, national origin, religion, disability, genetic information, marital status, sexual orientation, gender identity, gender reassignment, citizenship, immigration status, protected veteran status, or any other basis prohibited under applicable federal, state or local law. XO Health promotes a drug-free workplace.
+
+---
+
+Company logo for, Oceanwide (an Insurity company).
+Oceanwide (an Insurity company)
+
+
+Senior Software Engineer I
+
+Noida, Uttar Pradesh, India · 1 week ago · 55 people clicked apply
+
+Responses managed off LinkedIn
+
+Full-time
+Apply
+
+Save
+Determine your fit and how to stand out
+Show match details
+
+Tailor my resume
+
+Create cover letter
+
+Help me stand out
+
+
+About the job
+Who We Are
+
+Insurity empowers insurance organizations to quickly capitalize on new opportunities by delivering the world’s most configurable, cloud-native, easy-to-use, and intuitively analytical insurance software. Just as importantly, we empower our people—providing the tools, support, and opportunities they need to grow and succeed.
+
+We don’t just make bold promises—we deliver results. As the largest cloud-based software provider for the Property & Casualty market, Insurity is trusted by 22 of the top 25 P&C carriers and 7 of the top 10 wholesale brokers in the MGA space. Behind that trust is a team that delivers exceptional value and deep industry expertise.
+
+While our technology sets us apart, it’s our people who truly make the difference. At Insurity, you’ll collaborate with some of the most creative and knowledgeable minds in insurance tech—in a culture that fosters innovation, teamwork, and continuous learning. Our award-winning onboarding experience welcomes and supports you from the moment you accept our offer.
+
+Ready to grow your career with an industry leader? Apply today—we’re excited to welcome you. #UatInsurity
+
+What’s In It For U
+
+Work Where You Thrive: Find a hybrid work environment that allows you to enjoy great work life balance, stay connected and collaborative 
+Generous Time Off: Our leadership believes in taking the time you need when you need it. 
+Day One Health Benefits + Employer-Matched Retirement Savings: You might think these are table stakes, but we know these matter to you. 
+More Than Just Core Values: Our values are fundamental in how we attract, train, and retain top talent. 
+Award-Winning Onboarding Program: We set you up from the get-go to make a significant impact from Day One and follow you through your entire first year. 
+Real Career Growth Opportunities: We love to promote from within with over 25% of our open roles filled through internal applicants on average. 
+Mentorship Program: We support a champion culture and growth mindset by pairing you with experienced, talented leaders to help you grow personally and professionally. 
+Insurity Podcasts: Explore podcasts from our Learning & Development team for deeper insight into Insurity products, company innovation, and the business as a whole. 
+Continuous Learning Opportunities: Own your development with your own LinkedIn Learning and Kaplan licenses. 
+Employee Referral Bonus: Once you come onboard, give Insurity the biggest compliment you can give by referring someone to work here and earn a referral bonus. 
+
+Insurity’s Next Senior Software Engineer 
+
+Join our global development team as a .NET Developer supporting the Insurity Bridge Suite, an end-to-end core system for specialty line insurers across policy administration, billing, and claims management. In this role, you will take ownership of development items from technical design through implementation, while ensuring quality, performance, maintainability, and supportability. You will collaborate closely with U.S. and India-based teammates to build and enhance enterprise solutions that support product configuration, integrations, data maintenance, and customer-facing workflows across the Bridge platform.
+
+We are seeking an experienced professional with strong hands-on expertise in ASP.NET Forms / ASP.NET, C# .NET Framework, JavaScript, and jQuery, along with solid experience in enterprise application development. The ideal candidate will have deep proficiency with SQL Server, including complex SQL queries, stored procedures, data maintenance, and performance-oriented database development. You should be comfortable working with SOAP services, REST-based APIs, supporting multi-page web applications in a product engineering environment
+
+This role will be a contractual role for 12 Months.
+
+What Our Senior Software Engineer Will Do
+
+Participate in SDLC estimation and development processes.
+
+Design
+
+Design solutions to problems/defects independently
+Participate in team design sessions for large-scale development
+
+Able to understand and develop use cases to supplement business cases for technical development items
+
+Development
+
+Follows Insurity standards for coding, documentation and impact assessments
+Provides in-depth technical troubleshooting and defect remediation for reported problems requiring a high degree of technical expertise
+Develop technical documentation for software solutions for targeted audience, which may include external customers
+
+Develop solutions for moderately complex problems and enhancements individually or leading a small team
+
+Estimate projects and solutions of simple to moderate complexity
+
+Test
+
+Write code and unit tests according to Insurity standards, following an approved technical solution, for simple enhancements and bug fixes
+Develop unit tests for code changes and assigned use cases
+
+After 18 Months
+
+Partner with QA to identify impact and assist with test case development
+
+Documentation
+
+Able to comment code
+Create an impact assessment doc
+Stay up-to-date on industry and job-related trends and best practices, including reading relevant publications, articles, blogs, etc.
+Other duties as assigned
+
+Who We’re Looking For
+
+6–10 years of experience in ASP.NET Forms / ASP.NET and C# .NET Framework application development.
+Good hands-on experience with JavaScript and jQuery for UI and client-side enhancements.
+Familiarity with SOAP services, REST-based APIs, and integration development is required.
+Strong proficiency with SQL Server, including writing complex SQL queries, stored procedures, data maintenance, and performance-oriented database development.
+Experience working on multi-page web applications (MPA) and enterprise insurance product development.
+Familiarity with modern AI-assisted developer tools such as Replit and GitHub Copilot is a plus.
+Understanding of OOP, design patterns, SOLID principles.
+Analytical and critical thinking
+Written and oral English communication
+Detail-oriented
+Time management, including work planning, prioritization, and organization
+Works well with others, as well as independently
+Self-starter and quick learner
+Able to give and receive feedback in a positive manner
+Meeting facilitation and management
+Process analysis, design, and management
+
+Within 6–12 Months
+
+Change agent
+
+Nice To Have
+
+Experience with modern UI frameworks
+Familiarity with leveraging generative AI tools to accelerate development
+Exposure to insurance domain concepts such as policy, billing, claims, and regulatory compliance 
+
+Thank you for your interest in Insurity! Please understand that due to the volume of applicants we receive, only selected candidates will be contacted.
+
+medical insurance; dental insurance; vision insurance; 401(K) match; paid maternity leave; paid paternity leave; disability insurance
+
+Benefits found in job post
+
+401(k), Medical insurance, Vision insurance, Dental insurance, Paid maternity leave, Paid paternity leave, Disability insurance	
+
+---
+

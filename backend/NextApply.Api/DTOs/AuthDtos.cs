@@ -12,7 +12,10 @@ namespace NextApply.Api.DTOs
         public string? Yoe { get; set; }
         public string? KeyStrengths { get; set; }
         public string? LinkedinUrl { get; set; }
+        public string? GithubUrl { get; set; }
+        public string? PortfolioUrl { get; set; }
         public string? Phone { get; set; }
+        public string? FlagshipAchievement { get; set; }
         public string? ResumeSummary { get; set; }
     }
 
@@ -30,7 +33,10 @@ namespace NextApply.Api.DTOs
         public string? Yoe { get; set; }
         public string? KeyStrengths { get; set; }
         public string? LinkedinUrl { get; set; }
+        public string? GithubUrl { get; set; }
+        public string? PortfolioUrl { get; set; }
         public string? Phone { get; set; }
+        public string? FlagshipAchievement { get; set; }
         public string? ResumeSummary { get; set; }
     }
 
@@ -44,7 +50,10 @@ namespace NextApply.Api.DTOs
         public string? Yoe { get; set; }
         public string? KeyStrengths { get; set; }
         public string? LinkedinUrl { get; set; }
+        public string? GithubUrl { get; set; }
+        public string? PortfolioUrl { get; set; }
         public string? Phone { get; set; }
+        public string? FlagshipAchievement { get; set; }
         public string? ResumeSummary { get; set; }
         public DateTime CreatedAt { get; set; }
     }

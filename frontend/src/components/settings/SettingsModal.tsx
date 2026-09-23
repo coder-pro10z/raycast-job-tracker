@@ -134,9 +134,19 @@ export const SettingsModal: React.FC = () => {
               <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Key Technical Strengths</label>
               <textarea 
                 value={form.keyStrengths} onChange={(e) => setForm({ ...form, keyStrengths: e.target.value })}
-                placeholder="e.g. building scalable microservices and resilient cloud architectures"
+                placeholder="e.g. building scalable microservices, resilient cloud architectures, and high-performance React systems"
                 rows={2}
                 style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none', resize: 'vertical' }}
+              />
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '12px' }}>
+              <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500 }}>Flagship Achievement / Proof Metric</label>
+              <input 
+                type="text"
+                value={form.flagshipAchievement || ''} onChange={(e) => setForm({ ...form, flagshipAchievement: e.target.value })}
+                placeholder="e.g. Scaled distributed clusters handling 50k RPS with 99.99% uptime"
+                style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none' }}
               />
             </div>
           </div>
@@ -167,20 +177,38 @@ export const SettingsModal: React.FC = () => {
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}><Globe size={12}/> LinkedIn Profile</label>
+                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}><Globe size={12}/> LinkedIn Profile URL</label>
                 <input 
                   type="url" value={form.linkedinUrl} onChange={(e) => setForm({ ...form, linkedinUrl: e.target.value })}
-                  placeholder="linkedin.com/in/..."
+                  placeholder="https://linkedin.com/in/username"
                   style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none' }}
                 />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}><Link size={12}/> GitHub / Portfolio</label>
+                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}><Code size={12}/> GitHub Profile URL</label>
                 <input 
                   type="url" value={form.githubUrl} onChange={(e) => setForm({ ...form, githubUrl: e.target.value })}
-                  placeholder="github.com/..."
+                  placeholder="https://github.com/username"
                   style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none' }}
                 />
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', gridColumn: 'span 2' }}>
+                <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px' }}><Link size={12}/> Portfolio / Live Projects Website URL</label>
+                <input 
+                  type="url" value={form.portfolioUrl || ''} onChange={(e) => setForm({ ...form, portfolioUrl: e.target.value })}
+                  placeholder="https://yourportfolio.dev"
+                  style={{ padding: '10px 12px', fontSize: '0.875rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', background: 'var(--bg-primary)', color: 'var(--text-primary)', outline: 'none' }}
+                />
+              </div>
+            </div>
+
+            {/* Live Signature Preview */}
+            <div style={{ marginTop: '16px', padding: '12px 14px', borderRadius: 'var(--radius-sm)', backgroundColor: 'var(--bg-primary)', border: '1px dashed var(--border-color)' }}>
+              <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', fontWeight: 700, marginBottom: '6px' }}>
+                Live Email Signature Preview
+              </div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', lineHeight: 1.5, fontFamily: 'monospace', whiteSpace: 'pre-wrap' }}>
+{`--\nBest regards,\n${form.fullName || 'Your Name'}\n${form.currentRole || 'Your Title'}${form.phone ? `\nPhone: ${form.phone}` : ''}${form.email ? ` | Email: ${form.email}` : ''}${form.linkedinUrl ? `\nLinkedIn: ${form.linkedinUrl}` : ''}${form.githubUrl ? `\nGitHub: ${form.githubUrl}` : ''}${form.portfolioUrl ? `\nPortfolio: ${form.portfolioUrl}` : ''}`}
               </div>
             </div>
           </div>

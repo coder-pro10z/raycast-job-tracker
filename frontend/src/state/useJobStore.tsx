@@ -91,7 +91,9 @@ const getSavedUserProfile = (): UserProfile => {
     email: '',
     phone: '',
     linkedinUrl: '',
-    githubUrl: 'https://github.com/praveen'
+    githubUrl: 'https://github.com/coder-pro10z',
+    portfolioUrl: 'https://praveenkashyap.dev',
+    flagshipAchievement: 'Architected distributed event-driven microservices in .NET Core and modern React micro-frontends with sub-50ms latency'
   };
 };
 
@@ -165,7 +167,10 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
             yoe: profile.yoe || prev.yoe,
             keyStrengths: profile.keyStrengths || prev.keyStrengths,
             linkedinUrl: profile.linkedinUrl || prev.linkedinUrl,
+            githubUrl: profile.githubUrl || prev.githubUrl,
+            portfolioUrl: profile.portfolioUrl || prev.portfolioUrl,
             phone: profile.phone || prev.phone,
+            flagshipAchievement: profile.flagshipAchievement || prev.flagshipAchievement,
             targetDomain: profile.targetDomain || prev.targetDomain,
             resumeSummary: profile.resumeSummary || prev.resumeSummary
           }));
@@ -198,6 +203,9 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       yoe: res.user.yoe || '',
       keyStrengths: res.user.keyStrengths || '',
       linkedinUrl: res.user.linkedinUrl || '',
+      githubUrl: res.user.githubUrl || '',
+      portfolioUrl: res.user.portfolioUrl || '',
+      flagshipAchievement: res.user.flagshipAchievement || '',
       phone: res.user.phone || '',
       targetDomain: res.user.targetDomain,
       resumeSummary: res.user.resumeSummary || ''
@@ -219,6 +227,9 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       yoe: res.user.yoe || '',
       keyStrengths: res.user.keyStrengths || '',
       linkedinUrl: res.user.linkedinUrl || '',
+      githubUrl: res.user.githubUrl || '',
+      portfolioUrl: res.user.portfolioUrl || '',
+      flagshipAchievement: res.user.flagshipAchievement || '',
       phone: res.user.phone || '',
       targetDomain: res.user.targetDomain,
       resumeSummary: res.user.resumeSummary || ''
@@ -240,6 +251,9 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         yoe: profile.yoe || prev.yoe,
         keyStrengths: profile.keyStrengths || prev.keyStrengths,
         linkedinUrl: profile.linkedinUrl || prev.linkedinUrl,
+        githubUrl: profile.githubUrl || prev.githubUrl,
+        portfolioUrl: profile.portfolioUrl || prev.portfolioUrl,
+        flagshipAchievement: profile.flagshipAchievement || prev.flagshipAchievement,
         phone: profile.phone || prev.phone,
         targetDomain: profile.targetDomain || prev.targetDomain,
         resumeSummary: profile.resumeSummary || prev.resumeSummary
