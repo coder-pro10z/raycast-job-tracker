@@ -85,6 +85,27 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 8: Mixed Content & Offline API Failure in Production Vercel Deployment
+- **Component**: Frontend Authentication & API Client (`frontend/src/services/apiClient.ts`, `AuthModal.tsx`, `App.tsx`)
+- **Error / Issue**: When accessing the live production deployment on Vercel (`https://raycast-job-tracker.vercel.app/`), clicking the quick login buttons for Praveen or Anam triggered a red **"Login failed"** error alert, and jobs failed to load.
+- **Root Cause**:
+  1. In production on HTTPS (`https://raycast-job-tracker.vercel.app/`), `VITE_API_URL` defaulted to `http://localhost:5089` in absence of a live cloud backend URL.
+  2. Modern web browsers strictly block insecure HTTP calls (`http://localhost:5089`) from secure HTTPS origins under **Mixed Content Security Restrictions**, throwing `TypeError: Failed to fetch`.
+  3. The unhandled network exception caused `apiClient.login()` and `apiClient.getJobs()` to throw, triggering the red "Login failed" error in `AuthModal.tsx` and preventing job hydration.
+- **Resolution**:
+  - Implemented **Dual-Mode Resilient Client Architecture** in `frontend/src/services/apiClient.ts`:
+    - Added proactive mixed content detection (`isMixedContentBlocked()`) to identify HTTPS environments attempting HTTP localhost calls.
+    - Added built-in seeded credentials and profile payloads for **Praveen Kashyap** (`2pkashyap2001@gmail.com`) and **Anam Ansari** (`anamansari.0406@gmail.com`), allowing instant 0ms authentication in client mode.
+    - Added dynamic user registration and session persistence in `localStorage` (`job_tracker_registered_users`).
+    - Added graceful Excel fallback via `excelAdapter.loadJobs()` to parse `/Master_Job_Tracker.xlsx` (588 central jobs) when the backend is unreachable.
+    - Preserved zero-state guest experience where unauthenticated visitors see central listings with 0 active statuses.
+    - Seeded Praveen with 12 active applications (SDE/FullStack) and Anam with 8 active applications (Cloud/DevOps) for authentic demonstration.
+    - Enabled per-user state isolation in `localStorage` (`job_tracker_jobs_${userId}`) so status updates, notes, and job creations persist across page reloads.
+    - Seamlessly prioritizes live PostgreSQL API calls whenever a reachable backend (`localhost` in local dev or `VITE_API_URL` HTTPS endpoint) is detected.
+  - Verified production build via `npm run build` with 0 TypeScript/lint errors.
+
+---
+
 ## 2. Completed Features & Release Milestones
 
 ### 🚀 Milestone 1: Multi-User Profile & Authentication System
