@@ -168,6 +168,70 @@
   padding: 0;
 }
 
+
+button, input, select, textarea {
+  font-family: var(--font-sans);
+}
+
+/* Unified Sidebar Typography and Component Styles */
+.sidebar-section-header {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.sidebar-nav-btn {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-nav-btn-active {
+  font-weight: 600 !important;
+  color: var(--text-primary) !important;
+  background-color: var(--bg-active) !important;
+  border: 1px solid var(--border-focus) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.sidebar-nav-btn-inactive {
+  font-weight: 500 !important;
+  color: var(--text-secondary) !important;
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+}
+
+.sidebar-nav-btn-inactive:hover {
+  color: var(--text-primary) !important;
+  background-color: var(--bg-hover) !important;
+}
+
+.sidebar-count-badge {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  line-height: 1.25;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-primary);

@@ -432,7 +432,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       applied: activeDomainJobs.filter((j) => j.applicationStatus === 'Applied').length,
       highPriority: activeDomainJobs.filter((j) => j.priority === 'High').length,
       withReferrals: activeDomainJobs.filter((j) => j.referralNeeded || j.referralContactName).length,
-      interviewing: activeDomainJobs.filter((j) => j.applicationStatus === 'Interviewing' || j.interviewStage !== 'Not Started').length,
+      interviewing: activeDomainJobs.filter((j) => j.applicationStatus === 'Interviewing' || (Boolean(j.interviewStage) && j.interviewStage !== 'Not Started')).length,
       offers: activeDomainJobs.filter((j) => j.applicationStatus === 'Offered').length,
       
       // Overall counts by strict domain
@@ -466,7 +466,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     } else if (filterState.viewMode === 'applied') {
       result = result.filter((j) => j.applicationStatus === 'Applied');
     } else if (filterState.viewMode === 'interview') {
-      result = result.filter((j) => j.applicationStatus === 'Interviewing' || j.interviewStage !== 'Not Started');
+      result = result.filter((j) => j.applicationStatus === 'Interviewing' || (Boolean(j.interviewStage) && j.interviewStage !== 'Not Started'));
     } else if (filterState.viewMode === 'offers') {
       result = result.filter((j) => j.applicationStatus === 'Offered');
     } else if (filterState.viewMode === 'rejected') {

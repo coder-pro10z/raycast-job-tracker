@@ -29,8 +29,92 @@ interface NavItem {
   countKey?: 'totalJobs' | 'readyToApply' | 'applied' | 'withReferrals' | 'interviewing' | 'offers';
 }
 
+interface SidebarRowProps {
+  label: string;
+  icon: React.ElementType;
+  isActive: boolean;
+  onClick: () => void;
+  count?: number;
+  badgeColor?: string;
+  isCollapsed: boolean;
+  title?: string;
+}
+
+const SidebarRow: React.FC<SidebarRowProps> = ({
+  label,
+  icon: Icon,
+  isActive,
+  onClick,
+  count,
+  badgeColor,
+  isCollapsed,
+  title
+}) => {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`sidebar-nav-btn ${isActive ? 'sidebar-nav-btn-active' : 'sidebar-nav-btn-inactive'}`}
+      style={{
+        padding: isCollapsed ? '8px 0' : '6px 10px',
+        justifyContent: isCollapsed ? 'center' : 'space-between',
+        marginBottom: '2px'
+      }}
+      title={isCollapsed ? (title || label) : undefined}
+    >
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '9px',
+        overflow: 'hidden',
+        width: isCollapsed ? '100%' : 'auto',
+        justifyContent: isCollapsed ? 'center' : 'flex-start'
+      }}>
+        <Icon 
+          size={16} 
+          style={{ 
+            color: isActive ? (badgeColor || 'var(--text-accent)') : 'var(--text-muted)', 
+            flexShrink: 0 
+          }} 
+        />
+        {!isCollapsed && (
+          <span style={{ 
+            whiteSpace: 'nowrap', 
+            overflow: 'hidden', 
+            textOverflow: 'ellipsis' 
+          }}>
+            {label}
+          </span>
+        )}
+      </div>
+
+      {!isCollapsed && count !== undefined && (
+        <span 
+          className="sidebar-count-badge"
+          style={{
+            backgroundColor: isActive ? 'rgba(255, 255, 255, 0.12)' : 'var(--bg-tertiary)',
+            color: isActive ? (badgeColor || 'var(--text-primary)') : 'var(--text-muted)'
+          }}
+        >
+          {count}
+        </span>
+      )}
+    </button>
+  );
+};
+
 export const Sidebar: React.FC = () => {
-  const { filterState, setViewMode, setActiveDomain, metrics, jobs, isSidebarOpen, setSidebarOpen, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
+  const { 
+    filterState, 
+    setViewMode, 
+    setActiveDomain, 
+    metrics, 
+    jobs, 
+    isSidebarOpen, 
+    setSidebarOpen, 
+    isSidebarCollapsed, 
+    setSidebarCollapsed 
+  } = useJobStore();
 
   const navItems: NavItem[] = [
     { id: 'all', label: 'All Opportunities', icon: Briefcase, countKey: 'totalJobs' },
@@ -43,7 +127,7 @@ export const Sidebar: React.FC = () => {
   ];
 
   const domains: { id: ActiveDomain; label: string; icon: React.ElementType; count: number; badgeColor: string }[] = [
-    { id: 'all', label: 'All Tracks', icon: Globe, count: jobs.length, badgeColor: 'var(--text-muted)' },
+    { id: 'all', label: 'All Tracks', icon: Globe, count: jobs.length, badgeColor: 'var(--text-accent)' },
     { id: 'sde', label: 'SDE & FullStack', icon: Code, count: metrics.sdeCount, badgeColor: '#818cf8' },
     { id: 'cloud', label: 'Cloud & DevOps', icon: Cloud, count: metrics.cloudDevOpsCount, badgeColor: '#38bdf8' },
   ];
@@ -64,10 +148,12 @@ export const Sidebar: React.FC = () => {
     if (isSidebarOpen && window.innerWidth <= 768) {
       timeout = setTimeout(() => {
         setSidebarOpen(false);
-      }, 5000); // 5 seconds
+      }, 5000);
     }
     return () => clearTimeout(timeout);
   }, [isSidebarOpen, setSidebarOpen]);
+
+  const automatorDraftCount = jobs.filter(j => Boolean(j.gmailDraftId)).length;
 
   return (
     <>
@@ -87,7 +173,7 @@ export const Sidebar: React.FC = () => {
           borderRight: '1px solid var(--border-color)',
           display: 'flex',
           flexDirection: 'column',
-          padding: 'var(--space-2) 0',
+          padding: '12px 0',
           userSelect: 'none',
           flexShrink: 0,
           transition: 'width 250ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -108,6 +194,7 @@ export const Sidebar: React.FC = () => {
         }}>
           <span>🧭 Job Tracker</span>
           <button
+            type="button"
             onClick={() => setSidebarOpen(false)}
             style={{
               background: 'transparent',
@@ -122,20 +209,45 @@ export const Sidebar: React.FC = () => {
           </button>
         </div>
 
-
-
-        {/* Domain Track Switcher Section */}
-        <div style={{ padding: '0 var(--space-4) var(--space-2)', borderBottom: '1px solid var(--border-color)', marginBottom: 'var(--space-2)' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '8px', paddingLeft: isSidebarCollapsed ? '0' : '4px', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'space-between' }} title="Domain Workspace">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <Layers size={15} style={{ color: 'var(--text-accent)' }} />
+        {/* 1. Domain Workspace Section */}
+        <div style={{
+          padding: '0 12px 10px',
+          borderBottom: '1px solid var(--border-color)',
+          marginBottom: '10px'
+        }}>
+          <div 
+            className="sidebar-section-header"
+            style={{
+              marginBottom: '6px',
+              padding: '0 4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: isSidebarCollapsed ? 'center' : 'space-between'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Layers size={14} style={{ color: 'var(--text-accent)' }} />
               {!isSidebarCollapsed && <span>Domain Workspace</span>}
             </div>
             
-            {/* Compact Collapse Toggle */}
+            {/* Collapse / Expand Toggle */}
             <button 
+              type="button"
               onClick={() => setSidebarCollapsed(!isSidebarCollapsed)}
-              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: 'var(--radius-sm)', border: 'none', background: 'var(--bg-tertiary)', color: 'var(--text-secondary)', cursor: 'pointer', transition: 'all 150ms ease', opacity: isSidebarCollapsed ? 0.7 : 1 }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '20px',
+                height: '20px',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                background: 'var(--bg-tertiary)',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                transition: 'all 150ms ease',
+                opacity: isSidebarCollapsed ? 0.7 : 1
+              }}
               title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
               className="glow-hover desktop-only"
             >
@@ -143,254 +255,117 @@ export const Sidebar: React.FC = () => {
             </button>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-            {domains.map((domain) => {
-              const isActive = filterState.activeDomain === domain.id;
-              const Icon = domain.icon;
-              return (
-                <button
-                  key={domain.id}
-                  onClick={() => handleDomainSelect(domain.id)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                    padding: isSidebarCollapsed ? '8px 0' : '6px 10px',
-                    borderRadius: 'var(--radius-sm)',
-                    backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
-                    border: isActive ? '1px solid var(--border-focus)' : '1px solid transparent',
-                    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                    cursor: 'pointer',
-                    textAlign: 'left',
-                    transition: 'all 150ms ease',
-                    boxShadow: isActive ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
-                  }}
-                  className="glow-hover"
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start', width: isSidebarCollapsed ? '100%' : 'auto' }} title={isSidebarCollapsed ? domain.label : undefined}>
-                    <Icon size={18} style={{ color: isActive ? domain.badgeColor : 'var(--text-muted)', flexShrink: 0 }} />
-                    {!isSidebarCollapsed && (
-                      <span style={{ fontSize: '0.8125rem', fontWeight: isActive ? 700 : 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        {domain.label}
-                      </span>
-                    )}
-                  </div>
-                  {!isSidebarCollapsed && (
-                    <span style={{
-                      fontSize: '0.6875rem',
-                      fontWeight: 700,
-                      padding: '1px 6px',
-                      borderRadius: 'var(--radius-full)',
-                      backgroundColor: isActive ? 'rgba(255, 255, 255, 0.1)' : 'var(--bg-tertiary)',
-                      color: isActive ? domain.badgeColor : 'var(--text-muted)',
-                      flexShrink: 0
-                    }}>
-                      {domain.count}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {domains.map((domain) => (
+              <SidebarRow
+                key={domain.id}
+                label={domain.label}
+                icon={domain.icon}
+                isActive={filterState.activeDomain === domain.id}
+                onClick={() => handleDomainSelect(domain.id)}
+                count={domain.count}
+                badgeColor={domain.badgeColor}
+                isCollapsed={isSidebarCollapsed}
+              />
+            ))}
           </div>
         </div>
 
-        {/* Pipeline View Status Navigation */}
-        <div style={{ padding: '0 var(--space-4) var(--space-2)', marginTop: '4px' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '4px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
+        {/* 2. Pipeline Status Section */}
+        <div style={{
+          padding: '0 12px 10px',
+          borderBottom: '1px solid var(--border-color)',
+          marginBottom: '10px'
+        }}>
+          <div 
+            className="sidebar-section-header"
+            style={{
+              marginBottom: '6px',
+              padding: '0 4px',
+              textAlign: isSidebarCollapsed ? 'center' : 'left'
+            }}
+          >
             {isSidebarCollapsed ? '...' : 'Pipeline Status'}
           </div>
+
+          <nav style={{ display: 'flex', flexDirection: 'column' }}>
+            {navItems.map((item) => {
+              const isActive = filterState.viewMode === item.id;
+              const count = item.countKey ? metrics[item.countKey] : undefined;
+
+              return (
+                <SidebarRow
+                  key={item.id}
+                  label={item.label}
+                  icon={item.icon}
+                  isActive={isActive}
+                  onClick={() => handleNavSelect(item.id)}
+                  count={count}
+                  isCollapsed={isSidebarCollapsed}
+                />
+              );
+            })}
+          </nav>
         </div>
 
-        <nav style={{ flex: '1', padding: '0 var(--space-3)', display: 'flex', flexDirection: 'column', gap: '0px' }}>
-          {navItems.map((item) => {
-            const isActive = filterState.viewMode === item.id;
-            const Icon = item.icon;
-            const count = item.countKey ? metrics[item.countKey] : undefined;
-
-            return (
-              <div
-                key={item.id}
-                onClick={() => handleNavSelect(item.id)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: isSidebarCollapsed ? '8px' : '6px 12px',
-                  borderRadius: 'var(--radius-sm)',
-                  backgroundColor: isActive ? 'var(--bg-active)' : 'transparent',
-                  color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  cursor: 'pointer',
-                  transition: 'all 150ms ease',
-                  fontWeight: isActive ? 600 : 500,
-                }}
-                onMouseEnter={(e) => {
-                  if (!isActive) e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
-                }}
-                onMouseLeave={(e) => {
-                  if (!isActive) e.currentTarget.style.backgroundColor = 'transparent';
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start', width: isSidebarCollapsed ? '100%' : 'auto' }} title={isSidebarCollapsed ? item.label : undefined}>
-                  <Icon size={18} style={{ color: isActive ? 'var(--text-accent)' : 'var(--text-muted)' }} />
-                  {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>{item.label}</span>}
-                </div>
-
-                {!isSidebarCollapsed && count !== undefined && (
-                  <span style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    padding: '2px 8px',
-                    borderRadius: 'var(--radius-full)',
-                    backgroundColor: isActive ? 'var(--status-ready-bg)' : 'var(--bg-tertiary)',
-                    color: isActive ? 'var(--status-ready-text)' : 'var(--text-muted)',
-                  }}>
-                    {count}
-                  </span>
-                )}
-              </div>
-            );
-          })}
-        </nav>
-
-        
-        {/* Outreach Hub Section */}
-        <div style={{ padding: '4px var(--space-4)' }}>
-          <div style={{ fontSize: '0.6875rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '4px', paddingLeft: isSidebarCollapsed ? '0' : '4px', textAlign: isSidebarCollapsed ? 'center' : 'left' }}>
+        {/* 3. Outreach & Applications Section */}
+        <div style={{ padding: '0 12px', marginBottom: 'auto' }}>
+          <div 
+            className="sidebar-section-header"
+            style={{
+              marginBottom: '6px',
+              padding: '0 4px',
+              textAlign: isSidebarCollapsed ? 'center' : 'left'
+            }}
+          >
             {isSidebarCollapsed ? '...' : 'Outreach & Apps'}
           </div>
 
-          {/* Job Applications (Automator) */}
-          <div 
-            onClick={() => handleNavSelect('job-applications')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: isSidebarCollapsed ? 'center' : 'space-between',
-              padding: isSidebarCollapsed ? '8px' : '6px 12px',
-              borderRadius: 'var(--radius-sm)',
-              backgroundColor: filterState.viewMode === 'job-applications' ? 'var(--bg-active)' : 'transparent',
-              color: filterState.viewMode === 'job-applications' ? 'var(--text-primary)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              transition: 'all 150ms ease',
-              fontWeight: filterState.viewMode === 'job-applications' ? 600 : 500,
-              marginBottom: '2px',
-            }}
-            onMouseEnter={(e) => {
-              if (filterState.viewMode !== 'job-applications') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
-            }}
-            onMouseLeave={(e) => {
-              if (filterState.viewMode !== 'job-applications') e.currentTarget.style.backgroundColor = 'transparent';
-            }}
-            title={isSidebarCollapsed ? "Gmail JD Automator" : undefined}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <Bot size={18} style={{ color: filterState.viewMode === 'job-applications' ? '#38bdf8' : 'var(--text-muted)' }} />
-              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Gmail JD Automator</span>}
-            </div>
-            {!isSidebarCollapsed && jobs.filter(j => Boolean(j.gmailDraftId)).length > 0 && (
-              <span style={{
-                fontSize: '0.6875rem',
-                fontWeight: 700,
-                padding: '1px 6px',
-                borderRadius: 'var(--radius-full)',
-                backgroundColor: 'rgba(56, 189, 248, 0.15)',
-                color: '#38bdf8',
-              }}>
-                {jobs.filter(j => Boolean(j.gmailDraftId)).length}
-              </span>
-            )}
-          </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <SidebarRow
+              label="Gmail JD Automator"
+              icon={Bot}
+              isActive={filterState.viewMode === 'job-applications'}
+              onClick={() => handleNavSelect('job-applications')}
+              count={automatorDraftCount > 0 ? automatorDraftCount : undefined}
+              badgeColor="#38bdf8"
+              isCollapsed={isSidebarCollapsed}
+            />
 
-          {/* Cold Templates */}
-          <div 
-            onClick={() => handleNavSelect('outreach-templates')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
-              padding: isSidebarCollapsed ? '8px' : '6px 12px',
-              borderRadius: 'var(--radius-sm)',
-              backgroundColor: filterState.viewMode === 'outreach-templates' ? 'var(--bg-active)' : 'transparent',
-              color: filterState.viewMode === 'outreach-templates' ? 'var(--text-primary)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              transition: 'all 150ms ease',
-              fontWeight: filterState.viewMode === 'outreach-templates' ? 600 : 500,
-              marginBottom: '2px',
-            }}
-            onMouseEnter={(e) => {
-              if (filterState.viewMode !== 'outreach-templates') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
-            }}
-            onMouseLeave={(e) => {
-              if (filterState.viewMode !== 'outreach-templates') e.currentTarget.style.backgroundColor = 'transparent';
-            }}
-            title={isSidebarCollapsed ? "Cold Templates" : undefined}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <MessageSquare size={18} style={{ color: filterState.viewMode === 'outreach-templates' ? '#38bdf8' : 'var(--text-muted)' }} />
-              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Cold Templates</span>}
-            </div>
-          </div>
+            <SidebarRow
+              label="Cold Templates"
+              icon={MessageSquare}
+              isActive={filterState.viewMode === 'outreach-templates'}
+              onClick={() => handleNavSelect('outreach-templates')}
+              badgeColor="#38bdf8"
+              isCollapsed={isSidebarCollapsed}
+            />
 
-          {/* Architecture Graph */}
-          <div 
-            onClick={() => handleNavSelect('graph')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
-              padding: isSidebarCollapsed ? '8px' : '6px 12px',
-              borderRadius: 'var(--radius-sm)',
-              backgroundColor: filterState.viewMode === 'graph' ? 'var(--bg-active)' : 'transparent',
-              color: filterState.viewMode === 'graph' ? 'var(--text-primary)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              transition: 'all 150ms ease',
-              fontWeight: filterState.viewMode === 'graph' ? 600 : 500,
-            }}
-            onMouseEnter={(e) => {
-              if (filterState.viewMode !== 'graph') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
-            }}
-            onMouseLeave={(e) => {
-              if (filterState.viewMode !== 'graph') e.currentTarget.style.backgroundColor = 'transparent';
-            }}
-            title={isSidebarCollapsed ? "Architecture Graph" : undefined}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <Share2 size={18} style={{ color: filterState.viewMode === 'graph' ? '#818cf8' : 'var(--text-muted)' }} />
-              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>System Graph</span>}
-            </div>
+            <SidebarRow
+              label="System Graph"
+              icon={Share2}
+              isActive={filterState.viewMode === 'graph'}
+              onClick={() => handleNavSelect('graph')}
+              badgeColor="#818cf8"
+              isCollapsed={isSidebarCollapsed}
+            />
           </div>
         </div>
 
-        {/* Support Section */}
-        <div style={{ padding: '4px var(--space-4)', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '12px' }}>
-          <div 
+        {/* 4. Support & Feedback Footer Section */}
+        <div style={{
+          padding: '10px 12px 0',
+          borderTop: '1px solid var(--border-color)',
+          marginTop: '12px'
+        }}>
+          <SidebarRow
+            label="Support & Feedback"
+            icon={BadgeHelp}
+            isActive={filterState.viewMode === 'support'}
             onClick={() => handleNavSelect('support')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: isSidebarCollapsed ? 'center' : 'flex-start',
-              padding: isSidebarCollapsed ? '8px' : '6px 12px',
-              borderRadius: 'var(--radius-sm)',
-              backgroundColor: filterState.viewMode === 'support' ? 'var(--bg-active)' : 'transparent',
-              color: filterState.viewMode === 'support' ? 'var(--text-primary)' : 'var(--text-secondary)',
-              cursor: 'pointer',
-              transition: 'all 150ms ease',
-              fontWeight: filterState.viewMode === 'support' ? 600 : 500,
-            }}
-            onMouseEnter={(e) => {
-              if (filterState.viewMode !== 'support') e.currentTarget.style.backgroundColor = 'var(--bg-hover)';
-            }}
-            onMouseLeave={(e) => {
-              if (filterState.viewMode !== 'support') e.currentTarget.style.backgroundColor = 'transparent';
-            }}
-            title={isSidebarCollapsed ? "Support & Feedback" : undefined}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: isSidebarCollapsed ? '100%' : 'auto', justifyContent: isSidebarCollapsed ? 'center' : 'flex-start' }}>
-              <BadgeHelp size={18} style={{ color: filterState.viewMode === 'support' ? '#38bdf8' : 'var(--text-muted)' }} />
-              {!isSidebarCollapsed && <span style={{ fontSize: '0.875rem', whiteSpace: 'nowrap' }}>Support & Feedback</span>}
-            </div>
-          </div>
+            badgeColor="#38bdf8"
+            isCollapsed={isSidebarCollapsed}
+          />
         </div>
 
       </aside>
