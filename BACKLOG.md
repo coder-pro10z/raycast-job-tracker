@@ -191,6 +191,31 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 12: Truncated Sliced Body & Outdated Candidate Profile (5+ years vs 3+ years) in Gmail Drafts
+- **Component**: Email Assembler (`emailAssembler.ts`), Client Cache (`useJobStore.tsx`, `apiClient.ts`), Seed Data (`AuthController.cs`, `foundationalDrafts.ts`, `JobApplicationPanel.tsx`)
+- **Error / Issue**: When opening Gmail drafts, the email body showed truncated sentences ending in `...` (e.g. `With over 5+ years of hands-on software engineering e...`) and contained outdated profile details (`5+ years` instead of candidate's actual `3+ years`, placeholder contact info).
+- **Root Cause**:
+  1. `WebAutomatorModal.tsx` historically saved truncated teaser strings (`generatedBody.slice(0, 150) + '...'`) into `job.outreachBodyPreview`.
+  2. `assembleFullOutreachEmail` previously checked only `preview.length > 180`, mistakenly treating the 183-character truncated teaser as the final full email.
+  3. Default profile values in backend seeds and client fallbacks had `5+ years` rather than Praveen's current `3+ years` and exact contact information.
+- **Resolution**:
+  - Updated `assembleFullOutreachEmail()` in `emailAssembler.ts` with strict anti-truncation validation: any preview ending with `...` or `…`, under 280 characters, lacking double newlines, or containing `5+ years` is flagged as an invalid teaser and automatically regenerated into a full multi-paragraph pitch.
+  - Grounded all default values, seeds, and fallbacks in Praveen's exact profile details:
+    - **Full Name**: `Praveen Kashyap`
+    - **Current / Target Role**: `Full Stack Engineer / SDE`
+    - **Years of Experience**: `3+ years`
+    - **Target Domain**: `Software Engineering (SDE)`
+    - **Key Technical Strengths**: `Angular, React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture`
+    - **Email Address**: `2pkashyap2001@gmail.com`
+    - **Phone Number**: `+91 7394990738`
+    - **LinkedIn Profile**: `https://www.linkedin.com/in/coder-pro10z/`
+    - **GitHub / Portfolio**: `https://github.com/coder-pro10z`
+  - Added automatic migration in `useJobStore.tsx` to upgrade any existing user profile stored in browser `localStorage`.
+  - Updated backend user seed in `AuthController.cs` to update existing user records on startup.
+  - Verified frontend build (`tsc -b && vite build`) and backend build (`dotnet build`) both succeeded with 0 errors.
+
+---
+
 ### 🚀 Milestone 6: Brand-Accurate LinkedIn Outreach Studio Styling
 - [x] **Design Tokens**: Added `--linkedin-primary: #0a66c2`, `--linkedin-hover: #004182`, `--linkedin-bg`, and `--linkedin-border` in `index.css` and `styles.css`.
 - [x] **Channel Navigation Pills**: Updated `LinkedIn Note (<300 chars)` and `LinkedIn InMail` buttons in `OutreachStudio.tsx` to use the official LinkedIn primary background.

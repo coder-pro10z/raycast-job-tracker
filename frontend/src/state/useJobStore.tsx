@@ -79,22 +79,48 @@ const getSavedSortDir = (): 'asc' | 'desc' => {
 const getSavedUserProfile = (): UserProfile => {
   try {
     const saved = localStorage.getItem('job_tracker_user_profile');
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (!parsed.fullName || parsed.fullName.toLowerCase().includes('praveen')) {
+        const migrated: UserProfile = {
+          fullName: 'Praveen Kashyap',
+          currentRole: 'Full Stack Engineer / SDE',
+          yoe: '3+ years',
+          targetDomain: 'sde',
+          keyStrengths: 'Angular, React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture',
+          email: '2pkashyap2001@gmail.com',
+          phone: (parsed.phone && parsed.phone !== '+91 98765 43210') ? parsed.phone : '+91 7394990738',
+          linkedinUrl: (parsed.linkedinUrl && !parsed.linkedinUrl.includes('8b8359190')) ? parsed.linkedinUrl : 'https://www.linkedin.com/in/coder-pro10z/',
+          githubUrl: 'https://github.com/coder-pro10z',
+          portfolioUrl: (parsed.portfolioUrl && parsed.portfolioUrl !== 'https://praveenkashyap.dev') ? parsed.portfolioUrl : 'https://github.com/coder-pro10z',
+          flagshipAchievement: parsed.flagshipAchievement || 'Architected distributed event-driven microservices in .NET Core and modern Angular/React micro-frontends with sub-50ms latency',
+          resumeSummary: parsed.resumeSummary || 'Full Stack Software Development Engineer specializing in Angular, React, TypeScript, C#, .NET Core, and cloud distributed architectures.'
+        };
+        localStorage.setItem('job_tracker_user_profile', JSON.stringify(migrated));
+        return migrated;
+      }
+      return parsed;
+    }
   } catch (e) {
     console.error('Failed to parse user profile', e);
   }
-  return {
-    fullName: '',
-    currentRole: '',
+  const defaultPraveen: UserProfile = {
+    fullName: 'Praveen Kashyap',
+    currentRole: 'Full Stack Engineer / SDE',
     yoe: '3+ years',
-    keyStrengths: 'building scalable microservices and resilient cloud architectures',
-    email: '',
-    phone: '',
-    linkedinUrl: '',
+    targetDomain: 'sde',
+    keyStrengths: 'Angular, React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture',
+    email: '2pkashyap2001@gmail.com',
+    phone: '+91 7394990738',
+    linkedinUrl: 'https://www.linkedin.com/in/coder-pro10z/',
     githubUrl: 'https://github.com/coder-pro10z',
-    portfolioUrl: 'https://praveenkashyap.dev',
-    flagshipAchievement: 'Architected distributed event-driven microservices in .NET Core and modern React micro-frontends with sub-50ms latency'
+    portfolioUrl: 'https://github.com/coder-pro10z',
+    flagshipAchievement: 'Architected distributed event-driven microservices in .NET Core and modern Angular/React micro-frontends with sub-50ms latency'
   };
+  try {
+    localStorage.setItem('job_tracker_user_profile', JSON.stringify(defaultPraveen));
+  } catch {}
+  return defaultPraveen;
 };
 
 const getSavedTheme = (): 'dark' | 'light' => {

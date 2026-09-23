@@ -227,13 +227,32 @@ namespace NextApply.Api.Controllers
                     FullName = "Praveen Kashyap",
                     TargetDomain = "sde",
                     CurrentRole = "Full Stack Engineer / SDE",
-                    Yoe = "5+ years",
-                    KeyStrengths = "React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture",
-                    LinkedinUrl = "https://www.linkedin.com/in/praveen-kashyap-8b8359190/",
+                    Yoe = "3+ years",
+                    KeyStrengths = "Angular, React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture",
+                    Phone = "+91 7394990738",
+                    LinkedinUrl = "https://www.linkedin.com/in/coder-pro10z/",
+                    GithubUrl = "https://github.com/coder-pro10z",
+                    PortfolioUrl = "https://github.com/coder-pro10z",
+                    FlagshipAchievement = "Architected distributed event-driven microservices in .NET Core and modern Angular/React micro-frontends with sub-50ms latency",
                     CreatedAt = DateTime.UtcNow,
                     UpdatedAt = DateTime.UtcNow
                 };
                 db.UserProfiles.Add(praveen);
+                changes++;
+            }
+            else
+            {
+                praveen.FullName = "Praveen Kashyap";
+                praveen.CurrentRole = "Full Stack Engineer / SDE";
+                praveen.Yoe = "3+ years";
+                praveen.TargetDomain = "sde";
+                praveen.KeyStrengths = "Angular, React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture";
+                praveen.Phone = "+91 7394990738";
+                praveen.LinkedinUrl = "https://www.linkedin.com/in/coder-pro10z/";
+                praveen.GithubUrl = "https://github.com/coder-pro10z";
+                praveen.PortfolioUrl = "https://github.com/coder-pro10z";
+                praveen.FlagshipAchievement = "Architected distributed event-driven microservices in .NET Core and modern Angular/React micro-frontends with sub-50ms latency";
+                praveen.UpdatedAt = DateTime.UtcNow;
                 changes++;
             }
 

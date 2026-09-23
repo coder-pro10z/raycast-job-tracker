@@ -217,27 +217,31 @@ export function interpolateDraft(
   profile: UserProfile,
   job?: Partial<JobItem>
 ): { subject: string; body: string } {
-  const candidateName = profile.fullName?.trim() || 'Candidate';
-  const candidateTitle = profile.currentRole?.trim() || 'Software Engineer';
+  const isPraveen = !profile.fullName || profile.fullName.toLowerCase().includes('praveen');
+
+  const candidateName = profile.fullName?.trim() || 'Praveen Kashyap';
+  const candidateTitle = profile.currentRole?.trim() || (isPraveen ? 'Full Stack Engineer / SDE' : 'Software Engineer');
   const company = job?.companyName?.trim() || 'your company';
-  const role = job?.targetRole?.trim() || 'Software Engineer';
+  const role = job?.targetRole?.trim() || (isPraveen ? 'Full Stack Engineer / SDE' : 'Software Engineer');
   
   const rawRecruiter = job?.hrRecruiterName?.trim();
   const recruiterName = (rawRecruiter && !rawRecruiter.includes('@'))
     ? rawRecruiter
     : `${company} Hiring Team`;
 
-  const yoe = profile.yoe?.trim() || '5+ years';
-  const strengths = profile.keyStrengths?.trim() || 'building scalable microservices and resilient cloud architectures';
+  const yoe = profile.yoe?.trim() || '3+ years';
+  const strengths = profile.keyStrengths?.trim() || (isPraveen 
+    ? 'Angular, React, TypeScript, C#, .NET Core, Microservices, Cloud Architecture' 
+    : 'building scalable microservices and resilient cloud architectures');
   const flagshipAchievement = profile.flagshipAchievement?.trim()
     ? `Recently, I ${profile.flagshipAchievement.trim().replace(/^\.?/, '').trim()}.`
-    : `In my career, I have consistently driven measurable outcomes and maintained high engineering velocity.`;
+    : `In my career, I have consistently driven measurable outcomes, architecting distributed systems with low p99 latencies.`;
 
-  const portfolioUrl = profile.portfolioUrl?.trim() || 'https://portfolio.dev';
-  const githubUrl = profile.githubUrl?.trim() || 'https://github.com';
-  const linkedinUrl = profile.linkedinUrl?.trim() || 'https://linkedin.com';
-  const phone = profile.phone?.trim() || '';
-  const email = profile.email?.trim() || '';
+  const portfolioUrl = profile.portfolioUrl?.trim() || profile.githubUrl?.trim() || (isPraveen ? 'https://github.com/coder-pro10z' : 'https://portfolio.dev');
+  const githubUrl = profile.githubUrl?.trim() || (isPraveen ? 'https://github.com/coder-pro10z' : 'https://github.com');
+  const linkedinUrl = profile.linkedinUrl?.trim() || (isPraveen ? 'https://www.linkedin.com/in/coder-pro10z/' : 'https://linkedin.com');
+  const phone = profile.phone?.trim() || (isPraveen ? '+91 7394990738' : '');
+  const email = profile.email?.trim() || (isPraveen ? '2pkashyap2001@gmail.com' : '');
 
   const signature = assembleSignature(profile);
 
