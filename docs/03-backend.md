@@ -32,6 +32,11 @@ The backend is secured using an API key mechanism via the `ApiKeyAuthMiddleware`
 | Dashboard | GET | `/api/dashboard/weekly-summary` | Yes | None | None | `MetricsDto` |
 | Settings | GET | `/api/settings` | Yes | None | None | `SettingsDto` |
 | Settings | PUT | `/api/settings` | Yes | None | `SettingsDto` | `SettingsDto` |
+| Auth | POST | `/api/auth/login` | No | None | `{ email, password }` | `AuthResponse` |
+| Auth | POST | `/api/auth/signup` | No | None | `SignUpDto` | `AuthResponse` |
+| Auth | GET | `/api/auth/users` | No | None | None | `List<PublicUserSummary>` |
+| Auth | GET | `/api/auth/me` | Optional | None | None | `UserProfileDto` |
+| Auth | PUT | `/api/auth/profile` | Optional | None | `UpdateProfileDto` | `UserProfileDto` |
 | JobApplicationImport | POST | `/api/jobs/import-from-automator` | Yes | None | `JobApplicationImportDto` | `201 Created` / `200 OK` (idempotent) |
 
 ## Detailed Endpoint Specs

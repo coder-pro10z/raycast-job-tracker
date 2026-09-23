@@ -197,9 +197,65 @@ The backend uses a simple regex against `rawJdText` and `generatedSubject` to in
 
 ---
 
-## 13. Future Enhancements
+## 13. Future Enhancements & Upgrades Completed
 
-- Multiple resume variants selected automatically by detected role type.
-- Follow-up email scheduling / reply tracking integrated into the NextApply timeline view.
-- Recruiter name extraction (LinkedIn/company site lookup) for a personalized greeting.
-- Full UI review panel inside NextApply instead of scanning raw Gmail drafts + CSV.
+- [x] Full UI review panel inside NextApply (`JobApplicationPanel.tsx`) with status synchronization.
+- [x] Multi-paragraph publication-ready draft synthesis with proof metrics and candidate contact signatures.
+- [x] Multi-account Gmail routing with `authuser` URL parameters.
+- [x] Zero-OS and mobile automator studio without requiring local Python or Tesseract binaries.
+- [x] 10 curated foundational outreach blueprints library with standardized placeholder interpolation.
+- [x] Tier-1 realistic job description benchmark archive.
+
+---
+
+## 14. Publication-Ready Outreach Synthesis & Signature Studio (v2)
+
+### The Incomplete Draft Resolution
+In early iterations, clicking **Open Draft** only passed a 1-sentence teaser (`job.outreachBodyPreview`) into the Gmail compose window without salutations, proof metrics, or contact information.
+
+To solve this, NextApply introduced **`emailAssembler.ts`** and **`foundationalDrafts.ts`**:
+
+```
+Candidate Profile (Settings) + Job Record (Automator)
+                  ↓
+          EmailAssembler
+                  ↓
+    [Formal Salutation]
+    [Role & Company Hook]
+    [Key Technical Strengths & YOE]
+    [Flagship Metric / Proof Point]
+    [Call to Action (15-min call)]
+    [Complete Formal Signature Block]
+                  ↓
+       Gmail Compose Deep-link
+  (?authuser=...&view=cm&fs=1&to=...&su=...&body=...)
+```
+
+### Complete Signature Block Anatomy
+Configured in `SettingsModal.tsx` and persisted to `UserProfile`:
+```text
+--
+Best regards,
+[Full Name]
+[Current / Target Role]
+Phone: [Phone Number] | Email: [Email Address]
+LinkedIn: [LinkedIn Profile URL]
+GitHub: [GitHub Profile URL]
+Portfolio: [Portfolio / Live Projects Website URL]
+```
+
+### 10 Foundational Drafts Library (`foundationalDrafts.ts`)
+Standardized blueprints covering major candidate domains with `{placeholder}` interpolation:
+1. **SDE / Distributed Backend & Microservices** (`sde-distributed-backend`)
+2. **Full Stack & Product Engineer** (`sde-fullstack-product`)
+3. **Cloud Platform, DevOps & SRE** (`cloud-platform-devops`)
+4. **Cloud Solutions Architect & Systems Strategy** (`cloud-solutions-architect`)
+5. **High-Velocity Startup Generalist** (`high-growth-startup`)
+6. **Enterprise & FinTech High-Reliability Systems** (`enterprise-fintech`)
+7. **AI Systems & LLM Application Engineer** (`ai-infra-llm-app`)
+8. **Direct Recruiter InMail / Short Cold Pitch** (`recruiter-direct-inmail`)
+9. **Peer / Alumni Referral Request** (`alumni-referral-request`)
+10. **Post-Interview Thank You & Concrete Value Add** (`post-interview-thankyou`)
+
+### Grounded Tier-1 JD Archive (`docs/jd-samples/`)
+Authentic JD samples from HashiCorp, Stripe, Snowflake, Datadog, AWS, OpenAI, GitHub, Airbnb, Uber, and Netflix stored in `docs/jd-samples/` serve as production benchmarks for testing OCR extraction and prompt quality.

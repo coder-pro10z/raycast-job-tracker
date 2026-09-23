@@ -6,31 +6,35 @@
 frontend/src/
 ├── App.tsx                   # Root: QueryClientProvider + JobProvider + Router + GraphViewer
 ├── main.tsx                  # Entry point
-├── index.css                 # Global CSS, design tokens
+├── index.css                 # Global CSS, design tokens (RULES.md compliant)
 ├── components/
 │   ├── NewJobModal.tsx        # Modal for creating a new job from scratch
-│   ├── auth/                 # Auth gate components (API key entry)
+│   ├── auth/                 # AuthModal (multi-profile login/signup), ProfileMenu
 │   ├── common/               # Badge, StatusBadgeDropdown, PriorityBadgeDropdown
 │   ├── dashboard/            # DashboardMetrics (metric cards), SupportPage
 │   ├── detail/               # JobDetailDrawer, OutreachStudio, FindLeadsMenu
-│   ├── jobapp/               # JobApplicationPanel, AutomatorStatusBadge (Gmail Automator sync)
+│   ├── jobapp/               # JobApplicationPanel, WebAutomatorModal, AutomatorStatusBadge
 │   ├── layout/               # Header, Sidebar, WorkspaceLoader
 │   ├── outreach/             # ColdOutreachWorkspace, template studio
 │   ├── search/               # FilterBar, CommandPalette
-│   ├── settings/             # SettingsModal
+│   ├── settings/             # SettingsModal (Signature Studio & Portfolio URL)
 │   ├── table/                # JobTable, EditLinkPopover, cell renderers
 │   ├── ui/                   # Generic UI primitives, Toast
 │   └── upload/               # UploadModal (Excel import)
+├── data/
+│   └── foundationalDrafts.ts # 10 curated foundational outreach blueprints with {placeholder} engine
 ├── hooks/
 │   ├── useJobs.ts            # TanStack Query hooks (jobs CRUD, notes, clone)
 │   └── useJobApplicationImport.ts # Automator jobs query, metrics, mark-as-applied
 ├── services/
-│   ├── apiClient.ts          # Fetch wrapper, field mapping (including automator fields)
+│   ├── emailAssembler.ts     # Multi-paragraph outreach email assembly & signature synthesis
+│   ├── apiClient.ts          # Fetch wrapper, resilient offline fallback & auth headers
 │   └── excelAdapter.ts       # Excel parse + export (SheetJS/xlsx)
 ├── state/
-│   └── useJobStore.tsx       # React Context store + JobProvider (view modes, filters)
+│   └── useJobStore.tsx       # React Context store + JobProvider (multi-user profiles, filters)
 ├── types/
-│   └── job.ts                # TypeScript types (JobItem, ViewMode, FilterState)
+│   ├── auth.ts               # UserProfileDto, AuthResponse, PublicUserSummary
+│   └── job.ts                # TypeScript types (JobItem, UserProfile, ViewMode, FilterState)
 └── utils/
     └── linkedinSearch.ts     # URL builders for LinkedIn people + job search
 ```
@@ -48,17 +52,27 @@ graph TD
     JobProvider --> NewJobModal
     JobProvider --> UploadModal
     JobProvider --> JobDetailDrawer
+    JobProvider --> SettingsModal[SettingsModal\n(Signature Studio)]
+    JobProvider --> AuthModal[AuthModal\n(Login / Signup / Profiles)]
 
+    Header --> ProfileMenu[ProfileMenu\n(Praveen / Anam Switcher)]
+    Header --> SettingsModal
     Header --> NewJobModal
     Header --> UploadModal
 
     MainContent --> DashboardMetrics
     MainContent --> FilterBar
     MainContent --> JobTable
-    MainContent --> JobApplicationPanel[JobApplicationPanel (from Automator)]
+    MainContent --> JobApplicationPanel[JobApplicationPanel\n(From Automator / Gmail)]
     MainContent --> ColdOutreachWorkspace[ColdOutreachWorkspace]
     MainContent --> GraphViewer[GraphViewer (iframe to /graph.html)]
     MainContent --> SupportPage[SupportPage]
+
+    JobApplicationPanel --> WebAutomatorModal[WebAutomatorModal\n(Zero-OS Studio)]
+    JobApplicationPanel --> EmailAssembler["emailAssembler.ts\n(Assembles Full Pitch + Signature)"]
+    WebAutomatorModal --> FoundationalDrafts["foundationalDrafts.ts\n(10 Blueprints)"]
+    WebAutomatorModal --> EmailAssembler
+    SettingsModal --> EmailAssembler
 
     JobApplicationPanel --> AutomatorStatusBadge
     JobApplicationPanel --> StatusBadgeDropdown

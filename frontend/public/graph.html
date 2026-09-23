@@ -154,7 +154,7 @@
 
   <script>
     // ── NextApply Job Tracker — 7-Layer Architecture Graph ─────────────────────
-    // 42 nodes across: Entry, Frontend, API Gateway, Controllers, Data, Automation, Infra
+    // 44 nodes across: Entry, Frontend, API Gateway, Controllers, Data, Automation, Infra, Documentation
 
     const rawNodes = [
 
@@ -215,6 +215,30 @@
         desc: 'Responsibility: Displays auto-imported applications from the Gmail JD Automator\nFile: frontend/src/components/jobapp/JobApplicationPanel.tsx [Phase 3]\nAPI: GET /api/jobs (filtered by gmailDraftId != null)\nDocs: docs/phases/PHASE_3_FRONTEND_UI.md',
         color: '#38bdf8', value: 3
       },
+      {
+        id: 'email-assembler', label: 'EmailAssembler', layer: 'Frontend',
+        path: 'frontend/src/services/emailAssembler.ts',
+        desc: 'Responsibility: Multi-paragraph cold outreach email assembly with formal greeting, proof metrics, CTA, and complete candidate contact/portfolio signature block\nFile: frontend/src/services/emailAssembler.ts\nDocs: docs/08-job-application-module.md',
+        color: '#38bdf8', value: 4
+      },
+      {
+        id: 'foundational-drafts', label: 'Foundational Drafts Library', layer: 'Frontend',
+        path: 'frontend/src/data/foundationalDrafts.ts',
+        desc: 'Responsibility: 10 curated foundational outreach blueprints across SDE, Cloud, and Networking with standardized {placeholder} interpolation\nFile: frontend/src/data/foundationalDrafts.ts\nDocs: docs/08-job-application-module.md',
+        color: '#38bdf8', value: 4
+      },
+      {
+        id: 'web-automator-modal', label: 'WebAutomatorModal', layer: 'Frontend',
+        path: 'frontend/src/components/jobapp/WebAutomatorModal.tsx',
+        desc: 'Responsibility: Zero-OS and mobile outreach synthesis studio with blueprint selection and 1-tap Gmail compose\nFile: frontend/src/components/jobapp/WebAutomatorModal.tsx\nDocs: docs/11-zero-os-automator-guide.md',
+        color: '#22d3ee', value: 4
+      },
+      {
+        id: 'settings-modal', label: 'SettingsModal (Signature Studio)', layer: 'Frontend',
+        path: 'frontend/src/components/settings/SettingsModal.tsx',
+        desc: 'Responsibility: Candidate profile manager with Portfolio URL, flagship metric, and live signature preview\nFile: frontend/src/components/settings/SettingsModal.tsx',
+        color: '#22d3ee', value: 3
+      },
 
       // ── Layer 3: API Gateway ──────────────────────────────────────────────────
       {
@@ -268,6 +292,12 @@
         color: '#d8b4fe'
       },
       {
+        id: 'auth-ctrl', label: 'AuthController', layer: 'Controllers',
+        path: 'backend/NextApply.Api/Controllers/AuthController.cs',
+        desc: 'Responsibility: Multi-user authentication, profile switching, and profile synchronization with portfolio and flagship fields\nEndpoints: POST /api/auth/login, POST /api/auth/signup, GET /api/auth/users, PUT /api/auth/profile\nDocs: docs/03-backend.md',
+        color: '#c084fc', value: 4
+      },
+      {
         id: 'import-ctrl', label: 'JobApplicationImportController', layer: 'Controllers',
         path: 'backend/NextApply.Api/Controllers/JobApplicationImportController.cs',
         desc: 'Responsibility: Receives webhook from Gmail JD Automator, creates Job records\nEndpoint: POST /api/jobs/import-from-automator\nDocs: docs/08-job-application-module.md | docs/phases/PHASE_2_BACKEND_INTEGRATION.md',
@@ -286,6 +316,12 @@
         path: 'backend/NextApply.Api/Models/Job.cs',
         desc: 'Responsibility: Core domain entity — CompanyName, ApplicationStatus, GmailDraftId, AutomatorStatus, OutreachSubject, OutreachBodyPreview\nFile: backend/NextApply.Api/Models/Job.cs\nDocs: docs/04-database.md',
         color: '#5eead4', value: 5
+      },
+      {
+        id: 'user-profile-model', label: 'UserProfile Model', layer: 'Data',
+        path: 'backend/NextApply.Api/Models/UserProfile.cs',
+        desc: 'Responsibility: Persists candidate profiles, contact info, PortfolioUrl, GithubUrl, and FlagshipAchievement\nFile: backend/NextApply.Api/Models/UserProfile.cs\nDocs: docs/04-database.md',
+        color: '#5eead4', value: 4
       },
       {
         id: 'note-model', label: 'Note Model', layer: 'Data',
@@ -343,6 +379,12 @@
         desc: 'Responsibility: Extracts plain text from PDF resume for Claude context\nFunction: extract_resume_text() in main.py',
         color: '#fcd34d'
       },
+      {
+        id: 'jd-archive', label: 'Tier-1 JD Archive', layer: 'Automation',
+        path: 'docs/jd-samples/',
+        desc: 'Responsibility: 10 realistic tier-1 company job descriptions with salary benchmarks, tech stacks, and recruiter profiles\nFile: docs/jd-samples/\nDocs: docs/jd-samples/README.md',
+        color: '#fbbf24', value: 3
+      },
 
       // ── Layer 7: Infra ────────────────────────────────────────────────────────
       {
@@ -375,6 +417,12 @@
         id: 'docs-job-app', label: 'docs/08-job-application-module', layer: 'Documentation',
         path: 'docs/08-job-application-module.md',
         desc: 'Responsibility: Gmail JD Automator PRD, tech docs, and NextApply integration spec\nDocs: docs/08-job-application-module.md',
+        color: '#fb923c'
+      },
+      {
+        id: 'docs-zero-os', label: 'docs/11-zero-os-automator-guide', layer: 'Documentation',
+        path: 'docs/11-zero-os-automator-guide.md',
+        desc: 'Responsibility: Zero-OS guide for running the automator anywhere (mobile, web, cloud)\nDocs: docs/11-zero-os-automator-guide.md',
         color: '#fb923c'
       },
       {
@@ -420,6 +468,7 @@
       { from: 'api-key-middleware', to: 'outreach-ctrl', label: 'routes to' },
       { from: 'api-key-middleware', to: 'dashboard-ctrl', label: 'routes to' },
       { from: 'api-key-middleware', to: 'settings-ctrl', label: 'routes to' },
+      { from: 'api-key-middleware', to: 'auth-ctrl', label: 'routes to' },
       { from: 'api-key-middleware', to: 'import-ctrl', label: 'routes to' },
 
       // Controllers → Data
@@ -427,19 +476,30 @@
       { from: 'notes-ctrl', to: 'ef-core', label: 'via' },
       { from: 'outreach-ctrl', to: 'ef-core', label: 'via' },
       { from: 'dashboard-ctrl', to: 'ef-core', label: 'via' },
+      { from: 'auth-ctrl', to: 'ef-core', label: 'via' },
       { from: 'import-ctrl', to: 'ef-core', label: 'via' },
       { from: 'ef-core', to: 'job-model', label: 'maps' },
+      { from: 'ef-core', to: 'user-profile-model', label: 'maps' },
       { from: 'ef-core', to: 'note-model', label: 'maps' },
       { from: 'ef-core', to: 'outreach-model', label: 'maps' },
       { from: 'ef-core', to: 'postgres', label: 'persists to' },
       { from: 'migrations', to: 'postgres', label: 'migrates' },
       { from: 'ef-core', to: 'migrations', label: 'tracks' },
 
+      // Outreach, Synthesis & Signature Connections
+      { from: 'job-app-panel', to: 'email-assembler', label: 'assembles draft' },
+      { from: 'job-app-panel', to: 'web-automator-modal', label: 'opens modal' },
+      { from: 'web-automator-modal', to: 'foundational-drafts', label: 'interpolates' },
+      { from: 'web-automator-modal', to: 'email-assembler', label: 'formats signature' },
+      { from: 'settings-modal', to: 'email-assembler', label: 'signature source' },
+      { from: 'settings-modal', to: 'auth-ctrl', label: 'syncs profile' },
+
       // Automation internals
       { from: 'automator', to: 'gmail-api', label: 'reads/writes' },
       { from: 'automator', to: 'tesseract', label: 'OCRs via' },
       { from: 'automator', to: 'claude-api', label: 'generates via' },
       { from: 'automator', to: 'pdfplumber', label: 'reads resume' },
+      { from: 'automator', to: 'jd-archive', label: 'benchmarks with' },
       { from: 'automator', to: 'import-ctrl', label: 'POST webhook' },
 
       // Infra
@@ -449,10 +509,10 @@
 
       // Docs
       { from: 'docs-arch', to: 'docs-job-app', label: 'links to' },
+      { from: 'docs-arch', to: 'docs-zero-os', label: 'links to' },
+      { from: 'docs-zero-os', to: 'web-automator-modal', label: 'documents' },
       { from: 'prompt-lib', to: 'graphify-prompt', label: 'includes' },
-      { from: 'graphify-prompt', to: 'docs-arch', label: 'generates' },
-    ];
-
+      { from: 'graphify-prompt', to: 'docs-arch', label: 'generates' }
     ];
 
 

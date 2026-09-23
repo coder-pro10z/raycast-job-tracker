@@ -17,10 +17,11 @@ Job searching generates a mess of spreadsheets, browser tabs, and half-remembere
 ## What makes this more than a CRUD app
 - **Optimistic UI with TanStack Query** — application status changes, notes, and tags update instantly in the UI while the mutation resolves in the background, with automatic rollback on failure. No spinners, no waiting on the network.
 - **Row virtualization at scale** — built with TanStack Virtual to render large lead/application lists without DOM lag. Verified against 500+ records with no scroll jank.
-- **Hand-built design system** — no component library (no MUI, no Bootstrap). Token-based design system in vanilla CSS: consistent spacing, color, and typography primitives applied across every screen.
-- **LinkedIn Lead Search** — surface and track outreach leads directly alongside applications for a seamless networking workflow.
+- **Publication-Ready Outreach Engine & Signature Studio** — synthesizes full multi-paragraph cold emails with formal salutations, targeted hooks, proof metrics, CTAs, and candidate signature blocks (Phone, Email, LinkedIn, GitHub, and Portfolio URLs) with live signature preview in Settings.
+- **10 Curated Foundational Drafts Library** — pre-engineered blueprints across SDE, Cloud/DevOps, High-Growth Startups, FinTech, and Networking with standardized `{placeholder}` interpolation.
 - **Gmail JD Automator (Zero-OS & Multi-Platform)** — runs in-browser on mobile/desktop, headless in the cloud (GitHub Actions), or locally via 1-click installer. Scans JD screenshots with Claude Vision, drafts personalized outreach emails, and synchronizes with NextApply.
-- **Interactive Graphify architecture visualizer** — full 7-layer interactive architecture visualizer built into the SPA (`/graph`) and standalone (`public/graph.html`).
+- **Tier-1 Grounded JD Archive** — 10 realistic company job descriptions (HashiCorp, Stripe, Snowflake, Datadog, AWS, OpenAI, GitHub, Airbnb, Uber, Netflix) for testing and benchmarking.
+- **Interactive Graphify Architecture Visualizer** — full 8-layer, 44-node interactive architecture graph built into the SPA (`/graph`) and standalone (`public/graph.html`).
 - **Prompt Library** — 11 production-grade SDLC system prompts for PRD writing, architecture design, refactoring, and test generation.
 - **Monorepo architecture** — frontend, backend, automation sidecar, prompt library, and test suites organized cleanly in a single repository.
 
@@ -28,32 +29,33 @@ Job searching generates a mess of spreadsheets, browser tabs, and half-remembere
 | Layer | Technology |
 | --- | --- |
 | **Frontend** | React, TypeScript, TanStack Query v5, TanStack Virtual v3, vanilla CSS design system |
-| **Backend** | C# / ASP.NET Core (.NET 9 REST API) |
+| **Outreach Engine** | EmailAssembler, 10 Foundational Drafts Library, Signature Studio |
+| **Backend** | C# / ASP.NET Core (.NET 9 REST API), AuthController, Multi-Profile System |
 | **Database** | PostgreSQL 15 via Supabase + EF Core 9 |
-| **Automation** | Python 3.9+, Claude API (Anthropic), Tesseract OCR, Gmail API |
+| **Automation** | Python 3.12+, Claude API (Anthropic Vision), Tesseract OCR, Gmail API |
 | **Testing** | Vitest (automation logic, component, and integration suites) |
-| **Visualizer** | Graphify (Vis.js interactive 7-layer constellation & cards viewer) |
+| **Visualizer** | Graphify (Vis.js interactive 8-layer, 44-node constellation & cards viewer) |
 | **Origin** | Raycast extension (keyboard-first application logging) |
 
 ## Architecture
 ```
 📦 nextapply 
  ┣ 📂 automation    # Python Gmail JD Automator sidecar (OCR + Claude)
- ┣ 📂 backend       # C# / .NET 9 REST API 
- ┣ 📂 docs          # Complete documentation (10 docs + phases/)
+ ┣ 📂 backend       # C# / .NET 9 REST API (Jobs, Auth, Notes, Import)
+ ┣ 📂 docs          # Complete documentation (13 docs + jd-samples/ + phases/)
  ┣ 📂 frontend      # React 18 + TypeScript SPA (Vite)
  ┣ 📂 prompt-lib    # 11 SDLC system prompts
  ┗ 📂 tests         # Vitest test suite (automation, frontend, integration)
 ```
 
-Full architecture, data flow, and database schema docs live in [`/docs`](./docs/01-architecture-overview.md) — including a dedicated [design system doc](./docs/06-design-system.md), [feature reference](./docs/07-feature-reference.md), [Job Application Module guide](./docs/08-job-application-module.md), [Zero-OS Automator Guide](./docs/11-zero-os-automator-guide.md), and [Graphify guide](./docs/10-graphify-guide.md).
+Full architecture, data flow, and database schema docs live in [`/docs`](./docs/01-architecture-overview.md) — including a dedicated [design system doc](./docs/06-design-system.md), [feature reference](./docs/07-feature-reference.md), [Job Application Module guide](./docs/08-job-application-module.md), [Zero-OS Automator Guide](./docs/11-zero-os-automator-guide.md), [Tier-1 JD Archive](./docs/jd-samples/README.md), and [Graphify guide](./docs/10-graphify-guide.md).
 
 ## Getting started
 
 ```bash
 # Clone the repository
-git clone https://github.com/coder-pro10z/job-application.git
-cd job-application/frontend
+git clone https://github.com/coder-pro10z/raycast-job-tracker.git
+cd raycast-job-tracker/frontend
 
 # Install dependencies
 npm install 
@@ -72,7 +74,11 @@ npm run dev
 
 ## Roadmap
 - [x] Integrate Gmail JD Automator sidecar (OCR + Claude outreach)
-- [x] Interactive Graphify 7-layer architecture visualizer
+- [x] Interactive Graphify 8-layer, 44-node architecture visualizer
+- [x] Publication-ready outreach email assembler with complete candidate signatures
+- [x] 10 Foundational drafts library with placeholder interpolation
+- [x] Tier-1 realistic JD archive (HashiCorp, Stripe, Snowflake, etc.)
+- [x] Zero-OS Web & Mobile automator studio
 - [x] Comprehensive Vitest test suite (automation & frontend)
 - [ ] Add advanced filtering by Custom Tags
 - [ ] Direct LinkedIn profile scraper webhook

@@ -24,17 +24,18 @@ Open directly in any browser — no server required.
 
 ## Graph Architecture
 
-The graph is organized into **7 layers**, each rendered as a distinct color cluster:
+The graph is organized into **8 architectural layers (44 nodes)**, each rendered as a distinct color cluster:
 
-| Layer | Color | Nodes |
-|-------|-------|-------|
+| Layer | Color | Primary Nodes |
+|-------|-------|---------------|
 | **Entry** | Indigo | Browser, Raycast Extension |
-| **Frontend** | Cyan | React SPA, Vite, TanStack Query, TanStack Virtual, Vanilla CSS |
+| **Frontend** | Cyan | React SPA, Vite, TanStack Query, TanStack Virtual, Vanilla CSS, Lucide, JobApplicationPanel, EmailAssembler, Foundational Drafts Library, WebAutomatorModal, SettingsModal |
 | **API Gateway** | Violet | .NET 9 Web API, ApiKeyAuthMiddleware, CORS Policy |
-| **Controllers** | Purple | JobsController, NotesController, OutreachController, DashboardController, JobApplicationImportController |
-| **Data** | Teal | EF Core, ApplicationDbContext, PostgreSQL/Supabase, Migrations |
-| **Automation** | Amber | Gmail JD Automator (Python), Claude API, Gmail API, Tesseract OCR |
-| **Infra** | Slate | Vercel CDN, Render Web Service, Supabase Host |
+| **Controllers** | Purple | JobsController, NotesController, OutreachController, DashboardController, SettingsController, AuthController, JobApplicationImportController |
+| **Data** | Teal | EF Core, Job Model, UserProfile Model, Note Model, OutreachTemplateUsed, PostgreSQL / Supabase, Migrations |
+| **Automation** | Amber | Gmail JD Automator (Python sidecar), Claude Vision API, Gmail API, Tesseract OCR, Resume Extractor, Tier-1 JD Archive |
+| **Infra** | Slate | Vercel CDN, Render Web Service, Supabase Managed Database |
+| **Documentation** | Orange | Architecture Overview, Job Application Module, Zero-OS Automator Guide, SDLC Prompt Library, Graphify Prompt |
 
 ---
 
