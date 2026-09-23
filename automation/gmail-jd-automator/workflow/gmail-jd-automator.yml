@@ -1,0 +1,95 @@
+name: Gmail JD Automator - Cloud Runner
+
+on:
+  schedule:
+    # Run automatically every 3 hours (UTC)
+    - cron: '0 */3 * * *'
+  workflow_dispatch:
+    # Allows 1-click execution from GitHub Mobile app or web browser anywhere!
+    inputs:
+      send_mode:
+        description: 'Send Mode (draft or send)'
+        required: true
+        default: 'draft'
+        type: choice
+        options:
+          - draft
+          - send
+      max_drafts:
+        description: 'Max drafts to process (0 = all)'
+        required: false
+        default: '5'
+
+jobs:
+  run-automator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'automation/gmail-jd-automator/requirements.txt'
+
+      - name: Install System Dependencies (Tesseract OCR)
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+
+      - name: Install Python Dependencies
+        run: |
+          cd automation/gmail-jd-automator
+          pip install -r requirements.txt
+
+      - name: Provision Credentials & Secrets
+        env:
+          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CREDENTIALS_JSON: ${{ secrets.GMAIL_CREDENTIALS_JSON }}
+          TOKEN_JSON: ${{ secrets.GMAIL_TOKEN_JSON }}
+          RESUME_B64: ${{ secrets.RESUME_BASE64 }}
+          NEXTAPPLY_URL: ${{ secrets.NEXTAPPLY_API_URL }}
+          NEXTAPPLY_KEY: ${{ secrets.NEXTAPPLY_API_KEY }}
+          INPUT_SEND_MODE: ${{ inputs.send_mode || 'draft' }}
+          INPUT_MAX_DRAFTS: ${{ inputs.max_drafts || '5' }}
+        run: |
+          cd automation/gmail-jd-automator
+          mkdir -p credentials
+
+          if [ -n "$CREDENTIALS_JSON" ]; then
+            echo "$CREDENTIALS_JSON" > credentials/credentials.json
+          fi
+
+          if [ -n "$TOKEN_JSON" ]; then
+            echo "$TOKEN_JSON" > credentials/token.json
+          fi
+
+          if [ -n "$RESUME_B64" ]; then
+            echo "$RESUME_B64" | base64 -d > resume.pdf
+            echo "RESUME_PATH=resume.pdf" >> .env
+          fi
+
+          echo "ANTHROPIC_API_KEY=$ANTHROPIC_KEY" >> .env
+          echo "SEND_MODE=$INPUT_SEND_MODE" >> .env
+          echo "MAX_DRAFTS=$INPUT_MAX_DRAFTS" >> .env
+          echo "NEXTAPPLY_API_URL=${NEXTAPPLY_URL:-https://raycast-job-tracker.vercel.app}" >> .env
+          echo "NEXTAPPLY_API_KEY=${NEXTAPPLY_KEY:-dev-local-key}" >> .env
+
+      - name: Execute Gmail JD Automator
+        run: |
+          cd automation/gmail-jd-automator
+          python main.py
+
+      - name: Upload Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: automator-logs
+          path: |
+            automation/gmail-jd-automator/review_log.csv
+            automation/gmail-jd-automator/processed_drafts.json
+          retention-days: 7

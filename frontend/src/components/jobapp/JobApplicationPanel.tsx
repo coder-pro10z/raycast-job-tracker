@@ -21,8 +21,10 @@ import {
   ChevronUp,
   Play,
   Terminal,
-  BookOpen
+  BookOpen,
+  Smartphone
 } from 'lucide-react';
+import { WebAutomatorModal } from './WebAutomatorModal';
 
 interface JobApplicationPanelProps {
   jobs?: JobItem[];
@@ -91,6 +93,7 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<'All' | 'Draft Created' | 'Sent' | 'Skipped'>('All');
   const [showSetupGuide, setShowSetupGuide] = useState(false);
+  const [isWebModalOpen, setIsWebModalOpen] = useState(false);
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
   const [isSeedingDemo, setIsSeedingDemo] = useState(false);
 
@@ -275,6 +278,29 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
 
           {/* Quick Header Actions */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setIsWebModalOpen(true)}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '7px 14px',
+                borderRadius: 'var(--radius-sm)',
+                background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
+                border: 'none',
+                color: '#fff',
+                cursor: 'pointer',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                boxShadow: '0 2px 8px rgba(59, 130, 246, 0.3)',
+                transition: 'all 150ms ease'
+              }}
+              className="glow-hover"
+            >
+              <Smartphone size={15} />
+              <span>📱 Run Online Automator</span>
+            </button>
+
             <button
               onClick={() => setShowSetupGuide(!showSetupGuide)}
               style={{
@@ -768,6 +794,11 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
           </table>
         </div>
       ) : null}
+
+      <WebAutomatorModal 
+        isOpen={isWebModalOpen} 
+        onClose={() => setIsWebModalOpen(false)} 
+      />
     </div>
   );
 };

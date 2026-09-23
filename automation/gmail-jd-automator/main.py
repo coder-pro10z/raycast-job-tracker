@@ -164,18 +164,19 @@ def ocr_images(images):
             img = Image.open(io.BytesIO(img_bytes))
             text += pytesseract.image_to_string(img) + "\n"
         except Exception as e:
-            print(f"    (OCR failed on one image: {e})")
+            # If tesseract executable is not found or fails, return empty so Claude Vision takes over
+            return ""
     return text
 
 
 # ---------- Claude ----------
 
-def generate_email(jd_text, resume_text):
+def generate_email(jd_text, resume_text, images=None):
     prompt = f"""You are helping a job seeker write a short, professional outreach email to a recruiter about a specific job opening.
 
-JOB DESCRIPTION (OCR'd from an image, may have minor errors — use your best interpretation):
+JOB DESCRIPTION (If images are attached, read the job requirements, company name, and role title directly from the images):
 ---
-{jd_text[:6000]}
+{jd_text[:6000] if jd_text else "Please inspect the attached job description image(s)."}
 ---
 
 CANDIDATE'S RESUME:
@@ -197,10 +198,27 @@ Write:
 Respond with ONLY valid JSON, no markdown fences, no commentary:
 {{"subject": "...", "body": "..."}}"""
 
+    content = []
+    if images:
+        for img_bytes in images:
+            try:
+                b64 = base64.b64encode(img_bytes).decode("utf-8")
+                content.append({
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": "image/png",
+                        "data": b64
+                    }
+                })
+            except Exception:
+                pass
+    content.append({"type": "text", "text": prompt})
+
     resp = client.messages.create(
         model=CLAUDE_MODEL,
         max_tokens=1000,
-        messages=[{"role": "user", "content": prompt}],
+        messages=[{"role": "user", "content": content}],
     )
     raw = resp.content[0].text.strip()
     raw = re.sub(r"^```(json)?|```$", "", raw, flags=re.MULTILINE).strip()
@@ -284,11 +302,16 @@ def main():
         walk_parts(message["payload"], service, message["id"], collected)
 
         jd_text = collected["text"]
+        images_for_vision = None
         if collected["images"]:
-            jd_text += "\n" + ocr_images(collected["images"])
+            ocr_result = ocr_images(collected["images"])
+            if ocr_result.strip():
+                jd_text += "\n" + ocr_result
+            else:
+                images_for_vision = collected["images"]
         jd_text = jd_text.strip()
 
-        if len(jd_text) < 50:
+        if len(jd_text) < 50 and not images_for_vision:
             print(f"Skipping draft {draft_id} ({recipient}): couldn't extract enough JD text — flagging for manual look.")
             log_row([draft_id, recipient, "SKIPPED - low OCR text", ""])
             processed.add(draft_id)
@@ -296,7 +319,7 @@ def main():
             continue
 
         print(f"Processing draft for {recipient} ...")
-        subject, body_text = generate_email(jd_text, resume_text)
+        subject, body_text = generate_email(jd_text, resume_text, images=images_for_vision)
 
         sig_lines = [x for x in [YOUR_NAME, YOUR_PHONE, YOUR_LINKEDIN] if x]
         if sig_lines:
