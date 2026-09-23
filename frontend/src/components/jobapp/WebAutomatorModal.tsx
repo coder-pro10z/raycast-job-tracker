@@ -22,7 +22,7 @@ interface WebAutomatorModalProps {
 }
 
 export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, onClose }) => {
-  const { userProfile, showToast } = useJobStore();
+  const { userProfile, currentUser, showToast } = useJobStore();
   const createJobMutation = useCreateJob();
 
   const [activeTab, setActiveTab] = useState<'generator' | 'cloud' | 'local'>('generator');
@@ -107,10 +107,12 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
   };
 
   const getGmailComposeUrl = () => {
+    const userEmail = currentUser?.email || userProfile.email || '2pkashyap2001@gmail.com';
+    const authParam = userEmail ? `authuser=${encodeURIComponent(userEmail)}&` : '';
     const to = encodeURIComponent(recruiterEmail.trim());
     const su = encodeURIComponent(generatedSubject);
     const body = encodeURIComponent(generatedBody);
-    return `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${su}&body=${body}`;
+    return `https://mail.google.com/mail/u/?${authParam}view=cm&fs=1&to=${to}&su=${su}&body=${body}`;
   };
 
   const copyOutreach = () => {

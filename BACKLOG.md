@@ -118,6 +118,24 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 10: Multi-Account Gmail Session Routing & Candidate-Domain Incongruence in Automator
+- **Component**: Frontend Automator Panel & Client (`JobApplicationPanel.tsx`, `WebAutomatorModal.tsx`, `apiClient.ts`)
+- **Error / Issue**:
+  1. Clicking **"Open Draft"** opened a different/default Google Account (account 0) rather than the active user's email session (`2pkashyap2001@gmail.com`).
+  2. For Praveen's SDE / Full Stack profile, the automator table rendered irrelevant Cloud/DevOps entries (e.g. HashiCorp with generic title `DevOps & Platform Systems Engineer – Candidate Introduction`) instead of relevant SDE and FSD applications.
+- **Root Cause**:
+  1. Draft links used naked `https://mail.google.com/mail/#drafts/...` URLs without the Google `authuser` query parameter, causing multi-account browsers to default to account index 0.
+  2. Sample applications and cache had hardcoded generic DevOps roles rather than dynamically synthesizing roles tailored to the active user's domain and experience.
+- **Resolution**:
+  - Implemented explicit account routing via `authuser=${encodeURIComponent(userEmail)}` across `JobApplicationPanel.tsx` and `WebAutomatorModal.tsx`.
+  - Added smart action resolver `getGmailAction()` that opens pre-filled compose drafts for pending outreach or sent searches for sent emails in the user's exact Gmail account.
+  - Tailored all sample and seeded applications for Praveen to **SDE & Full Stack Developer (FSD)** (HashiCorp $\rightarrow$ `Senior Full Stack Software Engineer (FSD / React / Go)`, Stripe $\rightarrow$ `Senior Full Stack Engineer (.NET / React)`, Snowflake $\rightarrow$ `Senior Backend Developer / SDE`, Datadog $\rightarrow$ `Senior Full Stack & Systems Engineer`).
+  - Added live domain workspace filtering in `JobApplicationPanel.tsx` to respect the sidebar's domain selection (`filterState.activeDomain`).
+  - Added cache migration in `apiClient.ts` to automatically upgrade legacy cached entries on client load.
+  - Verified with `npm run build` (0 errors).
+
+---
+
 ## 2. Completed Features & Release Milestones
 
 ### 🚀 Milestone 1: Multi-User Profile & Authentication System
