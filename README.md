@@ -19,7 +19,7 @@ Job searching generates a mess of spreadsheets, browser tabs, and half-remembere
 - **Row virtualization at scale** — built with TanStack Virtual to render large lead/application lists without DOM lag. Verified against 500+ records with no scroll jank.
 - **Hand-built design system** — no component library (no MUI, no Bootstrap). Token-based design system in vanilla CSS: consistent spacing, color, and typography primitives applied across every screen.
 - **LinkedIn Lead Search** — surface and track outreach leads directly alongside applications for a seamless networking workflow.
-- **Gmail JD Automator sidecar** — Python-powered batch processor that scans Gmail drafts with JD screenshots, OCRs with Tesseract, and writes tailored emails with Claude API, pushing jobs straight to the tracker via webhook.
+- **Gmail JD Automator (Zero-OS & Multi-Platform)** — runs in-browser on mobile/desktop, headless in the cloud (GitHub Actions), or locally via 1-click installer. Scans JD screenshots with Claude Vision, drafts personalized outreach emails, and synchronizes with NextApply.
 - **Interactive Graphify architecture visualizer** — full 7-layer interactive architecture visualizer built into the SPA (`/graph`) and standalone (`public/graph.html`).
 - **Prompt Library** — 11 production-grade SDLC system prompts for PRD writing, architecture design, refactoring, and test generation.
 - **Monorepo architecture** — frontend, backend, automation sidecar, prompt library, and test suites organized cleanly in a single repository.
@@ -46,7 +46,7 @@ Job searching generates a mess of spreadsheets, browser tabs, and half-remembere
  ┗ 📂 tests         # Vitest test suite (automation, frontend, integration)
 ```
 
-Full architecture, data flow, and database schema docs live in [`/docs`](./docs/01-architecture-overview.md) — including a dedicated [design system doc](./docs/06-design-system.md), [feature reference](./docs/07-feature-reference.md), [Job Application Module guide](./docs/08-job-application-module.md), and [Graphify guide](./docs/10-graphify-guide.md).
+Full architecture, data flow, and database schema docs live in [`/docs`](./docs/01-architecture-overview.md) — including a dedicated [design system doc](./docs/06-design-system.md), [feature reference](./docs/07-feature-reference.md), [Job Application Module guide](./docs/08-job-application-module.md), [Zero-OS Automator Guide](./docs/11-zero-os-automator-guide.md), and [Graphify guide](./docs/10-graphify-guide.md).
 
 ## Getting started
 
