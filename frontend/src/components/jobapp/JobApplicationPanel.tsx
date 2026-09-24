@@ -25,6 +25,7 @@ import {
   Smartphone
 } from 'lucide-react';
 import { WebAutomatorModal } from './WebAutomatorModal';
+import { GmailDraftEditorModal } from './GmailDraftEditorModal';
 import { assembleFullOutreachEmail } from '../../services/emailAssembler';
 
 interface JobApplicationPanelProps {
@@ -117,6 +118,7 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
   const [isWebModalOpen, setIsWebModalOpen] = useState(false);
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
   const [isSeedingDemo, setIsSeedingDemo] = useState(false);
+  const [activeEditorJob, setActiveEditorJob] = useState<JobItem | null>(null);
 
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
@@ -856,30 +858,60 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
                     >
                       <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                         {action && (
-                          <a
-                            href={action.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            data-testid={`open-draft-${job.id}`}
-                            title={action.title}
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '4px',
-                              padding: '4px 10px',
-                              fontSize: '0.75rem',
-                              fontWeight: 600,
-                              borderRadius: 'var(--radius-sm)',
-                              backgroundColor: job.automatorStatus === 'Sent' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(59, 130, 246, 0.12)',
-                              color: job.automatorStatus === 'Sent' ? '#10b981' : '#3b82f6',
-                              textDecoration: 'none',
-                              transition: 'all 120ms ease',
-                            }}
-                            className="glow-hover"
-                          >
-                            <span>{action.label}</span>
-                            <action.icon size={12} />
-                          </a>
+                          action.label === 'Open Draft' ? (
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setActiveEditorJob(job);
+                              }}
+                              data-testid={`open-draft-${job.id}`}
+                              title={`Open draft in Native Dark Gmail Editor (${userEmail})`}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                padding: '4px 10px',
+                                fontSize: '0.75rem',
+                                fontWeight: 600,
+                                borderRadius: 'var(--radius-sm)',
+                                backgroundColor: 'rgba(59, 130, 246, 0.12)',
+                                color: '#3b82f6',
+                                border: '1px solid rgba(59, 130, 246, 0.25)',
+                                cursor: 'pointer',
+                                transition: 'all 120ms ease',
+                              }}
+                              className="glow-hover"
+                            >
+                              <span>{action.label}</span>
+                              <action.icon size={12} />
+                            </button>
+                          ) : (
+                            <a
+                              href={action.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              data-testid={`open-draft-${job.id}`}
+                              title={action.title}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '4px',
+                                padding: '4px 10px',
+                                fontSize: '0.75rem',
+                                fontWeight: 600,
+                                borderRadius: 'var(--radius-sm)',
+                                backgroundColor: job.automatorStatus === 'Sent' ? 'rgba(16, 185, 129, 0.12)' : 'rgba(59, 130, 246, 0.12)',
+                                color: job.automatorStatus === 'Sent' ? '#10b981' : '#3b82f6',
+                                textDecoration: 'none',
+                                transition: 'all 120ms ease',
+                              }}
+                              className="glow-hover"
+                            >
+                              <span>{action.label}</span>
+                              <action.icon size={12} />
+                            </a>
+                          )
                         )}
 
                         {job.applicationStatus !== 'Applied' && (
@@ -919,6 +951,13 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
       <WebAutomatorModal 
         isOpen={isWebModalOpen} 
         onClose={() => setIsWebModalOpen(false)} 
+      />
+
+      <GmailDraftEditorModal
+        isOpen={!!activeEditorJob}
+        onClose={() => setActiveEditorJob(null)}
+        job={jobs.find((j) => j.id === activeEditorJob?.id) || activeEditorJob}
+        userProfile={userProfile}
       />
     </div>
   );

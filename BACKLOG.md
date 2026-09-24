@@ -136,6 +136,25 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 11: TypeScript Strict Mode Type Mismatch & Node Namespace Error in Editor Modal
+- **Component**: Frontend Outreach Editor (`GmailDraftEditorModal.tsx`)
+- **Error Code**:
+  - `src/components/jobapp/GmailDraftEditorModal.tsx(5,37): error TS6133: 'assembleSignature' is declared but its value is never read.`
+  - `src/components/jobapp/GmailDraftEditorModal.tsx(76,35): error TS2503: Cannot find namespace 'NodeJS'.`
+  - `src/components/jobapp/GmailDraftEditorModal.tsx(116,11): error TS2353: Object literal may only specify known properties, and 'hrRecruiterName' does not exist in type '{ id: string; patch: Partial<JobItem>; }'.`
+  - `src/components/jobapp/GmailDraftEditorModal.tsx(186,9): error TS2353: Object literal may only specify known properties, and 'applicationStatus' does not exist in type '{ id: string; patch: Partial<JobItem>; }'.`
+- **Root Cause**:
+  1. `useUpdateJob().mutateAsync` expects `{ id: string; patch: Partial<JobItem> }`, but properties were passed flat at the root object level.
+  2. In browser environments without `@types/node` globally in tsconfig ambient types, `NodeJS.Timeout` is undefined.
+  3. `assembleSignature` was imported but not referenced directly.
+- **Resolution**:
+  - Replaced `NodeJS.Timeout` with portable standard `ReturnType<typeof setTimeout> | null`.
+  - Wrapped mutation payloads inside the `patch: { ... }` property for both debounced auto-save and the "Mark as Applied & Save" handlers.
+  - Removed unused `assembleSignature` import.
+  - Verified clean compilation with `tsc -b && vite build` (0 errors in 5.87s).
+
+---
+
 ## 2. Completed Features & Release Milestones
 
 ### 🚀 Milestone 1: Multi-User Profile & Authentication System
@@ -271,6 +290,24 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🚀 Milestone 10: Native Dark Gmail Draft Preview & Editor Popup
+- [x] **Tri-State Pop-Out Windowing (`GmailDraftEditorModal.tsx`)**:
+  - **Docked Mode** (580x560px bottom-right anchored to viewport without backdrop, allowing user to navigate tables and application records while composing).
+  - **Maximized Mode** (840x700px centered modal with backdrop blur for focused authoring).
+  - **Minimized Mode** (320x42px floating pill at bottom-right with recipient summary, save indicator, and 1-click restore).
+- [x] **Zero-Database Debounced Auto-Save (600ms)**: Automatically persists edits to `outreachSubject`, `outreachBodyPreview`, and `hrRecruiterName` via `useUpdateJob()` directly onto the existing `Job` entity with zero database schema migration.
+- [x] **Outreach Intelligence Bar**: Integrated live toggles for Work Mode (`Remote`/`Hybrid`/`Onsite`), Company Archetype (`Startup`/`Mid-Size`/`MNC`/`Service`/`High-Comp`), and Outreach Angle (`Recruiter`/`Hiring Manager`/`Referral`) with instantaneous "Apply Matrix" draft re-synthesis.
+- [x] **Markdown Toolbar & Live Counters**: Rich formatting shortcuts (`**bold**`, `*italic*`, `• list`, `[title](url)`), reset button, and real-time word / character counter.
+- [x] **One-Click Handoff Suite**:
+  - "Open in Gmail Web" with explicit account routing (`authuser=${encodeURIComponent(userProfile.email)}`).
+  - "Copy Formatted" (subject + body) with feedback toast.
+  - "Mark as Applied & Save" (updates job application status to `Applied` and automator status to `Sent`).
+- [x] **Job Application Panel Integration**: Replaced abrupt external redirects with native pop-out opening on "Open Draft" clicks.
+- [x] **Strict RULES.md Compliance**: Pure Lucide SVG icons exclusively, zero raw Unicode emojis in interactive controls.
+- [x] **Build Verification**: `npm run build` (5.87s) and `dotnet build` (43.01s) both verified with 0 errors.
+
+---
+
 ### Category A: Authentication & User Management
 - [ ] **JWT Token Expiration & Refresh Flow**: Upgrade token string to signed HMAC-SHA256 JWT tokens with 7-day expiration and silent refresh.
 - [ ] **Forgot Password & Email Reset**: Send password reset tokens via SendGrid / SMTP.
@@ -286,8 +323,8 @@ This section records technical bugs, compilation failures, environment locks, an
 - [ ] **Export Profile Performance PDF**: Export personal application metrics, conversion rates, and weekly progress charts to PDF.
 - [ ] **LinkedIn InMail Automation**: Browser extension integration for 1-click lead capture into NextApply.
 
-### Category D: Native Draft Preview & Outreach Studio
-- [ ] **Native Dark Gmail Draft Popup (`GmailDraftEditorModal.tsx`)**: Implement tri-state window (Docked bottom-right 560x520px, Maximized 800x640px, Minimized pill 300x40px).
-- [ ] **Real-Time Auto-Save Debounce (500ms)**: Automatically persist edits to `job.outreachSubject` and `job.outreachBodyPreview` with a subtle `"Draft Saved ✓"` status indicator.
-- [ ] **Embedded Outreach Intelligence Bar**: Add live 1-click toggles for Work Mode (`Remote`/`Hybrid`/`Onsite`), Company Scale (`Startup`/`Mid-Size`/`MNC`/`Service`/`High-Comp`), and Outreach Angle directly inside the composer.
-- [ ] **One-Click Handoff Suite**: Dual actions for "Open in Gmail Web (`authuser=...`)", "Copy Formatted", and "Mark as Applied & Save".
+### Category D: Native Draft Preview & Outreach Studio (Completed)
+- [x] **Native Dark Gmail Draft Popup (`GmailDraftEditorModal.tsx`)**: Implement tri-state window (Docked bottom-right 580x560px, Maximized 840x700px, Minimized pill 320x42px).
+- [x] **Real-Time Auto-Save Debounce (600ms)**: Automatically persist edits to `job.outreachSubject`, `job.outreachBodyPreview`, and `job.hrRecruiterName` with a subtle `"Draft Saved ✓"` status indicator.
+- [x] **Embedded Outreach Intelligence Bar**: Add live 1-click toggles for Work Mode (`Remote`/`Hybrid`/`Onsite`), Company Scale (`Startup`/`Mid-Size`/`MNC`/`Service`/`High-Comp`), and Outreach Angle directly inside the composer.
+- [x] **One-Click Handoff Suite**: Dual actions for "Open in Gmail Web (`authuser=...`)", "Copy Formatted", and "Mark as Applied & Save".
