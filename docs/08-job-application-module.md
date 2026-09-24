@@ -259,3 +259,75 @@ Standardized blueprints covering major candidate domains with `{placeholder}` in
 
 ### Grounded Tier-1 JD Archive (`docs/jd-samples/`)
 Authentic JD samples from HashiCorp, Stripe, Snowflake, Datadog, AWS, OpenAI, GitHub, Airbnb, Uber, and Netflix stored in `docs/jd-samples/` serve as production benchmarks for testing OCR extraction and prompt quality.
+
+---
+
+## 15. Top 25 Highest-Paying IT Product Companies Outreach Engine (~₹40–95 LPA)
+
+NextApply features dedicated, recruiter-calibrated blueprints and auto-detection algorithms for the **Top 25 Highest-Paying Product Companies** (benchmarked across India R&D centers, Tier-1 Tech, and Global remote roles):
+
+| Tier | Companies & CTC Range | Blueprint ID | Architectural & Cultural Hook |
+|:---|:---|:---:|:---|
+| **Tier 1 (Global Hyper-Scale)** | **Uber** (~₹95 LPA) | `top-uber` | Real-time marketplace dispatch state machines, H3 hexagonal indexing, p99 latency SLAs. |
+| | **Netflix** (~₹90 LPA) | `top-netflix` | Edge streaming throughput, chaos testing, high autonomy ("Freedom & Responsibility"), micro-frontends. |
+| | **Google** (~₹85 LPA) | `top-google` | Large-scale distributed systems, Borg/Kubernetes patterns, algorithmic efficiency, sub-millisecond tail latency. |
+| | **Meta** (~₹85 LPA) | `top-meta` | "Move Fast", end-to-end product feature ownership, React/GraphQL/TypeScript web scale, measurable engagement. |
+| | **Apple** (~₹82 LPA) | `top-apple` | Relentless software craft, privacy-first architectures, low-latency API contracts, smooth client-server sync. |
+| | **Airbnb** (~₹80 LPA) | `top-airbnb` | Distributed booking state machines, micro-frontends, high-fidelity UI engineering. |
+| | **Amazon / AWS** (~₹75 LPA) | `top-amazon` | Customer Obsession, 2-pizza decoupled SOA, operational excellence, high availability. |
+| | **Microsoft** (~₹72 LPA) | `top-microsoft` | Enterprise cloud scale, Azure distributed services, C# / .NET Core / TypeScript excellence. |
+| | **NVIDIA** (~₹70 LPA) | `top-nvidia` | High-Performance Computing (HPC), GPU data pipelines, accelerated systems engineering. |
+| | **Stripe** (~₹68 LPA) | `top-stripe` | Idempotent financial APIs, 99.999% availability, zero-loss ledgers, developer-first craft. |
+| | **Atlassian** (~₹40–50+ LPA) | `top-atlassian` | Enterprise collaboration platforms (Jira, Confluence), developer experience, cloud microservices. |
+| **Tier 1 (FinTech & Unicorns)** | **Razorpay & PhonePe** (~₹45–46 LPA) | `top-fintech-india` | Mission-critical payments, 99.999% uptime, UPI peak surges, idempotent webhooks, ledger consistency. |
+| | **Flipkart, Zomato, Swiggy, Meesho** (~₹40–48 LPA) | `top-ecommerce-dispatch` | Big Billion Days / holiday flash-sale spikes (100k+ orders/min), hyper-local dispatch, distributed caching (Redis). |
+| **Enterprise Multi-Tenant SaaS** | **Salesforce, Adobe, ServiceNow, PayPal, Oracle, SAP Labs, Cisco, Qualcomm** (~₹50–65 LPA) | `top-enterprise-saas` | Enterprise workflow engines, multi-tenant database partitioning, sub-second query performance, strict security compliance. |
+
+Reference guide: [`docs/TOP_PAYING_COMPANIES_OUTREACH_GUIDE.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/docs/TOP_PAYING_COMPANIES_OUTREACH_GUIDE.md).
+
+---
+
+## 16. Multi-Dimensional Composable Outreach Matrix Engine (Zero-DB Overhead)
+
+To eliminate the operational burden of creating and maintaining heavy SQL database tables with static draft variations, NextApply utilizes a **pure TypeScript in-memory slot-filling engine** (`frontend/src/services/composableOutreachEngine.ts`):
+
+```mermaid
+graph TD
+    A["Job Context<br>(Company, Role, WorkMode)"] --> D["Composable Engine"]
+    B["Company Archetype<br>(Startup, Mid-Size, MNC, Service, High-Comp)"] --> D
+    C["Outreach Angle<br>(Recruiter, Hiring Manager, Peer Referral)"] --> D
+    P["Candidate Profile<br>(Praveen: 3+ yrs, Angular/React, C#/.NET Core)"] --> D
+    D --> E["Publication-Ready Gmail Draft<br>(Subject + Multi-Paragraph Pitch + Contact Block)"]
+```
+
+### Supported Dimensions:
+1. **Work Modes**:
+   - `Remote`: Highlights async autonomy, documentation-first (RFCs, PR descriptions), Loom demos, and distributed timezone velocity.
+   - `Hybrid`: Highlights in-office whiteboard architecture and cross-functional pairing, combined with focused remote shipping.
+   - `Onsite`: Highlights zero-latency in-person whiteboarding, real-time code reviews, and physical presence.
+2. **Company Scales & Sectors**:
+   - `Startup (0-1)`: High-agency generalist, 0-to-1 MVP velocity, wear many hats.
+   - `Mid-Size (Scale-up)`: Breaking monolithic bottlenecks, scaling microservices, CI/CD automation.
+   - `MNC / Big Tech`: p99 tail latency, 99.999% SLAs, architectural RFCs, observable multi-region microservices.
+   - `Service / IT Solutions`: Client delivery velocity, legacy enterprise modernization (.NET Framework to .NET Core/Cloud), agile sprint milestones, stakeholder communication.
+   - `High-Comp Quant & FinTech`: Zero-loss financial ledgers, sub-millisecond execution, transactional correctness, idempotent APIs (Citadel, Stripe, OpenAI, Snowflake).
+3. **Outreach Angles**:
+   - `Direct Recruiter`: High-signal, mobile-scannable bulleted summary (<120 words).
+   - `Hiring Manager (Technical)`: Deep technical pitch highlighting microservice decoupling, low p99 latencies, and stack compatibility.
+   - `Peer / Alumni Referral Request`: Warm, respectful outreach asking an engineering peer for cultural insights and an internal referral into the ATS.
+
+Reference handbook: [`docs/COMPOSABLE_DRAFTS_MATRIX_GUIDE.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/docs/COMPOSABLE_DRAFTS_MATRIX_GUIDE.md).
+
+---
+
+## 17. Native "Draft Preview & Editor" Popup (The Dark Gmail Aesthetic)
+
+Rather than opening an external browser tab immediately, NextApply's planned native editor popup (`GmailDraftEditorModal.tsx`) introduces a native in-app drafting experience:
+- **Tri-State Pop-Out Architecture**:
+  - `Docked Mode`: Anchors to the bottom-right (560px $\times$ 520px), leaving the Job Tracker dashboard interactive behind it.
+  - `Maximized Mode`: Expands into a centered modal (800px $\times$ 640px) with backdrop blur for focused writing.
+  - `Minimized Pill`: Collapses into a sleek bottom-right floating pill (300px $\times$ 40px) showing company & role with 1-click restore.
+- **Embedded Outreach Intelligence Bar**: 1-click toggles for Work Mode, Company Scale, and Outreach Angle with real-time re-synthesis.
+- **Multi-Action Workflow**: Direct "Open in Gmail Web", "Copy Formatted", "Mark as Applied & Save", and 500ms debounced auto-save.
+
+Complete specification & architectural review: [`docs/DRAFT_PREVIEW_EDITOR_PLAN.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/docs/DRAFT_PREVIEW_EDITOR_PLAN.md).

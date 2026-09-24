@@ -285,3 +285,9 @@ This section records technical bugs, compilation failures, environment locks, an
 - [ ] **Automated Background Scheduler**: Windows Task Scheduler / Cron job runner for `automation/gmail-jd-automator/main.py`.
 - [ ] **Export Profile Performance PDF**: Export personal application metrics, conversion rates, and weekly progress charts to PDF.
 - [ ] **LinkedIn InMail Automation**: Browser extension integration for 1-click lead capture into NextApply.
+
+### Category D: Native Draft Preview & Outreach Studio
+- [ ] **Native Dark Gmail Draft Popup (`GmailDraftEditorModal.tsx`)**: Implement tri-state window (Docked bottom-right 560x520px, Maximized 800x640px, Minimized pill 300x40px).
+- [ ] **Real-Time Auto-Save Debounce (500ms)**: Automatically persist edits to `job.outreachSubject` and `job.outreachBodyPreview` with a subtle `"Draft Saved ✓"` status indicator.
+- [ ] **Embedded Outreach Intelligence Bar**: Add live 1-click toggles for Work Mode (`Remote`/`Hybrid`/`Onsite`), Company Scale (`Startup`/`Mid-Size`/`MNC`/`Service`/`High-Comp`), and Outreach Angle directly inside the composer.
+- [ ] **One-Click Handoff Suite**: Dual actions for "Open in Gmail Web (`authuser=...`)", "Copy Formatted", and "Mark as Applied & Save".

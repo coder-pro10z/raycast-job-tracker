@@ -125,3 +125,17 @@
 - **Files Involved**: `frontend/public/graph.html`, `GraphViewer` in `App.tsx`, `Sidebar.tsx`, `docs/10-graphify-guide.md`
 - **API Calls Made**: None (client-side interactive Vis.js graph).
 - **Edge Cases/Notes**: Fully accessible locally at `/graph` or standalone in any web browser. Embedded via responsive zero-border iframe.
+
+## 19. Multi-Dimensional Composable Outreach Matrix
+- **Purpose**: Zero-database slot-filling synthesis engine dynamically adapting outreach across Work Modes (`Remote`, `Hybrid`, `Onsite`) and Company Scales (`Startup`, `Mid-Size`, `MNC`, `Service`, `High-Comp Quant/FinTech`).
+- **How to Use**: Open Web Automator Studio (`WebAutomatorModal.tsx`) or click "Open Draft" on any job. Select Work Mode chips and Company Scale, or let NextApply auto-infer from the 500 Highest-Paying companies archive.
+- **Files Involved**: `composableOutreachEngine.ts`, `WebAutomatorModal.tsx`, `emailAssembler.ts`, `docs/COMPOSABLE_DRAFTS_MATRIX_GUIDE.md`
+- **API Calls Made**: None (pure client-side functional matrix, 0ms latency, zero database overhead).
+- **Edge Cases/Notes**: Injects candidate's verified profile (3+ years experience, Angular, React, .NET Core, phone, LinkedIn, GitHub/Portfolio) with anti-truncation validation.
+
+## 20. Native Dark Gmail Draft Preview & Editor Popup
+- **Purpose**: Native in-app drafting popup styled with "The Dark Gmail Aesthetic" that eliminates abrupt browser tab redirects and allows editing cold emails with the dashboard visible in the background.
+- **How to Use**: Click "Open Draft" in the Job Applications table. Toggle between Docked (bottom-right 560x520px), Maximized modal (800x640px), and Minimized floating pill (300x40px). Use formatting toolbar, adjust matrix options, auto-save, and hand off to Gmail or copy formatted text.
+- **Files Involved**: `docs/DRAFT_PREVIEW_EDITOR_PLAN.md`, `GmailDraftEditorModal.tsx` (planned), `JobApplicationPanel.tsx`
+- **API Calls Made**: PATCH `/api/jobs/{id}` (debounced 500ms auto-save for subject and body).
+- **Edge Cases/Notes**: Strict adherence to `RULES.md` (no raw Unicode emojis, Lucide SVG icons only, theme tokens inheritance).

@@ -14,21 +14,26 @@ graph TD
 
     subgraph "Outreach & Synthesis Engine"
         EmailAssembler["✉️ EmailAssembler\n(emailAssembler.ts)"]
-        FoundationalDrafts["📚 10 Foundational Drafts\n(foundationalDrafts.ts)"]
+        ComposableEngine["🎛️ Composable Matrix Engine\n(composableOutreachEngine.ts)"]
+        FoundationalDrafts["📚 24 Blueprints & 500-List\n(foundationalDrafts.ts)"]
+        NativeEditor["🖥️ Native Gmail Editor Popup\n(GmailDraftEditorModal)"]
         WebAutomator["📱 Web & Mobile Automator\n(Zero OS & Zero Install)"]
         SettingsStudio["⚙️ Signature Studio\n(Portfolio, GitHub, Phone)"]
     end
 
     subgraph "Automation & Benchmarks"
         Automator["🐍 Gmail JD Automator\n(Python sidecar / Cloud Runner)"]
-        JDArchive["📁 Tier-1 JD Archive\n(docs/jd-samples/)"]
+        JDArchive["📁 Tier-1 JD Archive & Comp\n(docs/jd-samples/ & 500-List)"]
         ClaudeAPI["🤖 Claude Multi-Modal Vision\n(Anthropic API)"]
         Tesseract["🔍 Tesseract OCR\n(Local binary fallback)"]
     end
 
     Browser --> WebAutomator
+    Browser --> NativeEditor
+    WebAutomator --> ComposableEngine
     WebAutomator --> FoundationalDrafts
-    WebAutomator --> EmailAssembler
+    NativeEditor --> ComposableEngine
+    NativeEditor --> EmailAssembler
     SettingsStudio --> EmailAssembler
     EmailAssembler --> GmailCompose
 
@@ -51,7 +56,7 @@ graph TD
 | Row Virtualization | @tanstack/react-virtual | v3 | Virtual scroll for 500+ job records |
 | Icons | Lucide React | latest | SVG icon system (RULES.md compliant) |
 | CSS | Vanilla CSS Custom Properties | — | Dark/Light theming, design tokens |
-| Outreach Synthesis | EmailAssembler & Foundational Drafts | — | Publication-ready cold emails & signatures |
+| Outreach Synthesis | Composable Engine & EmailAssembler | — | Zero-DB multi-dimensional synthesis across Work Modes and Company Scales |
 | Backend Framework | ASP.NET Core | .NET 9 | REST API & authentication endpoints |
 | ORM | Entity Framework Core | 9 | Database access & schema migrations |
 | Database | PostgreSQL | 15 | Data persistence (users, jobs, notes) |
