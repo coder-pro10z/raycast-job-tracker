@@ -1,20 +1,20 @@
-# Architecture & Design System Rules — NextApply Job Tracker
+# Architecture, Agent & Design System Rules — NextApply Job Tracker
 
-This document establishes the mandatory design, typography, and architecture standards for the **NextApply Job Tracker** project. All developers, code contributions, and AI assistants must adhere to these rules.
+This document establishes the mandatory design, typography, architecture, and AI agent standards for the **NextApply Job Tracker** project. All developers, code contributions, and AI assistants (Claude, Gemini, Codex, Copilot, Cursor, Windsurf) must adhere to these rules.
 
 ---
 
 ## 🎨 Section 1: UI/UX & Design System Standards
 
 ### 🚫 Rule 1: No Raw Unicode Emojis in Action Controls, Buttons, or Badges
-* **Policy**: Never hardcode raw Unicode emojis (e.g. `📱`, `⚡`, `⚙️`, `▶️`, `🧭`, `✉️`) directly into buttons, tab navigation, badge labels, or action headers.
+* **Policy**: Never hardcode raw Unicode emojis (e.g. `📱`, `⚡`, `⚙️`, `▶️`, `🧭`, `✉️`, `📋`, `🗑️`) directly into buttons, tab navigation, badge labels, or action headers.
 * **Why**:
   1. **Cross-Platform Inconsistency**: Emojis render completely differently across Windows (flat Segoe UI Emoji), macOS/iOS (Apple Color Emoji), Android, and Linux, causing broken line-heights and mismatched aesthetics.
   2. **Duplicate Visual Clutter**: Developers frequently pair an SVG icon with an emoji (e.g. `<Smartphone size={15} /> <span>📱 Run Automator</span>`), resulting in confusing duplicate glyphs.
   3. **Accessibility**: Screen readers announce emoji names literally (e.g. *"Mobile phone Run Online Automator"*), degrading screen-reader navigation.
   4. **Dark Mode Discordance**: Brightly colored system emojis clash with subtle dark-mode themes and design tokens.
 * **Enforcement**:
-  - Always use vector icons from **`lucide-react`** (`<Smartphone size={14} />`, `<Zap size={14} />`, `<Mail size={14} />`, `<Terminal size={14} />`, `<Play size={14} />`).
+  - Always use vector icons from **`lucide-react`** (`<Smartphone size={14} />`, `<Zap size={14} />`, `<Mail size={14} />`, `<Terminal size={14} />`, `<Play size={14} />`, `<Copy size={14} />`).
   - Button text must consist strictly of clean, professional prose (e.g. `<span>Run Online Automator</span>`).
   - For callout banners and info boxes, use CSS colored borders and Lucide icons rather than raw warning/info emojis.
 
@@ -62,10 +62,11 @@ This document establishes the mandatory design, typography, and architecture sta
 
 ### 🌐 Rule 4: Brand-Accurate Action Accents
 * When styling integrations (LinkedIn, Gmail, GitHub, OpenAI, Claude), use the officially designated brand tokens:
-  - **LinkedIn**: `--linkedin-primary: #0a66c2`, `--linkedin-hover: #004182`
+  - **LinkedIn**: `--linkedin-primary: #0a66c2`, `--linkedin-hover: #004182`, `--linkedin-bg: rgba(10, 102, 194, 0.15)`
   - **Gmail**: `#ea4335`
   - **Claude / Anthropic**: `#d97706` (amber accent)
   - **GitHub / Terminal**: `#10b981` / `#6366f1`
+* See [`DESIGN.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/DESIGN.md) for full token reference.
 
 ---
 
@@ -96,10 +97,73 @@ This document establishes the mandatory design, typography, and architecture sta
 
 ---
 
-## 📋 Rule Checklist for Code Reviews & PRs
-- [ ] No raw Unicode emojis used in button labels, tabs, or badges.
+## 🤖 Section 3: AI Agent & LLM Behavioral Standards
+
+### 📑 Rule 8: Agent Instruction Ecosystem & Token Efficiency
+* **Policy**: All AI agents (Claude, Gemini, Codex, Copilot, Cursor, Windsurf) must respect the hierarchical agent instruction file system placed at the repository root:
+  - [`AGENTS.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/AGENTS.md): Universal root entry point and baseline README for all AI assistants.
+  - [`CLAUDE.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/CLAUDE.md): Claude-specific behavioral rules, priority reading order, and tool caveats.
+  - [`GEMINI.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/GEMINI.md): Gemini-specific behavioral rules and TypeScript strict mode flags.
+  - [`FILES.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/FILES.md): Structured codebase directory map. **Agents must read this before exploring the filesystem** to avoid wasting context tokens crawling dependencies or build outputs.
+  - [`DESIGN.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/DESIGN.md): Authoritative CSS tokens, typography, and component patterns.
+  - [`SKILL.md`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/SKILL.md): Reusable procedural skills for components, APIs, outreach, and verification.
+* **Crawling Boundary**:
+  - Agents must **NEVER** traverse `node_modules/`, `dist/`, `bin/`, `obj/`, `__pycache__/`, or `.git/`.
+
+---
+
+### ⚡ Rule 9: Strict TypeScript & Browser Runtime Safety
+* **Policy**: Frontend code must strictly conform to Vite/TypeScript browser compilation rules:
+  1. **Strict Linting**: `noUnusedLocals: true` and `noUnusedParameters: true` are enforced by `tsconfig.app.json`. Never leave unused imports, variables, or function arguments.
+  2. **Browser-Safe Timers**: Never use `NodeJS.Timeout` in frontend React code. Always type timer refs as `ReturnType<typeof setTimeout> | null`.
+  3. **Mutation Signature Integrity**: In React Query mutation hooks (`useUpdateJob`), mutations MUST be passed inside a nested `patch` object:
+     ```typescript
+     // ❌ WRONG: Flat properties fail TS2353
+     await updateJobMutation.mutateAsync({ id: job.id, outreachSubject: subject });
+
+     // ✅ CORRECT: Matches { id: string; patch: Partial<JobItem> }
+     await updateJobMutation.mutateAsync({
+       id: job.id,
+       patch: { outreachSubject: subject, outreachBodyPreview: body }
+     });
+     ```
+  4. **Zero Bundle Bloat**: Do not introduce heavy third-party WYSIWYG editor engines (e.g. Quill, TipTap). Use zero-dependency formatted Markdown/Plain-Text textareas with native selection helpers.
+
+---
+
+### 👤 Rule 10: Candidate Identity Grounding & Anti-Truncation
+* **Policy**: All dynamic outreach generation, seeded applications, and draft templates for the primary user must be grounded strictly in Praveen Kashyap's verified profile:
+  - **Full Name**: `Praveen Kashyap`
+  - **Role**: `Full Stack Engineer / SDE`
+  - **Experience**: `3+ years` (**STRICTLY PROHIBITED**: Never use `5+ years` or outdated placeholders)
+  - **Email**: `2pkashyap2001@gmail.com`
+  - **Phone**: `+91 7394990738`
+  - **LinkedIn**: `https://www.linkedin.com/in/coder-pro10z/`
+  - **GitHub / Portfolio**: `https://github.com/coder-pro10z`
+* **Anti-Truncation Standard**:
+  - Never generate or pass single-sentence teasers or drafts ending in `...` to email compose windows.
+  - All outreach drafts must be publication-ready, multi-paragraph pitches complete with professional salutation, technical hook, quantifiable proof metric, and full contact signature block.
+
+---
+
+### 🧩 Rule 11: Zero-Database Bloat for Outreach Systems
+* **Policy**: Do not create auxiliary SQL database tables or schema migrations exclusively for outreach templates or email composing.
+* **Standard**:
+  - Leverage the functional slot-filling matrix engine in [`composableOutreachEngine.ts`](file:///c:/Users/Praveen/Desktop/Job-Application/Job-Tracker/frontend/src/services/composableOutreachEngine.ts) for 0ms latency synthesis across Work Mode (`Remote`/`Hybrid`/`Onsite`), Company Scale (`Startup`/`Mid-Size`/`MNC`/`Service`/`High-Comp`), and Outreach Angle.
+  - Persist edits directly to existing fields (`outreachSubject`, `outreachBodyPreview`, `hrRecruiterName`) on the `Job` entity using debounced auto-saving (600ms).
+
+---
+
+## 📋 Rule Checklist for Code Reviews, Agents & PRs
+- [ ] No raw Unicode emojis used in button labels, tabs, or badges (Lucide icons only).
 - [ ] Every button and interactive control has a corresponding Lucide React SVG icon.
-- [ ] Button labels use `0.8125rem` font size and inherit typography.
+- [ ] Button labels use `0.8125rem` font size and inherit typography (`font-family: inherit`).
 - [ ] Numeric counters utilize `font-variant-numeric: tabular-nums`.
-- [ ] Tested in both Dark Mode and Light Mode.
+- [ ] Tested in both Dark Mode and Light Mode with CSS custom properties.
+- [ ] No unused imports or variables (`noUnusedLocals` verified).
+- [ ] Timer refs typed as `ReturnType<typeof setTimeout> | null` (no `NodeJS.Timeout`).
+- [ ] `useUpdateJob` calls use `{ id, patch: { ... } }` structure.
+- [ ] Candidate profile grounded with `3+ years` and exact contact details.
 - [ ] Frontend builds cleanly with `npm run build` (0 TypeScript / lint errors).
+- [ ] Backend builds cleanly with `dotnet build` (0 errors).
+- [ ] `BACKLOG.md` and feature docs updated accordingly.
