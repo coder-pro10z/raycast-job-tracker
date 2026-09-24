@@ -55,11 +55,41 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
     setGenerating(true);
 
     setTimeout(() => {
-      let template = FOUNDATIONAL_DRAFTS.find(t => t.id === selectedTemplateId);
+      let template = selectedTemplateId !== 'auto' ? FOUNDATIONAL_DRAFTS.find(t => t.id === selectedTemplateId) : undefined;
       if (!template) {
-        // Auto select based on domain and role keywords
+        const lowerCompany = company.toLowerCase();
         const lowerRole = role.toLowerCase();
-        if (domain === 'cloud' || lowerRole.includes('cloud') || lowerRole.includes('devops') || lowerRole.includes('sre') || lowerRole.includes('infra')) {
+
+        // Check company-specific blueprints first
+        if (lowerCompany.includes('uber')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-uber');
+        } else if (lowerCompany.includes('netflix')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-netflix');
+        } else if (lowerCompany.includes('google') || lowerCompany.includes('alphabet')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-google');
+        } else if (lowerCompany.includes('meta') || lowerCompany.includes('facebook') || lowerCompany.includes('instagram')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-meta');
+        } else if (lowerCompany.includes('apple')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-apple');
+        } else if (lowerCompany.includes('airbnb')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-airbnb');
+        } else if (lowerCompany.includes('amazon') || lowerCompany.includes('aws')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-amazon');
+        } else if (lowerCompany.includes('microsoft') || lowerCompany.includes('azure')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-microsoft');
+        } else if (lowerCompany.includes('nvidia')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-nvidia');
+        } else if (lowerCompany.includes('stripe')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-stripe');
+        } else if (lowerCompany.includes('atlassian') || lowerCompany.includes('jira') || lowerCompany.includes('confluence')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-atlassian');
+        } else if (lowerCompany.includes('razorpay') || lowerCompany.includes('phonepe') || lowerCompany.includes('paytm') || lowerCompany.includes('cred')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-fintech-india');
+        } else if (lowerCompany.includes('flipkart') || lowerCompany.includes('zomato') || lowerCompany.includes('swiggy') || lowerCompany.includes('meesho') || lowerCompany.includes('blinkit') || lowerCompany.includes('zepto')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-ecommerce-dispatch');
+        } else if (lowerCompany.includes('salesforce') || lowerCompany.includes('adobe') || lowerCompany.includes('servicenow') || lowerCompany.includes('paypal') || lowerCompany.includes('oracle') || lowerCompany.includes('sap') || lowerCompany.includes('cisco') || lowerCompany.includes('qualcomm')) {
+          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-enterprise-saas');
+        } else if (domain === 'cloud' || lowerRole.includes('cloud') || lowerRole.includes('devops') || lowerRole.includes('sre') || lowerRole.includes('infra')) {
           template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'cloud-platform-devops') || FOUNDATIONAL_DRAFTS[0];
         } else if (lowerRole.includes('backend') || lowerRole.includes('system') || lowerRole.includes('distributed')) {
           template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'sde-distributed-backend') || FOUNDATIONAL_DRAFTS[0];
@@ -68,7 +98,9 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
         }
       }
 
-      const { subject, body } = interpolateDraft(template, userProfile, {
+      const activeTemplate = template || FOUNDATIONAL_DRAFTS[0];
+
+      const { subject, body } = interpolateDraft(activeTemplate, userProfile, {
         companyName: company.trim(),
         targetRole: role.trim(),
         hrRecruiterName: recruiterEmail.trim()
@@ -77,7 +109,7 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
       setGeneratedSubject(subject);
       setGeneratedBody(body);
       setGenerating(false);
-      showToast(`Outreach email synthesized using template: ${template.title}!`);
+      showToast(`Outreach email synthesized using template: ${activeTemplate.title}!`);
     }, 400);
   };
 
@@ -371,12 +403,22 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
                     }}
                   >
                     <option value="auto">Auto-Select Best Blueprint (Recommended)</option>
-                    <optgroup label="SDE & Full Stack">
+                    <optgroup label="Top Product / High-Comp (MAANG & Global ~₹68–95 LPA)">
+                      {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'Top Product / High-Comp (MAANG & Global)').map(d => (
+                        <option key={d.id} value={d.id}>{d.title} ({d.ctcBand})</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Tier-1 FinTech & Unicorns (India ~₹40–48 LPA)">
+                      {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'Tier-1 FinTech & Unicorns (India)').map(d => (
+                        <option key={d.id} value={d.id}>{d.title} ({d.ctcBand})</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="SDE & Full Stack Archetypes">
                       {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'SDE / Full Stack').map(d => (
                         <option key={d.id} value={d.id}>{d.title}</option>
                       ))}
                     </optgroup>
-                    <optgroup label="Cloud, Platform & DevOps">
+                    <optgroup label="Cloud, Platform & DevOps Archetypes">
                       {FOUNDATIONAL_DRAFTS.filter(d => d.category === 'Cloud & DevOps').map(d => (
                         <option key={d.id} value={d.id}>{d.title}</option>
                       ))}

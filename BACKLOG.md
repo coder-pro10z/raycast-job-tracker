@@ -231,6 +231,28 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🚀 Milestone 8: Top 25 Highest-Paying IT Product Companies Outreach Engine (~₹40–95 LPA)
+- [x] **High-Comp Blueprint Expansion**: Expanded `foundationalDrafts.ts` to 24 curated blueprints, creating tailored outreach architectures for top global product and Indian tier-1 tech firms:
+  - **Uber** (~₹95 LPA): Real-time marketplace dispatch state machines, H3 geospatial indexing, p99 latency SLAs.
+  - **Netflix** (~₹90 LPA): Edge streaming throughput, chaos resilience, freedom and responsibility, micro-frontends.
+  - **Google** (~₹85 LPA): Large-scale distributed systems, Borg/Kubernetes patterns, algorithmic efficiency.
+  - **Meta** (~₹85 LPA): High-velocity product shipping, React / TypeScript / GraphQL web scale, measurable engagement.
+  - **Apple** (~₹82 LPA): Systems craft, privacy-first architectures, low-latency API contracts.
+  - **Airbnb** (~₹80 LPA): Distributed booking state machines, product design fidelity, service-oriented architecture.
+  - **Amazon / AWS** (~₹75 LPA): Customer Obsession, 2-pizza decoupled SOA, operational excellence.
+  - **Microsoft** (~₹72 LPA): Enterprise cloud scale, C# / .NET Core / TypeScript excellence, Azure microservices.
+  - **NVIDIA** (~₹70 LPA): High-performance computing, GPU data streaming, accelerated platforms.
+  - **Stripe** (~₹68 LPA): Idempotent financial APIs, 99.999% availability, zero-loss ledger reliability.
+  - **Atlassian** (~₹40–50+ LPA): Enterprise collaboration cloud, developer velocity, multi-tenant microservices.
+  - **Razorpay & PhonePe** (~₹45–46 LPA): High-volume UPI transactions, flash sale surge resilience, idempotent webhooks.
+  - **Flipkart, Zomato, Swiggy & Meesho** (~₹40–48 LPA): Hyper-local dispatch, Big Billion Days flash-sale spikes, distributed caching (Redis).
+  - **Enterprise Multi-Tenant SaaS** (~₹52–65 LPA): Salesforce, Adobe, ServiceNow, PayPal, Oracle, SAP Labs, Cisco, Qualcomm.
+- [x] **Company-Aware Auto-Detection**: Integrated auto-detection in `WebAutomatorModal.tsx` and `emailAssembler.ts` that immediately matches company names to company-engineered architectural hooks.
+- [x] **Forum & Recruiter Calibrated Framework**: Published comprehensive handbook `docs/TOP_PAYING_COMPANIES_OUTREACH_GUIDE.md` covering recruiter expectations from Blind, LeetCode, and recruiter insights (mobile-scannable under 150 words, concrete metrics, zero spammy attachments, low-friction 15-min CTA).
+- [x] **Clean Verification**: Frontend (`tsc -b && vite build`) and backend (`dotnet build`) both verified with 0 errors.
+
+---
+
 ### Category A: Authentication & User Management
 - [ ] **JWT Token Expiration & Refresh Flow**: Upgrade token string to signed HMAC-SHA256 JWT tokens with 7-day expiration and silent refresh.
 - [ ] **Forgot Password & Email Reset**: Send password reset tokens via SendGrid / SMTP.
