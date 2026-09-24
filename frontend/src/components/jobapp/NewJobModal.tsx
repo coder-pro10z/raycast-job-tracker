@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Building2, MapPin, Briefcase, Tag, Target } from 'lucide-react';
-import { useCreateJob } from '../hooks/useJobs';
-import { useJobStore } from '../state/useJobStore';
-import type { WorkMode, Priority, JobDomain } from '../types/job';
+import { useCreateJob } from '../../hooks/useJobs';
+import { useJobStore } from '../../state/useJobStore';
+import type { WorkMode, Priority, JobDomain } from '../../types/job';
 
 interface NewJobModalProps {
   isOpen: boolean;

@@ -1,10 +1,21 @@
 {
-  "name": "job-tracker-monorepo",
+  "name": "nextapply-job-tracker",
   "private": true,
+  "description": "NextApply - Autonomous Job Application Platform & Outreach Engine",
   "scripts": {
+    "dev": "run.bat",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "dotnet run --project backend/NextApply.Api",
+    "build": "npm --prefix frontend run build && dotnet build backend/NextApply.Api",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "dotnet build backend/NextApply.Api",
+    "lint:frontend": "npm --prefix frontend run lint",
     "test": "vitest run",
+    "test:frontend": "vitest run tests/frontend",
     "test:automation": "vitest run tests/automation",
-    "test:frontend": "vitest run tests/frontend"
+    "automator:run": "scripts\\run-automator.bat",
+    "automator:setup": "scripts\\setup-automator.bat",
+    "push": "scripts\\push_to_github.bat"
   },
   "devDependencies": {
     "jsdom": "^27.0.0",

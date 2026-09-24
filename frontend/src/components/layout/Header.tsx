@@ -4,7 +4,7 @@ import { useJobs } from '../../hooks/useJobs';
 import { Search, RefreshCcw, Sun, Moon, Upload, FileSpreadsheet, Menu, Settings, Download, Plus } from 'lucide-react';
 import { UploadModal } from '../upload/UploadModal';
 import { SettingsModal } from '../settings/SettingsModal';
-import { NewJobModal } from '../NewJobModal';
+import { NewJobModal } from '../jobapp/NewJobModal';
 import { ProfileMenu } from './ProfileMenu';
 import { buildLinkedInJobSearchUrl, DEFAULT_LEAD_SEARCH_CONFIG } from '../../utils/linkedinSearch';
 

@@ -8,34 +8,33 @@ This file provides a structured directory map for AI agents, LLMs, and developer
 
 ```
 Job-Tracker/
-├── AGENTS.md                  # Universal agent instructions (this repo)
+├── AGENTS.md                  # Universal agent instructions (Open Standard)
 ├── CLAUDE.md                  # Claude-specific behavior config
 ├── GEMINI.md                  # Gemini-specific behavior config
 ├── FILES.md                   # THIS FILE — codebase directory map
-├── SKILL.md                   # Modular agent skills entry point
 ├── DESIGN.md                  # Visual design system reference
+├── SKILL.md                   # Modular agent skills entry point
 ├── RULES.md                   # Mandatory architecture & design rules
-├── BACKLOG.md                 # Product backlog, errors, milestones
-├── README.md                  # Project overview
+├── BACKLOG.md                 # Single source of truth: defect log & milestones
+├── README.md                  # Project overview & quickstart
 ├── Job-Tracker.sln            # .NET solution file
-├── Jobs-sheet.xlsx            # Master job tracker spreadsheet (588 jobs)
+├── package.json               # Root workspace scripts & test runner
 ├── render.yaml                # Render.com deployment config
 ├── vitest.config.js           # Vitest test runner config
-├── run.bat / stop.bat         # Windows 1-click dev server scripts
-├── run-automator.bat           # Windows automator launcher
-├── setup-automator.bat         # Windows automator setup (Python venv)
-├── push_to_github.bat          # Git push helper script
+├── run.bat / stop.bat         # Standard 1-click dev server launchers
+├── run-automator.bat          # 1-click automator launcher (delegates to scripts/)
+├── setup-automator.bat        # 1-click automator setup (delegates to scripts/)
+├── push_to_github.bat         # Git push helper script (delegates to scripts/)
 │
 ├── frontend/                  # React 19 + Vite 8 + TypeScript 6 SPA
 ├── backend/                   # ASP.NET Core 9 Web API
 ├── automation/                # Python Gmail JD Automator sidecar
-├── docs/                      # Architecture guides & JD samples
+├── docs/                      # Canonical architecture guides & JD samples
+├── prompt-lib/                # Reusable prompt engineering library
+├── scripts/                   # Tooling, migration & setup scripts
+├── sheets/                    # Centralized spreadsheet data directory
 ├── tests/                     # Frontend, integration, automation tests
-├── scripts/                   # Utility scripts
-├── sheets/                    # Excel data sheets
-├── archive/                   # Archived files
-├── prompt-lib/                # Prompt templates for AI workflows
-└── scratch/                   # Temporary scratch files
+└── archive/                   # Superseded historical archives
 ```
 
 ---
@@ -49,7 +48,9 @@ frontend/
 ├── package.json
 ├── tsconfig.json / tsconfig.app.json / tsconfig.node.json
 ├── vite.config.ts
+├── vercel.json
 ├── index.html
+├── public/                            # Static assets (Master_Job_Tracker.xlsx, icons, favicon)
 └── src/
     ├── main.tsx                       # ReactDOM entry point
     ├── App.tsx                        # Root app component, routing, auth gating
@@ -78,22 +79,21 @@ frontend/
     │   ├── foundationalDrafts.ts      # 24 curated outreach blueprints with {placeholders}
     │   └── outreachTemplates.ts       # Extended outreach template library
     │
-    ├── components/
-    │   ├── auth/                      # AuthModal.tsx, ProfileMenu.tsx
-    │   ├── common/                    # StatusBadgeDropdown, DomainBadgeDropdown, shared UI
-    │   ├── dashboard/                 # DashboardView, StageCards, pipeline metrics
+    ├── components/                    # Organized strictly by domain:
+    │   ├── auth/                      # AuthModal.tsx, PassphraseGate.tsx
+    │   ├── common/                    # StatusBadgeDropdown, DomainBadgeDropdown, Badge
+    │   ├── dashboard/                 # DashboardMetrics, SupportPage
     │   ├── detail/                    # JobDetailDrawer, OutreachStudio, FindLeadsMenu
-    │   ├── jobapp/                    # JobApplicationPanel, GmailDraftEditorModal, WebAutomatorModal, AutomatorStatusBadge
-    │   ├── layout/                    # Sidebar, Header, ToastContainer
-    │   ├── outreach/                  # Outreach template views
-    │   ├── search/                    # CommandPalette (Cmd+K)
+    │   ├── jobapp/                    # JobApplicationPanel, GmailDraftEditorModal, WebAutomatorModal, AutomatorStatusBadge, NewJobModal
+    │   ├── layout/                    # Header, ProfileMenu, Sidebar, WorkspaceLoader
+    │   ├── outreach/                  # ColdOutreachWorkspace
+    │   ├── search/                    # CommandPalette (Cmd+K), FilterBar
     │   ├── settings/                  # SettingsModal (profile, signature preview)
-    │   ├── table/                     # JobTable, VirtualizedJobTable
-    │   ├── ui/                        # Shared low-level UI primitives
-    │   ├── upload/                    # Excel upload components
-    │   └── NewJobModal.tsx            # Manual job creation modal
+    │   ├── table/                     # JobTable, EditLinkPopover
+    │   ├── ui/                        # Toast notification primitives
+    │   └── upload/                    # UploadModal (Excel upload)
     │
-    └── utils/                         # Shared utility functions
+    └── utils/                         # Shared utility functions (linkedinSearch.ts)
 ```
 
 ---
@@ -130,7 +130,7 @@ backend/NextApply.Api/
 ├── DTOs/                              # Data transfer objects for API contracts
 ├── Data/                              # EF Core DbContext, seeding
 ├── Services/                          # Business logic services (PasswordHasher, etc.)
-├── Middleware/                        # Custom middleware
+├── Middleware/                        # Custom middleware (ApiKeyAuthMiddleware)
 └── Migrations/                        # EF Core database migrations
 ```
 
@@ -166,6 +166,7 @@ docs/
 ├── 09-prompt-library.md               # AI prompt engineering reference
 ├── 10-graphify-guide.md               # Job pipeline visualization guide
 ├── 11-zero-os-automator-guide.md      # Zero-OS mobile/web automator guide
+├── AI_AGENT_PROJECT_BLUEPRINT.md      # Master blueprint for multi-project agent scaffolding
 ├── COMPOSABLE_DRAFTS_MATRIX_GUIDE.md  # Multi-dimensional outreach matrix handbook
 ├── TOP_PAYING_COMPANIES_OUTREACH_GUIDE.md # Top 25 company compensation & recruiter tips
 ├── DRAFT_PREVIEW_EDITOR_PLAN.md       # Native Dark Gmail Editor specification
@@ -173,8 +174,53 @@ docs/
 ├── ui_ux_reference_guide.md           # UI/UX design reference
 ├── jd-samples/                        # 10 realistic tier-1 company JD archives
 ├── phases/                            # Development phase planning docs
-├── plans/                             # Feature implementation plans
-└── prompts/                           # AI prompt templates
+└── plans/                             # Feature implementation plans
+```
+
+---
+
+## Prompt Engineering Library (`prompt-lib/`)
+
+```
+prompt-lib/
+├── README.md                          # Prompt library guide
+├── write-full-prd.md                  # PRD generation prompt
+├── design-brief.md                    # UI/UX design brief prompt
+├── phase-1-requirements.md            # Requirements specification prompt
+├── phase-2-design.md                  # Architecture & design prompt
+├── phase-3-code.md                    # Clean code implementation prompt
+├── phase-4-test.md                    # Test suite & QA verification prompt
+├── requirements-design-code-test.md   # Full 4-phase SDLC prompt
+├── clean-up-dead-code.md              # Refactor & dead code cleanup prompt
+├── restructure-docs.md                # Documentation consolidation prompt
+├── restructure-repo.md                # Repository restructuring prompt
+├── graphify.md                        # Codebase taxonomy & graph visualization prompt
+└── archive/                           # Initial creation prompts (job-sheet, job-tracker)
+```
+
+---
+
+## Tooling & Scripts (`scripts/`)
+
+```
+scripts/
+├── run-automator.bat                  # Canonical automator runner
+├── setup-automator.bat                # Canonical automator environment installer
+├── push_to_github.bat                 # Guarded git push workflow
+├── migrate_to_postgres.py             # Data migration script to PostgreSQL
+├── init_project.py                    # Project bootstrap script
+└── requirements.txt                   # Script dependencies
+```
+
+---
+
+## Centralized Data Sheets (`sheets/`)
+
+```
+sheets/
+├── Jobs-sheet.xlsx                    # Original master dataset
+├── Master_Job_Tracker_Verified.xlsx   # Verified master tracker dataset
+└── Cloud_DevOps_Jobs_Tracker.xlsx     # Cloud & DevOps specialized dataset
 ```
 
 ---
@@ -198,7 +244,7 @@ tests/
 > Agents must NEVER read, index, or traverse these directories:
 
 - `node_modules/` (any level)
-- `frontend/dist/` and `dist/`
+- `frontend/dist/`
 - `backend/NextApply.Api/bin/` and `backend/NextApply.Api/obj/`
 - `automation/**/__pycache__/`
 - `automation/**/credentials/`
