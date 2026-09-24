@@ -14,9 +14,19 @@ import {
   CheckCircle2,
   Terminal,
   Play,
-  FileText
+  FileText,
+  Building2,
+  Globe,
+  Users
 } from 'lucide-react';
 import { FOUNDATIONAL_DRAFTS, interpolateDraft } from '../../data/foundationalDrafts';
+import {
+  composeOutreachEmail,
+  inferCompanyScale,
+  type WorkModeType,
+  type CompanyScaleType,
+  type OutreachAngleType
+} from '../../services/composableOutreachEngine';
 
 interface WebAutomatorModalProps {
   isOpen: boolean;
@@ -36,6 +46,9 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
   const [jdText, setJdText] = useState('');
   const [domain, setDomain] = useState<'sde' | 'cloud' | 'dual'>('sde');
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('auto');
+  const [workMode, setWorkMode] = useState<WorkModeType>('Remote');
+  const [companyScale, setCompanyScale] = useState<CompanyScaleType | 'auto'>('auto');
+  const [outreachAngle, setOutreachAngle] = useState<OutreachAngleType>('recruiter-direct');
   
   // Output State
   const [generating, setGenerating] = useState(false);
@@ -55,61 +68,41 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
     setGenerating(true);
 
     setTimeout(() => {
-      let template = selectedTemplateId !== 'auto' ? FOUNDATIONAL_DRAFTS.find(t => t.id === selectedTemplateId) : undefined;
-      if (!template) {
-        const lowerCompany = company.toLowerCase();
-        const lowerRole = role.toLowerCase();
+      let subject = '';
+      let body = '';
+      let usedTitle = '';
 
-        // Check company-specific blueprints first
-        if (lowerCompany.includes('uber')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-uber');
-        } else if (lowerCompany.includes('netflix')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-netflix');
-        } else if (lowerCompany.includes('google') || lowerCompany.includes('alphabet')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-google');
-        } else if (lowerCompany.includes('meta') || lowerCompany.includes('facebook') || lowerCompany.includes('instagram')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-meta');
-        } else if (lowerCompany.includes('apple')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-apple');
-        } else if (lowerCompany.includes('airbnb')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-airbnb');
-        } else if (lowerCompany.includes('amazon') || lowerCompany.includes('aws')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-amazon');
-        } else if (lowerCompany.includes('microsoft') || lowerCompany.includes('azure')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-microsoft');
-        } else if (lowerCompany.includes('nvidia')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-nvidia');
-        } else if (lowerCompany.includes('stripe')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-stripe');
-        } else if (lowerCompany.includes('atlassian') || lowerCompany.includes('jira') || lowerCompany.includes('confluence')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-atlassian');
-        } else if (lowerCompany.includes('razorpay') || lowerCompany.includes('phonepe') || lowerCompany.includes('paytm') || lowerCompany.includes('cred')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-fintech-india');
-        } else if (lowerCompany.includes('flipkart') || lowerCompany.includes('zomato') || lowerCompany.includes('swiggy') || lowerCompany.includes('meesho') || lowerCompany.includes('blinkit') || lowerCompany.includes('zepto')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-ecommerce-dispatch');
-        } else if (lowerCompany.includes('salesforce') || lowerCompany.includes('adobe') || lowerCompany.includes('servicenow') || lowerCompany.includes('paypal') || lowerCompany.includes('oracle') || lowerCompany.includes('sap') || lowerCompany.includes('cisco') || lowerCompany.includes('qualcomm')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'top-enterprise-saas');
-        } else if (domain === 'cloud' || lowerRole.includes('cloud') || lowerRole.includes('devops') || lowerRole.includes('sre') || lowerRole.includes('infra')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'cloud-platform-devops') || FOUNDATIONAL_DRAFTS[0];
-        } else if (lowerRole.includes('backend') || lowerRole.includes('system') || lowerRole.includes('distributed')) {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'sde-distributed-backend') || FOUNDATIONAL_DRAFTS[0];
-        } else {
-          template = FOUNDATIONAL_DRAFTS.find(t => t.id === 'sde-fullstack-product') || FOUNDATIONAL_DRAFTS[0];
-        }
+      if (selectedTemplateId === 'auto') {
+        // Multi-dimensional composable functional engine (Zero DB overhead)
+        const result = composeOutreachEmail({
+          companyName: company.trim(),
+          targetRole: role.trim(),
+          workMode,
+          companyScale: companyScale !== 'auto' ? companyScale : undefined,
+          outreachAngle,
+          recruiterName: recruiterEmail.trim(),
+          profile: userProfile
+        });
+        subject = result.subject;
+        body = result.body;
+        const effectiveScale = companyScale !== 'auto' ? companyScale : inferCompanyScale(company);
+        usedTitle = `${effectiveScale.toUpperCase()} • ${workMode} • ${outreachAngle}`;
+      } else {
+        const activeTemplate = FOUNDATIONAL_DRAFTS.find(t => t.id === selectedTemplateId) || FOUNDATIONAL_DRAFTS[0];
+        const res = interpolateDraft(activeTemplate, userProfile, {
+          companyName: company.trim(),
+          targetRole: role.trim(),
+          hrRecruiterName: recruiterEmail.trim()
+        });
+        subject = res.subject;
+        body = res.body;
+        usedTitle = activeTemplate.title;
       }
-
-      const activeTemplate = template || FOUNDATIONAL_DRAFTS[0];
-
-      const { subject, body } = interpolateDraft(activeTemplate, userProfile, {
-        companyName: company.trim(),
-        targetRole: role.trim(),
-        hrRecruiterName: recruiterEmail.trim()
-      });
 
       setGeneratedSubject(subject);
       setGeneratedBody(body);
       setGenerating(false);
-      showToast(`Outreach email synthesized using template: ${activeTemplate.title}!`);
+      showToast(`Outreach synthesized: ${usedTitle}!`);
     }, 400);
   };
 
@@ -119,8 +112,8 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
         companyName: company.trim(),
         targetRole: role.trim(),
         domain: domain,
-        location: 'Remote',
-        workMode: 'Remote',
+        location: workMode === 'Remote' ? 'Remote' : 'Hybrid/Onsite',
+        workMode: workMode,
         priority: 'High',
         applicationStatus: 'Applied',
         hrRecruiterName: recruiterEmail.trim() || 'Recruiting Team',
@@ -429,6 +422,89 @@ export const WebAutomatorModal: React.FC<WebAutomatorModalProps> = ({ isOpen, on
                       ))}
                     </optgroup>
                   </select>
+                </div>
+
+                {/* Multi-Dimensional Matrix Controls (Work Mode • Company Scale • Angle) */}
+                <div style={{ gridColumn: 'span 2', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '8px', padding: '10px', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)' }}>
+                  <div>
+                    <label style={{ fontSize: '0.71875rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+                      <Globe size={11} /> Work Mode
+                    </label>
+                    <div style={{ display: 'flex', gap: '4px' }}>
+                      {(['Remote', 'Hybrid', 'Onsite'] as const).map((m) => (
+                        <button
+                          key={m}
+                          type="button"
+                          onClick={() => setWorkMode(m)}
+                          style={{
+                            flex: 1,
+                            padding: '4px 6px',
+                            fontSize: '0.6875rem',
+                            borderRadius: '4px',
+                            border: '1px solid',
+                            borderColor: workMode === m ? 'var(--accent-primary)' : 'var(--border-color)',
+                            backgroundColor: workMode === m ? 'var(--accent-primary)' : 'var(--bg-tertiary)',
+                            color: workMode === m ? '#fff' : 'var(--text-secondary)',
+                            cursor: 'pointer',
+                            fontWeight: workMode === m ? 600 : 400
+                          }}
+                        >
+                          {m}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.71875rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+                      <Building2 size={11} /> Company Scale
+                    </label>
+                    <select
+                      value={companyScale}
+                      onChange={(e) => setCompanyScale(e.target.value as any)}
+                      style={{
+                        width: '100%',
+                        padding: '4px 8px',
+                        fontSize: '0.6875rem',
+                        backgroundColor: 'var(--bg-tertiary)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '4px',
+                        color: 'var(--text-primary)',
+                        outline: 'none'
+                      }}
+                    >
+                      <option value="auto">Auto-Detect from Company</option>
+                      <option value="startup">Startup (0-1 / Fast Shipping)</option>
+                      <option value="mid-size">Mid-Size (Scale-up / Monolith to Microservices)</option>
+                      <option value="mnc">MNC / Big Tech (High Scale, p99 SLAs)</option>
+                      <option value="service">Service / IT Solutions (Client Delivery)</option>
+                      <option value="high-comp-product">High-Comp Quant & FinTech (Zero-Loss / Deep Tech)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.71875rem', fontWeight: 600, color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+                      <Users size={11} /> Outreach Angle
+                    </label>
+                    <select
+                      value={outreachAngle}
+                      onChange={(e) => setOutreachAngle(e.target.value as any)}
+                      style={{
+                        width: '100%',
+                        padding: '4px 8px',
+                        fontSize: '0.6875rem',
+                        backgroundColor: 'var(--bg-tertiary)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '4px',
+                        color: 'var(--text-primary)',
+                        outline: 'none'
+                      }}
+                    >
+                      <option value="recruiter-direct">Direct Recruiter (&lt;120 words)</option>
+                      <option value="hiring-manager-technical">Hiring Manager (Technical &amp; p99 Architecture)</option>
+                      <option value="peer-referral">Peer / Alumni Referral Request</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 

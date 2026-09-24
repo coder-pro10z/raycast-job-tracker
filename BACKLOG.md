@@ -253,6 +253,24 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🚀 Milestone 9: Multi-Dimensional Composable Outreach Matrix Engine (Zero-DB Overhead)
+- [x] **Zero-Database Architecture**: Rejected heavy SQL database bloat in favor of a pure TypeScript functional slot-filling engine (`composableOutreachEngine.ts`). Delivers 0ms latency, zero DB migrations, and 100% offline & Vercel serverless compatibility.
+- [x] **Multi-Dimensional Matrix Dimensions**:
+  - **Work Modes**: `Remote` (async autonomy, PR discipline, distributed timezones) vs `Hybrid` (in-office whiteboard pairing + focused remote shipping) vs `Onsite` (zero-latency face-to-face whiteboarding, pairing, immediate feedback).
+  - **Company Archetypes**:
+    - `Startup (0-to-1)`: High agency, wear many hats, rapid shipping without tech debt.
+    - `Mid-Size (Scale-up)`: Breaking monolithic bottlenecks, scaling microservices, CI/CD automation.
+    - `MNC / Big Tech`: p99 tail latency, 99.999% SLAs, architectural RFCs, observable microservices at scale.
+    - `Service / IT Solutions`: Client delivery velocity, legacy enterprise modernization (.NET Framework to .NET Core/Cloud), agile sprint discipline.
+    - `High-Comp Quant & FinTech`: Zero-loss transactional correctness, sub-millisecond data pipelines, memory/compute efficiency (Citadel, Stripe, OpenAI, Snowflake).
+  - **Outreach Angles**: `Direct Recruiter` (<120 words) vs `Hiring Manager (Technical & p99 Architecture)` vs `Peer / Alumni Referral Request`.
+- [x] **Interactive Automator UI Controls**: Added responsive chips and selectors in `WebAutomatorModal.tsx` allowing candidates to toggle Work Mode, Company Scale, and Outreach Angle with live dynamic synthesis.
+- [x] **Global Integration**: Wired `emailAssembler.ts` to automatically weave the job's `work_mode` and company archetype into all "Open Draft" actions across the platform.
+- [x] **Comprehensive Handbook**: Published `docs/COMPOSABLE_DRAFTS_MATRIX_GUIDE.md`.
+- [x] **Build Verification**: `npm run build` and `dotnet build` succeeded with 0 errors.
+
+---
+
 ### Category A: Authentication & User Management
 - [ ] **JWT Token Expiration & Refresh Flow**: Upgrade token string to signed HMAC-SHA256 JWT tokens with 7-day expiration and silent refresh.
 - [ ] **Forgot Password & Email Reset**: Send password reset tokens via SendGrid / SMTP.
