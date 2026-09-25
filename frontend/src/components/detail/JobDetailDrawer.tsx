@@ -20,10 +20,12 @@ import {
   Check,
   Save,
   Edit3,
-  Phone
+  Phone,
+  Sparkles
 } from 'lucide-react';
 import { OutreachStudio } from './OutreachStudio';
 import { FindLeadsMenu } from './FindLeadsMenu';
+import { getEnrichedJobData } from '../../data/enrichedPilotJobs';
 
 export const JobDetailDrawer: React.FC = () => {
   const { selectedJob, setSelectedJobId } = useJobStore();
@@ -124,6 +126,29 @@ export const JobDetailDrawer: React.FC = () => {
       } 
     });
     setJdEdited(false);
+  };
+
+  const handleAutoEnrich = () => {
+    if (!selectedJob) return;
+    const enriched = getEnrichedJobData(selectedJob.companyName);
+    if (enriched) {
+      updateJob({
+        id: selectedJob.id,
+        patch: {
+          careerPageLink: enriched.careerPageLink,
+          jobApplicationLink: enriched.jobApplicationLink,
+          jdContent: enriched.jdContent,
+          nextAction: enriched.nextAction,
+          priority: 'High',
+          techStack: enriched.techStack && enriched.techStack.length > 0 ? enriched.techStack : selectedJob.techStack,
+          outreachSubject: selectedJob.outreachSubject || enriched.outreachSubject,
+          outreachBodyPreview: selectedJob.outreachBodyPreview || enriched.outreachBodyPreview
+        }
+      });
+      setLinkInput(enriched.jobApplicationLink);
+      setJdInput(enriched.jdContent);
+      setJdEdited(false);
+    }
   };
 
   const handleSaveNotes = () => {
@@ -347,7 +372,31 @@ export const JobDetailDrawer: React.FC = () => {
             <span>Outreach Pitch Studio</span>
           </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', padding: '8px 0' }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginLeft: 'auto', padding: '8px 0', gap: '8px' }}>
+            {getEnrichedJobData(selectedJob.companyName) && (
+              <button
+                type="button"
+                onClick={handleAutoEnrich}
+                title="Auto-enrich application link, career portal & full JD with AI"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  padding: '5px 10px',
+                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                  color: '#10b981',
+                  fontSize: '0.75rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 120ms ease'
+                }}
+              >
+                <Sparkles size={12} />
+                <span>Auto-Enrich</span>
+              </button>
+            )}
             <FindLeadsMenu job={selectedJob} />
           </div>
         </div>
@@ -527,7 +576,83 @@ export const JobDetailDrawer: React.FC = () => {
 
           {/* Section 3: Application Links & Action */}
           {renderSectionHeader('Direct Links & Action', <ExternalLink size={15} />)}
-          <div style={{ display: 'grid', gap: '8px' }}>
+          <div style={{ display: 'grid', gap: '10px' }}>
+            {/* Direct Job Application Link */}
+            {selectedJob.jobApplicationLink ? (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', backgroundColor: 'rgba(59, 130, 246, 0.08)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
+                <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', paddingRight: '12px' }}>
+                  <div style={{ fontSize: '0.75rem', color: '#60a5fa', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '5px', marginBottom: '2px' }}>
+                    <Sparkles size={12} /> Direct Job Application Link
+                  </div>
+                  <a 
+                    href={selectedJob.jobApplicationLink.startsWith('http') ? selectedJob.jobApplicationLink : `https://${selectedJob.jobApplicationLink}`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    style={{ fontSize: '0.8125rem', color: '#3b82f6', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 600 }}
+                  >
+                    {selectedJob.jobApplicationLink} <ExternalLink size={12} />
+                  </a>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+                  <a 
+                    href={selectedJob.jobApplicationLink.startsWith('http') ? selectedJob.jobApplicationLink : `https://${selectedJob.jobApplicationLink}`} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    style={{ 
+                      padding: '5px 12px', 
+                      fontSize: '0.75rem', 
+                      fontWeight: 600, 
+                      backgroundColor: '#3b82f6', 
+                      color: '#ffffff', 
+                      borderRadius: 'var(--radius-sm)', 
+                      textDecoration: 'none', 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '4px' 
+                    }}
+                    className="glow-hover"
+                  >
+                    Apply Now <ExternalLink size={12} />
+                  </a>
+                  <button 
+                    onClick={() => copyToClipboard(selectedJob.jobApplicationLink, 'applink')}
+                    style={{ background: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', color: 'var(--text-muted)', cursor: 'pointer', padding: '5px 8px', borderRadius: 'var(--radius-sm)' }}
+                    title="Copy URL"
+                  >
+                    {copiedField === 'applink' ? <Check size={14} style={{ color: '#34d399' }} /> : <Copy size={14} />}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', backgroundColor: 'var(--bg-primary)', borderRadius: 'var(--radius-sm)', border: '1px dashed var(--border-color)' }}>
+                <span style={{ fontSize: '0.8125rem', color: 'var(--text-muted)' }}>
+                  No direct application link recorded yet.
+                </span>
+                {getEnrichedJobData(selectedJob.companyName) && (
+                  <button
+                    type="button"
+                    onClick={handleAutoEnrich}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      padding: '5px 10px',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      borderRadius: 'var(--radius-sm)',
+                      backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                      color: '#10b981',
+                      border: '1px solid rgba(16, 185, 129, 0.25)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <Sparkles size={12} />
+                    <span>Auto-Enrich with AI</span>
+                  </button>
+                )}
+              </div>
+            )}
+
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', backgroundColor: 'var(--bg-tertiary)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)' }}>
               <div>
                 <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)' }}>Next Required Action</div>

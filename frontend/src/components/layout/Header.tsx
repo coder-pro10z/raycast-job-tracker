@@ -27,6 +27,12 @@ export const Header: React.FC = () => {
 
   const handleReload = async () => {
     setReloading(true);
+    if (typeof localStorage !== 'undefined') {
+      const activeUser = localStorage.getItem('job_tracker_active_user_id') || 'guest';
+      localStorage.removeItem(`job_tracker_jobs_${activeUser}`);
+      localStorage.removeItem('job_tracker_jobs_user_praveen');
+      localStorage.removeItem('job_tracker_jobs_guest');
+    }
     await refetch();
     setTimeout(() => setReloading(false), 500);
   };
