@@ -1,10 +1,18 @@
 import React from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import type { Priority, WorkMode } from '../../types/job';
-import { Search, X, Filter, RotateCcw, Code, Cloud } from 'lucide-react';
+import { Search, X, Filter, RotateCcw, Code, Cloud, Sparkles } from 'lucide-react';
 
 export const FilterBar: React.FC = () => {
-  const { filterState, setSearchQuery, togglePriorityFilter, toggleWorkModeFilter, toggleTechFilter, resetFilters } = useJobStore();
+  const { 
+    filterState, 
+    setSearchQuery, 
+    togglePriorityFilter, 
+    toggleWorkModeFilter, 
+    toggleTechFilter, 
+    toggleReadyFilter,
+    resetFilters 
+  } = useJobStore();
 
   const priorities: Priority[] = ['High', 'Medium', 'Low'];
   const workModes: WorkMode[] = ['Hybrid', 'Remote', 'Onsite'];
@@ -19,6 +27,7 @@ export const FilterBar: React.FC = () => {
     filterState.workMode.length > 0 || 
     filterState.status.length > 0 ||
     filterState.techFilters.length > 0 ||
+    Boolean(filterState.readyOnly) ||
     filterState.searchQuery.trim() !== '';
 
   return (
@@ -153,6 +162,29 @@ export const FilterBar: React.FC = () => {
             );
           })}
         </div>
+
+        {/* Ready to Apply Quick Pill (Application Link + JD + Outreach Draft) */}
+        <button
+          onClick={toggleReadyFilter}
+          title="Filter to companies with verified Application Link, JD, and Outreach Draft"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            padding: '5px 12px',
+            borderRadius: '14px',
+            border: filterState.readyOnly ? '1px solid #10b981' : '1px solid var(--border-color)',
+            background: filterState.readyOnly ? 'rgba(16, 185, 129, 0.15)' : 'var(--bg-secondary)',
+            color: filterState.readyOnly ? '#10b981' : 'var(--text-secondary)',
+            fontSize: '0.75rem',
+            fontWeight: filterState.readyOnly ? 700 : 500,
+            cursor: 'pointer',
+            transition: 'all 150ms ease'
+          }}
+        >
+          <Sparkles size={12} style={{ color: filterState.readyOnly ? '#10b981' : 'var(--text-muted)' }} />
+          <span>Ready to Apply</span>
+        </button>
 
         {/* Work Mode Pills */}
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px', background: 'var(--bg-secondary)', padding: '4px 8px', borderRadius: '14px', border: '1px solid var(--border-color)', maxWidth: '100%', boxSizing: 'border-box' }}>

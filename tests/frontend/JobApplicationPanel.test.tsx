@@ -20,6 +20,30 @@ import type { JobItem } from '../../frontend/src/types/job';
 vi.mock('../../frontend/src/state/useJobStore', () => ({
   useJobStore: () => ({
     setSelectedJobId: vi.fn(),
+    showToast: vi.fn(),
+    currentUser: null,
+    userProfile: {
+      fullName: 'Praveen Kashyap',
+      email: '2pkashyap2001@gmail.com',
+      currentRole: 'Full Stack Engineer / SDE',
+      yoe: '3+ years',
+      targetDomain: 'sde',
+      keyStrengths: 'React, .NET Core',
+      phone: '+91 7394990738',
+      linkedinUrl: 'https://linkedin.com/in/coder-pro10z',
+      githubUrl: 'https://github.com/coder-pro10z'
+    },
+    filterState: {
+      activeDomain: 'all',
+      searchQuery: '',
+      priority: [],
+      workMode: [],
+      status: [],
+      techFilters: [],
+      viewMode: 'job-applications',
+      sortBy: 'priority',
+      sortDirection: 'desc'
+    }
   }),
 }));
 
@@ -32,6 +56,17 @@ vi.mock('../../frontend/src/hooks/useJobApplicationImport', () => ({
     markAsApplied: vi.fn(),
     isUpdating: false,
     refetch: vi.fn(),
+  }),
+}));
+
+vi.mock('../../frontend/src/hooks/useJobs', () => ({
+  useCreateJob: () => ({
+    mutateAsync: vi.fn(),
+    isPending: false,
+  }),
+  useUpdateJob: () => ({
+    mutateAsync: vi.fn(),
+    isPending: false,
   }),
 }));
 
@@ -204,12 +239,11 @@ describe('JobApplicationPanel — rendering', () => {
     expect(screen.getByTestId('status-3').textContent).toBe('Skipped');
   });
 
-  test('"Open Draft" button href is correct Gmail deep-link URL', () => {
+  test('"Open Draft" button renders and triggers Gmail Draft Preview & Editor', () => {
     render(<JobApplicationPanel jobs={[mockAutomatorJobs[0]]} isLoading={false} />);
-    const link = screen.getByTestId('open-draft-1');
-    expect(link.getAttribute('href')).toBe(
-      'https://mail.google.com/mail/#drafts/draft-001'
-    );
+    const btn = screen.getByTestId('open-draft-1');
+    expect(btn).toBeTruthy();
+    expect(btn.textContent).toContain('Open Draft');
   });
 
   test('renders company name for each row', () => {

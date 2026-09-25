@@ -91,7 +91,7 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
 
   const rawJobs = controlledJobs ?? liveImport.automatorJobs;
   const isLoading = controlledIsLoading ?? liveImport.isLoading;
-  const isPraveen = currentUser?.id === 'user_praveen' || userProfile?.fullName?.includes('Praveen') || (!currentUser && !userProfile.fullName);
+  const isPraveen = currentUser?.id === 'user_praveen' || userProfile?.fullName?.includes('Praveen') || (!currentUser && !userProfile?.fullName);
   const userEmail = currentUser?.email || userProfile?.email || '2pkashyap2001@gmail.com';
 
   // Ensure any legacy jobs for Praveen are accurately tailored to SDE & Full Stack
@@ -550,6 +550,7 @@ export const JobApplicationPanel: React.FC<JobApplicationPanelProps> = ({
       {/* Expandable How Automator Works / Setup Guide */}
       {(showSetupGuide || jobs.length === 0) && (
         <div
+          data-testid="empty-state"
           style={{
             padding: '24px',
             backgroundColor: 'var(--bg-primary)',

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { useJobStore } from '../../state/useJobStore';
+import { useJobStore, isJobFullyEnriched } from '../../state/useJobStore';
 
 import { useCloneJob } from '../../hooks/useJobs';
 import type { JobItem } from '../../types/job';
@@ -8,7 +8,7 @@ import { Badge } from '../common/Badge';
 import { StatusBadgeDropdown } from '../common/StatusBadgeDropdown';
 import { FindLeadsMenu } from '../detail/FindLeadsMenu';
 import { EditLinkPopover } from './EditLinkPopover';
-import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, FileText, Link as LinkIcon, Plus, Cloud, Pencil, Copy } from 'lucide-react';
+import { ArrowUp, ArrowDown, ExternalLink, ChevronRight, FileText, Link as LinkIcon, Plus, Cloud, Pencil, Copy, Sparkles } from 'lucide-react';
 
 export const JobTable: React.FC = () => {
   const { filteredJobs, selectedJobId, setSelectedJobId, filterState, setSort, isSidebarCollapsed, setSidebarCollapsed } = useJobStore();
@@ -181,6 +181,7 @@ export const JobTable: React.FC = () => {
             const isEditingThisJd = editingJdId === job.id;
             const hasJd = Boolean(job.jdContent && job.jdContent.trim());
             const hasLink = Boolean(job.jobApplicationLink && job.jobApplicationLink.trim());
+            const isFullyEnriched = isJobFullyEnriched(job);
             const isSameCompanyAsPrevRow = filterState.sortBy === 'companyName' && 
                                            virtualRow.index > 0 && 
                                            filteredJobs[virtualRow.index - 1].companyName === job.companyName;
@@ -342,6 +343,32 @@ export const JobTable: React.FC = () => {
                             <span>JD</span>
                           </span>
                         )}
+                        {isFullyEnriched && (
+                          <span
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedJobId(job.id);
+                            }}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              padding: '4px 9px',
+                              borderRadius: 'var(--radius-full)',
+                              backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                              color: '#10b981',
+                              fontSize: 'var(--text-xs)',
+                              fontWeight: 'var(--weight-semibold)',
+                              cursor: 'pointer',
+                              border: '1px solid rgba(16, 185, 129, 0.25)'
+                            }}
+                            className="glow-hover"
+                            title="Application Link, JD, and Outreach Draft Ready!"
+                          >
+                            <Sparkles size={11} strokeWidth={2} style={{ color: '#10b981' }} />
+                            <span>Ready</span>
+                          </span>
+                        )}
                       </>
                     )}
                   </div>
@@ -407,8 +434,8 @@ export const JobTable: React.FC = () => {
                 </div>
 
                 {/* Next Action */}
-                <div style={{ flex: columns[6].flex, minWidth: columns[6].minWidth, display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: 'var(--text-accent)', fontSize: '0.8125rem', paddingRight: '4px', overflow: 'hidden' }}>
-                  <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingRight: '6px' }}>
+                <div style={{ flex: columns[6].flex, minWidth: columns[6].minWidth, display: 'flex', alignItems: 'center', justifyContent: 'space-between', color: isFullyEnriched ? '#10b981' : 'var(--text-accent)', fontSize: '0.8125rem', paddingRight: '4px', overflow: 'hidden' }}>
+                  <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingRight: '6px', fontWeight: isFullyEnriched ? 600 : 400 }}>
                     {job.nextAction}
                   </span>
                   <ChevronRight size={16} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />

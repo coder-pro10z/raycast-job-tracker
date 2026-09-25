@@ -74,6 +74,7 @@ export interface FilterState {
   viewMode: ViewMode;
   sortBy: keyof JobItem | '';
   sortDirection: 'asc' | 'desc';
+  readyOnly?: boolean;
 }
 
 export interface DomainMetrics {

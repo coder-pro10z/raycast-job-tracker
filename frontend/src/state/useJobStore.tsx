@@ -36,6 +36,7 @@ interface JobStoreContextType {
   toggleWorkModeFilter: (mode: WorkMode) => void;
   toggleStatusFilter: (status: ApplicationStatus) => void;
   toggleTechFilter: (tech: string) => void;
+  toggleReadyFilter: () => void;
   setSort: (column: keyof JobItem) => void;
   resetFilters: () => void;
   uploadExcelFile: (file: File) => Promise<{ added: number; duplicates: number }>;
@@ -55,6 +56,66 @@ interface JobStoreContextType {
   refreshUsers: () => Promise<void>;
   setJobs: (jobs: JobItem[]) => void;
 }
+
+/**
+ * Validates whether a direct job application link is populated with a real URL
+ */
+export const isApplicationLinkValid = (link?: string): boolean => {
+  if (!link) return false;
+  const trimmed = link.trim().toLowerCase();
+  return (
+    trimmed !== '' &&
+    trimmed !== '#' &&
+    !trimmed.includes('find application link') &&
+    (trimmed.startsWith('http://') || trimmed.startsWith('https://'))
+  );
+};
+
+/**
+ * Validates whether detailed JD content is present (>60 chars)
+ */
+export const isJdReady = (jd?: string): boolean => {
+  if (!jd) return false;
+  const trimmed = jd.trim().toLowerCase();
+  return trimmed.length > 60 && !trimmed.includes('find application link');
+};
+
+/**
+ * Validates whether cold outreach pitch materials or drafts exist
+ */
+export const isDraftReady = (job: JobItem): boolean => {
+  const hasSubject = Boolean(job.outreachSubject && job.outreachSubject.trim().length > 10);
+  const hasPreview = Boolean(job.outreachBodyPreview && job.outreachBodyPreview.trim().length > 30);
+  const hasReadyAction = Boolean(job.nextAction && job.nextAction.toLowerCase().includes('ready'));
+  const hasDraftId = Boolean(job.gmailDraftId && job.gmailDraftId.trim().length > 0);
+  return hasSubject || hasPreview || hasReadyAction || hasDraftId;
+};
+
+/**
+ * Computes an application-readiness score from 0 to 10 for a job:
+ * - Direct Application Link: +4 points
+ * - Structured JD (>60 chars): +3 points
+ * - Outreach Draft Ready: +2 points
+ * - Verified Career Portal Link: +1 point
+ */
+export const getJobReadinessScore = (job: JobItem): number => {
+  let score = 0;
+  if (isApplicationLinkValid(job.jobApplicationLink)) score += 4;
+  if (isJdReady(job.jdContent)) score += 3;
+  if (isDraftReady(job)) score += 2;
+  if (job.careerPageLink && job.careerPageLink.trim().length > 0 && job.careerPageLink.trim() !== '#') {
+    score += 1;
+  }
+  return score;
+};
+
+/**
+ * Returns true if all primary application details are filled:
+ * Valid Application Link + Structured JD + Outreach Draft Ready
+ */
+export const isJobFullyEnriched = (job: JobItem): boolean => {
+  return isApplicationLinkValid(job.jobApplicationLink) && isJdReady(job.jdContent) && isDraftReady(job);
+};
 
 const getSavedDomain = (): ActiveDomain => {
   const saved = localStorage.getItem('job_tracker_active_domain');
@@ -142,7 +203,8 @@ const defaultFilterState: FilterState = {
   techFilters: [],
   viewMode: getSavedViewMode(),
   sortBy: getSavedSortBy(),
-  sortDirection: getSavedSortDir()
+  sortDirection: getSavedSortDir(),
+  readyOnly: false
 };
 
 const JobStoreContext = createContext<JobStoreContextType | undefined>(undefined);
@@ -432,6 +494,13 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     });
   };
 
+  const toggleReadyFilter = () => {
+    setFilterState((prev) => ({
+      ...prev,
+      readyOnly: !prev.readyOnly
+    }));
+  };
+
   const setSort = (column: keyof JobItem) => {
     setFilterState((prev) => {
       const isAsc = prev.sortBy === column && prev.sortDirection === 'asc';
@@ -454,7 +523,8 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       activeDomain: prev.activeDomain,
       viewMode: prev.viewMode,
       sortBy: 'priority',
-      sortDirection: 'desc'
+      sortDirection: 'desc',
+      readyOnly: false
     }));
   };
 
@@ -558,33 +628,47 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       });
     }
 
-    // Apply Sorting
-    if (filterState.sortBy) {
-      const col = filterState.sortBy;
-      const dir = filterState.sortDirection === 'asc' ? 1 : -1;
-
-      result.sort((a, b) => {
-        const valA = a[col] ?? '';
-        const valB = b[col] ?? '';
-
-        if (col === 'priority') {
-          const rank = (p: string) => (p === 'High' ? 3 : p === 'Medium' ? 2 : p === 'Low' ? 1 : 0);
-          return (rank(valA as string) - rank(valB as string)) * dir;
-        }
-
-        if (Array.isArray(valA) && Array.isArray(valB)) {
-          return (valA.length - valB.length) * dir;
-        }
-
-        if (typeof valA === 'string' && typeof valB === 'string') {
-          return valA.localeCompare(valB) * dir;
-        }
-
-        if (valA < valB) return -1 * dir;
-        if (valA > valB) return 1 * dir;
-        return 0;
-      });
+    // Apply Ready Only filter (direct application link + structured JD + draft ready)
+    if (filterState.readyOnly) {
+      result = result.filter((j) => isJobFullyEnriched(j));
     }
+
+    // Apply Sorting (default: priority descending with readiness score tiebreaker)
+    const col = filterState.sortBy || 'priority';
+    const dir = filterState.sortDirection === 'asc' ? 1 : -1;
+
+    result.sort((a, b) => {
+      if (col === 'priority') {
+        const rank = (p: string) => (p === 'High' ? 3 : p === 'Medium' ? 2 : p === 'Low' ? 1 : 0);
+        const rankDiff = (rank(a.priority as string) - rank(b.priority as string)) * dir;
+        if (rankDiff !== 0) return rankDiff;
+
+        // Within same priority tier: Keep companies that have all details filled
+        // (direct Application Link, JD ready, and Outreach Draft ready) prioritized and floated to top!
+        const scoreDiff = getJobReadinessScore(b) - getJobReadinessScore(a);
+        if (scoreDiff !== 0) return scoreDiff;
+
+        // Stable tertiary sort: Alphabetical by company name
+        return a.companyName.localeCompare(b.companyName);
+      }
+
+      const valA = a[col] ?? '';
+      const valB = b[col] ?? '';
+
+      if (Array.isArray(valA) && Array.isArray(valB)) {
+        return (valA.length - valB.length) * dir;
+      }
+
+      if (typeof valA === 'string' && typeof valB === 'string') {
+        const strComp = valA.localeCompare(valB) * dir;
+        if (strComp !== 0) return strComp;
+        return getJobReadinessScore(b) - getJobReadinessScore(a);
+      }
+
+      if (valA < valB) return -1 * dir;
+      if (valA > valB) return 1 * dir;
+      return getJobReadinessScore(b) - getJobReadinessScore(a);
+    });
 
     return result;
   }, [jobs, filterState]);
@@ -630,6 +714,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         toggleWorkModeFilter,
         toggleStatusFilter,
         toggleTechFilter,
+        toggleReadyFilter,
         setSort,
         resetFilters,
         uploadExcelFile,
