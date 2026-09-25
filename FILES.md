@@ -204,6 +204,8 @@ prompt-lib/
 
 ```
 scripts/
+├── enrich_opportunities.py            # Opportunity, portal & JD autonomous enrichment engine
+├── run_enrichment.bat                 # 1-click batch runner for opportunity enrichment
 ├── run-automator.bat                  # Canonical automator runner
 ├── setup-automator.bat                # Canonical automator environment installer
 ├── push_to_github.bat                 # Guarded git push workflow

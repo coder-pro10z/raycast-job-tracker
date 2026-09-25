@@ -308,6 +308,25 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🚀 Milestone 11: Autonomous Opportunity Enrichment & JD Extraction Engine
+- [x] **Pilot Batch Enrichment (15 High-Priority Target Companies)**:
+  - Enriched **Tekion**, **LTIMindtree**, **Newgen Software**, **Genpact**, **TCS**, **EngiNeo Solutions**, **Circunomics**, **IT Delight**, **Build in Motion**, **Iris Software**, **Amagi**, **MindTickle**, **Postman**, **BrowserStack**, and **HRMS Product Company**.
+  - Extracted verified **Canonical Career Portals / ATS URLs** (Greenhouse, Lever, SmartRecruiters, Workday, Trakstar).
+  - Extracted direct **Job Application Links** matching Praveen Kashyap's profile (`3+ YoE`, Angular, React, TypeScript, C#, .NET Core, Microservices).
+  - Extracted structured **Full Job Descriptions (JDs)** (900–1600 characters each in clean Markdown) containing Team Overview, Core Responsibilities, Technical Qualifications, and Tech Stack tags.
+  - Automatically transitioned `Next Action` from `"Find application link"` to `"Ready to Apply — Review Outreach Draft"`.
+- [x] **Dual Spreadsheet & Catalog Synchronization**:
+  - Automatically enriched both `sheets/Master_Job_Tracker_Verified.xlsx` and `frontend/public/Master_Job_Tracker.xlsx` across 54 total matching records.
+- [x] **Autonomous Tooling & CLI (`scripts/enrich_opportunities.py`)**:
+  - Built Python enrichment script supporting `--pilot-15`, `--priority High`, and `--company <name>` modes with whitespace-resilient catalog matching.
+  - Created Windows 1-click launcher `scripts/run_enrichment.bat`.
+  - Added npm scripts: `npm run enrich:high-priority` and `npm run enrich`.
+- [x] **Seamless Outreach Engine Integration**:
+  - Newly enriched JDs directly feed the **Native Dark Gmail Draft Editor** (`GmailDraftEditorModal.tsx`) and **Outreach Pitch Studio** (`OutreachStudio.tsx`), generating tailored Recruiter Cold Emails and Referral Notes referencing specific JD requirements and Praveen's verified signature.
+- [x] **Build Verification**: `npm --prefix frontend run build` (7.73s, 0 errors) and `dotnet build backend/NextApply.Api` (8.14s, 0 errors).
+
+---
+
 ### Category A: Authentication & User Management
 - [ ] **JWT Token Expiration & Refresh Flow**: Upgrade token string to signed HMAC-SHA256 JWT tokens with 7-day expiration and silent refresh.
 - [ ] **Forgot Password & Email Reset**: Send password reset tokens via SendGrid / SMTP.
