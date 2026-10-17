@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useJobStore } from '../../state/useJobStore';
-import { X, Lock, Mail, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
+import { X, Lock, Mail, ArrowRight, ShieldCheck, Sparkles, User } from 'lucide-react';
+import { isProfileAuthorizedOnDevice } from '../../services/deviceProfileService';
 
 export const AuthModal: React.FC = () => {
   const { 
@@ -217,8 +218,9 @@ export const AuthModal: React.FC = () => {
                     className="glow-hover"
                   >
                     <div>
-                      <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--text-primary)' }}>
-                        👤 Praveen Kashyap
+                      <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <User size={15} style={{ color: 'var(--text-accent)' }} />
+                        <span>Praveen Kashyap</span>
                       </div>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                         2pkashyap2001@gmail.com (SDE / FullStack)
@@ -227,27 +229,30 @@ export const AuthModal: React.FC = () => {
                     <ArrowRight size={16} style={{ color: 'var(--text-accent)' }} />
                   </button>
 
-                  <button
-                    type="button"
-                    onClick={() => handleQuickLogin('anamansari.0406@gmail.com')}
-                    disabled={submitting}
-                    style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                      padding: '10px 14px', borderRadius: '6px', border: '1px solid var(--border-color)',
-                      backgroundColor: 'var(--bg-primary)', cursor: 'pointer', textAlign: 'left'
-                    }}
-                    className="glow-hover"
-                  >
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--text-primary)' }}>
-                        👤 Anam Ansari
+                  {isProfileAuthorizedOnDevice('user_anam') && (
+                    <button
+                      type="button"
+                      onClick={() => handleQuickLogin('anamansari.0406@gmail.com')}
+                      disabled={submitting}
+                      style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                        padding: '10px 14px', borderRadius: '6px', border: '1px solid var(--border-color)',
+                        backgroundColor: 'var(--bg-primary)', cursor: 'pointer', textAlign: 'left'
+                      }}
+                      className="glow-hover"
+                    >
+                      <div>
+                        <div style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <User size={15} style={{ color: 'var(--text-accent)' }} />
+                          <span>Anam Ansari</span>
+                        </div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                          anamansari.0406@gmail.com (Dual Domain)
+                        </div>
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                        anamansari.0406@gmail.com (Dual Domain)
-                      </div>
-                    </div>
-                    <ArrowRight size={16} style={{ color: 'var(--text-accent)' }} />
-                  </button>
+                      <ArrowRight size={16} style={{ color: 'var(--text-accent)' }} />
+                    </button>
+                  )}
                 </div>
               </div>
 

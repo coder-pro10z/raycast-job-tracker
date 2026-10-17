@@ -2,6 +2,7 @@ import type { JobItem, JobDomain, Priority, WorkMode, ApplicationStatus } from '
 import type { UserProfileDto, PublicUserSummary, AuthResponse } from '../types/auth';
 import { excelAdapter } from './excelAdapter';
 import { getEnrichedJobData } from '../data/enrichedPilotJobs';
+import { isProfileAuthorizedOnDevice } from './deviceProfileService';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5089';
 
@@ -771,7 +772,14 @@ export const apiClient = {
           headers: getAuthHeaders()
         });
         if (res.ok) {
-          return await res.json();
+          const allUsers: PublicUserSummary[] = await res.json();
+          // Filter out private profiles (like Anam Ansari) for global users unless authorized on this device
+          return allUsers.filter(u => 
+            u.id === 'user_praveen' || 
+            u.email.toLowerCase() === '2pkashyap2001@gmail.com' ||
+            isProfileAuthorizedOnDevice(u.id) ||
+            isProfileAuthorizedOnDevice(u.email)
+          );
         }
       } catch (err: any) {
         console.warn('Backend unavailable for getUsers, returning default public accounts');
@@ -785,15 +793,19 @@ export const apiClient = {
         email: '2pkashyap2001@gmail.com',
         targetDomain: 'sde',
         currentRole: 'Full Stack Engineer / SDE'
-      },
-      {
+      }
+    ];
+
+    // Only include Anam in offline fallback if this device is authorized
+    if (isProfileAuthorizedOnDevice('user_anam') || isProfileAuthorizedOnDevice('anamansari.0406@gmail.com')) {
+      defaultSummaries.push({
         id: 'user_anam',
         fullName: 'Anam Ansari',
         email: 'anamansari.0406@gmail.com',
         targetDomain: 'dual',
         currentRole: 'Software Engineer'
-      }
-    ];
+      });
+    }
 
     if (typeof localStorage !== 'undefined') {
       const localUsersJson = localStorage.getItem('job_tracker_registered_users');
@@ -801,14 +813,16 @@ export const apiClient = {
         try {
           const users: UserProfileDto[] = JSON.parse(localUsersJson);
           for (const u of users) {
-            if (!defaultSummaries.some(d => d.id === u.id || d.email.toLowerCase() === u.email.toLowerCase())) {
-              defaultSummaries.push({
-                id: u.id,
-                fullName: u.fullName,
-                email: u.email,
-                targetDomain: u.targetDomain,
-                currentRole: u.currentRole
-              });
+            if (isProfileAuthorizedOnDevice(u.id) || isProfileAuthorizedOnDevice(u.email)) {
+              if (!defaultSummaries.some(d => d.id === u.id || d.email.toLowerCase() === u.email.toLowerCase())) {
+                defaultSummaries.push({
+                  id: u.id,
+                  fullName: u.fullName,
+                  email: u.email,
+                  targetDomain: u.targetDomain,
+                  currentRole: u.currentRole
+                });
+              }
             }
           }
         } catch {}

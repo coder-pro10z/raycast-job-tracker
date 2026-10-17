@@ -155,6 +155,18 @@ This section records technical bugs, compilation failures, environment locks, an
 
 ---
 
+### 🐛 Error 12: Global Profile Exposure of Anam Ansari in Quick Login & Switch Account
+- **Component**: Frontend Authentication & Profile Switching (`AuthModal.tsx`, `ProfileMenu.tsx`, `apiClient.ts`, `deviceProfileService.ts`)
+- **Root Cause**: Anam Ansari's account was exposed globally across all client devices in both `AuthModal.tsx` ("Quick Select Active Profile") and `ProfileMenu.tsx` ("SWITCH ACCOUNT"), allowing public users to see and 1-click switch into Anam's private profile.
+- **Resolution**:
+  - Implemented `deviceProfileService.ts` to enforce device-level profile authorization.
+  - Restricted Anam Ansari's quick login chip in `AuthModal.tsx` and account switcher item in `ProfileMenu.tsx` so they only render if the specific device has actively signed into Anam's account or has been explicitly authorized on that device.
+  - Praveen Kashyap remains the primary global public profile for visitors.
+  - Replaced raw emoji `👤` with Lucide `<User size={15} />` in adherence to Rule 1 of `RULES.md`.
+  - Verified with `npm run build` (0 TypeScript / Vite errors) and `dotnet build` (0 errors).
+
+---
+
 ## 2. Completed Features & Release Milestones
 
 ### 🚀 Milestone 1: Multi-User Profile & Authentication System

@@ -4,6 +4,7 @@ import type { JobItem, FilterState, ViewMode, Priority, WorkMode, ApplicationSta
 import type { UserProfileDto, PublicUserSummary } from '../types/auth';
 import { excelAdapter } from '../services/excelAdapter';
 import { apiClient } from '../services/apiClient';
+import { authorizeProfileOnDevice } from '../services/deviceProfileService';
 
 interface JobStoreContextType {
   jobs: JobItem[];
@@ -277,10 +278,19 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     refreshUsers();
   }, [activeUserId]);
 
+  useEffect(() => {
+    const savedUserId = localStorage.getItem('job_tracker_active_user_id');
+    if (savedUserId) {
+      authorizeProfileOnDevice(savedUserId);
+    }
+  }, []);
+
   const login = async (email: string, password: string) => {
     const res = await apiClient.login(email, password);
     localStorage.setItem('job_tracker_token', res.token);
     localStorage.setItem('job_tracker_active_user_id', res.user.id);
+    authorizeProfileOnDevice(res.user.id);
+    if (res.user.email) authorizeProfileOnDevice(res.user.email);
     setActiveUserId(res.user.id);
     setCurrentUser(res.user);
     setUserProfile((prev) => ({
@@ -305,6 +315,8 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     const res = await apiClient.signup(data);
     localStorage.setItem('job_tracker_token', res.token);
     localStorage.setItem('job_tracker_active_user_id', res.user.id);
+    authorizeProfileOnDevice(res.user.id);
+    if (res.user.email) authorizeProfileOnDevice(res.user.email);
     setActiveUserId(res.user.id);
     setCurrentUser(res.user);
     setUserProfile((prev) => ({
@@ -327,6 +339,7 @@ export const JobProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
 
   const switchUser = async (userId: string) => {
     localStorage.setItem('job_tracker_active_user_id', userId);
+    authorizeProfileOnDevice(userId);
     setActiveUserId(userId);
     try {
       const profile = await apiClient.getCurrentUser();

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useJobStore } from '../../state/useJobStore';
 import { LogOut, Settings, UserPlus, Check, ChevronDown, User } from 'lucide-react';
+import { isProfileAuthorizedOnDevice } from '../../services/deviceProfileService';
 
 export const ProfileMenu: React.FC = () => {
   const { 
@@ -41,6 +42,11 @@ export const ProfileMenu: React.FC = () => {
   };
 
   const isGuest = !currentUser || !activeUserId;
+
+  const visibleUsers = usersList.filter(user => {
+    if (user.id === 'user_praveen' || user.email.toLowerCase() === '2pkashyap2001@gmail.com') return true;
+    return isProfileAuthorizedOnDevice(user.id) || isProfileAuthorizedOnDevice(user.email) || user.id === activeUserId;
+  });
 
   return (
     <div ref={dropdownRef} style={{ position: 'relative' }}>
@@ -157,7 +163,7 @@ export const ProfileMenu: React.FC = () => {
             Switch Account
           </div>
 
-          {usersList.map((user) => {
+          {visibleUsers.map((user) => {
             const isSelected = user.id === activeUserId;
             return (
               <button
