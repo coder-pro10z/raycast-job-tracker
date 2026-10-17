@@ -122,7 +122,9 @@ cd frontend && npm run build; cd ../backend/NextApply.Api && dotnet build
 **When**: Agent needs to commit and push changes.
 
 ### Steps
-1. Stage: `git add .`
-2. Commit with conventional format: `git commit -m "feat(outreach): implement native draft editor popup"`
-3. Push: `git push origin main`
-4. NEVER modify `.github/workflows/` — store CI templates in `automation/gmail-jd-automator/workflow/` instead.
+1. Follow the canonical [Git workflow](docs/git-workflow.md), including publication authorization and validation.
+2. Fetch and synchronize with fast-forward-only pulls; work on a focused task branch.
+3. Review and stage explicit task files, then commit using conventional commit messages.
+4. Push only the task branch and open a PR against `main`. Default to squash merge after review and passing checks.
+5. Never force-push, silently rebase shared history, or push directly to `main`.
+6. NEVER modify `.github/workflows/` — store CI templates in `automation/gmail-jd-automator/workflow/` instead.
