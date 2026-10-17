@@ -54,6 +54,8 @@ cd backend/NextApply.Api && dotnet run
 
 ## Always Do
 
+Follow [docs/git-workflow.md](docs/git-workflow.md) for all pull, push, branch, and merge operations. Use task branches and PRs; never push directly to `main`.
+
 1. **Read `FILES.md`** before exploring the filesystem. It maps every directory and warns which paths to skip.
 2. **Read `RULES.md`** before writing any UI code. It is the binding design system contract.
 3. **Read `DESIGN.md`** for CSS custom property tokens, typography scales, and component patterns.

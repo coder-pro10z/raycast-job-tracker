@@ -52,6 +52,8 @@ Full architecture, data flow, and database schema docs live in [`/docs`](./docs/
 
 ## Getting started
 
+For branching, pulls, pushes, and PR merges, follow the [Git workflow policy](docs/git-workflow.md).
+
 ```bash
 # Clone the repository
 git clone https://github.com/coder-pro10z/raycast-job-tracker.git
